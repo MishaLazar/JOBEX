@@ -1,7 +1,7 @@
 from flask import Flask,jsonify,request,redirect, url_for
 from Controllers import MobileController,WebController
 from Utils import ConfigHellper
-
+from Classes import Student
 app = Flask(__name__)
 
 config = ConfigHellper.configHellper()
@@ -25,7 +25,9 @@ def get_loginSoruce(type):
 
 @app.route('/getStudentEngagements/<StudentId>')
 def get_StudentEngagements(StudentId):
-    return MobileController.MobileController.get_StudentEngagements(studentId=StudentId)
+    mobCtrl = MobileController.MobileController.getInstance()
+    result = mobCtrl.get_StudentEngagements(studentId=StudentId)
+    return result
 
 @app.route('/WebLogin')
 def web_login():

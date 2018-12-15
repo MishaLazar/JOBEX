@@ -1,7 +1,7 @@
 from sshtunnel import SSHTunnelForwarder
 from pymongo import MongoClient, errors
 from Utils import ConfigHellper
-from bson.objectid import ObjectId
+from Classes import Student
 class MobileDbHandler:
     # Here will be the instance stored.
 
@@ -80,7 +80,14 @@ class MobileDbHandler:
             cursor = collection.aggregate(pieline)
             try:
                 for doc in cursor:
-                    return doc["_id"]
+                    student = Student.Student()
+                    student.setFirstName(doc['FirstName'])
+                    student.setLastName(doc['LastName'])
+                    student.setEmail(doc['Email'])
+                    student.setStudentId(str(doc['_id']))
+
+
+                    return student.toJSON()
             finally:
                 cursor.close()
         except errors.ServerSelectionTimeoutError as err:
