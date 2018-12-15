@@ -4,7 +4,7 @@ import configparser
 
 class MobileDbHandler:
     # Here will be the instance stored.
-    __instance = None
+
     config = configparser.ConfigParser()
     config.read('../JOBEX-REST/Configurations.ini')
     MONGO_HOST = config['DBPARAMS']['MONGO_HOST']
@@ -12,6 +12,9 @@ class MobileDbHandler:
     MONGO_USER = config['DBPARAMS']['MONGO_USER']
     SSH_PKEY_PATH = config['DBPARAMS']['SSH_PKEY_PATH']
     SSH_PKEY_PASS = config['DBPARAMS']['SSH_PKEY_PASS']
+
+    __instance = None
+
 
 
     @staticmethod
@@ -27,8 +30,6 @@ class MobileDbHandler:
             raise Exception("This class is a singleton!")
         else:
             MobileDbHandler.__instance = self
-
-
 
     def status(self):
         server = SSHTunnelForwarder(

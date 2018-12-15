@@ -1,6 +1,5 @@
-
 from flask import Flask,jsonify,request
-from DAL import MobileDbHandler
+from Controllers import MobileController,WebController
 
 app = Flask(__name__)
 
@@ -21,10 +20,15 @@ def get_restaurants():
     jsonStr = {"user": "nie", "skills": [{"id": 1, "skillName": "Hi Nir"}, {"id": 1, "skillName": "Hi Nir"}]}
     return jsonify(jsonStr)\
 
-@app.route('/Status')
-def getConnectionStatus():
-    mobiledb = MobileDbHandler.MobileDbHandler.getInstance()
-    return  mobiledb.status()
+@app.route('/StatusMob')
+def getMobStatus():
+    mobCtrl = MobileController.MobileController.getInstance()
+    return  mobCtrl.status()
+
+@app.route('/StatusWeb')
+def getWebStatus():
+    webCtrl = WebController.WebController.getInstance()
+    return webCtrl.status()
 
 if __name__ == '__main__':
     app.run(port=5050)
