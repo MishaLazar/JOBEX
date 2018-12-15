@@ -1,17 +1,22 @@
 from sshtunnel import SSHTunnelForwarder
 from pymongo import MongoClient, errors
-import configparser
+from Utils import ConfigHellper
 
 
 class WebDbHandler:
     # Here will be the instance stored.
-    config = configparser.ConfigParser()
-    config.read('../JOBEX-REST/Configurations.ini')
-    MONGO_HOST = config['DBPARAMS']['MONGO_HOST']
-    MONGO_DB = config['DBPARAMS']['MONGO_DB']
-    MONGO_USER = config['DBPARAMS']['MONGO_USER']
-    SSH_PKEY_PATH = config['DBPARAMS']['SSH_PKEY_PATH']
-    SSH_PKEY_PASS = config['DBPARAMS']['SSH_PKEY_PASS']
+    config = ConfigHellper.configHellper('../JOBEX-REST/Configurations.ini')
+    #    config.read('../JOBEX-REST/Configurations.ini')
+    MONGO_HOST = config.readDbParams('MONGO_HOST')
+    # config['DBPARAMS']['MONGO_HOST']
+    MONGO_DB = config.readDbParams('MONGO_DB')
+    # config['DBPARAMS']['MONGO_DB']
+    MONGO_USER = config.readDbParams('MONGO_USER')
+    # config['DBPARAMS']['MONGO_USER']
+    SSH_PKEY_PATH = config.readDbParams('SSH_PKEY_PATH')
+    # config['DBPARAMS']['SSH_PKEY_PATH']
+    SSH_PKEY_PASS = config.readDbParams('SSH_PKEY_PASS')
+    # config['DBPARAMS']['SSH_PKEY_PASS']
 
     __instance = None
 
