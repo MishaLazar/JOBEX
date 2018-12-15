@@ -1,7 +1,7 @@
 from sshtunnel import SSHTunnelForwarder
 from pymongo import MongoClient, errors
 from Utils import ConfigHellper
-
+from bson.objectid import ObjectId
 class MobileDbHandler:
     # Here will be the instance stored.
 
@@ -48,6 +48,41 @@ class MobileDbHandler:
             client = MongoClient('127.0.0.1', server.local_bind_port)  # server.local_bind_port is assigned local port
             db = client[self.MONGO_DB]
             return db.collection_names()[0]
+        except errors.ServerSelectionTimeoutError as err:
+            return 'DB timeout error'
+        server.stop()
+
+    def get_studentengagements(self,studentId):
+        server = SSHTunnelForwarder(
+            self.MONGO_HOST,
+            ssh_username=self.MONGO_USER,
+            ssh_pkey=self.SSH_PKEY_PATH,
+            ssh_private_key_password=self.SSH_PKEY_PASS,
+            remote_bind_address=('127.0.0.1', 27017))
+        server.start()
+        try:
+            client = MongoClient('127.0.0.1', server.local_bind_port)  # server.local_bind_port is assigned local port
+            db = client[self.MONGO_DB]
+            collection = db["Student"]
+
+            pieline = [{
+                        "$match": {
+                            "$expr": "ObjectId(studentId)"
+                        }
+                    },{
+                        "$sort": {
+                            "_id": -1
+                        }
+                    },{
+                        "$limit": 100
+                    }]
+
+            cursor = collection.aggregate(pieline)
+            try:
+                for doc in cursor:
+                    return doc["_id"]
+            finally:
+                cursor.close()
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error'
         server.stop()

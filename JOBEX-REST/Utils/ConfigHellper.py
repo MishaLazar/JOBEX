@@ -17,3 +17,8 @@ class configHellper:
         else:
             return self.config['DBPARAMS'][Key]
 
+    def readAppSettings(self,Key=None):
+        if Key is None:
+            return None
+        else:
+            return self.config['APPSETTINGS'][Key]
