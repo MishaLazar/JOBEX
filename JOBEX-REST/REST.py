@@ -1,12 +1,12 @@
 from flask import Flask, jsonify, request, redirect, url_for
+from flask_cors import CORS , cross_origin
 
 import config_helper
 from mobile_controller import MobileController
 from web_controller import WebController
 
-
 app = Flask(__name__)
-
+CORS(app)
 config = config_helper.ConfigHelper()
 
 
@@ -23,18 +23,18 @@ def create_user():
     return jsonify(json_str)
 
 
-@app.route('/login/<type>')
-def get_loginSoruce(type):
-    if type == 'Web' or type == 'web':
+@app.route('/login/<login_type>')
+def get_login_source(login_type):
+    if login_type == 'Web' or login_type == 'web':
         return redirect(url_for('web_login'))
-    elif type == 'Mobile' or type == 'mobile':
+    elif login_type == 'Mobile' or login_type == 'mobile':
         return redirect(url_for('mob_login'))
 
 
-@app.route('/getStudentEngagements/<StudentId>')
-def get_StudentEngagements(StudentId):
-    mobCtrl = MobileController.getInstance()
-    result = mobCtrl.get_StudentEngagements(studentId=StudentId)
+@app.route('/getStudentEngagements/<student_Id>')
+def get_student_engagements(student_id):
+    mob_ctrl = MobileController.getInstance()
+    result = mob_ctrl.get_StudentEngagements(studentId=student_id)
     return result
 
 
@@ -43,21 +43,32 @@ def web_login():
     return 'Web Login'
 
 
-@app.route('/MobilebLogin')
+@app.route('/MobileLogin')
 def mob_login():
     return 'Mobile Login'
 
 
 @app.route('/StatusMob')
-def getMobStatus():
-    mobCtrl = MobileController.MobileController.getInstance()
-    return mobCtrl.status()
+def get_mob_status():
+    mob_ctrl = MobileController.MobileController.getInstance()
+    return mob_ctrl.status()
 
 
 @app.route('/StatusWeb')
-def getWebStatus():
+def get_web_status():
     webCtrl = WebController.WebController.getInstance()
     return webCtrl.status()
+
+
+@app.route('/create_employee', methods=['POST', 'GET'])
+def login():
+    if request.method == 'POST':
+        user = request.values
+
+        return jsonify(user)
+    else:
+        user = request.args.get_json()
+        return jsonify(user)
 
 
 if __name__ == '__main__':

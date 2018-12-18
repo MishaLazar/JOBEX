@@ -1,0 +1,57 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+// Attach a submit handler to the form
+function clickme (  ) {
+ 
+  // Stop form from submitting normally
+ var x ="x";
+
+
+ $.ajax({
+            type: 'POST',
+            url: "http://127.0.0.1:5050/create_employee", 
+            datatype: 'application/json',
+            data: { user_id: "143", username: "ninjazhai", website: "https://codeofaninja.com/" }
+        })
+        .done(function(data){
+             
+            // show the response
+           
+            console.log(JSON.stringify(data));
+        })
+        .fail(function() {
+         
+            // just in case posting your form failed
+            alert( "Posting failed." );
+             
+        });
+ 
+        // to prevent refreshing the whole page page
+        return false;
+};
+</script>
+</head>
+
+<body>
+
+<h1>My tester page</h1>
+<!-- <form action="http://127.0.0.1:5050/create_employee" id="searchForm">
+  First name:<br>
+  <input type="text" name="firstname" value="Mickey">
+  <br>
+  Last name:<br>
+  <input type="text" name="lastname" value="Mouse">
+  <br><br>
+  <input type="submit" value="Submit">
+</form> -->
+<button type="button" onclick="clickme()">Click Me!</button>
+<div id="content"></div>
+
+</body>
+
+</html>
