@@ -47,5 +47,6 @@ class WebDbHandler:
             db = client[self.MONGO_DB]
             return db.collection_names()[0]
         except errors.ServerSelectionTimeoutError as err:
-            return 'DB timeout error'
-        server.stop()
+            return 'DB timeout error, {}'.format(err)
+        finally:
+            server.stop()
