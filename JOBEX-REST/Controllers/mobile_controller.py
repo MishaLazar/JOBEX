@@ -23,7 +23,7 @@ class MobileController:
         db = MobileDbHandler.MobileDbHandler.getInstance()
         return db.status()
 
-    def get_StudentEngagements(self,studentId):
+    def get_StudentEngagements(self, studentId):
         db = MobileDbHandler.MobileDbHandler.getInstance()
         result = db.get_studentengagements(studentId)
         return result

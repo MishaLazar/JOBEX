@@ -1,11 +1,13 @@
 from sshtunnel import SSHTunnelForwarder
 from pymongo import MongoClient, errors
-from Utils import ConfigHellper
+from Utils.config_helper import ConfigHelper
 from Classes import Student
+
+
 class MobileDbHandler:
     # Here will be the instance stored.
 
-    config = ConfigHellper.configHellper('../JOBEX-REST/Configurations.ini')
+    config = ConfigHelper('../JOBEX-REST/Configurations.ini')
 #    config.read('../JOBEX-REST/Configurations.ini')
     MONGO_HOST = config.readDbParams('MONGO_HOST')
         #config['DBPARAMS']['MONGO_HOST']

@@ -1,7 +1,7 @@
 import configparser
 
-class configHellper:
 
+class ConfigHelper:
     config = configparser.ConfigParser()
 
     def __init__(self,filePath=None):
