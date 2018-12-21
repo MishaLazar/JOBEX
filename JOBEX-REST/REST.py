@@ -33,7 +33,7 @@ def get_login_source(login_type):
 
 @app.route('/getStudentEngagements/<student_Id>')
 def get_student_engagements(student_id):
-    mob_ctrl = MobileController.getInstance()
+    mob_ctrl = MobileController.get_instance()
     result = mob_ctrl.get_StudentEngagements(studentId=student_id)
     return result
 
@@ -50,14 +50,28 @@ def mob_login():
 
 @app.route('/StatusMob')
 def get_mob_status():
-    mob_ctrl = MobileController.MobileController.getInstance()
+    mob_ctrl = MobileController.get_instance()
     return mob_ctrl.status()
 
 
 @app.route('/StatusWeb')
 def get_web_status():
-    webCtrl = WebController.WebController.getInstance()
-    return webCtrl.status()
+    web_ctrl = WebController.get_instance()
+    return web_ctrl.status()
+
+
+@app.route('/register/new_student', methods=['POST', 'GET'])
+def register_student():
+    if request.method == 'POST':
+        student = request.get_json()
+        mob_ctrl = MobileController.get_instance()
+        result = {
+            "student_user_id" : str(mob_ctrl.register_student(student))
+        }
+        return jsonify(result)
+    else:
+        user = request.args.get_json()
+        return jsonify(user)
 
 
 @app.route('/create_employee', methods=['POST', 'GET'])

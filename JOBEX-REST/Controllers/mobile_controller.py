@@ -1,12 +1,12 @@
-from DAL import MobileDbHandler
-import configparser
+from DAL import mobile_db_handler
+
 
 class MobileController:
 
     __instance = None
 
     @staticmethod
-    def getInstance():
+    def get_instance():
         """ Static access method. """
         if MobileController.__instance == None:
             MobileController()
@@ -20,10 +20,17 @@ class MobileController:
             MobileController.__instance = self
 
     def status(self):
-        db = MobileDbHandler.MobileDbHandler.getInstance()
+        db = mobile_db_handler.MobileDbHandler.getInstance()
         return db.status()
 
-    def get_StudentEngagements(self, studentId):
-        db = MobileDbHandler.MobileDbHandler.getInstance()
-        result = db.get_studentengagements(studentId)
+    def get_student_engagements(self, student_id):
+        db = mobile_db_handler.MobileDbHandler.getInstance()
+        result = db.get_student_engagements(student_id)
         return result
+
+    def register_student(self, student):
+        db = mobile_db_handler.MobileDbHandler.getInstance()
+        result = db.register_student(student)
+        return result
+
+

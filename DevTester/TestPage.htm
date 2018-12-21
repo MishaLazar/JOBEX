@@ -9,14 +9,53 @@
 function clickme (  ) {
  
   // Stop form from submitting normally
- var x ="x";
+ var x ={ user_id: "143", username: "ninjazhai", website: "https://codeofaninja.com/" };
 
 
  $.ajax({
             type: 'POST',
             url: "http://127.0.0.1:5050/create_employee", 
-            datatype: 'application/json',
-            data: { user_id: "143", username: "ninjazhai", website: "https://codeofaninja.com/" }
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(x)
+        })
+        .done(function(data){
+             
+            // show the response
+           
+            console.log(JSON.stringify(data));
+        })
+        .fail(function() {
+         
+            // just in case posting your form failed
+            alert( "Posting failed." );
+             
+        });
+ 
+        // to prevent refreshing the whole page page
+        return false;
+};
+
+function registerStudent (  ) {
+ 
+  // Stop form from submitting normally
+ var x ={ 
+     FirstName : $("#FirstName").val(),
+     LastName : $("#LastName").val(),
+     UserName : $("#UserName").val(),
+     password: $("#password").val(),
+     email: $("#email").val(),
+     UserType: 1
+
+ };
+
+
+ $.ajax({
+            type: 'POST',
+            url: "http://127.0.0.1:5050/register/new_student", 
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(x)
         })
         .done(function(data){
              
@@ -51,6 +90,22 @@ function clickme (  ) {
 </form> -->
 <button type="button" onclick="clickme()">Click Me!</button>
 <div id="content"></div>
+<div style="height: 100px;"></div>
+<div>
+    <label for="FirstName">FirstName</label>
+    <input type="text" id="FirstName" name="FirstName"><br>
+    <label for="LastName">LastName</label>
+    <input type="text" name="LastName" id="LastName"><br>
+    <label for="email">email</label>
+    <input type="email" name="email" id="email"><br>
+    <label for="password">password</label>
+    <input type="password" name="password" id="password"><br>
+    <label for="UserName">userName</label>
+    <input type="text" name="UserName" id="UserName"><br>
+    <span style="height: 100px;"></span>
+    <input type="button" value="RegisterStudent" onclick="registerStudent()">
+
+</div>
 
 </body>
 
