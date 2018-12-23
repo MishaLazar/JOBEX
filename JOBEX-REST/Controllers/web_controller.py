@@ -1,4 +1,4 @@
-from DAL import WebDbHandler
+from DAL import web_db_handler
 import configparser
 
 class WebController:
@@ -20,5 +20,16 @@ class WebController:
             WebController.__instance = self
 
     def status(self):
-        db = WebDbHandler.WebDbHandler.getInstance()
+        db = web_db_handler.WebDbHandler.getInstance()
         return db.status()
+
+
+    def get_engagements(self, company_id):
+        db = web_db_handler.WebDbHandler.getInstance()
+        result = db.get_engagements(company_id)
+        return result
+
+    def add_job(self, position, company_id):
+        db = web_db_handler.WebDbHandler.getInstance()
+        result = db.add_position(position, company_id)
+        return result
