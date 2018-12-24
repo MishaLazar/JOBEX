@@ -1,11 +1,29 @@
 from flask import Flask, request, render_template
-
+from forms import RegistrationForm, LoginForm
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'I8Is25DFOzLUKSx06WCyesvHJgmZJblt'
 
 
 @app.route('/')
 def index():
-    return '<h2>this is the index page! method used: {}</h2>'.format(request.method)
+    return render_template("home.html")
+
+
+@app.route("/about")
+def about():
+    return render_template('about.html', title='About')
+
+
+@app.route('/register')
+def register():
+    form = RegistrationForm()
+    return render_template("register.html", title='Register', form=form)
+
+
+@app.route('/login')
+def login():
+    form = LoginForm()
+    return render_template("login.html", title='Login', form=form)
 
 
 @app.route('/dashboard/<company_name>')
