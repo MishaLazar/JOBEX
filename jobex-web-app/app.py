@@ -1,11 +1,14 @@
-from flask import Flask, request, render_template
+import json
+from flask import Flask, render_template, flash, redirect, url_for, request
 from forms import RegistrationForm, LoginForm
+
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'I8Is25DFOzLUKSx06WCyesvHJgmZJblt'
 
 
 @app.route('/')
-def index():
+def home():
     return render_template("home.html")
 
 
@@ -14,15 +17,23 @@ def about():
     return render_template('about.html', title='About')
 
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
+    if form.validate_on_submit():
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        # todo call API to create new user
+        flash(f'Account created for {form.username.data}!', 'success')
+        return redirect(url_for('home'))
     return render_template("register.html", title='Register', form=form)
 
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+
     return render_template("login.html", title='Login', form=form)
 
 
