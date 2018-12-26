@@ -42,7 +42,7 @@ function registerStudent (  ) {
  var x ={ 
      FirstName : $("#FirstName").val(),
      LastName : $("#LastName").val(),
-     UserName : $("#UserName").val(),
+     username : $("#UserName").val(),
      password: $("#password").val(),
      email: $("#email").val(),
      UserType: 1
@@ -52,8 +52,40 @@ function registerStudent (  ) {
 
  $.ajax({
             type: 'POST',
-            url: "http://127.0.0.1:5050/register/new_student", 
+            url: "http://127.0.0.1:5050/login", 
             dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(x)
+        })
+        .done(function(data){
+             
+            // show the response
+           
+            console.log(JSON.stringify(data));
+        })
+        .fail(function() {
+         
+            // just in case posting your form failed
+            alert( "Posting failed." );
+             
+        });
+ 
+        // to prevent refreshing the whole page page
+        return false;
+};
+
+function authStatus( ) {
+ 
+  // Stop form from submitting normally
+ var x ={user_id: "5c1d513ef4578f499805fc9c", authToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDU4NjQ3NzksImlhdCI6MTU0NTg2NDcxOSwic3ViIjp7InVzZXJfaWQiOiI1YzFkNTEzZWY0NTc4ZjQ5OTgwNWZjOWMifX0.CY20YvJxMmUTjnXj3NQjgso-kNksaicV0b0xpK_TXfs'}
+authToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDU4NjQ3NzksImlhdCI6MTU0NTg2NDcxOSwic3ViIjp7InVzZXJfaWQiOiI1YzFkNTEzZWY0NTc4ZjQ5OTgwNWZjOWMifX0.CY20YvJxMmUTjnXj3NQjgso-kNksaicV0b0xpK_TXfs'
+
+ $.ajax({
+            type: 'POST',
+            url: "http://127.0.0.1:5050/checkAuthenticationStatus", 
+            dataType: 'json', 
+            headers : {
+            "Authorization": "Token " + authToken }           ,
             contentType: 'application/json',
             data: JSON.stringify(x)
         })
@@ -106,7 +138,10 @@ function registerStudent (  ) {
     <input type="button" value="RegisterStudent" onclick="registerStudent()">
 
 </div>
-
+<hr>    
+    <input type="button" value="status" onclick="authStatus()">
+<div>
+</div>
 </body>
 
 </html>

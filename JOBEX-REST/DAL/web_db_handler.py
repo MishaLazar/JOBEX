@@ -7,15 +7,15 @@ class WebDbHandler:
     # Here will be the instance stored.
     config = ConfigHelper('../JOBEX-REST/Configurations.ini')
     #    config.read('../JOBEX-REST/Configurations.ini')
-    MONGO_HOST = config.readDbParams('MONGO_HOST')
+    MONGO_HOST = config.read_db_params('MONGO_HOST')
     # config['DBPARAMS']['MONGO_HOST']
-    MONGO_DB = config.readDbParams('MONGO_DB')
+    MONGO_DB = config.read_db_params('MONGO_DB')
     # config['DBPARAMS']['MONGO_DB']
-    MONGO_USER = config.readDbParams('MONGO_USER')
+    MONGO_USER = config.read_db_params('MONGO_USER')
     # config['DBPARAMS']['MONGO_USER']
-    SSH_PKEY_PATH = config.readDbParams('SSH_PKEY_PATH')
+    SSH_PKEY_PATH = config.read_db_params('SSH_PKEY_PATH')
     # config['DBPARAMS']['SSH_PKEY_PATH']
-    SSH_PKEY_PASS = config.readDbParams('SSH_PKEY_PASS')
+    SSH_PKEY_PASS = config.read_db_params('SSH_PKEY_PASS')
     # config['DBPARAMS']['SSH_PKEY_PASS']
 
     __instance = None
