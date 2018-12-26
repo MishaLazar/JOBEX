@@ -17,10 +17,14 @@ def home():
     return jsonify(json_str)
 
 
-@app.route('/user')
+@app.route('/user', methods=['POST', 'GET'])
 def create_user():
-    json_str = {"user": "nie", "skills": [{"id": 1, "skillName": "Hi Nir"}, {"id": 1, "skillName": "Hi Nir"}]}
-    return jsonify(json_str)
+    if request.method == 'POST':
+        json_str = {"result": 0}
+        return json_str
+    elif request.method == 'GET':
+        json_str = {"user": "nie", "skills": [{"id": 1, "skillName": "Hi Nir"}, {"id": 1, "skillName": "Hi Nir"}]}
+        return jsonify(json_str)
 
 
 @app.route('/login/<login_type>')
