@@ -5,11 +5,13 @@ from jobex_web_app_helper import JobexWebHelper
 from config_helper import ConfigHelper
 
 
+
 config = ConfigHelper('jobex-web-app/Configurations.ini')
 rest_host = config.readRestParams('REST_HOST')
+jobex_web_helper = JobexWebHelper(host=rest_host)
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'I8Is25DFOzLUKSx06WCyesvHJgmZJblt'
-jobex_web_helper = JobexWebHelper(host=rest_host)
 
 @app.route('/')
 def home():
@@ -24,6 +26,7 @@ def about():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
+
     if form.validate_on_submit():
         username = request.form['username']
         email = request.form['email']
@@ -45,6 +48,17 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+
+    if form.validate_on_submit():
+        email = request.form['email']
+        password = request.form['password']
+        login_obj = login.Login(email=email, password=password)
+        try:
+            jobex_web_helper.create_user(login_obj)
+            company_name = email.split("@")[1].split(".")[0]
+            return redirect(url_for('dashboard', company_name))
+        except IOError as err:
+            flash(f'Failed login with user {form.email.data}! Error = ' + str(err), 'warning')
 
     return render_template("login.html", title='Login', form=form)
 
@@ -70,4 +84,8 @@ def profile():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    if config.readAppSettings(Key='ServerDebug') == '1':
+        app.debug = True
+        app.run(port=5051)
+    else:
+        app.run(port=5051)
