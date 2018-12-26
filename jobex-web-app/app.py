@@ -1,20 +1,15 @@
-
 from flask import Flask, render_template, flash, redirect, url_for, request
 from forms import RegistrationForm, LoginForm
-import requests
-import jobex_helper
-#import config_helper
+from Classes import user
+from jobex_web_app_helper import JobexWebHelper
+from config_helper import ConfigHelper
 
 
-
+config = ConfigHelper('jobex-web-app/Configurations.ini')
+rest_host = config.readRestParams('REST_HOST')
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'I8Is25DFOzLUKSx06WCyesvHJgmZJblt'
-# config = config_helper.ConfigHelper()
-
-
-# config = ConfigHelper('../jobex-web-app/Configurations.ini')
-# MONGO_HOST = config.readDbParams('REST_HOST')
-rest_host = 'ec2-18-191-239-28.us-east-2.compute.amazonaws.com'
+jobex_web_helper = JobexWebHelper(host=rest_host)
 
 @app.route('/')
 def home():
@@ -33,14 +28,17 @@ def register():
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']
+        user_obj = user.User(username=username, email=email, password=password)
         try:
-            jobex_helper.create_user(username, email, password)
-        except requests.RequestException as err:
-            msg = "Failed to create user"
-            flash(f'Failed to create account for {form.username.data}!', 'failure')
+            jobex_web_helper.create_user(user_obj)
+            flash(f'Account created for {form.username.data}!', 'success')
+            return redirect(url_for('home'))
+        except IOError as err:
+            flash(f'Failed to create account for {form.username.data}! '
+                  f'Please contact our support - support@jobex.com',
+                  'warning')
+            flash(f'Error = ' + str(err), 'warning')
 
-        flash(f'Account created for {form.username.data}!', 'success')
-        return redirect(url_for('home'))
     return render_template("register.html", title='Register', form=form)
 
 
