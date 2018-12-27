@@ -17,7 +17,7 @@ class JobexWebHelper:
         return self.api_call(api_path="logout", obj=logout_obj, method='POST')
 
     def create_user(self, user_obj):
-        return self.api_call(api_path="login", obj=user_obj, method='POST')
+        return self.api_call(api_path="register", obj=user_obj, method='POST')
 
     def edit_user(self, user_obj, user_id):
         return self.api_call(api_path="users/{}".format(user_id), obj=user_obj, method='PUT')
