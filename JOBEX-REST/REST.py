@@ -1,10 +1,9 @@
 from flask import Flask, jsonify, request
-import json
 from flask_cors import CORS
 from mobile_controller import MobileController
 from web_controller import WebController
 from auth_controller import AuthController
-import config_helper
+from Utils import config_helper
 
 app = Flask(__name__)
 CORS(app)

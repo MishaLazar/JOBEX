@@ -1,6 +1,5 @@
 from requests import post, put, get, delete, RequestException
 from config_helper import ConfigHelper
-from flask import jsonify
 
 config = ConfigHelper(r'C:\JOBEX\jobex-web-app\Configurations.ini')
 rest_host = config.readRestParams('REST_HOST')
@@ -12,13 +11,13 @@ class JobexWebHelper:
         self.host = host
 
     def login(self, login_obj):
-        return self.api_call(api_path="login", obj=login_obj, method='POST')
+        return self.api_call(api_path="get_login", obj=login_obj, method='POST')
 
     def logout(self, logout_obj):
         return self.api_call(api_path="logout", obj=logout_obj, method='POST')
 
     def create_user(self, user_obj):
-        return self.api_call(api_path="users", obj=user_obj, method='POST')
+        return self.api_call(api_path="login", obj=user_obj, method='POST')
 
     def edit_user(self, user_obj, user_id):
         return self.api_call(api_path="users/{}".format(user_id), obj=user_obj, method='PUT')
@@ -50,7 +49,8 @@ class JobexWebHelper:
     def get_engagements(self):
         return self.api_call(api_path="engagements", method='GET')
 
-    def api_call(self, api_path=None, obj=None, method='GET'):
+    @staticmethod
+    def api_call(api_path=None, obj=None, method='GET'):
         url = "http://{}/{}".format(rest_host, api_path)
         json_str = obj.to_json_str()
         try:
@@ -64,8 +64,13 @@ class JobexWebHelper:
                 response = delete(url)
             else:
                 response = get(url)
-            response_json = jsonify(response)
-            return response_json
+            status_code = response.status_code
+            if status_code == 200:
+                return response.json()
+            elif status_code == 500 or 401:
+                reason = response.reason
+                message = "API call failed for {}. Reason '{}'".format(url, reason)
+                raise IOError(message)
         except RequestException as err:
             message = "API call failed for {}. Error '{}'".format(url, err)
             raise IOError(message)
