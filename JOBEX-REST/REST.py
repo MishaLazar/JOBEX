@@ -1,9 +1,10 @@
-from flask import Flask, jsonify, request, redirect, url_for
-from flask_cors import CORS , cross_origin
-
-import config_helper
+from flask import Flask, jsonify, request
+import json
+from flask_cors import CORS
 from mobile_controller import MobileController
 from web_controller import WebController
+from auth_controller import AuthController
+import config_helper
 
 app = Flask(__name__)
 CORS(app)
@@ -27,12 +28,34 @@ def create_user():
         return jsonify(json_str)
 
 
-@app.route('/login/<login_type>')
-def get_login_source(login_type):
-    if login_type == 'Web' or login_type == 'web':
-        return redirect(url_for('web_login'))
-    elif login_type == 'Mobile' or login_type == 'mobile':
-        return redirect(url_for('mob_login'))
+@app.route('/login', methods=['POST', 'GET'])
+def get_login():
+    if request.method == 'POST':
+        authentication = request.get_json()
+        username = authentication['username']
+        password = authentication['password']
+
+        auth_ctrl = AuthController.get_instance()
+        result = auth_ctrl.login(username, password)
+        return jsonify(str(result))
+    elif request.method == 'GET':
+        authentication = request.get_json()
+        username = authentication['username']
+        password = authentication['password']
+        auth_ctrl = AuthController.get_instance()
+        result = auth_ctrl.login(username, password)
+        return jsonify(str(result))
+
+
+@app.route('/checkAuthenticationStatus', methods=['POST'])
+def get_authentication_status():
+    if request.method == 'POST':
+        authentication = request.get_json()
+        sentUId = authentication['user_id']
+        token = authentication['authToken']
+        decriptecdUId = AuthController.decode_auth_token(token)
+        result = {"sentUId": sentUId , "decriptecdUId":decriptecdUId}
+        return jsonify(result)
 
 
 @app.route('/getStudentEngagements/<student_Id>')
@@ -90,6 +113,6 @@ def login():
 
 
 if __name__ == '__main__':
-    if config.readAppSettings(Key='ServerDebug') == '1':
+    if config.read_app_settings(Key='ServerDebug') == '1':
         app.debug = True
     app.run(port=5050)
