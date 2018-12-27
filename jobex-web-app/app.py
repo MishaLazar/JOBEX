@@ -86,6 +86,4 @@ def profile():
 if __name__ == '__main__':
     if config.readAppSettings(Key='ServerDebug') == '1':
         app.debug = True
-        app.run(port=5051)
-    else:
-        app.run(port=5051)
+    app.run(port=5051)

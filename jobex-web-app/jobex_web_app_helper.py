@@ -2,7 +2,7 @@ from requests import post, put, get, delete, RequestException
 from config_helper import ConfigHelper
 from flask import jsonify
 
-config = ConfigHelper('jobex-web-app/Configurations.ini')
+config = ConfigHelper(r'C:\JOBEX\jobex-web-app\Configurations.ini')
 rest_host = config.readRestParams('REST_HOST')
 
 

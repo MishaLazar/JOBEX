@@ -92,6 +92,4 @@ def login():
 if __name__ == '__main__':
     if config.readAppSettings(Key='ServerDebug') == '1':
         app.debug = True
-        app.run(port=5050)
-    else:
-        app.run(port=5050)
+    app.run(port=5050)
