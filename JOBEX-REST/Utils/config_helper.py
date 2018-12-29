@@ -2,6 +2,7 @@ import configparser
 
 
 class ConfigHelper:
+
     config = configparser.ConfigParser()
 
     __instance = None

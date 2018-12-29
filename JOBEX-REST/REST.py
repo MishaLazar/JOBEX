@@ -7,7 +7,7 @@ from Utils import config_helper
 
 app = Flask(__name__)
 CORS(app)
-config = config_helper.ConfigHelper()
+config = config_helper.ConfigHelper.get_instance()
 
 
 # 1st push
@@ -36,24 +36,36 @@ def get_login():
 
         auth_ctrl = AuthController.get_instance()
         result = auth_ctrl.login(username, password)
-        return jsonify(str(result))
+        return jsonify(result)
     elif request.method == 'GET':
         authentication = request.get_json()
         username = authentication['username']
         password = authentication['password']
         auth_ctrl = AuthController.get_instance()
         result = auth_ctrl.login(username, password)
-        return jsonify(str(result))
+        return jsonify(result)
 
 
 @app.route('/checkAuthenticationStatus', methods=['POST'])
 def get_authentication_status():
     if request.method == 'POST':
+
         authentication = request.get_json()
-        sentUId = authentication['user_id']
-        token = authentication['authToken']
-        decriptecdUId = AuthController.decode_auth_token(token)
-        result = {"sentUId": sentUId , "decriptecdUId":decriptecdUId}
+        user_id = authentication['user_id']
+        token = request.headers.get('AUTHORIZATION')
+        if token.__len__() > 0:
+            decriptecd_user_id = AuthController.decode_auth_token(token)
+        return jsonify(decriptecd_user_id)
+
+
+@app.route('/putWithAuth', methods=['POST'])
+def put_object_with_auth():
+    if request.method == 'POST':
+        obj = request.get_json()
+        mob_ctrl = MobileController.get_instance()
+        result = {
+            "inserted_id": str(mob_ctrl.create_obj_with_authentication(obj))
+        }
         return jsonify(result)
 
 

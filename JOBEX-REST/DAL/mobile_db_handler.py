@@ -67,6 +67,27 @@ class MobileDbHandler:
             return err
         server.stop()
 
+    def create_with_authentication(self, object):
+        server = SSHTunnelForwarder(
+            self.MONGO_HOST,
+            ssh_username=self.MONGO_USER,
+            ssh_pkey=self.SSH_PKEY_PATH,
+            ssh_private_key_password=self.SSH_PKEY_PASS,
+            remote_bind_address=('127.0.0.1', 27017))
+        server.start()
+        try:
+            client = MongoClient('127.0.0.1', server.local_bind_port)  # server.local_bind_port is assigned local port
+            db = client[self.MONGO_DB]
+            collection = db["TestAuthentication"]
+
+            _id = collection.insert_one(object)
+
+            return _id.inserted_id
+
+        except errors as err:
+            return err
+        server.stop()
+
     def get_student_engagements(self, student_id):
         server = SSHTunnelForwarder(
             self.MONGO_HOST,

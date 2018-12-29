@@ -33,4 +33,7 @@ class MobileController:
         result = db.register_student(student)
         return result
 
-
+    def create_obj_with_authentication(self, object):
+        db = mobile_db_handler.MobileDbHandler.getInstance()
+        result = db.create_with_authentication(object)
+        return result
