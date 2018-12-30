@@ -1,4 +1,41 @@
 {% extends "layout.html" %}
 {% block content %}
     <h1>JobEx - We're connecting Students and Companies</h1>
+    <table id="positions" style="width:100%">
+        <thead>
+        <tr>
+            <th>Position Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Temporary</th>
+            <th>Date Created</th>
+            <th>Comment</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if positions %}
+            {% for position in positions %}
+                <tr>
+                    <td>{{ position.name }}</td>
+                    <td>{{ position.name }}</td>
+                    <td>{{ position.name }}</td>
+                    <td>{{ position.name }}</td>
+                    <td>{{ position.name }}</td>
+                    <td>{{ position.name }}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>Position Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Temporary</th>
+            <th>Date Created</th>
+            <th>Comment</th>
+        </tr>
+        </tfoot>
+    </table>
+    <script src="/static/js/main.js"></script>
 {% endblock content %}

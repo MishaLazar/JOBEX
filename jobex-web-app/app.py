@@ -81,10 +81,11 @@ def logout_view():
     return redirect(url_for('home'))
 
 
-@app.route('/dashboard')
+@app.route('/dashboard/<company_name>')
 @login_required
-def dashboard():
-    return render_template("dashboard.html")
+def dashboard(company_name):
+    positions = jobex_web_helper.get_all_positions(company_name=company_name)
+    return render_template("dashboard.html", positions=positions)
 
 
 @app.route('/engagements/<engagement_name>', methods=['GET', 'POST', 'PUT'])
@@ -99,7 +100,7 @@ def position(position_name):
     return render_template("position.html", position_name=position_name)
 
 
-@app.route('/profile', methods=['GET', 'POST', 'PUT'])
+@app.route('/profile', methods=['GET', 'PUT'])
 @login_required
 def profile():
     return render_template("profile.html")
