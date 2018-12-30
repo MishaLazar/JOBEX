@@ -23,13 +23,28 @@ class WebController:
         db = web_db_handler.WebDbHandler.getInstance()
         return db.status()
 
-
-    def get_engagements(self, company_id):
+    def add_engagement(self, engagement_obj):
         db = web_db_handler.WebDbHandler.getInstance()
-        result = db.get_engagements(company_id)
+        result = db.add_engagement(engagement_obj)
         return result
 
-    def add_job(self, position, company_id):
+    def get_engagements(self, company_name=None, engagement_id=None, **kwargs):
         db = web_db_handler.WebDbHandler.getInstance()
-        result = db.add_position(position, company_id)
+        if kwargs == 'all':
+            result = db.get_all_engagements(company_name)
+        else:
+            result = db.get_engagement(company_name, engagement_id)
+        return result
+
+    def add_position(self, position_obj):
+        db = web_db_handler.WebDbHandler.getInstance()
+        result = db.add_position(position_obj)
+        return result
+
+    def get_positions(self, company_name=None, position_id=None, **kwargs):
+        db = web_db_handler.WebDbHandler.getInstance()
+        if kwargs == 'all':
+            result = db.get_all_positions(company_name)
+        else:
+            result = db.get_position(company_name, position_id)
         return result

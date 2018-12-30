@@ -123,6 +123,42 @@ def login():
         return jsonify(user)
 
 
+@app.route('/positions/<company_name>/<position_id>', methods=['POST', 'GET'])
+def positions(company_name=None, position_id=None):
+    if request.method == 'POST':
+        position = request.get_json()
+        web_ctrl = WebController.getInstance()
+        result = {"position_id": str(web_ctrl.add_position(position))}
+        return jsonify(result)
+    elif request.method == 'GET':
+        web_ctrl = WebController.getInstance()
+        if company_name and position_id:
+            result = web_ctrl.get_positions(company_name=company_name, position_id=position_id)
+        elif company_name:
+            result = web_ctrl.get_positions(position_id=position_id)
+        return jsonify(result)
+    else:
+        return {"error": "method {} not supported!".format(request.method)}
+
+
+@app.route('/engagements/<company_name>/<engagement_id>', methods=['POST', 'GET'])
+def engagements(company_name=None, engagement_id=None):
+    if request.method == 'POST':
+        engagement = request.get_json()
+        web_ctrl = WebController.getInstance()
+        result = {"engagement_id": str(web_ctrl.add_engagement(engagement))}
+        return jsonify(result)
+    elif request.method == 'GET':
+        web_ctrl = WebController.getInstance()
+        if company_name and engagement_id:
+            result = web_ctrl.get_engagements(company_name=company_name, engagement_id=engagement_id)
+        elif company_name:
+            result = web_ctrl.get_engagements(engagement_id=engagement_id)
+        return jsonify(result)
+    else:
+        return {"error": "method {} not supported!".format(request.method)}
+
+
 if __name__ == '__main__':
     if config.read_app_settings(Key='ServerDebug') == '1':
         app.debug = True
