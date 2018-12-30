@@ -2,7 +2,7 @@ from sshtunnel import SSHTunnelForwarder
 from pymongo import MongoClient, errors
 from Utils.config_helper import ConfigHelper
 from Classes import Student
-from bson import ObjectId
+
 
 class MobileDbHandler:
     # Here will be the instance stored.

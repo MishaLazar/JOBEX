@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from mobile_controller import MobileController
 from web_controller import WebController
-from auth_controller import AuthController
+from Controllers.auth_controller import AuthController
 from Utils import config_helper
 
 app = Flask(__name__)

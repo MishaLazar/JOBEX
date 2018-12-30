@@ -28,23 +28,25 @@ class WebController:
         result = db.add_engagement(engagement_obj)
         return result
 
-    def get_engagements(self, company_name=None, engagement_id=None, **kwargs):
+    def get_engagements(self, company_name=None, engagement_id=None):
         db = web_db_handler.WebDbHandler.getInstance()
-        if kwargs == 'all':
-            result = db.get_all_engagements(company_name)
+        if company_name:
+            return db.get_all_engagements(company_name)
+        elif company_name and engagement_id:
+            return db.get_engagement(company_name, engagement_id)
         else:
-            result = db.get_engagement(company_name, engagement_id)
-        return result
+            return None
 
     def add_position(self, position_obj):
         db = web_db_handler.WebDbHandler.getInstance()
         result = db.add_position(position_obj)
         return result
 
-    def get_positions(self, company_name=None, position_id=None, **kwargs):
+    def get_positions(self, company_name=None, position_id=None):
         db = web_db_handler.WebDbHandler.getInstance()
-        if kwargs == 'all':
-            result = db.get_all_positions(company_name)
+        if company_name:
+            return db.get_all_positions(company_name)
+        elif company_name and position_id:
+            return db.get_position(company_name, position_id)
         else:
-            result = db.get_position(company_name, position_id)
-        return result
+            return None

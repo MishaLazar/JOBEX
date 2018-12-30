@@ -1,5 +1,5 @@
 import jwt
-import config_helper
+from Utils.config_helper import ConfigHelper
 import datetime
 import json
 from DAL import mobile_db_handler
@@ -7,7 +7,7 @@ from DAL import mobile_db_handler
 
 class AuthController:
 
-    config = config_helper.ConfigHelper.get_instance()
+    config = ConfigHelper.get_instance()
     __instance = None
 
     @staticmethod
@@ -20,7 +20,7 @@ class AuthController:
     def __init__(self):
         """ Virtually private constructor. """
         if AuthController.__instance != None:
-            raise Exception("This class is a singleton!")
+            self.__instance
         else:
             AuthController.__instance = self
 
