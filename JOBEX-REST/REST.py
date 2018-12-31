@@ -135,7 +135,7 @@ def positions(company_name=None, position_id=None):
         if company_name and position_id:
             result = web_ctrl.get_positions(company_name=company_name, position_id=position_id)
         elif company_name:
-            result = web_ctrl.get_positions(position_id=position_id)
+            result = web_ctrl.get_positions(company_name=company_name)
         return jsonify(result)
     else:
         return {"error": "method {} not supported!".format(request.method)}

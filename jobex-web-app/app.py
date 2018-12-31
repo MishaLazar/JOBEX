@@ -60,18 +60,19 @@ def login_view():
     if form.validate_on_submit():
         email = form.email.data
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        login_obj = login.Login(email=email, password=hashed_password)
+        # login_obj = login.Login(email=email, password=hashed_password)
         try:
-            response = jobex_web_helper.login(login_obj)
-            username = response.content
+            # response = jobex_web_helper.login(login_obj)
+            response = jobex_web_helper.login(email, hashed_password)
+            company_name = response.to_json_str['company_name']
             if response.status_code == 200:
-                login_user(username, remember=form.remember.data)
-                return redirect(url_for('dashboard'))
+                login_user(email, remember=form.remember.data)
+                return redirect(url_for('dashboard/{}'.format(company_name)))
             else:
                 flash(f'Login unsuccessful! please check email and password', 'warning')
         except IOError as err:
             flash(f'Login call failed for {form.email.data}! Error = ' + str(err), 'warning')
-
+    # token = response.to_json_str['token']
     return render_template("login.html", title='Login', form=form)
 
 
