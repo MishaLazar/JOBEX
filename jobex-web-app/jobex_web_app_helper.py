@@ -46,14 +46,17 @@ class JobexWebHelper:
     def get_all_positions(self, company_name):
         return self.api_call(api_path="positions/{}".format(company_name), method='GET')
 
-    def get_position(self, company_name, position):
-        return self.api_call(api_path="positions/{}/{}".format(company_name, position), method='GET')
+    def get_position(self, company_name, position_id):
+        return self.api_call(api_path="positions/{}/{}".format(company_name, position_id), method='GET')
 
     def get_engagement(self, company_name, engagement_id):
         return self.api_call(api_path="engagements/{}/{}".format(company_name, engagement_id), method='GET')
 
     def get_all_engagements(self, company_name):
         return self.api_call(api_path="engagements/{}".format(company_name), method='GET')
+
+    def get_profile(self, profile_id):
+        return self.api_call(api_path="profile/{}".format(profile_id), method='GET')
 
     @staticmethod
     def api_call(api_path=None, obj=None, method='GET'):
