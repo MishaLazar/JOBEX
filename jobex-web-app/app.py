@@ -100,10 +100,10 @@ def position_view(company_name, position_id):
     return render_template("position.html", position=position)
 
 
-@app.route('/profile/<profile_id>', methods=['GET', 'PUT'])
-def profile_view(profile_id):
-    profile = jobex_web_helper.get_profile(profile_id)
-    return render_template("profile.html", profile=profile)
+@app.route('/profile/<user_id>', methods=['GET', 'PUT'])
+def profile_view(user_id):
+    user = jobex_web_helper.get_user(user_id)
+    return render_template("profile.html", user=user)
 
 
 if __name__ == '__main__':

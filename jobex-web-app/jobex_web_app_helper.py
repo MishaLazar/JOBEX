@@ -55,8 +55,8 @@ class JobexWebHelper:
     def get_all_engagements(self, company_name):
         return self.api_call(api_path="engagements/{}".format(company_name), method='GET')
 
-    def get_profile(self, profile_id):
-        return self.api_call(api_path="profile/{}".format(profile_id), method='GET')
+    def get_user(self, user_id):
+        return self.api_call(api_path="users/{}".format(user_id), method='GET')
 
     @staticmethod
     def api_call(api_path=None, obj=None, method='GET'):

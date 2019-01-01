@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "layout.html" %}
+{% block content %}
+    {%  if user %}
+        <h1>{{  user.name }}</h1>
+    {% else %}
+        <h1> ERROR: user not found! </h1>
+    <script src="/static/js/main.js"></script>
+{% endblock content %}

@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "layout.html" %}
+{% block content %}
+    {%  if engagement %}
+        <h1>{{  engagement.name }}</h1>
+    {% else %}
+        <h1> ERROR: engagement not found! </h1>
+    <script src="/static/js/main.js"></script>
+{% endblock content %}
