@@ -1,4 +1,5 @@
 from DAL import mobile_db_handler
+import json
 
 
 class MobileController:
@@ -19,21 +20,27 @@ class MobileController:
         else:
             MobileController.__instance = self
 
-    def status(self):
+    @staticmethod
+    def status():
         db = mobile_db_handler.MobileDbHandler.getInstance()
         return db.status()
 
-    def get_student_engagements(self, student_id):
+    @staticmethod
+    def get_student_engagements(student_id):
         db = mobile_db_handler.MobileDbHandler.getInstance()
         result = db.get_student_engagements(student_id)
         return result
 
-    def register_student(self, student):
+    @staticmethod
+    def register_user(new_user):
         db = mobile_db_handler.MobileDbHandler.getInstance()
-        result = db.register_student(student)
-        return result
+        new_user_id = db.register_student(new_user)
+        if new_user_id:
+            return json.dumps({"new_user_id": new_user_id})
+        return None
 
-    def create_obj_with_authentication(self, object):
+    @staticmethod
+    def create_obj_with_authentication(object):
         db = mobile_db_handler.MobileDbHandler.getInstance()
         result = db.create_with_authentication(object)
         return result

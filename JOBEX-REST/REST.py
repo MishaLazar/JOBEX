@@ -1,4 +1,6 @@
 from flask import Flask, jsonify, request
+from flask_jwt_extended import JWTManager
+from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt)
 from flask_cors import CORS
 from mobile_controller import MobileController
 from web_controller import WebController
@@ -8,23 +10,14 @@ from Utils import config_helper
 app = Flask(__name__)
 CORS(app)
 config = config_helper.ConfigHelper.get_instance()
+app.config['JWT_SECRET_KEY'] = config.read_auth('SECRET_KEY')
+jwt = JWTManager(app)
 
 
-# 1st push
 @app.route('/')
 def home():
     json_str = {"result": 0}
     return jsonify(json_str)
-
-
-@app.route('/user', methods=['POST', 'GET'])
-def create_user():
-    if request.method == 'POST':
-        json_str = {"result": 0}
-        return json_str
-    elif request.method == 'GET':
-        json_str = {"user": "nie", "skills": [{"id": 1, "skillName": "Hi Nir"}, {"id": 1, "skillName": "Hi Nir"}]}
-        return jsonify(json_str)
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -34,28 +27,52 @@ def get_login():
         username = authentication['username']
         password = authentication['password']
 
-        auth_ctrl = AuthController.get_instance()
-        result = auth_ctrl.login(username, password)
-        return jsonify(result)
-    elif request.method == 'GET':
-        authentication = request.get_json()
-        username = authentication['username']
-        password = authentication['password']
-        auth_ctrl = AuthController.get_instance()
-        result = auth_ctrl.login(username, password)
-        return jsonify(result)
+        result = AuthController.login(username, password)
+        if result:
+            access_token = create_access_token(identity=result['user_id'])
+            refresh_token = create_refresh_token(identity=result['user_id'])
+            return jsonify({
+                'access_token': access_token,
+                'refresh_token': refresh_token
+                }), 200
+        else:
+            return jsonify({'message': 'Wrong credentials'}), 403
+
+
+@app.route('/register', methods=['POST'])
+def register_student():
+    if request.method == 'POST':
+        user = request.get_json()
+        new_user_id = MobileController.register_user(user)
+        if new_user_id:
+            access_token = create_access_token(identity=new_user_id['user_id'])
+            refresh_token = create_refresh_token(identity=new_user_id['user_id'])
+        return jsonify({
+            'access_token': access_token,
+            'refresh_token': refresh_token
+        }), 200
+    else:
+        return jsonify({'message': 'Something went wrong'}), 500
+
+
+@app.route('/tokenRefresh', methods=['POST'])
+@jwt_refresh_token_required
+def get_refreshed_token():
+    if request.method == 'POST':
+        user_id = get_jwt_identity()
+        access_token = create_access_token(identity=user_id)
+        return jsonify({
+                'access_token': access_token
+               }), 200
+    else:
+        return jsonify({'message': 'Something went wrong'}), 500
 
 
 @app.route('/checkAuthenticationStatus', methods=['POST'])
+@jwt_required
 def get_authentication_status():
     if request.method == 'POST':
-
-        authentication = request.get_json()
-        user_id = authentication['user_id']
-        token = request.headers.get('AUTHORIZATION')
-        if token.__len__() > 0:
-            decriptecd_user_id = AuthController.decode_auth_token(token)
-        return jsonify(decriptecd_user_id)
+        return jsonify({'message': 'you are authenticated!'}), 200
 
 
 @app.route('/putWithAuth', methods=['POST'])
@@ -74,42 +91,6 @@ def get_student_engagements(student_id):
     mob_ctrl = MobileController.get_instance()
     result = mob_ctrl.get_StudentEngagements(studentId=student_id)
     return result
-
-
-@app.route('/WebLogin')
-def web_login():
-    return 'Web Login'
-
-
-@app.route('/MobileLogin')
-def mob_login():
-    return 'Mobile Login'
-
-
-@app.route('/StatusMob')
-def get_mob_status():
-    mob_ctrl = MobileController.get_instance()
-    return mob_ctrl.status()
-
-
-@app.route('/StatusWeb')
-def get_web_status():
-    web_ctrl = WebController.get_instance()
-    return web_ctrl.status()
-
-
-@app.route('/register/new_student', methods=['POST', 'GET'])
-def register_student():
-    if request.method == 'POST':
-        student = request.get_json()
-        mob_ctrl = MobileController.get_instance()
-        result = {
-            "student_user_id" : str(mob_ctrl.register_student(student))
-        }
-        return jsonify(result)
-    else:
-        user = request.args.get_json()
-        return jsonify(user)
 
 
 @app.route('/create_employee', methods=['POST', 'GET'])

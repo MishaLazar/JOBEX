@@ -1,5 +1,5 @@
 import jwt
-from Utils.config_helper import ConfigHelper
+from config_helper import ConfigHelper
 import datetime
 import json
 from DAL import mobile_db_handler
@@ -7,7 +7,6 @@ from DAL import mobile_db_handler
 
 class AuthController:
 
-    config = ConfigHelper.get_instance()
     __instance = None
 
     @staticmethod
@@ -39,7 +38,7 @@ class AuthController:
             }
             return jwt.encode(
                 payload,
-                config_helper.ConfigHelper.get_instance().read_auth("SECRET_KEY"),
+                ConfigHelper.read_auth("SECRET_KEY"),
                 algorithm='HS256'
             )
         except Exception as e:
@@ -53,16 +52,17 @@ class AuthController:
         :return: integer|string
         """
         try:
-            payload = jwt.decode(auth_token, config_helper.ConfigHelper.get_instance().read_auth("SECRET_KEY"))
+            payload = jwt.decode(auth_token, ConfigHelper.read_auth("SECRET_KEY"))
             return payload['sub']
         except jwt.ExpiredSignatureError:
             return 'Signature expired. Please log in again.'
         except jwt.InvalidTokenError:
             return 'Invalid token. Please log in again.'
 
-    def login(self, username,password):
+    @staticmethod
+    def login(username,password):
         db = mobile_db_handler.MobileDbHandler().getInstance()
         user_id = db.login(username=username, password=password)
-        result = {"token": self.encode_auth_token(user_id).decode('utf8').replace("'", '"')}
-        json_result = json.dumps(result)
-        return json_result
+        if user_id:
+            return {"user_id": str(user_id)}
+        return None

@@ -163,8 +163,7 @@ class MobileDbHandler:
             try:
                 for doc in cursor:
                     user_id = (str(doc['_id']))
-                    result = {"user_id": user_id}
-                    return result
+                    return user_id
             finally:
                 cursor.close()
         except errors.ServerSelectionTimeoutError as err:

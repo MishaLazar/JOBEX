@@ -57,12 +57,10 @@ function registerStudent (  ) {
             contentType: 'application/json',
             data: JSON.stringify(x)
         })
-        .done(function(data){
-             
-            // show the response
-            
-           $("#token").val(jQuery.parseJSON(data).token)
-            console.log(JSON.stringify(data));
+        .done(function(data){          
+           
+            tokenSuccess(data);
+           
         })
         .fail(function() {
          
@@ -74,13 +72,37 @@ function registerStudent (  ) {
         // to prevent refreshing the whole page page
         return false;
 };
-
+function refreshToken(){
+    $.ajax({
+            type: 'POST',
+            url: "http://127.0.0.1:5050/tokenRefresh", 
+            dataType: 'json', 
+            headers: {
+            'Access-Control-Allow-Origin': '*'
+            },
+            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', "Bearer " + window.localStorage.refreshToken); }, 
+            contentType: 'application/json'            
+        })
+        .done(function(data){
+             
+            // show the response
+           
+            tokenSuccess(data);
+        })
+        .fail(function() {
+         
+            // just in case posting your form failed
+            alert( "Posting failed." );
+             
+        });
+ 
+        // to prevent refreshing the whole page page
+        return false;
+}
 function authStatus( ) {
  
   // Stop form from submitting normally
- var x ={user_id: "5c1d513ef4578f499805fc9c", token: $("#token").val() };
- var authToken = $("#token").val();
-
+ 
  $.ajax({
             type: 'POST',
             url: "http://127.0.0.1:5050/checkAuthenticationStatus", 
@@ -88,9 +110,8 @@ function authStatus( ) {
             headers: {
             'Access-Control-Allow-Origin': '*'
             },
-            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', authToken); }, 
-            contentType: 'application/json',
-            data: JSON.stringify(x)
+            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', "Bearer " + window.localStorage.accessToken); }, 
+            contentType: 'application/json'            
         })
         .done(function(data){
              
@@ -108,6 +129,17 @@ function authStatus( ) {
         // to prevent refreshing the whole page page
         return false;
 };
+function tokenSuccess(response) {
+   
+    if (response.access_token != undefined){
+        console.log('successfully updated accesstoken');
+        window.localStorage.accessToken = response.access_token;
+    }
+    if (response.refresh_token != undefined){
+        console.log('successfully updated refreshtoken')
+        window.localStorage.refreshToken = response.refresh_token;
+    }      
+}
 </script>
 </head>
 
@@ -142,9 +174,12 @@ function authStatus( ) {
 
 </div>
 <hr>    
-    <input type="button" value="status" onclick="authStatus()">
-    <input type="text" id="token">
+    <input type="button" value="AuthStatus" onclick="authStatus()">
+   
 <div>
+    <hr>
+    <input type="button" value="RefreshAuth" onclick="refreshToken()">
+    
 </div>
 </body>
 
