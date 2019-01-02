@@ -53,7 +53,10 @@ function registerStudent (  ) {
  $.ajax({
             type: 'POST',
             url: "http://127.0.0.1:5050/login", 
-            dataType: 'json',
+            dataType: 'json', 
+            headers: {
+            'Access-Control-Allow-Origin': '*'
+            },
             contentType: 'application/json',
             data: JSON.stringify(x)
         })
@@ -129,6 +132,62 @@ function authStatus( ) {
         // to prevent refreshing the whole page page
         return false;
 };
+function logoutaccessToken(){
+    $.ajax({
+            type: 'POST',
+            url: "http://127.0.0.1:5050/logout/access", 
+            dataType: 'json', 
+            headers: {
+            'Access-Control-Allow-Origin': '*'
+            },
+            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', "Bearer " + window.localStorage.accessToken); }, 
+            contentType: 'application/json'            
+        })
+        .done(function(data){
+             
+            // show the response
+           
+            console.log(JSON.stringify(data));
+        })
+        .fail(function() {
+         
+            // just in case posting your form failed
+            alert( "Posting failed." );
+             
+        });
+ 
+        // to prevent refreshing the whole page page
+        return false;
+}
+function logoutrefreshToken(){
+    $.ajax({
+            type: 'POST',
+            url: "http://127.0.0.1:5050/logout_refresh_token", 
+            dataType: 'json', 
+            headers: {
+            'Access-Control-Allow-Origin': '*'
+            },
+            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', "Bearer " + window.localStorage.refreshToken); }, 
+            contentType: 'application/json'            
+        })
+        .done(function(data){
+             
+            // show the response
+           
+            console.log(JSON.stringify(data));
+        })
+        .fail(function() {
+         
+            // just in case posting your form failed
+            alert( "Posting failed." );
+             
+        });
+ 
+        // to prevent refreshing the whole page page
+        return false;
+
+}
+
 function tokenSuccess(response) {
    
     if (response.access_token != undefined){
@@ -181,6 +240,15 @@ function tokenSuccess(response) {
     <input type="button" value="RefreshAuth" onclick="refreshToken()">
     
 </div>
+
+<div>
+        <hr>
+        <input type="button" value="logoutrf" onclick="logoutrefreshToken()">
+        <span style="height:100px;"></span>
+        <hr>
+        <input type="button" value="logoutac" onclick="logoutaccessToken()">
+        
+    </div>
 </body>
 
 </html>

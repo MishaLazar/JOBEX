@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, redirect, url_for
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt)
 from flask_cors import CORS
@@ -8,16 +8,51 @@ from Controllers.auth_controller import AuthController
 from Utils import config_helper
 
 app = Flask(__name__)
-CORS(app)
+
 config = config_helper.ConfigHelper.get_instance()
 app.config['JWT_SECRET_KEY'] = config.read_auth('SECRET_KEY')
+app.config['JWT_BLACKLIST_ENABLED'] = True
+app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
+#CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}}, send_wildcard=True)
 jwt = JWTManager(app)
+
+
+@jwt.token_in_blacklist_loader
+def check_if_token_in_blacklist(decrypted_token):
+    jti = decrypted_token['jti']
+    return AuthController.check_token_in_blacklist(jti)
 
 
 @app.route('/')
 def home():
     json_str = {"result": 0}
     return jsonify(json_str)
+
+
+@app.route('/logout/<token_type>', methods=['POST'])
+def logout_user(token_type):
+    if request.method == 'POST':
+        if token_type == "access":
+            return redirect(url_for('logout_access'))
+        if token_type == "refresh":
+            return redirect(url_for('logout_refresh'))
+
+
+@app.route('/logout_access_token')
+@jwt_required
+def logout_access():
+    if request.method == 'POST':
+        jti = get_raw_jwt()['jti']
+    return AuthController.add_token_to_blacklist(jti)
+
+
+@app.route('/logout_refresh_token')
+@jwt_refresh_token_required
+def logout_refresh():
+    if request.method == 'POST':
+        jti = get_raw_jwt()['jti']
+    return AuthController.add_token_to_blacklist(jti)
 
 
 @app.route('/login', methods=['POST', 'GET'])

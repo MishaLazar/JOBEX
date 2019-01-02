@@ -1,10 +1,6 @@
-import jwt
-from config_helper import ConfigHelper
-import datetime
+from DAL.mongo_db_handler import Client
+from db_collections import DbCollections
 import json
-from DAL import mobile_db_handler
-
-
 class AuthController:
 
     __instance = None
@@ -24,45 +20,41 @@ class AuthController:
             AuthController.__instance = self
 
     @staticmethod
-    def encode_auth_token(user_id):
-        """
-        Generates the Auth Token
-        :return: string
-        """
-
+    def add_token_to_blacklist(jti):
+        db_client = Client()
         try:
-            payload = {
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=360),
-                'iat': datetime.datetime.utcnow(),
-                'sub': user_id
-            }
-            return jwt.encode(
-                payload,
-                ConfigHelper.read_auth("SECRET_KEY"),
-                algorithm='HS256'
-            )
-        except Exception as e:
-            return e
+            db_client.insert_doc_to_collection(DbCollections.get_collection(Key="token_blacklist_collection"),jti)
+            return {'message': 'tokens has been revoked'}, 200
+        except:
+            return {'message': 'Something went wrong'}, 500
 
     @staticmethod
-    def decode_auth_token(auth_token):
-        """
-        Decodes the auth token
-        :param auth_token:
-        :return: integer|string
-        """
-        try:
-            payload = jwt.decode(auth_token, ConfigHelper.read_auth("SECRET_KEY"))
-            return payload['sub']
-        except jwt.ExpiredSignatureError:
-            return 'Signature expired. Please log in again.'
-        except jwt.InvalidTokenError:
-            return 'Invalid token. Please log in again.'
+    def check_token_in_blacklist(jti):
+        db_client = Client()
+        return bool(db_client.count_docs_in_collection(DbCollections.get_collection(Key="token_blacklist_collection"),jti))
+
 
     @staticmethod
     def login(username,password):
-        db = mobile_db_handler.MobileDbHandler().getInstance()
-        user_id = db.login(username=username, password=password)
+        db_client = Client()
+        query = {
+                "$match": {
+                    "UserName": username,
+                    "password": password
+                }
+            }, {
+                "$project": {
+                    "_id": 1
+                }
+            }, {
+                "$sort": {
+                    "_id": -1
+                }
+            }, {
+                "$limit": 100
+            }
+        user_id = db_client.get_single_doc_from_collection(DbCollections.get_collection("users_collection"),
+                                                           json.dumps(query))
         if user_id:
             return {"user_id": str(user_id)}
         return None

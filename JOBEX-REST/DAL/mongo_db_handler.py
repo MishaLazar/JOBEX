@@ -18,8 +18,10 @@ class Client:
             ssh_pkey=self.ssh_key_path,
             ssh_private_key_password=self.ssh_pkey_pass,
             remote_bind_address=('127.0.0.1', 27017))
+        self.server.start()
         self.client = MongoClient('127.0.0.1', self.server.local_bind_port)  # server.local_bind_port is assigned local port
         self.db = self.client[self.mongo_db]
+
 
     def find_by_collection(self, collection_name, limit=100):
         """Insert doc to collection
@@ -79,7 +81,8 @@ class Client:
         try:
             collection = self.db[collection_name]
             if json_query:
-                return collection.find_one(json_query)
+                result = collection.find_one(json_query)
+                return result
             elif object_id:
                 return collection.find_one({"_id": object_id})
             return collection.find_one()
