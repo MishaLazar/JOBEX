@@ -1,0 +1,26 @@
+<ion-menu [content]="nav">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Jobex</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <button ion-item (click)="onLoad(registerPage)">
+        <ion-icon name="create" item-left></ion-icon>
+        Register
+      </button>
+      <button ion-item (click)="onLoad(loginPage)">
+        <ion-icon name="log-in" item-left></ion-icon>
+        Login</button>
+      <button ion-item (click)="onLoad(loginPage)">
+        <ion-icon name="log-out" item-left></ion-icon>
+        Logout</button>
+      <button ion-item (click)="onLoad(homePage)">
+        <ion-icon name="clipboard" item-left></ion-icon>
+        Home</button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav [root]="loginPage" #nav></ion-nav>
