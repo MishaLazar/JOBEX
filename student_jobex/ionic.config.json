@@ -1,0 +1,7 @@
+{
+  "name": "student_jobex",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
