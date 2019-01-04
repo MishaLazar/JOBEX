@@ -12,7 +12,7 @@ class Client:
         self.mongo_user = config.read_db_params('MONGO_USER')
         self.ssh_key_path = config.read_db_params('SSH_PKEY_PATH')
         self.ssh_pkey_pass = config.read_db_params('SSH_PKEY_PASS')
-        self.server = SSHTunnelForwarder( # used for remote testing, will be removed when deployed on server
+        self.server = SSHTunnelForwarder(  # used for remote testing, will be removed when deployed on server
             ssh_address_or_host=self.mongo_host,
             ssh_username=self.mongo_user,
             ssh_pkey=self.ssh_key_path,
@@ -22,7 +22,6 @@ class Client:
         self.client = MongoClient('127.0.0.1', self.server.local_bind_port)  # server.local_bind_port is assigned local port
         self.db = self.client[self.mongo_db]
 
-
     def find_by_collection(self, collection_name, limit=100):
         """Insert doc to collection
 
@@ -30,22 +29,23 @@ class Client:
             :type collection_name: str
             :param limit: (optional) how many docs will be returned
             :type limit: int
-            :returns cursor docs
-            :rtype JSON objects
+            :returns list of docs
+            :rtype list of JSON objects
         """
+        result = []
         try:
             collection = self.db[collection_name]
             sort = [("_id", -1)]
             cursor = collection.find(sort=sort, limit=limit)
             try:
                 for doc in cursor:
-                    return doc
+                    result.append(doc)
             finally:
                 cursor.close()
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:
-            self.server.stop()
+            return result
 
     def insert_doc_to_collection(self, collection_name, doc):
         """Insert doc to collection
@@ -57,13 +57,14 @@ class Client:
                 :returns inserted_id of the inserted doc
                 :rtype str
         """
+        result = None
         try:
             collection = self.db[collection_name]
-            return collection.insert_one(doc).inserted_id
+            result = collection.insert_one(doc).inserted_id
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:
-            self.server.stop()
+            return result
 
     def get_single_doc_from_collection(self, collection_name, json_query=None, object_id=None):
         """Getting a single doc from collection by JSON query / objectID
@@ -78,21 +79,19 @@ class Client:
                 :returns single doc
                 :rtype JSON object of the doc
         """
-        print("Getting single doc from collection {} with query {}".format(collection_name, json_query))
+        result = None
         try:
             collection = self.db[collection_name]
-            print("Got collection {}".format(collection.name))
             if json_query:
-                print("json query given, returning document")
-                return collection.find_one(json_query)
+                result = collection.find_one(json_query)
             elif object_id:
-                return collection.find_one({"_id": object_id})
-            return collection.find_one()
+                result = collection.find_one({"_id": object_id})
+            else:
+                result = collection.find_one()
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:
-            print("Stopping server")
-            self.server.stop()
+            return result
 
     def insert_many_docs_to_collection(self, collection_name, docs_list):
         """Insert many docs to collection
@@ -104,13 +103,14 @@ class Client:
                 :returns inserted_ids of the docs inserted
                 :rtype list of objectID objects
         """
+        result = None
         try:
             collection = self.db[collection_name]
-            return collection.insert_many(docs_list).inserted_ids
+            result = collection.insert_many(docs_list).inserted_ids
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:
-            self.server.stop()
+            return result
 
     def get_many_docs_from_collection(self, collection_name, json_query=None):
         """ Getting many docs from collection by collection name
@@ -122,18 +122,19 @@ class Client:
                 :returns many docs
                 :rtype JSON objects of the docs found in the collection
         """
+        result = []
         try:
             collection = self.db[collection_name]
             if json_query:
                 for doc in collection.find(json_query):
-                    return doc
+                    result.append(doc)
             else:
                 for doc in collection.find():
-                    return doc
+                    result.append(doc)
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:
-            self.server.stop()
+            return result
 
     def count_docs_in_collection(self, collection_name, json_query=None):
         """ Getting many docs from collection by collection name
@@ -141,19 +142,21 @@ class Client:
                 :param collection_name: The name of the collection to count in
                 :type collection_name: str
                 :param json_query: the json query to search with
-                :type JSON str
+                :type json_query: str
                 :returns number of docs in the collection
                 :rtype int
         """
+        result = None
         try:
             collection = self.db[collection_name]
             if json_query:
-                return collection.count_documents(json_query)
-            return collection.count_documents({})
+                result = collection.count_documents(json_query)
+            else:
+                result = collection.count_documents({})
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:
-            self.server.stop()
+            return result
 
     def update_single_doc_in_collection(self, collection_name, filter_json, doc_update_json):
         """ Update doc in collection
@@ -167,10 +170,11 @@ class Client:
                 :returns modified_count, should be 1 as single doc should be updated
                 :rtype int
         """
+        result = None
         try:
             collection = self.db[collection_name]
-            return collection.update_one(filter=filter_json, update=doc_update_json).modified_count
+            result = collection.update_one(filter=filter_json, update=doc_update_json).modified_count
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:
-            self.server.stop()
+            return result

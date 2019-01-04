@@ -62,6 +62,7 @@ def get_login():
         authentication = json.loads(request.get_json())
         username = authentication['username']
         password = authentication['password']
+        result = None
 
         try:
             result = AuthController.login(username, password)
@@ -69,14 +70,15 @@ def get_login():
             print("Failed to login. Error: {}".format(err))
 
         if result:
-            access_token = create_access_token(identity=result['user_id'])
-            refresh_token = create_refresh_token(identity=result['user_id'])
-            return jsonify({
-                'access_token': access_token,
-                'refresh_token': refresh_token
-                }), 200
+            access_token = str(create_access_token(identity=result))
+            refresh_token = str(create_refresh_token(identity=result))
+            data = {
+                "access_token": access_token,
+                "refresh_token": refresh_token
+            }
+            return jsonify(data), 200
         else:
-            return jsonify({'message': 'Wrong credentials'}), 403
+            return jsonify({"message": "Wrong credentials"}), 403
 
 
 @app.route('/register', methods=['POST'])

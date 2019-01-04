@@ -66,7 +66,6 @@ class JobexWebHelper:
         try:
             if method == 'POST':
                 response = post(url, json=json_str)
-                print(response.content)
             elif method == 'PUT':
                 response = put(url, json=json_str)
             elif method == 'GET':
@@ -77,7 +76,7 @@ class JobexWebHelper:
                 response = get(url)
             status_code = response.status_code
             if status_code == 200:
-                return response.json()
+                return response
             elif status_code == 500 or 401:
                 reason = response.reason
                 message = "API call failed for {}. Reason '{}'".format(url, reason)

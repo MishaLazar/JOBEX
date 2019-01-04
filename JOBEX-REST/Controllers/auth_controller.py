@@ -1,6 +1,7 @@
 from DAL.mongo_db_handler import Client
 from db_collections import DbCollections
-import json
+
+
 class AuthController:
 
     __instance = None
@@ -40,12 +41,9 @@ class AuthController:
             "UserName": username,
             "password": password
         }
-        print("Getting user doc")
         user_doc = db_client.get_single_doc_from_collection(DbCollections.get_collection("users_collection"), query)
-        print("Got user doc, printing:")
-        print(user_doc)
         if user_doc:
-            user_id = json.loads(user_doc)['_id']
-            print(user_id)
+            user_id = str(user_doc['_id'])
             return user_id
-        return None
+        else:
+            return None

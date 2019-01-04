@@ -31,7 +31,7 @@ def about_view():
 @app.route('/register', methods=['GET', 'POST'])
 def register_view():
     if current_user.is_authenticated:
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('dashboard_view'))
 
     form = RegistrationForm()
 
@@ -54,7 +54,7 @@ def register_view():
 @app.route('/login', methods=['GET', 'POST'])
 def login_view():
     if current_user.is_authenticated:
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('dashboard_view'))
 
     form = LoginForm()
 
@@ -63,15 +63,14 @@ def login_view():
         login_obj = {"username": form.username.data, "password": form.password.data}
         try:
             response = jobex_web_helper.login(login_obj)
-
             if response.status_code == 200:
-                access_token = response.content['access_token']
-                refresh_token = response.content['refresh_token']
-                return access_token + refresh_token
-                login_user(form.username.data, remember=form.remember.data)
+                access_token = response.json()['access_token']
+                refresh_token = response.json()['refresh_token']
+                # todo what to do with tokens?
+                # login_user(form.username.data, remember=form.remember.data)
                 # todo how to analyze company name?
                 company_name = "tufin"
-                return redirect(url_for('dashboard/{}'.format(company_name)))
+                return redirect(url_for('dashboard_view', company_name=company_name))
             else:
                 flash(f'Login unsuccessful! please check email and password', 'warning')
         except IOError as err:
