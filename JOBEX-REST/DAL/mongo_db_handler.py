@@ -78,17 +78,20 @@ class Client:
                 :returns single doc
                 :rtype JSON object of the doc
         """
+        print("Getting single doc from collection {} with query {}".format(collection_name, json_query))
         try:
             collection = self.db[collection_name]
+            print("Got collection {}".format(collection.name))
             if json_query:
-                result = collection.find_one(json_query)
-                return result
+                print("json query given, returning document")
+                return collection.find_one(json_query)
             elif object_id:
                 return collection.find_one({"_id": object_id})
             return collection.find_one()
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:
+            print("Stopping server")
             self.server.stop()
 
     def insert_many_docs_to_collection(self, collection_name, docs_list):

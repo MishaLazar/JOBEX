@@ -33,28 +33,19 @@ class AuthController:
         db_client = Client()
         return bool(db_client.count_docs_in_collection(DbCollections.get_collection(Key="token_blacklist_collection"),jti))
 
-
     @staticmethod
-    def login(username,password):
+    def login(username, password):
         db_client = Client()
         query = {
-                "$match": {
-                    "UserName": username,
-                    "password": password
-                }
-            }, {
-                "$project": {
-                    "_id": 1
-                }
-            }, {
-                "$sort": {
-                    "_id": -1
-                }
-            }, {
-                "$limit": 100
-            }
-        user_id = db_client.get_single_doc_from_collection(DbCollections.get_collection("users_collection"),
-                                                           json.dumps(query))
-        if user_id:
-            return {"user_id": str(user_id)}
+            "UserName": username,
+            "password": password
+        }
+        print("Getting user doc")
+        user_doc = db_client.get_single_doc_from_collection(DbCollections.get_collection("users_collection"), query)
+        print("Got user doc, printing:")
+        print(user_doc)
+        if user_doc:
+            user_id = json.loads(user_doc)['_id']
+            print(user_id)
+            return user_id
         return None

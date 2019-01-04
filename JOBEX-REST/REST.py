@@ -6,6 +6,7 @@ from mobile_controller import MobileController
 from web_controller import WebController
 from Controllers.auth_controller import AuthController
 from Utils import config_helper
+import json
 
 app = Flask(__name__)
 
@@ -58,11 +59,15 @@ def logout_refresh():
 @app.route('/login', methods=['POST', 'GET'])
 def get_login():
     if request.method == 'POST':
-        authentication = request.get_json()
+        authentication = json.loads(request.get_json())
         username = authentication['username']
         password = authentication['password']
 
-        result = AuthController.login(username, password)
+        try:
+            result = AuthController.login(username, password)
+        except IOError as err:
+            print("Failed to login. Error: {}".format(err))
+
         if result:
             access_token = create_access_token(identity=result['user_id'])
             refresh_token = create_refresh_token(identity=result['user_id'])

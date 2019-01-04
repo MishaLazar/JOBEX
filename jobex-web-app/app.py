@@ -1,9 +1,9 @@
-from flask import Flask, render_template, flash, redirect, url_for, request
+from flask import Flask, render_template, flash, redirect, url_for
 from flask_bcrypt import Bcrypt
 from forms import RegistrationForm, LoginForm
 from jobex_web_app_helper import JobexWebHelper
 from config_helper import ConfigHelper
-from flask_login import LoginManager, login_user
+from flask_login import LoginManager, login_user, current_user
 
 config = ConfigHelper('jobex-web-app/Configurations.ini')
 rest_host = config.readRestParams('REST_HOST')
@@ -19,7 +19,7 @@ login_manager.login_message_category = 'info'
 @app.route('/')
 def home_view():
     dummy_positions = [['DevOps Engineer', 'R&D', 'Tel Aviv', 'Automation, Python', 'Yes', 'None'],
-                 ['Software Engineer', 'R&D', 'Ramat Gan', 'Java, C#', 'No', 'Missing info']]
+                       ['Software Engineer', 'R&D', 'Ramat Gan', 'Java, C#', 'No', 'Missing info']]
     return render_template("home.html", dummy_positions=dummy_positions)
 
 
@@ -30,8 +30,8 @@ def about_view():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register_view():
-    # if current_user.is_authenticated:
-    #     return redirect(url_for('dashboard'))
+    if current_user.is_authenticated:
+        return redirect(url_for('dashboard'))
 
     form = RegistrationForm()
 
@@ -53,30 +53,34 @@ def register_view():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login_view():
-    # if current_user.is_authenticated:
-    #     return redirect(url_for('dashboard'))
+    if current_user.is_authenticated:
+        return redirect(url_for('dashboard'))
 
     form = LoginForm()
 
     if form.validate_on_submit():
-        email = form.email.data
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        login_obj = {"email": email, "password": hashed_password}
+        # hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        login_obj = {"username": form.username.data, "password": form.password.data}
         try:
             response = jobex_web_helper.login(login_obj)
-            company_name = response.to_json_str['company_name']
+
             if response.status_code == 200:
-                login_user(email, remember=form.remember.data)
+                access_token = response.content['access_token']
+                refresh_token = response.content['refresh_token']
+                return access_token + refresh_token
+                login_user(form.username.data, remember=form.remember.data)
+                # todo how to analyze company name?
+                company_name = "tufin"
                 return redirect(url_for('dashboard/{}'.format(company_name)))
             else:
                 flash(f'Login unsuccessful! please check email and password', 'warning')
         except IOError as err:
-            flash(f'Login call failed for {form.email.data}! Error = ' + str(err), 'warning')
+            flash(f'Login call failed for {form.username.data}! Error = ' + str(err), 'warning')
 
     return render_template("login.html", title='Login', form=form)
 
 
-@app.route('/logout')
+@app.route('/logout', methods=['GET', 'POST'])
 def logout_view():
     # todo logout here
     return redirect(url_for('home_view'))
@@ -88,19 +92,19 @@ def dashboard_view(company_name):
     return render_template("dashboard.html", dashboard_positions=dashboard_positions)
 
 
-@app.route('/engagements/<company_name>/<engagement_id>', methods=['GET', 'POST', 'PUT'])
+@app.route('/engagements/<company_name>/<engagement_id>')
 def engagement_view(engagement_id, company_name):
     engagement = jobex_web_helper.get_engagement(company_name=company_name, engagement_id=engagement_id)
     return render_template("engagement.html", engagement=engagement)
 
 
-@app.route('/positions/<company_name>/<position_id>', methods=['GET', 'POST', 'PUT'])
+@app.route('/positions/<company_name>/<position_id>')
 def position_view(company_name, position_id):
     position = jobex_web_helper.get_position(company_name=company_name, position_id=position_id)
     return render_template("position.html", position=position)
 
 
-@app.route('/profile/<user_id>', methods=['GET', 'PUT'])
+@app.route('/profile/<user_id>')
 def profile_view(user_id):
     user = jobex_web_helper.get_user(user_id)
     return render_template("profile.html", user=user)

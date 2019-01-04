@@ -1,5 +1,6 @@
 from requests import post, put, get, delete, RequestException
 from config_helper import ConfigHelper
+import json
 
 config = ConfigHelper(r'C:\JOBEX\jobex-web-app\Configurations.ini')
 rest_host = config.readRestParams('REST_HOST')
@@ -11,7 +12,7 @@ class JobexWebHelper:
         self.host = host
 
     def login(self, login_obj):
-        return self.api_call(api_path="get_login", obj=login_obj, method='POST')
+        return self.api_call(api_path="login", obj=login_obj, method='POST')
 
     def logout(self, logout_obj):
         return self.api_call(api_path="logout", obj=logout_obj, method='POST')
@@ -61,10 +62,11 @@ class JobexWebHelper:
     @staticmethod
     def api_call(api_path=None, obj=None, method='GET'):
         url = "http://{}/{}".format(rest_host, api_path)
-        json_str = obj.to_json_str()
+        json_str = json.dumps(obj)
         try:
             if method == 'POST':
                 response = post(url, json=json_str)
+                print(response.content)
             elif method == 'PUT':
                 response = put(url, json=json_str)
             elif method == 'GET':
