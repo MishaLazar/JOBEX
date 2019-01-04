@@ -59,7 +59,7 @@ def logout_refresh():
 @app.route('/login', methods=['POST', 'GET'])
 def get_login():
     if request.method == 'POST':
-        authentication = json.loads(request.get_json())
+        authentication = request.get_json()
         username = authentication['username']
         password = authentication['password']
         result = None
