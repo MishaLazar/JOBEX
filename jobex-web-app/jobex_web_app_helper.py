@@ -66,15 +66,14 @@ class JobexWebHelper:
         if access_token:
             headers = {'content-type': 'application/json', 'Access-Control-Allow-Origin': '*',
                        'Authorization': "Bearer " + access_token}
-        json_str = json.dumps(obj)
         try:
             if method == 'POST':
                 if headers:
-                    response = post(url, json=json_str, headers=headers)
+                    response = post(url, json=obj, headers=headers)
                 else:
-                    response = post(url, json=json_str)
+                    response = post(url, json=obj)
             elif method == 'PUT':
-                response = put(url, json=json_str)
+                response = put(url, json=obj)
             elif method == 'GET':
                 response = get(url)
             elif method == 'DELETE':
