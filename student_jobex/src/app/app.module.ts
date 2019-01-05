@@ -11,6 +11,9 @@ import {RegisterPage} from "../pages/register/register";
 import {AuthenticationService} from "../services/authentication.service";
 import {HttpClientModule} from "@angular/common/http";
 import {ConfigService} from "../services/config.service";
+import {IonicStorageModule } from "@ionic/storage";
+import {StorageService} from "../services/storage.service";
+/*import { JwtModule } from '@auth0/angular-jwt';*/
 
 @NgModule({
   declarations: [
@@ -22,7 +25,16 @@ import {ConfigService} from "../services/config.service";
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
+    /*JwtModule.forRoot({
+      config:{
+        tokenGetter: function tokenGetter() {
+          return  localStorage.getItem('access_token');
+        },
+        blacklistedRoutes : ['http://127.0.0.1:5050/login']
+      }
+    })*/
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,7 +46,7 @@ import {ConfigService} from "../services/config.service";
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},AuthenticationService,ConfigService
+    {provide: ErrorHandler, useClass: IonicErrorHandler},AuthenticationService,ConfigService,StorageService
   ]
 })
 export class AppModule {}
