@@ -1,9 +1,10 @@
-from flask import Flask, render_template, flash, redirect, url_for
+from flask import Flask, render_template, flash, redirect, url_for, session, request
 from flask_bcrypt import Bcrypt
 from forms import RegistrationForm, LoginForm
 from jobex_web_app_helper import JobexWebHelper
 from config_helper import ConfigHelper
 from flask_login import LoginManager, login_user, current_user
+import json
 
 config = ConfigHelper('jobex-web-app/Configurations.ini')
 rest_host = config.readRestParams('REST_HOST')
@@ -53,24 +54,17 @@ def register_view():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login_view():
-    if current_user.is_authenticated:
-        return redirect(url_for('dashboard_view'))
-
     form = LoginForm()
 
     if form.validate_on_submit():
-        # hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         login_obj = {"username": form.username.data, "password": form.password.data}
         try:
             response = jobex_web_helper.login(login_obj)
             if response.status_code == 200:
-                access_token = response.json()['access_token']
-                refresh_token = response.json()['refresh_token']
-                # todo what to do with tokens?
-                # login_user(form.username.data, remember=form.remember.data)
-                # todo how to analyze company name?
-                company_name = "tufin"
-                return redirect(url_for('dashboard_view', company_name=company_name))
+                tokens = json.dumps(response.json())
+                session['tokens'] = tokens
+                session['username'] = form.username.data
+                return redirect(url_for('dashboard_view', tokens=tokens, username=form.username.data))
             else:
                 flash(f'Login unsuccessful! please check email and password', 'warning')
         except IOError as err:
@@ -85,10 +79,14 @@ def logout_view():
     return redirect(url_for('home_view'))
 
 
-@app.route('/dashboard/<company_name>')
-def dashboard_view(company_name):
-    dashboard_positions = jobex_web_helper.get_all_positions(company_name=company_name)
-    return render_template("dashboard.html", dashboard_positions=dashboard_positions)
+@app.route('/dashboard')
+def dashboard_view():
+    tokens_json = json.loads(request.args['tokens'])
+    username = request.args['username']
+    # access_token = tokens_json['access_token']
+    # positions = jobex_web_helper.get_all_positions(company_name=company_name, access_token=access_token)
+    positions = None
+    return render_template("dashboard.html", positions=positions, tokens=tokens_json, username=username)
 
 
 @app.route('/engagements/<company_name>/<engagement_id>')

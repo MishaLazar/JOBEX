@@ -44,8 +44,8 @@ class JobexWebHelper:
     def delete_engagement(self, position_obj, engagement_id):
         return self.api_call(api_path="engagements/{}".format(engagement_id), obj=position_obj, method='DELETE')
 
-    def get_all_positions(self, company_name):
-        return self.api_call(api_path="positions/{}".format(company_name), method='GET')
+    def get_all_positions(self, company_name, access_token):
+        return self.api_call(api_path="positions/{}".format(company_name), method='GET', access_token=access_token)
 
     def get_position(self, company_name, position_id):
         return self.api_call(api_path="positions/{}/{}".format(company_name, position_id), method='GET')
@@ -60,12 +60,19 @@ class JobexWebHelper:
         return self.api_call(api_path="users/{}".format(user_id), method='GET')
 
     @staticmethod
-    def api_call(api_path=None, obj=None, method='GET'):
+    def api_call(api_path=None, obj=None, method='GET', access_token=None, refresh_token=None):
         url = "http://{}/{}".format(rest_host, api_path)
+        headers = None
+        if access_token:
+            headers = {'content-type': 'application/json', 'Access-Control-Allow-Origin': '*',
+                       'Authorization': "Bearer " + access_token}
         json_str = json.dumps(obj)
         try:
             if method == 'POST':
-                response = post(url, json=json_str)
+                if headers:
+                    response = post(url, json=json_str, headers=headers)
+                else:
+                    response = post(url, json=json_str)
             elif method == 'PUT':
                 response = put(url, json=json_str)
             elif method == 'GET':
@@ -77,7 +84,7 @@ class JobexWebHelper:
             status_code = response.status_code
             if status_code == 200:
                 return response
-            elif status_code == 500 or 401:
+            elif status_code == 500 or 401 or 404:
                 reason = response.reason
                 message = "API call failed for {}. Reason '{}'".format(url, reason)
                 raise IOError(message)

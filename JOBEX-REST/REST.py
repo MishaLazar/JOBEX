@@ -70,8 +70,8 @@ def get_login():
             print("Failed to login. Error: {}".format(err))
 
         if result:
-            access_token = str(create_access_token(identity=result))
-            refresh_token = str(create_refresh_token(identity=result))
+            access_token = create_access_token(identity=result)
+            refresh_token = create_refresh_token(identity=result)
             data = {
                 "access_token": access_token,
                 "refresh_token": refresh_token

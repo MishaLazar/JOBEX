@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     <script src="/static/js/main.js"></script>
-    <h1>Welcome {{ current_user.username }} :)</h1>
+    <h1>Welcome {{ username }} :)</h1>
     <h1>---------------------------------------------</h1>
     <table id="positions" style="width:100%">
         <thead>
@@ -15,8 +15,8 @@
         </tr>
         </thead>
         <tbody>
-        {% if dashboard_positions %}
-            {% for position in dashboard_positions %}
+        {% if positions %}
+            {% for position in positions %}
                 <tr>
                     <td>{{ position[0] }}</td>
                     <td>{{ position[1] }}</td>
@@ -41,4 +41,11 @@
     </table>
     <h1>---------------------------------------------</h1>
     <script src="/static/js/main.js"></script>
+    <script>
+        $(document).ready(
+            function tokenSuccess() {
+                console.log(tokens)
+
+    });
+    </script>
 {% endblock content %}
