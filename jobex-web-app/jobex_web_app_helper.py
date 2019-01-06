@@ -8,56 +8,64 @@ rest_host = config.readRestParams('REST_HOST')
 
 class JobexWebHelper:
     """this class is used to handle API calls to the REST server"""
+
     def __init__(self, host):
         self.host = host
 
     def login(self, login_obj):
         return self.api_call(api_path="login", obj=login_obj, method='POST')
 
-    def logout(self, logout_obj):
-        return self.api_call(api_path="logout", obj=logout_obj, method='POST')
-
     def create_user(self, user_obj):
         return self.api_call(api_path="register", obj=user_obj, method='POST')
 
-    def edit_user(self, user_obj, user_id):
-        return self.api_call(api_path="users/{}".format(user_id), obj=user_obj, method='PUT')
+    # protected API calls ----------------------------------------------------------------------------------------------
+    def logout(self, logout_obj, access_token):
+        return self.api_call(api_path="logout", obj=logout_obj, method='POST', access_token=access_token)
 
-    def delete_user(self, user_obj, user_id):
-        return self.api_call(api_path="users/{}".format(user_id), obj=user_obj, method='DELETE')
+    def edit_user(self, user_obj, user_id, access_token):
+        return self.api_call(api_path="users/{}".format(user_id), obj=user_obj, method='PUT', access_token=access_token)
 
-    def create_position(self, position_obj):
-        return self.api_call(api_path="positions", obj=position_obj, method='POST')
+    def delete_user(self, user_obj, user_id, access_token):
+        return self.api_call(api_path="users/{}".format(user_id), obj=user_obj, method='DELETE',
+                             access_token=access_token)
 
-    def edit_position(self, user_obj, position_id):
-        return self.api_call(api_path="positions/{}".format(position_id), obj=user_obj, method='PUT')
+    def create_position(self, position_obj, access_token):
+        return self.api_call(api_path="positions", obj=position_obj, method='POST', access_token=access_token)
 
-    def delete_position(self, user_obj, position_id):
-        return self.api_call(api_path="positions/{}".format(position_id), obj=user_obj, method='DELETE')
+    def edit_position(self, user_obj, position_id, access_token):
+        return self.api_call(api_path="positions/{}".format(position_id), obj=user_obj, method='PUT',
+                             access_token=access_token)
 
-    def create_engagement(self, engagement_obj):
-        return self.api_call(api_path="engagements", obj=engagement_obj, method='POST')
+    def delete_position(self, user_obj, position_id, access_token):
+        return self.api_call(api_path="positions/{}".format(position_id), obj=user_obj, method='DELETE',
+                             access_token=access_token)
 
-    def edit_engagement(self, engagement_obj, engagement_id):
-        return self.api_call(api_path="engagements/{}".format(engagement_id), obj=engagement_obj, method='PUT')
+    def create_engagement(self, engagement_obj, access_token):
+        return self.api_call(api_path="engagements", obj=engagement_obj, method='POST', access_token=access_token)
 
-    def delete_engagement(self, position_obj, engagement_id):
-        return self.api_call(api_path="engagements/{}".format(engagement_id), obj=position_obj, method='DELETE')
+    def edit_engagement(self, engagement_obj, engagement_id, access_token):
+        return self.api_call(api_path="engagements/{}".format(engagement_id), obj=engagement_obj, method='PUT',
+                             access_token=access_token)
 
-    def get_all_positions(self, company_name, access_token):
-        return self.api_call(api_path="positions/{}".format(company_name), method='GET', access_token=access_token)
+    def delete_engagement(self, engagement_id, access_token):
+        return self.api_call(api_path="engagements/{}".format(engagement_id), method='DELETE',
+                             access_token=access_token)
 
-    def get_position(self, company_name, position_id):
-        return self.api_call(api_path="positions/{}/{}".format(company_name, position_id), method='GET')
+    def get_all_positions(self, access_token):
+        return self.api_call(api_path="positions", method='GET', access_token=access_token)
 
-    def get_engagement(self, company_name, engagement_id):
-        return self.api_call(api_path="engagements/{}/{}".format(company_name, engagement_id), method='GET')
+    def get_position(self, position_id, access_token):
+        return self.api_call(api_path="positions/{}".format(position_id), method='GET', access_token=access_token)
 
-    def get_all_engagements(self, company_name):
-        return self.api_call(api_path="engagements/{}".format(company_name), method='GET')
+    def get_engagement(self, engagement_id, access_token):
+        return self.api_call(api_path="engagements/{}".format(engagement_id), method='GET', access_token=access_token)
 
-    def get_user(self, user_id):
-        return self.api_call(api_path="users/{}".format(user_id), method='GET')
+    def get_all_engagements(self, access_token):
+        return self.api_call(api_path="engagements", method='GET', access_token=access_token)
+
+    def get_user(self, user_id, access_token):
+        return self.api_call(api_path="users/{}".format(user_id), method='GET', access_token=access_token)
+    # protected API calls ----------------------------------------------------------------------------------------------
 
     @staticmethod
     def api_call(api_path=None, obj=None, method='GET', access_token=None, refresh_token=None):

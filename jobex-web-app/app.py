@@ -1,9 +1,7 @@
 from flask import Flask, render_template, flash, redirect, url_for, session, request
-from flask_bcrypt import Bcrypt
 from forms import RegistrationForm, LoginForm
 from jobex_web_app_helper import JobexWebHelper
 from config_helper import ConfigHelper
-from flask_login import LoginManager, login_user, current_user
 import json
 
 config = ConfigHelper('jobex-web-app/Configurations.ini')
@@ -11,17 +9,11 @@ rest_host = config.readRestParams('REST_HOST')
 jobex_web_helper = JobexWebHelper(host=rest_host)
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'I8Is25DFOzLUKSx06WCyesvHJgmZJblt'
-bcrypt = Bcrypt(app)
-login_manager = LoginManager(app)
-login_manager.login_view = 'login_view'
-login_manager.login_message_category = 'info'
 
 
 @app.route('/')
 def home_view():
-    dummy_positions = [['DevOps Engineer', 'R&D', 'Tel Aviv', 'Automation, Python', 'Yes', 'None'],
-                       ['Software Engineer', 'R&D', 'Ramat Gan', 'Java, C#', 'No', 'Missing info']]
-    return render_template("home.html", dummy_positions=dummy_positions)
+    return render_template("home.html")
 
 
 @app.route("/about")
@@ -31,14 +23,11 @@ def about_view():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register_view():
-    if current_user.is_authenticated:
-        return redirect(url_for('dashboard_view'))
-
+    # todo check if authenticated then redirect to dashboard
     form = RegistrationForm()
 
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user_obj = {"username": form.username.data, "email": form.email.data, "password": hashed_password}
+        user_obj = {"username": form.username.data, "email": form.email.data, "password": form.password.data}
         try:
             jobex_web_helper.create_user(user_obj)
             flash(f'Account created for {form.username.data}!', 'success')
@@ -54,6 +43,7 @@ def register_view():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login_view():
+    # todo check if authenticated then redirect to dashboard
     form = LoginForm()
 
     if form.validate_on_submit():
@@ -64,13 +54,22 @@ def login_view():
                 tokens = json.dumps(response.json())
                 session['tokens'] = tokens
                 session['username'] = form.username.data
-                return redirect(url_for('dashboard_view', tokens=tokens, username=form.username.data))
+                return redirect(url_for('save_tokens', tokens=tokens, username=form.username.data))
             else:
                 flash(f'Login unsuccessful! please check email and password', 'warning')
         except IOError as err:
             flash(f'Login call failed for {form.username.data}! Error = ' + str(err), 'warning')
 
     return render_template("login.html", title='Login', form=form)
+
+
+# this will save tokens in the browser and redirect to dashboard with the username
+@app.route('/save_tokens')
+def save_tokens():
+    # todo how to block this route if it's not sourced by the server redirect?
+    tokens = json.loads(request.args['tokens'])
+    username = request.args['username']
+    return render_template("save_tokens.html", tokens=tokens, username=username)
 
 
 @app.route('/logout', methods=['GET', 'POST'])
@@ -81,30 +80,31 @@ def logout_view():
 
 @app.route('/dashboard')
 def dashboard_view():
-    tokens_json = json.loads(request.args['tokens'])
-    username = request.args['username']
-    # access_token = tokens_json['access_token']
-    # positions = jobex_web_helper.get_all_positions(company_name=company_name, access_token=access_token)
-    positions = None
-    return render_template("dashboard.html", positions=positions, tokens=tokens_json, username=username)
+    # positions = jobex_web_helper.get_all_positions(access_token=access_token)
+    positions = [['DevOps Engineer', 'R&D', 'Tel Aviv', 'Automation, Python', 'Yes', 'None'],
+                 ['Software Engineer', 'R&D', 'Ramat Gan', 'Java, C#', 'No', 'Missing info']]
+    return render_template("dashboard.html", positions=positions, authenticated=True)
 
 
-@app.route('/engagements/<company_name>/<engagement_id>')
-def engagement_view(engagement_id, company_name):
-    engagement = jobex_web_helper.get_engagement(company_name=company_name, engagement_id=engagement_id)
-    return render_template("engagement.html", engagement=engagement)
+@app.route('/engagements/<engagement_id>')
+def engagement_view(engagement_id):
+    access_token = request.args['access_token']
+    engagement = jobex_web_helper.get_engagement(engagement_id=engagement_id, access_token=access_token)
+    return render_template("engagement.html", engagement=engagement, authenticated=True)
 
 
-@app.route('/positions/<company_name>/<position_id>')
-def position_view(company_name, position_id):
-    position = jobex_web_helper.get_position(company_name=company_name, position_id=position_id)
-    return render_template("position.html", position=position)
+@app.route('/positions/<position_id>')
+def position_view(position_id):
+    access_token = request.args['access_token']
+    position = jobex_web_helper.get_position(position_id=position_id, access_token=access_token)
+    return render_template("position.html", position=position, authenticated=True)
 
 
-@app.route('/profile/<user_id>')
-def profile_view(user_id):
-    user = jobex_web_helper.get_user(user_id)
-    return render_template("profile.html", user=user)
+@app.route('/profile')
+def profile_view():
+    # access_token = request.args['access_token']
+    # user = jobex_web_helper.get_user(user_id, access_token)
+    return render_template("profile.html", authenticated=True)  # , user=user)
 
 
 if __name__ == '__main__':
