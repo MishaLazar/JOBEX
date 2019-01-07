@@ -81,30 +81,51 @@ def logout_view():
 @app.route('/dashboard')
 def dashboard_view():
     # positions = jobex_web_helper.get_all_positions(access_token=access_token)
-    positions = [['DevOps Engineer', 'R&D', 'Tel Aviv', 'Automation, Python', 'Yes', 'None'],
-                 ['Software Engineer', 'R&D', 'Ramat Gan', 'Java, C#', 'No', 'Missing info']]
+    positions = \
+        {
+            {
+                "id": "1",
+                "position_name": "DevOps Engineer",
+                "department": "R&D",
+                "location": "Tel-Aviv",
+                "skills":
+                    {"Automation", "Python"},
+                "active": "Yes",
+                "comment": "None"
+            },
+            {
+                "id": "2",
+                "position_name": 'Software Engineer',
+                "department": 'R&D',
+                "location": 'Ramat-Gan',
+                "skills":
+                    {"Java", "C#"},
+                "active": "No",
+                "comment": "Missing info"
+            }
+        }
     return render_template("dashboard.html", positions=positions, authenticated=True)
 
 
 @app.route('/engagements/<engagement_id>')
 def engagement_view(engagement_id):
-    access_token = request.args['access_token']
+    access_token = request.headers['Authorization']
     engagement = jobex_web_helper.get_engagement(engagement_id=engagement_id, access_token=access_token)
     return render_template("engagement.html", engagement=engagement, authenticated=True)
 
 
 @app.route('/positions/<position_id>')
 def position_view(position_id):
-    access_token = request.args['access_token']
+    access_token = request.headers['Authorization']
     position = jobex_web_helper.get_position(position_id=position_id, access_token=access_token)
     return render_template("position.html", position=position, authenticated=True)
 
 
 @app.route('/profile')
 def profile_view():
-    # access_token = request.args['access_token']
-    # user = jobex_web_helper.get_user(user_id, access_token)
-    return render_template("profile.html", authenticated=True)  # , user=user)
+    access_token = request.headers['Authorization']
+    user = jobex_web_helper.get_user(access_token=access_token)
+    return render_template("profile.html", user=user, authenticated=True)
 
 
 if __name__ == '__main__':

@@ -21,23 +21,27 @@
             {% for position in positions %}
                 <tr>
 {#                    todo: the position name should be href which creates request with access_token#}
-                    <td>{{ position[0] }}</td>
-                    <td>{{ position[1] }}</td>
-                    <td>{{ position[2] }}</td>
-                    <td>{{ position[3] }}</td>
-                    <td>{{ position[4] }}</td>
-                    <td>{{ position[5] }}</td>
+                    <td id="{{ position.id }}">{{ position.position_name }}</td>
+                    <td>{{ position.department }}</td>
+                    <td>{{ position.location }}</td>
+                    <td>
+                        {% for skill in position.skills %}
+                            {skill}
+                        {% endfor %}
+                    </td>
+                    <td>{{ position.active }}</td>
+                    <td>{{ position.comment }}</td>
                 </tr>
             {% endfor %}
         {% endif %}
         </tbody>
         <tfoot>
         <tr>
-            <th>Position Name</th>
             <th>Position</th>
-            <th>Office</th>
-            <th>Temporary</th>
-            <th>Date Created</th>
+            <th>Department</th>
+            <th>Location</th>
+            <th>Skills</th>
+            <th>Active</th>
             <th>Comment</th>
         </tr>
         </tfoot>
@@ -46,4 +50,5 @@
     <script>$(document).ready(function () {
         $('#positions').DataTable();
     });</script>
+    <script></script>
 {% endblock content %}
