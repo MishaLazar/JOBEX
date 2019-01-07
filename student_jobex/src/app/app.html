@@ -6,17 +6,17 @@
   </ion-header>
   <ion-content color="main_primary">
     <ion-list>
-      <button ion-item (click)="onLoad(registerPage)">
+      <button ion-item (click)="onLoad(registerPage)" *ngIf="!isAuthenticated">
         <ion-icon name="create" item-left></ion-icon>
         Register
       </button>
-      <button ion-item (click)="onLoad(loginPage)">
+      <button ion-item (click)="onLoad(loginPage)" *ngIf="!isAuthenticated">
         <ion-icon name="log-in" item-left></ion-icon>
         Login</button>
-      <button ion-item (click)="onLoad(loginPage)">
+      <button ion-item (click)="onLoad(loginPage)" *ngIf="isAuthenticated">
         <ion-icon name="log-out" item-left></ion-icon>
         Logout</button>
-      <button ion-item (click)="onLoad(homePage)">
+      <button ion-item (click)="onLoad(homePage)" *ngIf="isAuthenticated">
         <ion-icon name="clipboard" item-left></ion-icon>
         Home</button>
     </ion-list>
