@@ -7,7 +7,7 @@ from mobile_controller import MobileController
 from web_controller import WebController
 from resources_controller import ResourcesController
 from Controllers.auth_controller import AuthController
-
+from json_encoder import JSONEncoder
 
 app = Flask(__name__)
 
@@ -189,7 +189,7 @@ def get_skills():
     elif request.method == 'GET':
         result = ResourcesController.get_full_skillSet()
 
-    return result
+    return JSONEncoder().encode(result)
 
 
 if __name__ == '__main__':
