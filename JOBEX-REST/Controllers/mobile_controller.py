@@ -1,4 +1,5 @@
-from DAL import mobile_db_handler
+from DAL import mongo_db_handler
+from db_collections import DbCollections
 import json
 
 
@@ -20,27 +21,20 @@ class MobileController:
         else:
             MobileController.__instance = self
 
-    @staticmethod
-    def status():
-        db = mobile_db_handler.MobileDbHandler.getInstance()
-        return db.status()
 
     @staticmethod
     def get_student_engagements(student_id):
-        db = mobile_db_handler.MobileDbHandler.getInstance()
-        result = db.get_student_engagements(student_id)
+        db_client = mongo_db_handler.Client()
+        result = db_client.get_single_doc_from_collection(collection_name=DbCollections.get_collection("users"),
+                                                          object_id=student_id)
         return result
 
     @staticmethod
     def register_user(new_user):
-        db = mobile_db_handler.MobileDbHandler.getInstance()
-        new_user_id = db.register_student(new_user)
+        db_client = mongo_db_handler.Client()
+        new_user_id = db_client.insert_doc_to_collection(DbCollections["users"], doc=new_user)
         if new_user_id:
             return json.dumps({"new_user_id": new_user_id})
         return None
 
-    @staticmethod
-    def create_obj_with_authentication(object):
-        db = mobile_db_handler.MobileDbHandler.getInstance()
-        result = db.create_with_authentication(object)
-        return result
+

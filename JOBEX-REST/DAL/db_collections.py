@@ -6,6 +6,8 @@ class DbCollections:
             "engagements_collection": "engagements",
             "positions_collection": "positions",
             "users_collection": "users",
-            "token_blacklist_collection": "token_blacklist"
+            "token_blacklist_collection": "token_blacklist",
+            "skills": "skills"
         }
-        return collection_names[key];
+        return collection_names[key]
+

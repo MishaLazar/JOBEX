@@ -2,11 +2,12 @@ from flask import Flask, jsonify, request, redirect, url_for
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt)
 from flask_cors import CORS
+import config_helper
 from mobile_controller import MobileController
 from web_controller import WebController
+from resources_controller import ResourcesController
 from Controllers.auth_controller import AuthController
-from Utils import config_helper
-import json
+
 
 app = Flask(__name__)
 
@@ -14,7 +15,6 @@ config = config_helper.ConfigHelper.get_instance()
 app.config['JWT_SECRET_KEY'] = config.read_auth('SECRET_KEY')
 app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
-#CORS(app)
 CORS(app, resources={r"/*": {"origins": "*"}}, send_wildcard=True)
 jwt = JWTManager(app)
 
@@ -180,6 +180,16 @@ def engagements(company_name=None, engagement_id=None):
         return jsonify(result)
     else:
         return {"error": "method {} not supported!".format(request.method)}
+
+@app.route('/resources/skills' , methods=['POST', 'GET'])
+def get_skills():
+
+    if request.method == 'POST':
+        result = ResourcesController.get_full_skillSet()
+    elif request.method == 'GET':
+        result = ResourcesController.get_full_skillSet()
+
+    return result
 
 
 if __name__ == '__main__':

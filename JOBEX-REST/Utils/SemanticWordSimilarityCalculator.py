@@ -3,7 +3,7 @@ from nltk.corpus import wordnet
 def calculateSemanticWordSimilarity(word1, wordList):
     result_list = []
     result = 0.0
-    # Computing English word similarity using Li method
+    # Computing English word similarity.PY using Li method
     # Not taking the most common syn beacuse food is not always the most common
     synword1 = wordnet.synsets(word1)
 
