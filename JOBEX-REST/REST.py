@@ -128,13 +128,6 @@ def put_object_with_auth():
         return jsonify(result)
 
 
-@app.route('/getStudentEngagements/<student_Id>')
-def get_student_engagements(student_id):
-    mob_ctrl = MobileController.get_instance()
-    result = mob_ctrl.get_StudentEngagements(studentId=student_id)
-    return result
-
-
 @app.route('/create_employee', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
@@ -181,6 +174,7 @@ def engagements(company_name=None, engagement_id=None):
     else:
         return {"error": "method {} not supported!".format(request.method)}
 
+
 @app.route('/resources/skills' , methods=['POST', 'GET'])
 def get_skills():
 
@@ -188,6 +182,24 @@ def get_skills():
         result = ResourcesController.get_full_skillSet()
     elif request.method == 'GET':
         result = ResourcesController.get_full_skillSet()
+
+    return JSONEncoder().encode(result)
+
+
+@app.route('/student/getStudentEngagements/<student_Id>')
+def get_student_engagements(student_id):
+    mob_ctrl = MobileController.get_instance()
+    result = mob_ctrl.get_StudentEngagements(studentId=student_id)
+    return result
+
+
+@app.route('/student/skills/<student_id>', methods=['POST', 'GET'])
+def get_student_skills(student_id):
+    result = None
+    if request.method == 'POST':
+        result = MobileController.get_student_skills(student_id)
+    if request.method == 'GET':
+        result = MobileController.get_student_skills(student_id)
 
     return JSONEncoder().encode(result)
 

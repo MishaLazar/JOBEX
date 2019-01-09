@@ -32,9 +32,15 @@ class MobileController:
     @staticmethod
     def register_user(new_user):
         db_client = mongo_db_handler.Client()
-        new_user_id = db_client.insert_doc_to_collection(DbCollections["users"], doc=new_user)
+        new_user_id = db_client.insert_doc_to_collection(collection_name=DbCollections["users"], doc=new_user)
         if new_user_id:
             return json.dumps({"new_user_id": new_user_id})
         return None
 
-
+    @staticmethod
+    def get_student_skills(student_id):
+        db_client = mongo_db_handler.Client()
+        query = {
+            "student_id": student_id
+        }
+        return db_client.get_single_doc_from_collection(DbCollections.get_collection("student_skills"), json_query=query)
