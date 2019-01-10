@@ -2,8 +2,6 @@
 {% block content %}
     <script src="/static/js/main.js"></script>
     <h1>Welcome {{ request.args['username'] }} :)</h1>
-{#    <h3>Access Token = {{ tokens['access_token'] }}</h3>#}
-{#    <h3>Refresh Token = {{ tokens['refresh_token'] }}</h3>#}
     <h1>---------------------------------------------</h1>
     <table id="positions" style="width:100%">
         <thead>
@@ -20,13 +18,12 @@
         {% if positions %}
             {% for position in positions %}
                 <tr>
-{#                    todo: the position name should be href which creates request with access_token#}
-                    <td id="{{ position.id }}">{{ position.position_name }}</td>
+                    <td><a href="/positions/{{ position.id }}" onclick="access_token(url='/positions/{{ position.id }}'); return false;">{{ position.position_name }}</a></td>
                     <td>{{ position.department }}</td>
                     <td>{{ position.location }}</td>
                     <td>
                         {% for skill in position.skills %}
-                            {skill}
+                            {{skill}}{{"," if not loop.last }}
                         {% endfor %}
                     </td>
                     <td>{{ position.active }}</td>
@@ -50,5 +47,16 @@
     <script>$(document).ready(function () {
         $('#positions').DataTable();
     });</script>
-    <script></script>
+    <script>
+            function access_token(url) {
+                debugger;
+                var access_token = window.localStorage.accessToken;
+                var req = new XMLHttpRequest();
+                req.open("POST", url, true);
+                req.setRequestHeader('Content-Type', 'application/json');
+                {#req.setRequestHeader('Access-Control-Allow-Origin', '*');#}
+                req.setRequestHeader("Authorization", "Bearer " + access_token);
+                req.send();
+            }
+    </script>
 {% endblock content %}

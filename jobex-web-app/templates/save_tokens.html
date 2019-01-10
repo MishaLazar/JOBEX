@@ -24,6 +24,19 @@
             }
         );
     </script>
-    <script>window.location.replace("{{ url_for('dashboard_view', username=username) }}")</script>
+    <script>
+            $(document).ready(
+                function () {
+                debugger;
+                var access_token = window.localStorage.accessToken;
+                var req = new XMLHttpRequest();
+                req.open("GET", '{{ url_for('dashboard_view', username=username) }}', true);
+                {#req.setRequestHeader('Content-Type', 'application/json');#}
+                {#req.setRequestHeader('Access-Control-Allow-Origin', '*');#}
+                req.setRequestHeader("Authorization", "Bearer " + access_token);
+                req.send();
+            });
+    </script>
+{#    <script>window.location.replace("{{ url_for('dashboard_view', username=username) }}")</script>#}
 </body>
 </html>

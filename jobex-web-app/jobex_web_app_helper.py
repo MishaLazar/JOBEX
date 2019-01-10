@@ -74,7 +74,7 @@ class JobexWebHelper:
         if access_token:
             if access_token.startswith("Bearer "):
                 headers = {'content-type': 'application/json', 'Access-Control-Allow-Origin': '*',
-                           'Authorization': + access_token}
+                           'Authorization': access_token}
             else:
                 headers = {'content-type': 'application/json', 'Access-Control-Allow-Origin': '*',
                            'Authorization': "Bearer " + access_token}

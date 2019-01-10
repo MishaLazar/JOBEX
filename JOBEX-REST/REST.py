@@ -146,8 +146,8 @@ def login():
         return jsonify(user)
 
 
-@app.route('/positions/<company_name>/<position_id>', methods=['POST', 'GET'])
-def positions(company_name=None, position_id=None):
+@app.route('/positions/<position_id>', methods=['POST', 'GET'])
+def positions(position_id=None):
     if request.method == 'POST':
         position = request.get_json()
         web_ctrl = WebController.getInstance()
@@ -155,10 +155,8 @@ def positions(company_name=None, position_id=None):
         return jsonify(result)
     elif request.method == 'GET':
         web_ctrl = WebController.getInstance()
-        if company_name and position_id:
-            result = web_ctrl.get_positions(company_name=company_name, position_id=position_id)
-        elif company_name:
-            result = web_ctrl.get_positions(company_name=company_name)
+        if position_id:
+            result = web_ctrl.get_positions(position_id=position_id)
         return jsonify(result)
     else:
         return {"error": "method {} not supported!".format(request.method)}

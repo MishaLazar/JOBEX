@@ -80,30 +80,31 @@ def logout_view():
 
 @app.route('/dashboard')
 def dashboard_view():
-    # positions = jobex_web_helper.get_all_positions(access_token=access_token)
-    positions = \
-        {
-            {
-                "id": "1",
-                "position_name": "DevOps Engineer",
-                "department": "R&D",
-                "location": "Tel-Aviv",
-                "skills":
-                    {"Automation", "Python"},
-                "active": "Yes",
-                "comment": "None"
-            },
-            {
-                "id": "2",
-                "position_name": 'Software Engineer',
-                "department": 'R&D',
-                "location": 'Ramat-Gan',
-                "skills":
-                    {"Java", "C#"},
-                "active": "No",
-                "comment": "Missing info"
-            }
-        }
+    access_token = request.headers['Authorization']
+    positions = jobex_web_helper.get_all_positions(access_token=access_token)
+    # positions = \
+    #     [
+    #         {
+    #             "id": "11",
+    #             "position_name": "DevOps Engineer",
+    #             "department": "R&D",
+    #             "location": "Tel-Aviv",
+    #             "skills":
+    #                 {"Automation", "Python"},
+    #             "active": "Yes",
+    #             "comment": "None"
+    #         },
+    #         {
+    #             "id": "25",
+    #             "position_name": 'Software Engineer',
+    #             "department": 'R&D',
+    #             "location": 'Ramat-Gan',
+    #             "skills":
+    #                 {"Java", "C#"},
+    #             "active": "No",
+    #             "comment": "Missing info"
+    #         }
+    #     ]
     return render_template("dashboard.html", positions=positions, authenticated=True)
 
 
