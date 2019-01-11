@@ -39,6 +39,7 @@ class Client:
             cursor = collection.find(sort=sort, limit=limit)
             try:
                 for doc in cursor:
+                    doc['_id'] = str(doc['_id'])
                     result.append(doc)
             finally:
                 cursor.close()
@@ -61,6 +62,7 @@ class Client:
         try:
             collection = self.db[collection_name]
             result = collection.insert_one(doc).inserted_id
+            result['_id'] = str(result['_id'])
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:
@@ -84,10 +86,13 @@ class Client:
             collection = self.db[collection_name]
             if json_query:
                 result = collection.find_one(json_query)
+                result['_id'] = str(result['_id'])
             elif object_id:
                 result = collection.find_one({"_id": object_id})
+                result['_id'] = str(result['_id'])
             else:
                 result = collection.find_one()
+                result['_id'] = str(result['_id'])
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:
@@ -130,6 +135,7 @@ class Client:
                     result.append(doc)
             else:
                 for doc in collection.find():
+                    doc['_id'] = str(doc['_id'])
                     result.append(doc)
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
@@ -174,6 +180,7 @@ class Client:
         try:
             collection = self.db[collection_name]
             result = collection.update_one(filter=filter_json, update=doc_update_json).modified_count
+            result['_id'] = str(result['_id'])
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:

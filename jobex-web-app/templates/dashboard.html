@@ -1,6 +1,5 @@
 {% extends "layout.html" %}
 {% block content %}
-    <script src="/static/js/main.js"></script>
     <h1>Welcome {{ request.args['username'] }} :)</h1>
     <h1>---------------------------------------------</h1>
     <table id="positions" style="width:100%">
@@ -15,48 +14,54 @@
         </tr>
         </thead>
         <tbody>
-        {% if positions %}
-            {% for position in positions %}
-                <tr>
-                    <td><a href="/positions/{{ position.id }}" onclick="access_token(url='/positions/{{ position.id }}'); return false;">{{ position.position_name }}</a></td>
-                    <td>{{ position.department }}</td>
-                    <td>{{ position.location }}</td>
-                    <td>
-                        {% for skill in position.skills %}
-                            {{skill}}{{"," if not loop.last }}
-                        {% endfor %}
-                    </td>
-                    <td>{{ position.active }}</td>
-                    <td>{{ position.comment }}</td>
-                </tr>
-            {% endfor %}
-        {% endif %}
         </tbody>
-        <tfoot>
-        <tr>
-            <th>Position</th>
-            <th>Department</th>
-            <th>Location</th>
-            <th>Skills</th>
-            <th>Active</th>
-            <th>Comment</th>
-        </tr>
-        </tfoot>
     </table>
     <h1>---------------------------------------------</h1>
-    <script>$(document).ready(function () {
-        $('#positions').DataTable();
-    });</script>
     <script>
-            function access_token(url) {
-                debugger;
+            $(document).ready(function () {
+                {#debugger;#}
                 var access_token = window.localStorage.accessToken;
                 var req = new XMLHttpRequest();
-                req.open("POST", url, true);
+                var url = "http://127.0.0.1:5050/positions";
+                req.open("GET", url, false);
                 req.setRequestHeader('Content-Type', 'application/json');
-                {#req.setRequestHeader('Access-Control-Allow-Origin', '*');#}
+                req.setRequestHeader('Access-Control-Allow-Origin', '*');
                 req.setRequestHeader("Authorization", "Bearer " + access_token);
                 req.send();
-            }
+                var results = req.response;
+
+                var results_arr = JSON.parse(results);
+                for (var lst_idx = 0; lst_idx < results_arr.length; lst_idx++)
+                {
+                    console.log(results_arr[lst_idx]);
+                    var json = results_arr[lst_idx];
+                    tr = $('<tr/>');
+                    var link = "<a href=\"http://127.0.0.1:5050/positions/" + json._id + "\">" + json.position_name + "</a>";
+                    tr.append("<td>" +link + "</td>");
+                    tr.append("<td>" + json.department + "</td>");
+                    tr.append("<td>" + json.location + "</td>");
+                    var skills = "";
+                    for(var j=0; j< json.skills.length; j++)
+                    {
+                        console.log(skills);
+                        if (j != json.skills.length-1){
+                            skills = skills + json.skills[j]+ ", ";
+                            console.log(skills);
+                        }
+                        else{
+                            skills = skills + json.skills[j];
+                            console.log(skills);
+                        }
+                    }
+                    console.log(skills);
+                    tr.append("<td>"+ skills + "</td>");
+                    tr.append("<td>" + json.active + "</td>");
+                    tr.append("<td>" + json.comment + "</td>");
+                    $('#positions').append(tr);
+                }
+    });
+    </script>
+        <script>
+        $(document).ready(function () {$('#positions').DataTable();});
     </script>
 {% endblock content %}
