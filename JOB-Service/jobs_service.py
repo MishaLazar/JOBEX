@@ -3,7 +3,7 @@ import time
 import logging
 from config_helper import ConfigHelper
 
-
+config = ConfigHelper.get_instance()
 class JobThread(threading.Thread):
     def __init__(self):
         super(JobThread, self).__init__()
@@ -14,7 +14,7 @@ class JobThread(threading.Thread):
 
         self.logger = logging.getLogger(name='JOB_THREAD')
         self.logger.setLevel(logging.DEBUG)
-        fh = logging.FileHandler(ConfigHelper.read_logger('LOG_PATH'),mode='a', encoding=None, delay=False)
+        fh = logging.FileHandler(config.read_logger('LOG_PATH'),mode='a', encoding=None, delay=False)
         fh.setLevel(logging.DEBUG)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         fh.setFormatter(formatter)
@@ -28,7 +28,7 @@ class JobThread(threading.Thread):
                     self.state.wait()  # Block execution until notified.
             # Do stuff.
             self.do_job()
-            time.sleep(int(ConfigHelper.read_job('DELAY_INTERVAL')))
+            time.sleep(int(config.read_job('DELAY_INTERVAL')))
             self.iterations += 1
 
     def resume(self):
@@ -45,3 +45,6 @@ class JobThread(threading.Thread):
         # TODO:fetch jobs data and process
 
 
+
+job = JobThread()
+job.run()

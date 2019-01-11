@@ -1,5 +1,3 @@
-import atexit
-
 from flask import Flask, jsonify, request, redirect, url_for
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt)
@@ -10,7 +8,6 @@ from web_controller import WebController
 from resources_controller import ResourcesController
 from Controllers.auth_controller import AuthController
 from json_encoder import JSONEncoder
-from jobs_service import JobThread
 
 app = Flask(__name__)
 
