@@ -1,69 +1,58 @@
-2019-01-11 17:35:50,473 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:35:52,475 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:35:54,475 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:35:56,476 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:35:58,476 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:00,476 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:02,477 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:04,477 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:06,477 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:08,478 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:10,479 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:12,479 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:14,479 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:16,480 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:18,481 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:20,482 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:22,483 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:24,483 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:26,484 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:28,485 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:30,485 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:32,485 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:34,485 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:36,486 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:38,487 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:40,487 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:42,487 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:44,487 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:46,487 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:48,488 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:50,489 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:52,490 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:54,490 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:56,491 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:36:58,491 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:00,492 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:02,492 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:04,492 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:06,492 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:08,493 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:10,493 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:12,493 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:14,494 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:16,495 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:18,496 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:20,496 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:22,496 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:24,496 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:26,497 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:28,498 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:30,499 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:32,499 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:34,499 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:36,499 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:38,499 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:40,500 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:42,501 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:44,501 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:46,502 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:48,502 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:50,502 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:52,503 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:54,503 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:56,504 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:37:58,504 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:38:00,505 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:38:02,505 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:38:04,506 - JOB_THREAD - DEBUG - do_job
-2019-01-11 17:38:06,507 - JOB_THREAD - DEBUG - do_job
+2019-01-11 23:10:06,524 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-11 23:10:06,526 - JOB_THREAD - DEBUG - do_job
+2019-01-11 23:10:11,977 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-11 23:10:12,858 - JOB_THREAD - DEBUG - rematch by student_id :5c350c833924dd48bc42d7ba
+2019-01-11 23:10:17,816 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-11 23:10:18,793 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-11 23:11:24,704 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-11 23:11:24,707 - JOB_THREAD - DEBUG - do_job
+2019-01-11 23:11:30,179 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-11 23:11:30,179 - JOB_THREAD - DEBUG - rematch by student_id :5c350c833924dd48bc42d7ba
+2019-01-11 23:11:32,585 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-11 23:11:32,585 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-11 23:12:04,140 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-11 23:12:04,141 - JOB_THREAD - DEBUG - do_job
+2019-01-11 23:12:06,710 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-11 23:12:06,711 - JOB_THREAD - DEBUG - rematch by student_id :5c350c833924dd48bc42d7ba
+2019-01-11 23:12:09,208 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-11 23:12:09,208 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-11 23:12:21,679 - JOB_THREAD - DEBUG - do_job
+2019-01-11 23:12:24,149 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-11 23:12:24,150 - JOB_THREAD - DEBUG - rematch by student_id :5c350c833924dd48bc42d7ba
+2019-01-11 23:12:26,682 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-11 23:12:26,682 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-11 23:12:32,863 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-11 23:12:32,866 - JOB_THREAD - DEBUG - do_job
+2019-01-11 23:12:43,819 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-11 23:12:43,820 - JOB_THREAD - DEBUG - rematch by student_id :5c350c833924dd48bc42d7ba
+2019-01-11 23:12:46,273 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-11 23:12:46,274 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-11 23:13:35,852 - JOB_THREAD - DEBUG - do_job
+2019-01-11 23:13:59,748 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-11 23:13:59,750 - JOB_THREAD - DEBUG - do_job
+2019-01-11 23:14:06,745 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-11 23:14:06,745 - JOB_THREAD - DEBUG - rematch by student_id :5c350c833924dd48bc42d7ba
+2019-01-11 23:14:09,162 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-11 23:14:09,162 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-11 23:18:01,275 - JOB_THREAD - DEBUG - do_job
+2019-01-11 23:18:06,893 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-11 23:18:06,894 - JOB_THREAD - DEBUG - rematch by student_id :5c350c833924dd48bc42d7ba
+2019-01-11 23:18:09,416 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-11 23:18:09,417 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-11 23:23:38,011 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-11 23:23:38,014 - JOB_THREAD - DEBUG - do_job
+2019-01-11 23:23:50,284 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-11 23:23:50,284 - JOB_THREAD - DEBUG - rematch by student_id :5c350c833924dd48bc42d7ba
+2019-01-11 23:23:52,751 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-11 23:23:52,751 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-11 23:24:11,903 - JOB_THREAD - DEBUG - do_job
+2019-01-11 23:24:19,216 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-11 23:24:19,216 - JOB_THREAD - DEBUG - rematch by student_id :5c350c833924dd48bc42d7ba
+2019-01-11 23:24:21,683 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-11 23:24:21,683 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-11 23:28:51,215 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-11 23:28:51,217 - JOB_THREAD - DEBUG - do_job
+2019-01-11 23:28:56,506 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-11 23:28:56,506 - JOB_THREAD - DEBUG - rematch by student_id :5c350c833924dd48bc42d7ba
+2019-01-11 23:28:58,962 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-11 23:28:58,963 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
