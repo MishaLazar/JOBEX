@@ -8,7 +8,9 @@ class DbCollections:
             "users_collection": "users",
             "token_blacklist_collection": "token_blacklist",
             "skills": "skills",
-            "student_skills": "student_skills"
+            "student_skills": "student_skills",
+            "match": "match",
+            "position_skills": "position_skills"
         }
         return collection_names[key]
 

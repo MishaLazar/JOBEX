@@ -46,3 +46,18 @@ class ConfigHelper:
             return None
         else:
             return ConfigHelper.__instance.config['AUTH'][Key]
+
+    @staticmethod
+    def read_job(Key=None):
+        if Key is None:
+            return None
+        else:
+            return ConfigHelper.__instance.config['JOBPARAMS'][Key]
+
+    @staticmethod
+    def read_logger(Key=None):
+        if Key is None:
+            return 10
+        else:
+            return ConfigHelper.__instance.config['LOGGER'][Key]
+

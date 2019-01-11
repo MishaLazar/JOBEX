@@ -1,3 +1,5 @@
+import atexit
+
 from flask import Flask, jsonify, request, redirect, url_for
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt)
@@ -8,6 +10,7 @@ from web_controller import WebController
 from resources_controller import ResourcesController
 from Controllers.auth_controller import AuthController
 from json_encoder import JSONEncoder
+from jobs_service import JobThread
 
 app = Flask(__name__)
 
@@ -18,6 +21,8 @@ app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
 CORS(app, resources={r"/*": {"origins": "*"}}, send_wildcard=True)
 jwt = JWTManager(app)
 
+
+# Job_thread init
 
 @jwt.token_in_blacklist_loader
 def check_if_token_in_blacklist(decrypted_token):
@@ -177,7 +182,6 @@ def engagements(company_name=None, engagement_id=None):
 
 @app.route('/resources/skills' , methods=['POST', 'GET'])
 def get_skills():
-
     if request.method == 'POST':
         result = ResourcesController.get_full_skillSet()
     elif request.method == 'GET':
@@ -202,6 +206,7 @@ def get_student_skills(student_id):
         result = MobileController.get_student_skills(student_id)
 
     return JSONEncoder().encode(result)
+
 
 
 if __name__ == '__main__':
