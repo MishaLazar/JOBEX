@@ -6,7 +6,6 @@ from mobile_controller import MobileController
 from web_controller import WebController
 from Controllers.auth_controller import AuthController
 from Utils import config_helper
-import json
 
 app = Flask(__name__)
 
@@ -14,7 +13,6 @@ config = config_helper.ConfigHelper.get_instance()
 app.config['JWT_SECRET_KEY'] = config.read_auth('SECRET_KEY')
 app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
-#CORS(app)
 CORS(app, resources={r"/*": {"origins": "*"}}, send_wildcard=True)
 jwt = JWTManager(app)
 
@@ -146,8 +144,9 @@ def login():
         return jsonify(user)
 
 
-@app.route('/positions/<company_name>/<position_id>', methods=['POST', 'GET'])
-def positions(company_name=None, position_id=None):
+@app.route('/positions', methods=['POST', 'GET'])
+@app.route('/positions/<position_id>', methods=['POST', 'GET'])
+def positions(position_id=None):
     if request.method == 'POST':
         position = request.get_json()
         web_ctrl = WebController.getInstance()
@@ -155,10 +154,10 @@ def positions(company_name=None, position_id=None):
         return jsonify(result)
     elif request.method == 'GET':
         web_ctrl = WebController.getInstance()
-        if company_name and position_id:
-            result = web_ctrl.get_positions(company_name=company_name, position_id=position_id)
-        elif company_name:
-            result = web_ctrl.get_positions(company_name=company_name)
+        if position_id:
+            result = web_ctrl.get_positions(position_id=position_id)
+        else:
+            result = web_ctrl.get_positions()
         return jsonify(result)
     else:
         return {"error": "method {} not supported!".format(request.method)}

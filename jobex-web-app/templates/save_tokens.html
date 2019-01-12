@@ -2,28 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Saving Tokens</title>
+    <title>Saving Tokens...</title>
     <script src="/static/js/jquery-3.2.1.slim.min.js"></script>
 </head>
 <body>
-    <script>
-        $(document).ready(
-            function () {
-                debugger;
-                var access_token = '{{ tokens['access_token'] }}';
-                var refresh_token = '{{ tokens['refresh_token'] }}';
+<script>
+    $(document).ready(
+        function () {
+            debugger;
+            var access_token = '{{ tokens['access_token'] }}';
+            var refresh_token = '{{ tokens['refresh_token'] }}';
 
-                if ( access_token!= undefined ) {
-                    console.log('successfully updated access token');
-                    window.localStorage.accessToken =access_token;
-                }
-                if ( refresh_token != undefined) {
-                    console.log('successfully updated refresh token');
-                    window.localStorage.refreshToken = refresh_token;
-                }
+            if (access_token != undefined) {
+                window.localStorage.accessToken = access_token;
             }
-        );
-    </script>
-    <script>window.location.replace("{{ url_for('dashboard_view', username=username) }}")</script>
+            if (refresh_token != undefined) {
+                window.localStorage.refreshToken = refresh_token;
+            }
+        }
+    );
+</script>
+<script>
+    window.location.replace("{{ url_for('dashboard_view', username=username) }}")
+</script>
 </body>
 </html>
