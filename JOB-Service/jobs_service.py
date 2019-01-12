@@ -55,42 +55,73 @@ class JobThread(threading.Thread):
 
     def do_job(self):
         self.logger.debug('do_job')
-        jobs =  self.get_jobs()
+        jobs = self.get_jobs()
+        self.logger.debug('getting all active positions')
+        all_active_positions = self.get_all_active_positions()
+        self.logger.debug('getting all active student profiles')
+        all_active_students =  self.get_all_active_students()
+        self.logger.debug('getting all students skills')
+        all_students_skills = self.get_all_students_skills()
+        self.logger.debug('getting all positions_skills')
+        all_positions_skills = self.get_all_positions_skills()
 
+        matches = []
         for j in jobs:
-            json_obj = json.loads(JSONEncoder().encode(j))
-            job = Job(job_id=json_obj['_id'],
-                      job_type_id=int(json_obj['job_type_id']),
-                      source_objectid=json_obj['source_objectid'],
-                      creation_date=json_obj['creation_date'],
-                      status=int(json_obj['status']))
-            self.logger.debug('job working on:' + job.job_id)
-            if int(job.job_type_id) == 1:  # rematch by student
-                matches = []
-                self.logger.debug('rematch by student_id :' + job.source_objectid)
-                student_skills = self.on_get_student_skills(job.source_objectid)
-                s_categories = []
-                s_sub_categories = []
-                s_skills = []
-                for ss in student_skills:
-                    for ssl in ss['student_skill_list']:
-                        if not ssl['category_id'] in s_categories:
-                            s_categories.append(ssl['category_id'])
-                        if not ssl['sub_category_id'] in s_sub_categories:
-                            s_sub_categories.append(ssl['sub_category_id'])
-                        for s in ssl['skills']:
-                            if not s['skill_Id'] in s_skills:
-                                s_skills.append(s['skill_Id'])
+            try:
+                json_obj = json.loads(JSONEncoder().encode(j))
+                _job = Job(job_id=json_obj['_id'],
+                           job_type_id=int(json_obj['job_type_id']),
+                           source_objectid=json_obj['source_objectid'],
+                           creation_date=json_obj['creation_date'],
+                           status=int(json_obj['status']))
+                self.logger.debug('job working on:' + _job.job_id)
+                if int(_job.job_type_id) == 1:  # rematch by student
 
-                positions = self.get_all_active_positions()
-                all_positions_skills = self.getall_positions_skills()
-                p_categories = []
-                p_sub_categories = []
-                p_skills = []
-                for position in positions:
-                    position_skills = self.get_positions_skill_list_by_position_id(str(position['_id']),all_positions_skills)
-                    if position_skills != None:
-                        self.logger.debug('job working on student:' + position['position_name'])
+                    self.logger.debug('rematch by student_id :' + _job.source_objectid)
+                    student_skills = self.on_get_student_skills(_job.source_objectid, all_students_skills)
+                    if student_skills is not None:
+                        s_categories = []
+                        s_sub_categories = []
+                        s_skills = []
+                        for ss in student_skills:
+                            if not ss['category_id'] in s_categories:
+                                s_categories.append(ss['category_id'])
+                            if not ss['sub_category_id'] in s_sub_categories:
+                                s_sub_categories.append(ss['sub_category_id'])
+                            for s in ss['skills']:
+                                if not s['skill_Id'] in s_skills:
+                                    s_skills.append(s['skill_Id'])
+
+                        p_categories = []
+                        p_sub_categories = []
+                        p_skills = []
+                        for position in all_active_positions:
+                            position_skills = self.get_positions_skill_list_by_position_id(str(position['_id']),
+                                                                                           all_positions_skills)
+                            if position_skills is not None:
+                                self.logger.debug('job working on position:' + position['position_name'])
+                                for ps in position_skills:
+                                    if not ps['category_id'] in p_categories:
+                                        p_categories.append(ps['category_id'])
+                                    if not ps['sub_category_id'] in p_sub_categories:
+                                        p_sub_categories.append(ps['sub_category_id'])
+                                    for s in ps['skills']:
+                                        if not s['skill_Id'] in p_skills:
+                                            p_skills.append(s['skill_Id'])
+                                if p_categories.__len__() > 0:
+                                    category_similarity = self.calculate_similarity(s_categories, p_categories)
+                                    sub_categories_similarity = self.calculate_similarity(s_sub_categories, p_sub_categories)
+                                    skill_similarity = self.calculate_similarity(s_skills, p_skills)
+                                    match = Match(_job.source_objectid,str(position['_id']),
+                                                  self.calculate_match_level(category_similarity,
+                                                                             sub_categories_similarity,
+                                                                             skill_similarity))
+                                    matches.append(match)
+                elif int(_job.job_type_id) == 2:  # rematch by position
+                    self.logger.debug('rematch by position :' + _job.source_objectid)
+                    position_skills = self.get_positions_skill_list_by_position_id(_job.source_objectid,
+                                                                                   all_positions_skills)
+                    if position_skills is not None:
                         for ps in position_skills:
                             if not ps['category_id'] in p_categories:
                                 p_categories.append(ps['category_id'])
@@ -99,23 +130,37 @@ class JobThread(threading.Thread):
                             for s in ps['skills']:
                                 if not s['skill_Id'] in p_skills:
                                     p_skills.append(s['skill_Id'])
-                        if p_categories.__len__() > 0:
-                            category_similarity = self.calculate_similarity(s_categories, p_categories)
-                            sub_categories_similarity = self.calculate_similarity(s_sub_categories, p_sub_categories)
-                            skill_similirity = self.calculate_similarity(s_skills, p_skills)
-                        match = Match(job.source_objectid,str(position['_id']),self.calculate_match_level(category_similarity,sub_categories_similarity,skill_similirity))
-                        matches.append(match)
-            elif int(job.job_type_id) == 2:  # rematch by position
-                self.logger.debug('rematch by position :' + job.source_objectid)
-
-                students = self.get_all_active_students()
-                for student in students:
-                    self.logger.debug('job working on student:' + student['email'])
-
-
-            self.on_job_finish(job=job,status=0)
-
-
+                        for student in all_active_students:
+                            self.logger.debug('job working on student:' + student['email'])
+                            student_skills = self.on_get_student_skills(str(student['_id']), all_students_skills)
+                            if student_skills is not None:
+                                s_categories = []
+                                s_sub_categories = []
+                                s_skills = []
+                                for ss in student_skills:
+                                    if not ss['category_id'] in s_categories:
+                                        s_categories.append(ss['category_id'])
+                                    if not ss['sub_category_id'] in s_sub_categories:
+                                        s_sub_categories.append(ss['sub_category_id'])
+                                    for s in ss['skills']:
+                                        if not s['skill_Id'] in s_skills:
+                                            s_skills.append(s['skill_Id'])
+                                if s_categories.__len__() > 0:
+                                    category_similarity = self.calculate_similarity(s_categories, p_categories)
+                                    sub_categories_similarity = self.calculate_similarity(s_sub_categories,
+                                                                                          p_sub_categories)
+                                    skill_similarity = self.calculate_similarity(s_skills, p_skills)
+                                    match = Match(student['_id'], _job.source_objectid,self.calculate_match_level(category_similarity,
+                                                                                                                   sub_categories_similarity,
+                                                                                                                   skill_similarity))
+                                    matches.append(match)
+                self.logger.debug('finished working on job_id: ' + _job.job_id)
+                self.on_job_finish(job=_job, status=0)
+            except IOError:
+                self.logger.error('failed to working on job_id: ' + _job.job_id)
+                self.on_job_finish(job=_job, status=-1)
+        for m in matches:
+            self.logger.debug('student:' + m.student_id + ' psition: ' + m.position_id + ' match_level')
     def get_jobs(self):
         db_client = Client()
         query = {
@@ -146,12 +191,10 @@ class JobThread(threading.Thread):
         return db_client.update_single_doc_in_collection(DbCollections.get_collection('jobs'),
                                                          filter_json=filter_json, doc_update_json=doc_json)
 
-    def on_get_student_skills(self,_id):
-        db_client = Client()
-        query = {
-            "student_id": _id
-        }
-        return db_client.get_many_docs_from_collection(DbCollections.get_student_skills_collection(), query)
+    def on_get_student_skills(self,_id, all_student_skills):
+        for ss in all_student_skills:
+            if ss['student_id'] == _id:
+                return ss['student_skill_list']
 
     def on_get_position_skills(self, _id):
         db_client = Client()
@@ -168,7 +211,7 @@ class JobThread(threading.Thread):
         }
         match = db_client.get_many_docs_from_collection(DbCollections.get_match_collectio(),json_query=query)
 
-    def getall_positions_skills(self):
+    def get_all_positions_skills(self):
         db_client = Client()
         return db_client.find_by_collection(DbCollections.get_position_skills_collection())
 
@@ -179,6 +222,10 @@ class JobThread(threading.Thread):
 
         return None
 
+    def get_all_students_skills(self):
+        db_client = Client()
+        return db_client.find_by_collection(DbCollections.get_student_skills_collection())
+
     def calculate_similarity(self, s_skills, p_skills):
         return Similarity.jaccard_similarity(s_skills,p_skills)
 
@@ -187,6 +234,8 @@ class JobThread(threading.Thread):
                (sub_categories_similarity * SUB_CATEGORY) + \
                (skill_similarity * SKILLS) + \
                (OTHERS * 1)
+
+
 
 
 log = logging.getLogger(name='Job - Service')

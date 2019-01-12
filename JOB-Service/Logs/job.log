@@ -172,3 +172,193 @@
 2019-01-12 17:10:49,967 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
 2019-01-12 17:10:49,967 - JOB_THREAD - DEBUG - rematch by student_id :5c2d22e071eace4c9cda0eb2
 2019-01-12 17:10:57,136 - JOB_THREAD - DEBUG - job working on student:DevOps Engineer
+2019-01-12 22:06:22,173 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 22:06:22,179 - JOB_THREAD - DEBUG - do_job
+2019-01-12 22:06:24,981 - JOB_THREAD - DEBUG - getting all active positions
+2019-01-12 22:06:27,388 - JOB_THREAD - DEBUG - getting all active student profiles
+2019-01-12 22:06:29,775 - JOB_THREAD - DEBUG - getting all students skills
+2019-01-12 22:06:32,107 - JOB_THREAD - DEBUG - getting all positions_skills
+2019-01-12 22:06:34,529 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 22:06:34,530 - JOB_THREAD - DEBUG - rematch by student_id :5c2d22e071eace4c9cda0eb2
+2019-01-12 22:06:34,530 - JOB_THREAD - ERROR - failed to working on job_id: 5c364e923924dd48bc42d7c2
+2019-01-12 22:06:44,653 - JOB_THREAD - DEBUG - job working on:5c3a47f858575a2a1c88ba98
+2019-01-12 22:06:44,653 - JOB_THREAD - DEBUG - rematch by position :5c364c86b2260e4e38e92757
+2019-01-12 22:06:44,653 - JOB_THREAD - ERROR - failed to working on job_id: 5c3a47f858575a2a1c88ba98
+2019-01-12 22:07:57,749 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 22:07:57,768 - JOB_THREAD - DEBUG - do_job
+2019-01-12 22:08:00,430 - JOB_THREAD - DEBUG - getting all active positions
+2019-01-12 22:08:02,853 - JOB_THREAD - DEBUG - getting all active student profiles
+2019-01-12 22:08:05,242 - JOB_THREAD - DEBUG - getting all students skills
+2019-01-12 22:08:07,462 - JOB_THREAD - DEBUG - getting all positions_skills
+2019-01-12 22:08:21,790 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 22:08:22,619 - JOB_THREAD - DEBUG - rematch by student_id :5c2d22e071eace4c9cda0eb2
+2019-01-12 22:08:34,418 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 22:08:34,438 - JOB_THREAD - DEBUG - do_job
+2019-01-12 22:08:36,963 - JOB_THREAD - DEBUG - getting all active positions
+2019-01-12 22:08:39,273 - JOB_THREAD - DEBUG - getting all active student profiles
+2019-01-12 22:08:41,647 - JOB_THREAD - DEBUG - getting all students skills
+2019-01-12 22:08:44,056 - JOB_THREAD - DEBUG - getting all positions_skills
+2019-01-12 22:09:00,144 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 22:09:02,480 - JOB_THREAD - DEBUG - rematch by student_id :5c2d22e071eace4c9cda0eb2
+2019-01-12 22:11:48,262 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 22:11:48,276 - JOB_THREAD - DEBUG - do_job
+2019-01-12 22:11:50,985 - JOB_THREAD - DEBUG - getting all active positions
+2019-01-12 22:11:53,419 - JOB_THREAD - DEBUG - getting all active student profiles
+2019-01-12 22:11:55,811 - JOB_THREAD - DEBUG - getting all students skills
+2019-01-12 22:11:58,102 - JOB_THREAD - DEBUG - getting all positions_skills
+2019-01-12 22:12:02,452 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 22:12:02,453 - JOB_THREAD - DEBUG - rematch by student_id :5c2d22e071eace4c9cda0eb2
+2019-01-12 22:12:32,024 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 22:12:32,039 - JOB_THREAD - DEBUG - do_job
+2019-01-12 22:12:34,573 - JOB_THREAD - DEBUG - getting all active positions
+2019-01-12 22:12:37,018 - JOB_THREAD - DEBUG - getting all active student profiles
+2019-01-12 22:12:39,307 - JOB_THREAD - DEBUG - getting all students skills
+2019-01-12 22:12:41,732 - JOB_THREAD - DEBUG - getting all positions_skills
+2019-01-12 22:12:43,959 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 22:12:43,960 - JOB_THREAD - DEBUG - rematch by student_id :5c2d22e071eace4c9cda0eb2
+2019-01-12 22:14:37,667 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 22:14:37,681 - JOB_THREAD - DEBUG - do_job
+2019-01-12 22:14:40,311 - JOB_THREAD - DEBUG - getting all active positions
+2019-01-12 22:14:42,605 - JOB_THREAD - DEBUG - getting all active student profiles
+2019-01-12 22:14:45,055 - JOB_THREAD - DEBUG - getting all students skills
+2019-01-12 22:14:47,498 - JOB_THREAD - DEBUG - getting all positions_skills
+2019-01-12 22:14:49,912 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 22:14:49,912 - JOB_THREAD - DEBUG - rematch by student_id :5c2d22e071eace4c9cda0eb2
+2019-01-12 22:15:15,130 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 22:15:15,144 - JOB_THREAD - DEBUG - do_job
+2019-01-12 22:15:17,667 - JOB_THREAD - DEBUG - getting all active positions
+2019-01-12 22:15:20,047 - JOB_THREAD - DEBUG - getting all active student profiles
+2019-01-12 22:15:22,430 - JOB_THREAD - DEBUG - getting all students skills
+2019-01-12 22:15:24,824 - JOB_THREAD - DEBUG - getting all positions_skills
+2019-01-12 22:15:27,144 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 22:15:27,144 - JOB_THREAD - DEBUG - rematch by student_id :5c2d22e071eace4c9cda0eb2
+2019-01-12 22:15:36,102 - JOB_THREAD - DEBUG - job working on position:DevOps Engineer
+2019-01-12 22:16:00,892 - JOB_THREAD - DEBUG - finished working on job_id: 5c364e923924dd48bc42d7c2
+2019-01-12 22:16:13,227 - JOB_THREAD - DEBUG - job working on:5c3a47f858575a2a1c88ba98
+2019-01-12 22:16:14,702 - JOB_THREAD - DEBUG - rematch by position :5c364c86b2260e4e38e92757
+2019-01-12 22:16:21,377 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-12 22:16:23,018 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-12 22:17:04,412 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 22:17:04,432 - JOB_THREAD - DEBUG - do_job
+2019-01-12 22:17:07,307 - JOB_THREAD - DEBUG - getting all active positions
+2019-01-12 22:17:09,650 - JOB_THREAD - DEBUG - getting all active student profiles
+2019-01-12 22:17:11,974 - JOB_THREAD - DEBUG - getting all students skills
+2019-01-12 22:17:14,382 - JOB_THREAD - DEBUG - getting all positions_skills
+2019-01-12 22:17:16,798 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 22:17:16,798 - JOB_THREAD - DEBUG - rematch by student_id :5c2d22e071eace4c9cda0eb2
+2019-01-12 22:17:16,798 - JOB_THREAD - DEBUG - job working on position:DevOps Engineer
+2019-01-12 22:17:23,888 - JOB_THREAD - DEBUG - finished working on job_id: 5c364e923924dd48bc42d7c2
+2019-01-12 22:17:26,266 - JOB_THREAD - DEBUG - job working on:5c3a47f858575a2a1c88ba98
+2019-01-12 22:17:26,267 - JOB_THREAD - DEBUG - rematch by position :5c364c86b2260e4e38e92757
+2019-01-12 22:17:29,934 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-12 22:17:30,921 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-12 22:17:46,677 - JOB_THREAD - DEBUG - finished working on job_id: 5c3a47f858575a2a1c88ba98
+2019-01-12 22:19:55,178 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 22:19:55,186 - JOB_THREAD - DEBUG - do_job
+2019-01-12 22:19:57,819 - JOB_THREAD - DEBUG - getting all active positions
+2019-01-12 22:20:00,261 - JOB_THREAD - DEBUG - getting all active student profiles
+2019-01-12 22:20:02,703 - JOB_THREAD - DEBUG - getting all students skills
+2019-01-12 22:20:05,091 - JOB_THREAD - DEBUG - getting all positions_skills
+2019-01-12 22:20:07,431 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 22:20:07,431 - JOB_THREAD - DEBUG - rematch by student_id :5c2d22e071eace4c9cda0eb2
+2019-01-12 22:20:07,432 - JOB_THREAD - DEBUG - job working on position:DevOps Engineer
+2019-01-12 22:20:07,432 - JOB_THREAD - DEBUG - finished working on job_id: 5c364e923924dd48bc42d7c2
+2019-01-12 22:20:09,863 - JOB_THREAD - DEBUG - job working on:5c3a47f858575a2a1c88ba98
+2019-01-12 22:20:09,863 - JOB_THREAD - DEBUG - rematch by position :5c364c86b2260e4e38e92757
+2019-01-12 22:20:09,864 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-12 22:20:09,864 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-12 22:20:09,864 - JOB_THREAD - DEBUG - finished working on job_id: 5c3a47f858575a2a1c88ba98
+2019-01-12 22:27:55,554 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 22:27:55,560 - JOB_THREAD - DEBUG - do_job
+2019-01-12 22:27:58,205 - JOB_THREAD - DEBUG - getting all active positions
+2019-01-12 22:28:00,630 - JOB_THREAD - DEBUG - getting all active student profiles
+2019-01-12 22:28:02,982 - JOB_THREAD - DEBUG - getting all students skills
+2019-01-12 22:28:05,421 - JOB_THREAD - DEBUG - getting all positions_skills
+2019-01-12 22:28:07,764 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 22:28:07,764 - JOB_THREAD - DEBUG - rematch by student_id :5c2d22e071eace4c9cda0eb2
+2019-01-12 22:28:07,764 - JOB_THREAD - DEBUG - job working on position:DevOps Engineer
+2019-01-12 22:28:07,767 - JOB_THREAD - DEBUG - job working on position:Software Engineer
+2019-01-12 22:28:07,767 - JOB_THREAD - DEBUG - finished working on job_id: 5c364e923924dd48bc42d7c2
+2019-01-12 22:28:10,119 - JOB_THREAD - DEBUG - job working on:5c3a47f858575a2a1c88ba98
+2019-01-12 22:28:10,119 - JOB_THREAD - DEBUG - rematch by position :5c364c86b2260e4e38e92757
+2019-01-12 22:28:10,120 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-12 22:28:10,120 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-12 22:28:10,120 - JOB_THREAD - DEBUG - finished working on job_id: 5c3a47f858575a2a1c88ba98
+2019-01-12 22:32:34,866 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 22:32:34,880 - JOB_THREAD - DEBUG - do_job
+2019-01-12 22:32:37,311 - JOB_THREAD - DEBUG - getting all active positions
+2019-01-12 22:32:39,747 - JOB_THREAD - DEBUG - getting all active student profiles
+2019-01-12 22:32:42,079 - JOB_THREAD - DEBUG - getting all students skills
+2019-01-12 22:32:44,407 - JOB_THREAD - DEBUG - getting all positions_skills
+2019-01-12 22:32:46,830 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 22:32:46,830 - JOB_THREAD - DEBUG - rematch by student_id :5c2d22e071eace4c9cda0eb2
+2019-01-12 22:32:46,831 - JOB_THREAD - DEBUG - job working on position:DevOps Engineer
+2019-01-12 22:32:46,832 - JOB_THREAD - DEBUG - job working on position:Software Engineer
+2019-01-12 22:32:46,832 - JOB_THREAD - DEBUG - finished working on job_id: 5c364e923924dd48bc42d7c2
+2019-01-12 22:32:49,253 - JOB_THREAD - DEBUG - job working on:5c3a47f858575a2a1c88ba98
+2019-01-12 22:32:49,254 - JOB_THREAD - DEBUG - rematch by position :5c364c86b2260e4e38e92757
+2019-01-12 22:32:49,255 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-12 22:32:49,256 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-12 22:32:49,256 - JOB_THREAD - DEBUG - finished working on job_id: 5c3a47f858575a2a1c88ba98
+2019-01-12 22:52:52,711 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 22:52:52,717 - JOB_THREAD - DEBUG - do_job
+2019-01-12 22:52:55,469 - JOB_THREAD - DEBUG - getting all active positions
+2019-01-12 22:52:57,884 - JOB_THREAD - DEBUG - getting all active student profiles
+2019-01-12 22:53:00,249 - JOB_THREAD - DEBUG - getting all students skills
+2019-01-12 22:53:02,687 - JOB_THREAD - DEBUG - getting all positions_skills
+2019-01-12 22:53:05,091 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 22:53:05,092 - JOB_THREAD - DEBUG - rematch by student_id :5c2d22e071eace4c9cda0eb2
+2019-01-12 22:53:05,092 - JOB_THREAD - DEBUG - job working on position:DevOps Engineer
+2019-01-12 22:53:05,093 - JOB_THREAD - DEBUG - job working on position:Software Engineer
+2019-01-12 22:53:05,093 - JOB_THREAD - DEBUG - finished working on job_id: 5c364e923924dd48bc42d7c2
+2019-01-12 22:53:07,396 - JOB_THREAD - DEBUG - job working on:5c3a47f858575a2a1c88ba98
+2019-01-12 22:53:07,397 - JOB_THREAD - DEBUG - rematch by position :5c364c86b2260e4e38e92757
+2019-01-12 22:53:07,397 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-12 22:53:07,397 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-12 22:54:09,174 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 22:54:09,179 - JOB_THREAD - DEBUG - do_job
+2019-01-12 22:54:11,732 - JOB_THREAD - DEBUG - getting all active positions
+2019-01-12 22:54:14,057 - JOB_THREAD - DEBUG - getting all active student profiles
+2019-01-12 22:54:16,387 - JOB_THREAD - DEBUG - getting all students skills
+2019-01-12 22:54:18,712 - JOB_THREAD - DEBUG - getting all positions_skills
+2019-01-12 22:54:21,076 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 22:54:21,076 - JOB_THREAD - DEBUG - rematch by student_id :5c2d22e071eace4c9cda0eb2
+2019-01-12 22:54:21,077 - JOB_THREAD - DEBUG - job working on position:DevOps Engineer
+2019-01-12 22:54:21,077 - JOB_THREAD - DEBUG - job working on position:Software Engineer
+2019-01-12 22:54:21,077 - JOB_THREAD - DEBUG - finished working on job_id: 5c364e923924dd48bc42d7c2
+2019-01-12 22:54:23,512 - JOB_THREAD - DEBUG - job working on:5c3a47f858575a2a1c88ba98
+2019-01-12 22:54:23,512 - JOB_THREAD - DEBUG - rematch by position :5c364c86b2260e4e38e92757
+2019-01-12 22:54:23,512 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-12 22:54:23,512 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-12 22:55:21,956 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 22:55:21,961 - JOB_THREAD - DEBUG - do_job
+2019-01-12 22:55:24,367 - JOB_THREAD - DEBUG - getting all active positions
+2019-01-12 22:55:26,704 - JOB_THREAD - DEBUG - getting all active student profiles
+2019-01-12 22:55:29,043 - JOB_THREAD - DEBUG - getting all students skills
+2019-01-12 22:55:31,465 - JOB_THREAD - DEBUG - getting all positions_skills
+2019-01-12 22:55:33,878 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 22:55:33,878 - JOB_THREAD - DEBUG - rematch by student_id :5c2d22e071eace4c9cda0eb2
+2019-01-12 22:55:33,878 - JOB_THREAD - DEBUG - job working on position:DevOps Engineer
+2019-01-12 22:55:33,879 - JOB_THREAD - DEBUG - job working on position:Software Engineer
+2019-01-12 22:55:33,880 - JOB_THREAD - DEBUG - finished working on job_id: 5c364e923924dd48bc42d7c2
+2019-01-12 22:55:36,122 - JOB_THREAD - DEBUG - job working on:5c3a47f858575a2a1c88ba98
+2019-01-12 22:55:36,123 - JOB_THREAD - DEBUG - rematch by position :5c364c86b2260e4e38e92757
+2019-01-12 22:55:36,124 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-12 22:55:36,124 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-12 22:55:36,125 - JOB_THREAD - DEBUG - finished working on job_id: 5c3a47f858575a2a1c88ba98
+2019-01-12 23:03:32,474 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 23:03:32,479 - JOB_THREAD - DEBUG - do_job
+2019-01-12 23:03:34,992 - JOB_THREAD - DEBUG - getting all active positions
+2019-01-12 23:03:37,304 - JOB_THREAD - DEBUG - getting all active student profiles
+2019-01-12 23:03:39,623 - JOB_THREAD - DEBUG - getting all students skills
+2019-01-12 23:03:42,069 - JOB_THREAD - DEBUG - getting all positions_skills
+2019-01-12 23:03:44,403 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 23:03:44,404 - JOB_THREAD - DEBUG - rematch by student_id :5c2d22e071eace4c9cda0eb2
+2019-01-12 23:03:44,404 - JOB_THREAD - DEBUG - job working on position:DevOps Engineer
+2019-01-12 23:03:44,404 - JOB_THREAD - DEBUG - job working on position:Software Engineer
+2019-01-12 23:03:44,404 - JOB_THREAD - DEBUG - finished working on job_id: 5c364e923924dd48bc42d7c2
+2019-01-12 23:03:46,818 - JOB_THREAD - DEBUG - job working on:5c3a47f858575a2a1c88ba98
+2019-01-12 23:03:46,818 - JOB_THREAD - DEBUG - rematch by position :5c364c86b2260e4e38e92757
+2019-01-12 23:03:46,819 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-12 23:03:46,820 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-12 23:03:46,820 - JOB_THREAD - DEBUG - finished working on job_id: 5c3a47f858575a2a1c88ba98
