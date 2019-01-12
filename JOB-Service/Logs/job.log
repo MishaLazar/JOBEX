@@ -56,3 +56,49 @@
 2019-01-11 23:28:56,506 - JOB_THREAD - DEBUG - rematch by student_id :5c350c833924dd48bc42d7ba
 2019-01-11 23:28:58,962 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
 2019-01-11 23:28:58,963 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-12 12:03:31,045 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 12:03:31,048 - JOB_THREAD - DEBUG - do_job
+2019-01-12 12:05:39,251 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 12:05:39,858 - JOB_THREAD - DEBUG - rematch by student_id :5c350c833924dd48bc42d7ba
+2019-01-12 12:05:44,018 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-12 12:05:44,018 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-12 12:07:52,457 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 12:07:52,462 - JOB_THREAD - DEBUG - do_job
+2019-01-12 12:07:56,737 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 12:07:56,737 - JOB_THREAD - DEBUG - rematch by student_id :5c350c833924dd48bc42d7ba
+2019-01-12 12:07:59,070 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-12 12:07:59,070 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-12 12:32:44,775 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 12:32:44,778 - JOB_THREAD - DEBUG - do_job
+2019-01-12 12:32:57,393 - JOB_THREAD - DEBUG - do_job
+2019-01-12 12:33:09,756 - JOB_THREAD - DEBUG - do_job
+2019-01-12 12:33:22,089 - JOB_THREAD - DEBUG - do_job
+2019-01-12 12:33:30,008 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 12:33:31,644 - JOB_THREAD - DEBUG - rematch by student_id :5c350c833924dd48bc42d7ba
+2019-01-12 12:33:34,079 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-12 12:33:34,079 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-12 12:34:47,650 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 12:34:47,652 - JOB_THREAD - DEBUG - do_job
+2019-01-12 12:34:51,519 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 12:34:51,519 - JOB_THREAD - DEBUG - rematch by student_id :5c350c833924dd48bc42d7ba
+2019-01-12 12:34:53,939 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-12 12:34:53,939 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-12 12:35:13,814 - JOB_THREAD - DEBUG - do_job
+2019-01-12 12:35:36,475 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 12:35:36,476 - JOB_THREAD - DEBUG - rematch by student_id :5c350c833924dd48bc42d7ba
+2019-01-12 12:35:39,266 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-12 12:35:39,266 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-12 12:39:28,742 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 12:39:28,745 - JOB_THREAD - DEBUG - do_job
+2019-01-12 12:39:33,414 - JOB_THREAD - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-01-12 12:39:33,414 - JOB_THREAD - DEBUG - rematch by student_id :5c350c833924dd48bc42d7ba
+2019-01-12 12:39:35,830 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
+2019-01-12 12:39:35,831 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
+2019-01-12 12:58:57,817 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 12:58:57,819 - JOB_THREAD - DEBUG - do_job
+2019-01-12 12:59:38,081 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 12:59:38,085 - JOB_THREAD - DEBUG - do_job
+2019-01-12 12:59:54,402 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 12:59:54,405 - JOB_THREAD - DEBUG - do_job
+2019-01-12 13:00:25,181 - JOB_THREAD - INFO - Job Service - resumed
+2019-01-12 13:00:25,187 - JOB_THREAD - DEBUG - do_job
