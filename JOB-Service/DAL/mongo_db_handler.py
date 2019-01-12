@@ -2,11 +2,10 @@ from sshtunnel import SSHTunnelForwarder
 from pymongo import MongoClient, errors
 from Utils.config_helper import ConfigHelper
 
-
 class Client:
 
     def __init__(self):
-        config = ConfigHelper('../JOBEX-REST/Configurations.ini')
+        config = ConfigHelper('../JOB-Service/Configurations.ini')
         self.mongo_host = config.read_db_params('MONGO_HOST')
         self.mongo_db = config.read_db_params('MONGO_DB')
         self.mongo_user = config.read_db_params('MONGO_USER')

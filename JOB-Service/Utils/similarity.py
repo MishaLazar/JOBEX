@@ -45,7 +45,8 @@ class Similarity():
 
         return round(sqrt(sum([a*a for a in x])),3)
 
-    def jaccard_similarity(self,x,y):
+    @staticmethod
+    def jaccard_similarity(x , y):
 
         intersection_cardinality = len(set.intersection(*[set(x), set(y)]))
         union_cardinality = len(set.union(*[set(x), set(y)]))
