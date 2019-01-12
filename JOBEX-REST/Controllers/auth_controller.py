@@ -1,5 +1,5 @@
 from DAL.mongo_db_handler import Client
-from db_collections import DbCollections
+from DAL.db_collections import DbCollections
 
 
 class AuthController:

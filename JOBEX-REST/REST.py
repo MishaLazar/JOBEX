@@ -2,14 +2,16 @@ from flask import Flask, jsonify, request, redirect, url_for
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt)
 from flask_cors import CORS
-from mobile_controller import MobileController
-from web_controller import WebController
+from Utils.config_helper import ConfigHelper
+from Controllers.mobile_controller import MobileController
+from Controllers.web_controller import WebController
+from Controllers.resources_controller import ResourcesController
 from Controllers.auth_controller import AuthController
-from Utils import config_helper
+from Utils.json_encoder import JSONEncoder
 
 app = Flask(__name__)
 
-config = config_helper.ConfigHelper.get_instance()
+config = ConfigHelper.get_instance()
 app.config['JWT_SECRET_KEY'] = config.read_auth('SECRET_KEY')
 app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
@@ -126,11 +128,11 @@ def put_object_with_auth():
         return jsonify(result)
 
 
-@app.route('/getStudentEngagements/<student_Id>')
-def get_student_engagements(student_id):
-    mob_ctrl = MobileController.get_instance()
-    result = mob_ctrl.get_StudentEngagements(studentId=student_id)
-    return result
+# @app.route('/getStudentEngagements/<student_Id>')
+# def get_student_engagements(student_id):
+#     mob_ctrl = MobileController.get_instance()
+#     result = mob_ctrl.get_StudentEngagements(studentId=student_id)
+#     return result
 
 
 @app.route('/create_employee', methods=['POST', 'GET'])
@@ -179,6 +181,35 @@ def engagements(company_name=None, engagement_id=None):
         return jsonify(result)
     else:
         return {"error": "method {} not supported!".format(request.method)}
+
+
+@app.route('/resources/skills' , methods=['POST', 'GET'])
+def get_skills():
+    if request.method == 'POST':
+        result = ResourcesController.get_full_skillSet()
+    elif request.method == 'GET':
+        result = ResourcesController.get_full_skillSet()
+
+    return JSONEncoder().encode(result)
+
+
+@app.route('/student/getStudentEngagements/<student_Id>')
+def get_student_engagements(student_id):
+    mob_ctrl = MobileController.get_instance()
+    result = mob_ctrl.get_StudentEngagements(studentId=student_id)
+    return result
+
+
+@app.route('/student/skills/<student_id>', methods=['POST', 'GET'])
+def get_student_skills(student_id):
+    result = None
+    if request.method == 'POST':
+        result = MobileController.get_student_skills(student_id)
+    if request.method == 'GET':
+        result = MobileController.get_student_skills(student_id)
+
+    return JSONEncoder().encode(result)
+
 
 
 if __name__ == '__main__':
