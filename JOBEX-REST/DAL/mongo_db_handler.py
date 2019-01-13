@@ -1,7 +1,7 @@
 from sshtunnel import SSHTunnelForwarder
 from pymongo import MongoClient, errors
 from Utils.config_helper import ConfigHelper
-
+from bson.objectid import ObjectId
 
 class Client:
 
@@ -88,7 +88,7 @@ class Client:
                 result = collection.find_one(json_query)
                 result['_id'] = str(result['_id'])
             elif object_id:
-                result = collection.find_one({"_id": object_id})
+                result = collection.find_one({"_id": ObjectId(object_id)})
                 result['_id'] = str(result['_id'])
             else:
                 result = collection.find_one()

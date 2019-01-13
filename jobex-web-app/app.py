@@ -83,13 +83,13 @@ def dashboard_view():
     return render_template("dashboard.html", authenticated=True)
 
 
-@app.route('/engagements/<engagement_id>')
-def engagement_view(engagement_id):
+@app.route('/engagements')
+def engagement_view():
     return render_template("engagement.html", authenticated=True)
 
 
-@app.route('/positions/<position_id>')
-def position_view(position_id):
+@app.route('/positions')
+def position_view():
     return render_template("position.html", authenticated=True)
 
 
