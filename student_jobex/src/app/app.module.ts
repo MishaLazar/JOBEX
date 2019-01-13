@@ -13,7 +13,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {ConfigService} from "../services/config.service";
 import {IonicStorageModule } from "@ionic/storage";
 import {StorageService} from "../services/storage.service";
-/*import { JwtModule } from '@auth0/angular-jwt';*/
+
 
 @NgModule({
   declarations: [
@@ -26,15 +26,7 @@ import {StorageService} from "../services/storage.service";
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot(),
-    /*JwtModule.forRoot({
-      config:{
-        tokenGetter: function tokenGetter() {
-          return  localStorage.getItem('access_token');
-        },
-        blacklistedRoutes : ['http://127.0.0.1:5050/login']
-      }
-    })*/
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

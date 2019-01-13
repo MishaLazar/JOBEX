@@ -24,7 +24,7 @@ export class LoginPage {
   }
 
 
-  onMenu(){
+  onMenuOpen(){
     this.menuCtrl.open();
   }
 

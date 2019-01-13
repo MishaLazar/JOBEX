@@ -22,4 +22,7 @@ export class RegisterPage {
     console.log('ionViewDidLoad RegisterPage');
   }
 
+  onRegister() {
+
+  }
 }

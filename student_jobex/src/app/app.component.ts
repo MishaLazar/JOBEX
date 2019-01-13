@@ -41,7 +41,7 @@ export class MyApp {
       content:'Loading...'
     });
     loader.present();
-    //let t = setTimeout(() => {
+    let t = setTimeout(() => {
       if (localStorage.getItem('access_token') != null && localStorage.getItem('refresh_token') != null) {
         console.log('authenticated');
         this.isAuthenticated = true;
@@ -54,7 +54,7 @@ export class MyApp {
       }
 
       loader.dismiss();
-    //},100);
+    },100);
 
   }
 
