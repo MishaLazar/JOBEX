@@ -8,7 +8,7 @@ from Classes.match import Match
 from Utils.config_helper import ConfigHelper
 from DAL.mongo_db_handler import Client
 from DAL.db_collections import DbCollections
-from Utils.json_util import JSONEncoder
+from Utils.json_encoder import JSONEncoder
 from Utils.similarity import Similarity
 
 config = ConfigHelper.get_instance()
@@ -16,6 +16,9 @@ CATEGORY = 0.2
 SUB_CATEGORY = 0.3
 SKILLS = 0.3
 OTHERS = 0.2
+
+
+
 
 class JobThread(threading.Thread):
     def __init__(self):
@@ -155,12 +158,13 @@ class JobThread(threading.Thread):
                                                                                                                    skill_similarity))
                                     matches.append(match)
                 self.logger.debug('finished working on job_id: ' + _job.job_id)
-                self.on_job_finish(job=_job, status=0)
+                self.on_job_finish(job=_job, status=1)
             except IOError:
                 self.logger.error('failed to working on job_id: ' + _job.job_id)
                 self.on_job_finish(job=_job, status=-1)
         for m in matches:
-            self.logger.debug('student:' + m.student_id + ' psition: ' + m.position_id + ' match_level')
+            self.logger.debug('student:' + str(m.student_id) + ' psition: ' + str(m.position_id)+ ' match_level')
+            self.save_match(m)
     def get_jobs(self):
         db_client = Client()
         query = {
@@ -235,6 +239,31 @@ class JobThread(threading.Thread):
                (skill_similarity * SKILLS) + \
                (OTHERS * 1)
 
+    def save_match(self, match):
+        db_client = Client()
+        filter_json = {
+            "student_id": match.student_id ,
+            "position_id": match.position_id
+            }
+        je = JSONEncoder()
+        doc_json = {
+            '$set':{
+            "student_id":match.student_id,
+            "position_id": match.position_id,
+            "match_level_id":match.match_level_id,
+            "match_update_date":match.match_update_date,
+            "is_deleted": match.is_deleted
+            }
+        }
+        result = db_client.update_single_doc_in_collection(DbCollections.get_match_collectio(),
+                                                           filter_json, doc_json,
+                                                           update_if_exists=True)
+
+        if result is not None:
+            log.debug("save_match: " + str(json.dumps(result)))
+            return result
+        else:
+            log.error("failled to save match: " + str(je.default(match.__dict__)))
 
 
 

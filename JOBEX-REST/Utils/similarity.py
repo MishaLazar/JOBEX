@@ -1,6 +1,7 @@
 from math import*
 from decimal import Decimal
 
+
 class Similarity():
 
     """ Five similarity measures function """
@@ -45,8 +46,25 @@ class Similarity():
 
         return round(sqrt(sum([a*a for a in x])),3)
 
-    def jaccard_similarity(self,x,y):
+    @staticmethod
+    def jaccard_similarity_original(x , y):
 
         intersection_cardinality = len(set.intersection(*[set(x), set(y)]))
+
         union_cardinality = len(set.union(*[set(x), set(y)]))
+
         return intersection_cardinality/float(union_cardinality)
+
+    @staticmethod
+    def jaccard_similarity(student, positions):
+
+        matched = []
+        for s in student:
+            if s in positions:
+                matched.append(s)
+
+        intersection_cardinality = len(set.intersection(*[set(student), set(matched)]))
+
+        union_cardinality = len(set.union(*[set(student), set(matched)]))
+
+        return intersection_cardinality / float(union_cardinality)
