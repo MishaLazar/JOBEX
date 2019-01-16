@@ -1,4 +1,4 @@
-**/*.pyc
 /.idea
-/JOBEX-REST/*.pem
 jobex-web-app/venv/*
+**/*.pyc
+/JOBEX-REST/*.pem
