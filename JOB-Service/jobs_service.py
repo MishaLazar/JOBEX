@@ -124,6 +124,9 @@ class JobThread(threading.Thread):
                     self.logger.debug('rematch by position :' + _job.source_objectid)
                     position_skills = self.get_positions_skill_list_by_position_id(_job.source_objectid,
                                                                                    all_positions_skills)
+                    p_categories = []
+                    p_sub_categories = []
+                    p_skills = []
                     if position_skills is not None:
                         for ps in position_skills:
                             if not ps['category_id'] in p_categories:
