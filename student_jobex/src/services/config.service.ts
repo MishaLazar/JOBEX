@@ -1,19 +1,13 @@
-import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 
 @Injectable()
 export class ConfigService {
 
-  configUrl = "assets/config.json"
-
-  constructor(private http:HttpClient){}
+  private api_url = 'http://127.0.0.1:5050/';
 
 
-  getConfig(){
-    return this.http.get(this.configUrl)
+  getApiUrl(){
+    return this.api_url;
   }
-
-
-
 
 }

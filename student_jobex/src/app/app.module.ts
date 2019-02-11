@@ -8,11 +8,14 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import {LoginPage} from "../pages/login/login";
 import {RegisterPage} from "../pages/register/register";
+import {MyProfilePage} from "../pages/my-profile/my-profile";
 import {AuthenticationService} from "../services/authentication.service";
 import {HttpClientModule} from "@angular/common/http";
 import {ConfigService} from "../services/config.service";
+
 import {IonicStorageModule } from "@ionic/storage";
 import {StorageService} from "../services/storage.service";
+import {MyProfileService} from "../services/my-profile.service";
 
 
 @NgModule({
@@ -20,7 +23,8 @@ import {StorageService} from "../services/storage.service";
     MyApp,
     HomePage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    MyProfilePage
   ],
   imports: [
     BrowserModule,
@@ -33,12 +37,17 @@ import {StorageService} from "../services/storage.service";
     MyApp,
     HomePage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    MyProfilePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},AuthenticationService,ConfigService,StorageService
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthenticationService,
+    ConfigService,
+    StorageService,
+    MyProfileService
   ]
 })
 export class AppModule {}

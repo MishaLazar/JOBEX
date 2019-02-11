@@ -19,6 +19,9 @@
       <button ion-item (click)="onLoad(homePage)" *ngIf="isAuthenticated">
         <ion-icon name="clipboard" item-left></ion-icon>
         Home</button>
+      <button ion-item (click)="onLoad(myProfilePage)" *ngIf="isAuthenticated">
+        <ion-icon name="person" item-left></ion-icon>
+        My Profile</button>
     </ion-list>
   </ion-content>
 </ion-menu>

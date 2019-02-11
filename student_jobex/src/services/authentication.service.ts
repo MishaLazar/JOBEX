@@ -1,16 +1,16 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {StorageService} from "./storage.service";
+import {ConfigService} from "./config.service";
 
 
 
 @Injectable()
 export class AuthenticationService {
 
-  api_url = 'http://127.0.0.1:5050/';
   isAuthenticatedStatus:boolean = false;
 
-  constructor(private http: HttpClient,private storageCtrl:StorageService){}
+  constructor(private http: HttpClient,private storageCtrl:StorageService,private config:ConfigService){}
 
 
   onSignin(username:string, password:string){
@@ -22,7 +22,7 @@ export class AuthenticationService {
       })};
 
 
-   return this.http.post(this.api_url+'login',{username:username,password:password},httpOptions)
+   return this.http.post(this.config.getApiUrl()+'login',{username:username,password:password},httpOptions)
 
 
   }

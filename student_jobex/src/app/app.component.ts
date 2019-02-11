@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import {LoginPage} from "../pages/login/login";
 import {RegisterPage} from "../pages/register/register";
+import {MyProfilePage} from "../pages/my-profile/my-profile";
 
 
 @Component({
@@ -14,6 +15,7 @@ export class MyApp {
   homePage = HomePage;
   loginPage = LoginPage;
   registerPage = RegisterPage;
+  myProfilePage = MyProfilePage;
   isAuthenticated:boolean;
 
   @ViewChild('nav') nav: NavController;
@@ -42,7 +44,7 @@ export class MyApp {
     });
     loader.present();
     let t = setTimeout(() => {
-      if (localStorage.getItem('access_token') != null && localStorage.getItem('refresh_token') != null) {
+      /*if (localStorage.getItem('access_token') != null && localStorage.getItem('refresh_token') != null) {
         console.log('authenticated');
         this.isAuthenticated = true;
         this.nav.setRoot(this.homePage);
@@ -52,7 +54,9 @@ export class MyApp {
         //this.nav.setRoot(this.loginPage);
         this.isAuthenticated = false;
       }
-
+      */
+      this.isAuthenticated = true;
+      this.nav.setRoot(this.homePage);
       loader.dismiss();
     },100);
 
