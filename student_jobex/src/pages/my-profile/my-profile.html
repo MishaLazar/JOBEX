@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button (click)="onMenuOpen()">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      My Profile
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form #f (ngSubmit)="onSubmit(f)" >
+  <ion-list>
+    <ion-item>
+      <ion-card>
+        <ion-item>
+          <img [src]="profileImg">
+        </ion-item>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+  <ion-buttons>
+            <button ion-button block icon-start type="submit" [disabled]="!f.valid">
+            <ion-icon name="create" >
+              Save
+            </ion-icon>
+          </button>
+  </ion-buttons>
+
+  </form>
+</ion-content>
