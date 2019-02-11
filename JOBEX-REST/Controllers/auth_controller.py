@@ -32,7 +32,7 @@ class AuthController:
     @staticmethod
     def check_token_in_blacklist(jti):
         db_client = Client()
-        return bool(db_client.count_docs_in_collection(DbCollections.get_collection(Key="token_blacklist_collection"),jti))
+        return bool(db_client.count_docs_in_collection(DbCollections.get_student_collection(),jti))
 
     @staticmethod
     def login(username, password):
@@ -41,7 +41,7 @@ class AuthController:
             "UserName": username,
             "password": password
         }
-        user_doc = db_client.get_single_doc_from_collection(DbCollections.get_collection("users_collection"), query)
+        user_doc = db_client.get_single_doc_from_collection(DbCollections.get_student_collection(), query)
         if user_doc:
             user_id = str(user_doc['_id'])
             return user_id
