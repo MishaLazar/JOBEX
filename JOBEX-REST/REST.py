@@ -1,13 +1,18 @@
+
 from flask import Flask, jsonify, request, redirect, url_for
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt)
 from flask_cors import CORS
+
+from JobThread import Job
 from Utils.config_helper import ConfigHelper
 from Controllers.mobile_controller import MobileController
 from Controllers.web_controller import WebController
 from Controllers.resources_controller import ResourcesController
 from Controllers.auth_controller import AuthController
 from Utils.json_encoder import JSONEncoder
+#from jobs_service import JobThread
+from Utils.util import Utils
 
 app = Flask(__name__)
 
@@ -216,4 +221,8 @@ def get_student_skills(student_id):
 if __name__ == '__main__':
     if config.read_app_settings(Key='ServerDebug') == '1':
         app.debug = True
-    app.run(port=5050)
+    if config.read_app_settings(Key='RunMatchEngine') == '1':
+        example = Job(interval=Utils.int_try_parse(config.read_job(Key='DELAY_INTERVAL'),20))
+
+    app.run(port=5050, threaded=True)
+
