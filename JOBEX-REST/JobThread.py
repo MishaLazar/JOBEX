@@ -1,7 +1,12 @@
 import json
 import threading
 import time
+import nltk
+import csv
+import pickle
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from bson import ObjectId
+
 from Classes.job import Job
 from Classes.match import Match
 from Utils.config_helper import ConfigHelper
@@ -13,13 +18,109 @@ from Utils.Logger import  Logger
 
 config = ConfigHelper.get_instance()
 log = Logger(name='Job').logger
+
+CONST_USE_SAVED_PICKLE = config.read_sentiment(Key='CONST_USE_SAVED_PICKLE')
 CATEGORY = 0.2
 SUB_CATEGORY = 0.3
 SKILLS = 0.3
 OTHERS = 0.2
 
+pos_tweets = [('I love this car', 'positive'),
+              ('This view is amazing', 'positive'),
+              ('I feel great this morning', 'positive'),
+              ('I am so excited about the concert', 'positive'),
+              ('He is my best friend', 'positive'),
+              ('Going well', 'positive'),
+              ('Thank you', 'positive'),
+              ('Hope you are doing well', 'positive'),
+              ('I am very happy', 'positive'),
+              ('Good for you', 'positive'),
+              ('It is all good. I know about it and I accept it.', 'positive'),
+              ('This is really good!', 'positive'),
+              ('Tomorrow is going to be fun.', 'positive'),
+              ('Smiling all around.', 'positive'),
+              ('These are great apples today.', 'positive'),
+              ('How about them apples? Thomas is a happy boy.', 'positive'),
+              ('Thomas is very zen. He is well-mannered.', 'positive')]
 
-class Job(object):
+neg_tweets = [('I do not like this car', 'negative'),
+              ('I hate this World', 'negative'),
+              ('This view is horrible', 'negative'),
+              ('I feel tired this morning', 'negative'),
+              ('I am not looking forward to the concert', 'negative'),
+              ('He is my enemy', 'negative'),
+              ('I am a bad boy', 'negative'),
+              ('This is not good', 'negative'),
+              ('I am bothered by this', 'negative'),
+              ('I am not connected with this', 'negative'),
+              ('Sadistic creep you ass. Die.', 'negative'),
+              ('All sorts of crazy and scary as hell.', 'negative'),
+              ('Not his emails, no.', 'negative'),
+              ('His father is dead. Returned obviously.', 'negative'),
+              ('He has a bomb.', 'negative'),
+              ('Too fast to be on foot. We cannot catch them.', 'negative')]
+
+# load more traning data
+try:
+    with open('JOBEX-REST/labeledTrainData.csv', 'r') as csvfile:
+        spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+        for row in spamreader:
+            if row[1] == "negative":
+                neg_tweets.append((row[2], row[1]))
+            elif row[1] == "positive":
+                pos_tweets.append((row[2], row[1]))
+
+except:
+    pass
+
+tweets = []
+for (words, sentiment) in pos_tweets + neg_tweets:
+    words_filtered = [e.lower() for e in words.split() if len(e) >= 3]
+    tweets.append((words_filtered, sentiment))
+
+
+def get_words_in_tweets(tweets):
+    all_words = []
+    for (words, sentiment) in tweets:
+      all_words.extend(words)
+    return all_words
+
+
+def get_word_features(wordlist):
+    wordlist = nltk.FreqDist(wordlist)
+    word_features = wordlist.keys()
+    return word_features
+
+
+def extract_features(document):
+    document_words = set(document)
+    features = {}
+    for word in word_features:
+        features['contains(%s)' % word] = (word in document_words)
+    return features
+
+
+word_features = get_word_features(get_words_in_tweets(tweets))
+if CONST_USE_SAVED_PICKLE != 1:
+    training_set = nltk.classify.apply_features(extract_features, tweets)
+    classifier = nltk.NaiveBayesClassifier.train(training_set)
+
+if CONST_USE_SAVED_PICKLE != 1:
+    # optional to save your classifier so you can load it elsewhere without having to rebuild training set every time
+    save_classifier = open("tweetposneg.pickle","wb")
+    pickle.dump(classifier, save_classifier)
+    save_classifier.close()
+
+else:  # optional load from classifier that was saved previously
+    classifier_f = open("tweetposneg.pickle", "rb")
+    classifier = pickle.load(classifier_f)
+    classifier_f.close()
+
+
+sid = SentimentIntensityAnalyzer()
+
+
+class JobThread(object):
     """ Threading example class
     The run() method will be started and it will run in the background
     until the application exits.
@@ -150,6 +251,17 @@ class Job(object):
                                                                              sub_categories_similarity,
                                                                              skill_similarity))
                                     matches.append(match)
+                elif int(_job.job_type_id) == 3:  # Sentiment analysis
+                    log.debug('start sentiment analysis job for object_id:' + _job.source_objectid)
+                    txt_to_evaluate = self.get_text_to_analise(_job.source_objectid)
+                    valued = classifier.classify(extract_features(txt_to_evaluate.split()))
+                    lineLen = len(txt_to_evaluate.split())
+                    ss = sid.polarity_scores(txt_to_evaluate)
+                    for k in ss:
+                        if (k != 'compound' and k != 'pos'):
+                            log.debug("{0}: {1}, ".format(k, ss[k]))
+                        if (k == 'pos'):
+                            log.debug("{0}: {1} ".format(k, ss[k]))
                 log.debug('finished working on job_id: ' + _job.job_id)
                 self.on_job_finish(job=_job, status=1)
             except IOError:
@@ -258,3 +370,6 @@ class Job(object):
             return result
         else:
             log.error("failled to save match: " + str(je.default(match.__dict__)))
+
+    def get_text_to_analise(self, source_objectid):
+        return 'good job'

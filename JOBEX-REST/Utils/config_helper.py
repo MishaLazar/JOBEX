@@ -55,6 +55,13 @@ class ConfigHelper:
             return ConfigHelper.__instance.config['JOBPARAMS'][Key]
 
     @staticmethod
+    def read_sentiment(Key=None):
+        if Key is None:
+            return None
+        else:
+            return ConfigHelper.__instance.config['SENTIMENT'][Key]
+
+    @staticmethod
     def read_logger(Key=None):
         if Key is None:
             return 10

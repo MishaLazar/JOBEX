@@ -1,25 +1,59 @@
-2019-01-16 12:51:49,648 - JOB_THREAD - INFO - Job Service - resumed
-2019-01-16 12:51:49,654 - JOB_THREAD - DEBUG - do_job
-2019-01-16 12:51:52,124 - JOB_THREAD - DEBUG - getting all active positions
-2019-01-16 12:51:54,503 - JOB_THREAD - DEBUG - getting all active student profiles
-2019-01-16 12:51:57,025 - JOB_THREAD - DEBUG - getting all students skills
-2019-01-16 12:51:59,350 - JOB_THREAD - DEBUG - getting all positions_skills
-2019-01-16 12:52:07,316 - JOB_THREAD - DEBUG - job working on:5c3a47f858575a2a1c88ba98
-2019-01-16 12:52:09,165 - JOB_THREAD - DEBUG - rematch by position :5c364c86b2260e4e38e92757
-2019-01-16 12:52:57,774 - JOB_THREAD - INFO - Job Service - resumed
-2019-01-16 12:52:57,780 - JOB_THREAD - DEBUG - do_job
-2019-01-16 12:53:00,275 - JOB_THREAD - DEBUG - getting all active positions
-2019-01-16 12:53:02,702 - JOB_THREAD - DEBUG - getting all active student profiles
-2019-01-16 12:53:05,022 - JOB_THREAD - DEBUG - getting all students skills
-2019-01-16 12:53:07,403 - JOB_THREAD - DEBUG - getting all positions_skills
-2019-01-16 12:53:15,895 - JOB_THREAD - DEBUG - job working on:5c3a47f858575a2a1c88ba98
-2019-01-16 12:53:17,025 - JOB_THREAD - DEBUG - rematch by position :5c364c86b2260e4e38e92757
-2019-01-16 12:53:21,737 - JOB_THREAD - DEBUG - job working on student:mishal2@mail.afeka.ac.il
-2019-01-16 12:53:22,820 - JOB_THREAD - DEBUG - job working on student:mishal@mail.afeka.ac.il
-2019-01-16 12:53:34,785 - JOB_THREAD - DEBUG - finished working on job_id: 5c3a47f858575a2a1c88ba98
-2019-01-16 12:53:42,058 - JOB_THREAD - DEBUG - student:5c2d22e071eace4c9cda0eb2 psition: 5c364c86b2260e4e38e92757 match_level
-2019-01-16 12:53:54,445 - JOB_THREAD - DEBUG - do_job
-2019-01-16 12:53:56,789 - JOB_THREAD - DEBUG - getting all active positions
-2019-01-16 12:53:59,221 - JOB_THREAD - DEBUG - getting all active student profiles
-2019-01-16 12:54:01,555 - JOB_THREAD - DEBUG - getting all students skills
-2019-01-16 12:54:03,990 - JOB_THREAD - DEBUG - getting all positions_skills
+2019-03-04 22:05:04,397 - Job - DEBUG - do_job
+2019-03-04 22:05:06,624 - Job - DEBUG - do_job
+2019-03-04 22:05:07,370 - Job - DEBUG - getting all active positions
+2019-03-04 22:05:09,240 - Job - DEBUG - getting all active positions
+2019-03-04 22:05:09,838 - Job - DEBUG - getting all active student profiles
+2019-03-04 22:05:11,617 - Job - DEBUG - getting all active student profiles
+2019-03-04 22:05:12,308 - Job - DEBUG - getting all students skills
+2019-03-04 22:05:13,886 - Job - DEBUG - getting all students skills
+2019-03-04 22:05:14,741 - Job - DEBUG - getting all positions_skills
+2019-03-04 22:05:16,345 - Job - DEBUG - getting all positions_skills
+2019-03-04 22:05:52,591 - Job - DEBUG - do_job
+2019-03-04 22:05:54,758 - Job - DEBUG - do_job
+2019-03-04 22:05:55,213 - Job - DEBUG - getting all active positions
+2019-03-04 22:05:57,332 - Job - DEBUG - getting all active positions
+2019-03-04 22:05:57,605 - Job - DEBUG - getting all active student profiles
+2019-03-04 22:05:59,750 - Job - DEBUG - getting all active student profiles
+2019-03-04 22:06:00,061 - Job - DEBUG - getting all students skills
+2019-03-04 22:06:02,188 - Job - DEBUG - getting all students skills
+2019-03-04 22:06:02,569 - Job - DEBUG - getting all positions_skills
+2019-03-04 22:06:04,638 - Job - DEBUG - getting all positions_skills
+2019-03-04 22:08:51,916 - Job - DEBUG - do_job
+2019-03-04 22:08:53,959 - Job - DEBUG - do_job
+2019-03-04 22:08:54,843 - Job - DEBUG - getting all active positions
+2019-03-04 22:08:56,535 - Job - DEBUG - getting all active positions
+2019-03-04 22:08:57,355 - Job - DEBUG - getting all active student profiles
+2019-03-04 22:08:59,087 - Job - DEBUG - getting all active student profiles
+2019-03-04 22:08:59,757 - Job - DEBUG - getting all students skills
+2019-03-04 22:09:01,430 - Job - DEBUG - getting all students skills
+2019-03-04 22:09:02,229 - Job - DEBUG - getting all positions_skills
+2019-03-04 22:09:03,888 - Job - DEBUG - getting all positions_skills
+2019-03-04 22:15:17,812 - Job - DEBUG - do_job
+2019-03-04 22:15:20,080 - Job - DEBUG - do_job
+2019-03-04 22:15:20,731 - Job - DEBUG - getting all active positions
+2019-03-04 22:15:22,684 - Job - DEBUG - getting all active positions
+2019-03-04 22:15:23,213 - Job - DEBUG - getting all active student profiles
+2019-03-04 22:15:25,062 - Job - DEBUG - getting all active student profiles
+2019-03-04 22:15:25,686 - Job - DEBUG - getting all students skills
+2019-03-04 22:15:27,539 - Job - DEBUG - getting all students skills
+2019-03-04 22:15:28,091 - Job - DEBUG - getting all positions_skills
+2019-03-04 22:15:29,976 - Job - DEBUG - getting all positions_skills
+2019-03-04 22:15:30,434 - Job - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-03-04 22:15:32,306 - Job - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-03-04 22:16:21,521 - Job - DEBUG - do_job
+2019-03-04 22:16:23,788 - Job - DEBUG - do_job
+2019-03-04 22:16:24,474 - Job - DEBUG - getting all active positions
+2019-03-04 22:16:26,446 - Job - DEBUG - getting all active positions
+2019-03-04 22:16:26,906 - Job - DEBUG - getting all active student profiles
+2019-03-04 22:16:28,882 - Job - DEBUG - getting all active student profiles
+2019-03-04 22:16:29,428 - Job - DEBUG - getting all students skills
+2019-03-04 22:16:31,330 - Job - DEBUG - getting all students skills
+2019-03-04 22:16:31,933 - Job - DEBUG - getting all positions_skills
+2019-03-04 22:16:33,708 - Job - DEBUG - getting all positions_skills
+2019-03-04 22:16:34,355 - Job - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-03-04 22:16:36,128 - Job - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-03-04 22:16:42,537 - Job - DEBUG - start sentiment analysis job for object_id:5c2d22e071eace4c9cda0eb2
+2019-03-04 22:17:14,769 - Job - DEBUG - neg: 0.0, 
+2019-03-04 22:17:18,617 - Job - DEBUG - neu: 0.256, 
+2019-03-04 22:17:20,640 - Job - DEBUG - pos: 0.744 
+2019-03-04 22:17:24,772 - Job - DEBUG - finished working on job_id: 5c364e923924dd48bc42d7c2
