@@ -17,6 +17,7 @@ import {IonicStorageModule } from "@ionic/storage";
 import {StorageService} from "../services/storage.service";
 import {MyProfileService} from "../services/my-profile.service";
 
+import {ComponentsModule } from "../components/components.module";
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {MyProfileService} from "../services/my-profile.service";
   imports: [
     BrowserModule,
     HttpClientModule,
+    ComponentsModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
