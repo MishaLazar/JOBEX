@@ -36,7 +36,7 @@
                     console.log(results_arr[lst_idx]);
                     var json = results_arr[lst_idx];
                     tr = $('<tr/>');
-                    var link = "<a href=\"http://127.0.0.1:5051/positions?position_id=" + json._id + "\">" + json.position_name + "</a>";
+                    var link = "<a href=\"http://127.0.0.1:5050/position_view?position_id=" + json._id + "\">" + json.position_name + "</a>";
                     tr.append("<td>" +link + "</td>");
                     tr.append("<td>" + json.department + "</td>");
                     tr.append("<td>" + json.location + "</td>");

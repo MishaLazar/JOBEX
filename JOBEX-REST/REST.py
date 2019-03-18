@@ -26,7 +26,7 @@ app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
 #CORS(app, resources={r"/*": {"origins": "*"}}, send_wildcard=True)
 CORS(app)
 jwt = JWTManager(app)
-jobex_web_helper = JobexWebHelper(host=config.read_db_params('MONGO_HOST'))
+jobex_web_helper = JobexWebHelper(host='localhost')
 
 
 @jwt.token_in_blacklist_loader
@@ -70,7 +70,7 @@ def logout_refresh():
     return AuthController.add_token_to_blacklist(jti)
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/get_login', methods=['POST'])
 def get_login():
     if request.method == 'POST':
         authentication = request.get_json()
@@ -115,7 +115,7 @@ def register_view():
     return render_template("register.html", title='Register', form=form)
 
 
-@app.route('/login', methods=['GET'])
+@app.route('/login', methods=['GET', 'POST'])
 def login_view():
     # todo check if authenticated then redirect to dashboard
     form = LoginForm()
@@ -123,7 +123,7 @@ def login_view():
     if form.validate_on_submit():
         login_obj = {"username": form.username.data, "password": form.password.data}
         try:
-            response = jobex_web_helper.login(login_obj)
+            response = jobex_web_helper.get_login(login_obj)
             if response.status_code == 200:
                 tokens = json.dumps(response.json())
                 session['tokens'] = tokens
@@ -238,7 +238,7 @@ def engagements(company_name=None, engagement_id=None):
         return {"error": "method {} not supported!".format(request.method)}
 
 
-@app.route('/resources/skills' , methods=['POST', 'GET'])
+@app.route('/resources/skills', methods=['POST', 'GET'])
 def get_skills():
     if request.method == 'POST':
         result = ResourcesController.get_full_skillSet()
@@ -291,7 +291,7 @@ def engagement_view():
     return render_template("engagement.html", authenticated=True)
 
 
-@app.route('/positions')
+@app.route('/position_view')
 def position_view():
     return render_template("position.html", authenticated=True)
 

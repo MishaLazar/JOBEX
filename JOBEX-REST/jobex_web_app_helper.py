@@ -1,9 +1,8 @@
 from requests import post, put, get, delete, RequestException
-from Utils.config_helper import ConfigHelper
-import json
+# from Utils.config_helper import ConfigHelper
 
-config = ConfigHelper(r'C:\JOBEX\JOBEX-REST\Configurations.ini')
-rest_host = config.read_db_params('MONGO_HOST')
+# config = ConfigHelper(r'C:\JOBEX\JOBEX-REST\Configurations.ini')
+rest_host = '127.0.0.1:5050'
 
 
 class JobexWebHelper:
@@ -12,8 +11,8 @@ class JobexWebHelper:
     def __init__(self, host):
         self.host = host
 
-    def login(self, login_obj):
-        return self.api_call(api_path="login", obj=login_obj, method='POST')
+    def get_login(self, login_obj):
+        return self.api_call(api_path="get_login", obj=login_obj, method='POST')
 
     def create_user(self, user_obj):
         return self.api_call(api_path="register", obj=user_obj, method='POST')
