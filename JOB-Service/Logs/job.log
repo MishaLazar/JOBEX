@@ -57,3 +57,669 @@
 2019-03-04 22:17:18,617 - Job - DEBUG - neu: 0.256, 
 2019-03-04 22:17:20,640 - Job - DEBUG - pos: 0.744 
 2019-03-04 22:17:24,772 - Job - DEBUG - finished working on job_id: 5c364e923924dd48bc42d7c2
+2019-03-17 18:11:17,504 - Job - DEBUG - do_job
+2019-03-17 18:11:20,131 - Job - DEBUG - getting all active positions
+2019-03-17 18:11:21,356 - Job - DEBUG - do_job
+2019-03-17 18:11:22,400 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:11:23,831 - Job - DEBUG - getting all active positions
+2019-03-17 18:11:24,650 - Job - DEBUG - getting all students skills
+2019-03-17 18:11:26,055 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:11:26,898 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:11:28,271 - Job - DEBUG - getting all students skills
+2019-03-17 18:11:29,149 - Job - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-03-17 18:11:29,151 - Job - DEBUG - start sentiment analysis job for object_id:5c2d22e071eace4c9cda0eb2
+2019-03-17 18:11:29,161 - Job - DEBUG - neg: 0.0, 
+2019-03-17 18:11:29,165 - Job - DEBUG - neu: 0.256, 
+2019-03-17 18:11:29,167 - Job - DEBUG - pos: 0.744 
+2019-03-17 18:11:29,169 - Job - DEBUG - finished working on job_id: 5c364e923924dd48bc42d7c2
+2019-03-17 18:11:30,484 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:11:32,710 - Job - DEBUG - job working on:5c364e923924dd48bc42d7c2
+2019-03-17 18:11:32,713 - Job - DEBUG - start sentiment analysis job for object_id:5c2d22e071eace4c9cda0eb2
+2019-03-17 18:11:32,716 - Job - DEBUG - neg: 0.0, 
+2019-03-17 18:11:32,717 - Job - DEBUG - neu: 0.256, 
+2019-03-17 18:11:32,719 - Job - DEBUG - pos: 0.744 
+2019-03-17 18:11:32,720 - Job - DEBUG - finished working on job_id: 5c364e923924dd48bc42d7c2
+2019-03-17 18:11:43,409 - Job - DEBUG - do_job
+2019-03-17 18:11:45,634 - Job - DEBUG - getting all active positions
+2019-03-17 18:11:46,949 - Job - DEBUG - do_job
+2019-03-17 18:11:47,891 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:11:49,145 - Job - DEBUG - getting all active positions
+2019-03-17 18:11:50,136 - Job - DEBUG - getting all students skills
+2019-03-17 18:11:51,372 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:11:52,401 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:11:53,582 - Job - DEBUG - getting all students skills
+2019-03-17 18:11:55,767 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:12:06,633 - Job - DEBUG - do_job
+2019-03-17 18:12:08,855 - Job - DEBUG - getting all active positions
+2019-03-17 18:12:09,962 - Job - DEBUG - do_job
+2019-03-17 18:12:11,085 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:12:12,150 - Job - DEBUG - getting all active positions
+2019-03-17 18:12:13,350 - Job - DEBUG - getting all students skills
+2019-03-17 18:12:14,367 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:12:15,624 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:12:16,558 - Job - DEBUG - getting all students skills
+2019-03-17 18:12:18,757 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:12:29,886 - Job - DEBUG - do_job
+2019-03-17 18:12:32,423 - Job - DEBUG - getting all active positions
+2019-03-17 18:12:32,992 - Job - DEBUG - do_job
+2019-03-17 18:12:34,672 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:12:35,196 - Job - DEBUG - getting all active positions
+2019-03-17 18:12:36,912 - Job - DEBUG - getting all students skills
+2019-03-17 18:12:37,405 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:12:39,151 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:12:39,623 - Job - DEBUG - getting all students skills
+2019-03-17 18:12:41,833 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:12:53,415 - Job - DEBUG - do_job
+2019-03-17 18:12:55,648 - Job - DEBUG - getting all active positions
+2019-03-17 18:12:56,303 - Job - DEBUG - do_job
+2019-03-17 18:12:57,861 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:12:58,508 - Job - DEBUG - getting all active positions
+2019-03-17 18:13:00,121 - Job - DEBUG - getting all students skills
+2019-03-17 18:13:00,693 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:13:02,364 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:13:02,894 - Job - DEBUG - getting all students skills
+2019-03-17 18:13:05,099 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:13:16,610 - Job - DEBUG - do_job
+2019-03-17 18:13:18,834 - Job - DEBUG - getting all active positions
+2019-03-17 18:13:19,319 - Job - DEBUG - do_job
+2019-03-17 18:13:21,167 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:13:21,524 - Job - DEBUG - getting all active positions
+2019-03-17 18:13:23,398 - Job - DEBUG - getting all students skills
+2019-03-17 18:13:23,716 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:13:25,630 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:13:25,914 - Job - DEBUG - getting all students skills
+2019-03-17 18:13:28,124 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:13:39,872 - Job - DEBUG - do_job
+2019-03-17 18:13:42,112 - Job - DEBUG - getting all active positions
+2019-03-17 18:13:42,325 - Job - DEBUG - do_job
+2019-03-17 18:13:44,365 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:13:44,504 - Job - DEBUG - getting all active positions
+2019-03-17 18:13:46,591 - Job - DEBUG - getting all students skills
+2019-03-17 18:13:46,720 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:13:48,818 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:13:48,926 - Job - DEBUG - getting all students skills
+2019-03-17 18:13:51,146 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:14:03,073 - Job - DEBUG - do_job
+2019-03-17 18:14:05,320 - Job - DEBUG - getting all active positions
+2019-03-17 18:14:05,383 - Job - DEBUG - do_job
+2019-03-17 18:14:07,572 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:14:07,589 - Job - DEBUG - getting all active positions
+2019-03-17 18:14:09,834 - Job - DEBUG - getting all students skills
+2019-03-17 18:14:09,847 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:14:12,086 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:14:12,098 - Job - DEBUG - getting all students skills
+2019-03-17 18:14:14,316 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:14:26,320 - Job - DEBUG - do_job
+2019-03-17 18:14:28,558 - Job - DEBUG - do_job
+2019-03-17 18:14:28,628 - Job - DEBUG - getting all active positions
+2019-03-17 18:14:30,784 - Job - DEBUG - getting all active positions
+2019-03-17 18:14:30,895 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:14:33,008 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:14:33,167 - Job - DEBUG - getting all students skills
+2019-03-17 18:14:35,231 - Job - DEBUG - getting all students skills
+2019-03-17 18:14:35,414 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:14:37,442 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:14:49,641 - Job - DEBUG - do_job
+2019-03-17 18:14:51,697 - Job - DEBUG - do_job
+2019-03-17 18:14:51,873 - Job - DEBUG - getting all active positions
+2019-03-17 18:14:53,914 - Job - DEBUG - getting all active positions
+2019-03-17 18:14:54,132 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:14:56,163 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:14:56,366 - Job - DEBUG - getting all students skills
+2019-03-17 18:14:58,385 - Job - DEBUG - getting all students skills
+2019-03-17 18:14:58,588 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:15:00,623 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:15:12,857 - Job - DEBUG - do_job
+2019-03-17 18:15:14,882 - Job - DEBUG - do_job
+2019-03-17 18:15:15,063 - Job - DEBUG - getting all active positions
+2019-03-17 18:15:17,134 - Job - DEBUG - getting all active positions
+2019-03-17 18:15:17,315 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:15:19,385 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:15:19,589 - Job - DEBUG - getting all students skills
+2019-03-17 18:15:21,646 - Job - DEBUG - getting all students skills
+2019-03-17 18:15:21,834 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:15:23,856 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:15:36,102 - Job - DEBUG - do_job
+2019-03-17 18:15:38,102 - Job - DEBUG - do_job
+2019-03-17 18:15:38,437 - Job - DEBUG - getting all active positions
+2019-03-17 18:15:40,339 - Job - DEBUG - getting all active positions
+2019-03-17 18:15:40,656 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:15:42,580 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:15:42,882 - Job - DEBUG - getting all students skills
+2019-03-17 18:15:44,833 - Job - DEBUG - getting all students skills
+2019-03-17 18:15:45,132 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:15:47,070 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:15:59,398 - Job - DEBUG - do_job
+2019-03-17 18:16:01,320 - Job - DEBUG - do_job
+2019-03-17 18:16:01,623 - Job - DEBUG - getting all active positions
+2019-03-17 18:16:03,546 - Job - DEBUG - getting all active positions
+2019-03-17 18:16:03,872 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:16:05,824 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:16:06,143 - Job - DEBUG - getting all students skills
+2019-03-17 18:16:08,067 - Job - DEBUG - getting all students skills
+2019-03-17 18:16:08,393 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:16:10,338 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:16:22,680 - Job - DEBUG - do_job
+2019-03-17 18:16:24,579 - Job - DEBUG - do_job
+2019-03-17 18:16:24,960 - Job - DEBUG - getting all active positions
+2019-03-17 18:16:26,820 - Job - DEBUG - getting all active positions
+2019-03-17 18:16:27,192 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:16:29,052 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:16:29,457 - Job - DEBUG - getting all students skills
+2019-03-17 18:16:31,315 - Job - DEBUG - getting all students skills
+2019-03-17 18:16:31,757 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:16:33,596 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:16:46,081 - Job - DEBUG - do_job
+2019-03-17 18:16:47,824 - Job - DEBUG - do_job
+2019-03-17 18:16:48,427 - Job - DEBUG - getting all active positions
+2019-03-17 18:16:50,064 - Job - DEBUG - getting all active positions
+2019-03-17 18:16:50,723 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:16:52,328 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:16:52,981 - Job - DEBUG - getting all students skills
+2019-03-17 18:16:54,634 - Job - DEBUG - getting all students skills
+2019-03-17 18:16:55,220 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:16:56,897 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:17:09,477 - Job - DEBUG - do_job
+2019-03-17 18:17:11,142 - Job - DEBUG - do_job
+2019-03-17 18:17:11,740 - Job - DEBUG - getting all active positions
+2019-03-17 18:17:13,402 - Job - DEBUG - getting all active positions
+2019-03-17 18:17:13,980 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:17:15,627 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:17:16,248 - Job - DEBUG - getting all students skills
+2019-03-17 18:17:17,873 - Job - DEBUG - getting all students skills
+2019-03-17 18:17:18,541 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:17:20,123 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:17:32,850 - Job - DEBUG - do_job
+2019-03-17 18:17:34,375 - Job - DEBUG - do_job
+2019-03-17 18:17:35,084 - Job - DEBUG - getting all active positions
+2019-03-17 18:17:36,655 - Job - DEBUG - getting all active positions
+2019-03-17 18:17:37,341 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:17:38,892 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:17:39,625 - Job - DEBUG - getting all students skills
+2019-03-17 18:17:41,165 - Job - DEBUG - getting all students skills
+2019-03-17 18:17:41,911 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:17:43,449 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:17:56,190 - Job - DEBUG - do_job
+2019-03-17 18:17:57,677 - Job - DEBUG - do_job
+2019-03-17 18:17:58,457 - Job - DEBUG - getting all active positions
+2019-03-17 18:17:59,922 - Job - DEBUG - getting all active positions
+2019-03-17 18:18:00,740 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:18:02,165 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:18:03,003 - Job - DEBUG - getting all students skills
+2019-03-17 18:18:04,450 - Job - DEBUG - getting all students skills
+2019-03-17 18:18:05,271 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:18:06,676 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:18:19,572 - Job - DEBUG - do_job
+2019-03-17 18:18:20,928 - Job - DEBUG - do_job
+2019-03-17 18:18:21,815 - Job - DEBUG - getting all active positions
+2019-03-17 18:18:23,172 - Job - DEBUG - getting all active positions
+2019-03-17 18:18:24,087 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:18:25,399 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:18:26,345 - Job - DEBUG - getting all students skills
+2019-03-17 18:18:27,648 - Job - DEBUG - getting all students skills
+2019-03-17 18:18:28,596 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:18:29,915 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:18:42,864 - Job - DEBUG - do_job
+2019-03-17 18:18:44,219 - Job - DEBUG - do_job
+2019-03-17 18:18:45,108 - Job - DEBUG - getting all active positions
+2019-03-17 18:18:46,444 - Job - DEBUG - getting all active positions
+2019-03-17 18:18:47,342 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:18:48,678 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:18:49,637 - Job - DEBUG - getting all students skills
+2019-03-17 18:18:50,919 - Job - DEBUG - getting all students skills
+2019-03-17 18:18:51,884 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:18:53,208 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:19:06,146 - Job - DEBUG - do_job
+2019-03-17 18:19:07,457 - Job - DEBUG - do_job
+2019-03-17 18:19:08,421 - Job - DEBUG - getting all active positions
+2019-03-17 18:19:09,674 - Job - DEBUG - getting all active positions
+2019-03-17 18:19:10,692 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:19:11,917 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:19:12,986 - Job - DEBUG - getting all students skills
+2019-03-17 18:19:14,158 - Job - DEBUG - getting all students skills
+2019-03-17 18:19:15,223 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:19:16,394 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:19:29,522 - Job - DEBUG - do_job
+2019-03-17 18:19:30,663 - Job - DEBUG - do_job
+2019-03-17 18:19:31,761 - Job - DEBUG - getting all active positions
+2019-03-17 18:19:32,889 - Job - DEBUG - getting all active positions
+2019-03-17 18:19:34,026 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:19:35,137 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:19:36,284 - Job - DEBUG - getting all students skills
+2019-03-17 18:19:37,387 - Job - DEBUG - getting all students skills
+2019-03-17 18:19:38,529 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:19:39,651 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:19:52,795 - Job - DEBUG - do_job
+2019-03-17 18:19:53,944 - Job - DEBUG - do_job
+2019-03-17 18:19:55,032 - Job - DEBUG - getting all active positions
+2019-03-17 18:19:56,183 - Job - DEBUG - getting all active positions
+2019-03-17 18:19:57,302 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:19:58,417 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:19:59,576 - Job - DEBUG - getting all students skills
+2019-03-17 18:20:00,672 - Job - DEBUG - getting all students skills
+2019-03-17 18:20:01,882 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:20:02,966 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:20:16,142 - Job - DEBUG - do_job
+2019-03-17 18:20:17,249 - Job - DEBUG - do_job
+2019-03-17 18:20:18,422 - Job - DEBUG - getting all active positions
+2019-03-17 18:20:19,515 - Job - DEBUG - getting all active positions
+2019-03-17 18:20:20,751 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:20:21,823 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:20:23,065 - Job - DEBUG - getting all students skills
+2019-03-17 18:20:24,080 - Job - DEBUG - getting all students skills
+2019-03-17 18:20:25,335 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:20:26,337 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:20:39,581 - Job - DEBUG - do_job
+2019-03-17 18:20:40,642 - Job - DEBUG - do_job
+2019-03-17 18:20:41,880 - Job - DEBUG - getting all active positions
+2019-03-17 18:20:42,891 - Job - DEBUG - getting all active positions
+2019-03-17 18:20:44,118 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:20:45,139 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:20:46,389 - Job - DEBUG - getting all students skills
+2019-03-17 18:20:47,428 - Job - DEBUG - getting all students skills
+2019-03-17 18:20:48,673 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:20:49,679 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:21:03,016 - Job - DEBUG - do_job
+2019-03-17 18:21:03,955 - Job - DEBUG - do_job
+2019-03-17 18:21:05,298 - Job - DEBUG - getting all active positions
+2019-03-17 18:21:06,221 - Job - DEBUG - getting all active positions
+2019-03-17 18:21:07,667 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:21:08,469 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:21:09,990 - Job - DEBUG - getting all students skills
+2019-03-17 18:21:10,715 - Job - DEBUG - getting all students skills
+2019-03-17 18:21:12,261 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:21:12,986 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:21:26,570 - Job - DEBUG - do_job
+2019-03-17 18:21:27,280 - Job - DEBUG - do_job
+2019-03-17 18:21:28,925 - Job - DEBUG - getting all active positions
+2019-03-17 18:21:29,536 - Job - DEBUG - getting all active positions
+2019-03-17 18:21:31,189 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:21:31,859 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:21:33,475 - Job - DEBUG - getting all students skills
+2019-03-17 18:21:34,187 - Job - DEBUG - getting all students skills
+2019-03-17 18:21:35,760 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:21:36,433 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:21:50,122 - Job - DEBUG - do_job
+2019-03-17 18:21:50,687 - Job - DEBUG - do_job
+2019-03-17 18:21:52,400 - Job - DEBUG - getting all active positions
+2019-03-17 18:21:52,918 - Job - DEBUG - getting all active positions
+2019-03-17 18:21:54,741 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:21:55,176 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:21:57,011 - Job - DEBUG - getting all students skills
+2019-03-17 18:21:57,465 - Job - DEBUG - getting all students skills
+2019-03-17 18:21:59,332 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:21:59,787 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:22:13,644 - Job - DEBUG - do_job
+2019-03-17 18:22:14,050 - Job - DEBUG - do_job
+2019-03-17 18:22:15,945 - Job - DEBUG - getting all active positions
+2019-03-17 18:22:16,291 - Job - DEBUG - getting all active positions
+2019-03-17 18:22:18,260 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:22:18,581 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:22:20,602 - Job - DEBUG - getting all students skills
+2019-03-17 18:22:20,902 - Job - DEBUG - getting all students skills
+2019-03-17 18:22:22,904 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:22:23,185 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:22:37,234 - Job - DEBUG - do_job
+2019-03-17 18:22:37,473 - Job - DEBUG - do_job
+2019-03-17 18:22:39,548 - Job - DEBUG - getting all active positions
+2019-03-17 18:22:39,773 - Job - DEBUG - getting all active positions
+2019-03-17 18:22:41,921 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:22:42,103 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:22:44,237 - Job - DEBUG - getting all students skills
+2019-03-17 18:22:44,406 - Job - DEBUG - getting all students skills
+2019-03-17 18:22:46,597 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:22:46,664 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:23:00,956 - Job - DEBUG - do_job
+2019-03-17 18:23:00,978 - Job - DEBUG - do_job
+2019-03-17 18:23:03,421 - Job - DEBUG - getting all active positions
+2019-03-17 18:23:03,426 - Job - DEBUG - getting all active positions
+2019-03-17 18:23:05,919 - Job - DEBUG - getting all active student profiles
+2019-03-17 18:23:08,463 - Job - DEBUG - getting all students skills
+2019-03-17 18:23:08,469 - Job - DEBUG - getting all students skills
+2019-03-17 18:23:11,227 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:23:11,596 - Job - DEBUG - getting all positions_skills
+2019-03-17 18:23:26,587 - Job - DEBUG - do_job
+2019-03-17 18:23:26,926 - Job - DEBUG - do_job
+2019-03-17 18:23:31,067 - Job - DEBUG - getting all active positions
+2019-03-17 18:23:31,266 - Job - DEBUG - getting all active positions
+2019-03-17 18:23:35,042 - Job - DEBUG - getting all active student profiles
+2019-03-18 11:57:22,302 - Job - DEBUG - do_job
+2019-03-18 11:57:24,977 - Job - DEBUG - do_job
+2019-03-18 11:57:24,977 - Job - DEBUG - getting all active positions
+2019-03-18 11:57:27,415 - Job - DEBUG - getting all active positions
+2019-03-18 11:57:28,000 - Job - DEBUG - getting all active student profiles
+2019-03-18 11:57:29,937 - Job - DEBUG - getting all active student profiles
+2019-03-18 11:57:30,435 - Job - DEBUG - getting all students skills
+2019-03-18 11:57:32,467 - Job - DEBUG - getting all students skills
+2019-03-18 11:57:32,958 - Job - DEBUG - getting all positions_skills
+2019-03-18 11:57:34,842 - Job - DEBUG - getting all positions_skills
+2019-03-18 11:57:47,236 - Job - DEBUG - do_job
+2019-03-18 11:57:49,071 - Job - DEBUG - do_job
+2019-03-18 11:57:49,726 - Job - DEBUG - getting all active positions
+2019-03-18 11:57:51,461 - Job - DEBUG - getting all active positions
+2019-03-18 11:57:52,216 - Job - DEBUG - getting all active student profiles
+2019-03-18 11:57:53,799 - Job - DEBUG - getting all active student profiles
+2019-03-18 11:57:54,537 - Job - DEBUG - getting all students skills
+2019-03-18 11:57:55,946 - Job - DEBUG - getting all students skills
+2019-03-18 11:57:56,758 - Job - DEBUG - getting all positions_skills
+2019-03-18 11:57:58,293 - Job - DEBUG - getting all positions_skills
+2019-03-18 11:58:11,052 - Job - DEBUG - do_job
+2019-03-18 11:58:12,525 - Job - DEBUG - do_job
+2019-03-18 11:58:13,427 - Job - DEBUG - getting all active positions
+2019-03-18 11:58:14,870 - Job - DEBUG - getting all active positions
+2019-03-18 11:58:15,733 - Job - DEBUG - getting all active student profiles
+2019-03-18 11:58:17,368 - Job - DEBUG - getting all active student profiles
+2019-03-18 11:58:18,193 - Job - DEBUG - getting all students skills
+2019-03-18 11:58:19,659 - Job - DEBUG - getting all students skills
+2019-03-18 11:58:20,576 - Job - DEBUG - getting all positions_skills
+2019-03-18 11:58:22,034 - Job - DEBUG - getting all positions_skills
+2019-03-18 11:58:34,802 - Job - DEBUG - do_job
+2019-03-18 11:58:36,923 - Job - DEBUG - do_job
+2019-03-18 11:58:37,107 - Job - DEBUG - getting all active positions
+2019-03-18 11:58:39,260 - Job - DEBUG - getting all active positions
+2019-03-18 11:58:39,476 - Job - DEBUG - getting all active student profiles
+2019-03-18 11:58:41,650 - Job - DEBUG - getting all active student profiles
+2019-03-18 11:58:41,756 - Job - DEBUG - getting all students skills
+2019-03-18 11:58:43,975 - Job - DEBUG - getting all students skills
+2019-03-18 11:58:44,016 - Job - DEBUG - getting all positions_skills
+2019-03-18 11:58:46,259 - Job - DEBUG - getting all positions_skills
+2019-03-18 11:58:58,278 - Job - DEBUG - do_job
+2019-03-18 11:59:00,518 - Job - DEBUG - do_job
+2019-03-18 11:59:00,587 - Job - DEBUG - getting all active positions
+2019-03-18 11:59:02,882 - Job - DEBUG - getting all active student profiles
+2019-03-18 11:59:02,885 - Job - DEBUG - getting all active positions
+2019-03-18 11:59:05,223 - Job - DEBUG - getting all students skills
+2019-03-18 11:59:05,270 - Job - DEBUG - getting all active student profiles
+2019-03-18 11:59:07,460 - Job - DEBUG - getting all students skills
+2019-03-18 11:59:07,475 - Job - DEBUG - getting all positions_skills
+2019-03-18 11:59:09,679 - Job - DEBUG - getting all positions_skills
+2019-03-18 11:59:21,802 - Job - DEBUG - do_job
+2019-03-18 11:59:23,886 - Job - DEBUG - do_job
+2019-03-18 11:59:24,255 - Job - DEBUG - getting all active positions
+2019-03-18 11:59:26,161 - Job - DEBUG - getting all active positions
+2019-03-18 11:59:26,515 - Job - DEBUG - getting all active student profiles
+2019-03-18 11:59:28,373 - Job - DEBUG - getting all active student profiles
+2019-03-18 11:59:28,838 - Job - DEBUG - getting all students skills
+2019-03-18 11:59:30,684 - Job - DEBUG - getting all students skills
+2019-03-18 11:59:31,238 - Job - DEBUG - getting all positions_skills
+2019-03-18 11:59:33,043 - Job - DEBUG - getting all positions_skills
+2019-03-18 11:59:45,567 - Job - DEBUG - do_job
+2019-03-18 11:59:47,324 - Job - DEBUG - do_job
+2019-03-18 11:59:47,874 - Job - DEBUG - getting all active positions
+2019-03-18 11:59:49,631 - Job - DEBUG - getting all active positions
+2019-03-18 11:59:50,163 - Job - DEBUG - getting all active student profiles
+2019-03-18 11:59:51,984 - Job - DEBUG - getting all active student profiles
+2019-03-18 11:59:52,468 - Job - DEBUG - getting all students skills
+2019-03-18 11:59:54,388 - Job - DEBUG - getting all students skills
+2019-03-18 11:59:54,893 - Job - DEBUG - getting all positions_skills
+2019-03-18 11:59:56,678 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:00:09,214 - Job - DEBUG - do_job
+2019-03-18 12:00:10,987 - Job - DEBUG - do_job
+2019-03-18 12:00:11,774 - Job - DEBUG - getting all active positions
+2019-03-18 12:00:13,224 - Job - DEBUG - getting all active positions
+2019-03-18 12:00:14,042 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:00:15,530 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:00:16,341 - Job - DEBUG - getting all students skills
+2019-03-18 12:00:17,937 - Job - DEBUG - getting all students skills
+2019-03-18 12:00:18,653 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:00:20,242 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:00:32,950 - Job - DEBUG - do_job
+2019-03-18 12:00:34,534 - Job - DEBUG - do_job
+2019-03-18 12:00:35,436 - Job - DEBUG - getting all active positions
+2019-03-18 12:00:37,355 - Job - DEBUG - getting all active positions
+2019-03-18 12:00:38,089 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:00:39,709 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:00:40,420 - Job - DEBUG - getting all students skills
+2019-03-18 12:00:42,014 - Job - DEBUG - getting all students skills
+2019-03-18 12:00:42,685 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:00:44,158 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:00:56,988 - Job - DEBUG - do_job
+2019-03-18 12:00:58,454 - Job - DEBUG - do_job
+2019-03-18 12:00:59,378 - Job - DEBUG - getting all active positions
+2019-03-18 12:01:00,713 - Job - DEBUG - getting all active positions
+2019-03-18 12:01:01,705 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:01:03,023 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:01:03,893 - Job - DEBUG - getting all students skills
+2019-03-18 12:01:05,297 - Job - DEBUG - getting all students skills
+2019-03-18 12:01:08,605 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:01:13,170 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:01:26,480 - Job - DEBUG - do_job
+2019-03-18 12:01:27,436 - Job - DEBUG - do_job
+2019-03-18 12:01:28,837 - Job - DEBUG - getting all active positions
+2019-03-18 12:01:29,704 - Job - DEBUG - getting all active positions
+2019-03-18 12:01:31,131 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:01:31,972 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:01:33,438 - Job - DEBUG - getting all students skills
+2019-03-18 12:01:34,262 - Job - DEBUG - getting all students skills
+2019-03-18 12:01:36,567 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:01:36,746 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:01:50,765 - Job - DEBUG - do_job
+2019-03-18 12:01:51,085 - Job - DEBUG - do_job
+2019-03-18 12:01:53,056 - Job - DEBUG - getting all active positions
+2019-03-18 12:01:53,425 - Job - DEBUG - getting all active positions
+2019-03-18 12:01:55,463 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:01:55,648 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:01:57,636 - Job - DEBUG - getting all students skills
+2019-03-18 12:01:57,921 - Job - DEBUG - getting all students skills
+2019-03-18 12:01:59,882 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:02:00,220 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:02:14,096 - Job - DEBUG - do_job
+2019-03-18 12:02:14,428 - Job - DEBUG - do_job
+2019-03-18 12:02:16,358 - Job - DEBUG - getting all active positions
+2019-03-18 12:02:16,765 - Job - DEBUG - getting all active positions
+2019-03-18 12:02:18,813 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:02:19,192 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:02:21,182 - Job - DEBUG - getting all students skills
+2019-03-18 12:02:21,530 - Job - DEBUG - getting all students skills
+2019-03-18 12:02:23,450 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:02:23,806 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:02:37,725 - Job - DEBUG - do_job
+2019-03-18 12:02:38,095 - Job - DEBUG - do_job
+2019-03-18 12:02:40,153 - Job - DEBUG - getting all active positions
+2019-03-18 12:02:40,385 - Job - DEBUG - getting all active positions
+2019-03-18 12:02:42,506 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:02:42,722 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:02:44,832 - Job - DEBUG - getting all students skills
+2019-03-18 12:02:45,081 - Job - DEBUG - getting all students skills
+2019-03-18 12:02:47,145 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:02:47,370 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:03:01,453 - Job - DEBUG - do_job
+2019-03-18 12:03:01,785 - Job - DEBUG - do_job
+2019-03-18 12:03:03,693 - Job - DEBUG - getting all active positions
+2019-03-18 12:03:04,063 - Job - DEBUG - getting all active positions
+2019-03-18 12:03:06,099 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:03:06,500 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:03:08,274 - Job - DEBUG - getting all students skills
+2019-03-18 12:03:08,759 - Job - DEBUG - getting all students skills
+2019-03-18 12:03:10,564 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:03:11,023 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:03:24,828 - Job - DEBUG - do_job
+2019-03-18 12:03:25,306 - Job - DEBUG - do_job
+2019-03-18 12:03:27,080 - Job - DEBUG - getting all active positions
+2019-03-18 12:03:27,612 - Job - DEBUG - getting all active positions
+2019-03-18 12:03:29,285 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:03:29,839 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:03:31,691 - Job - DEBUG - getting all students skills
+2019-03-18 12:03:32,107 - Job - DEBUG - getting all students skills
+2019-03-18 12:03:34,059 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:03:34,330 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:03:48,388 - Job - DEBUG - do_job
+2019-03-18 12:03:48,643 - Job - DEBUG - do_job
+2019-03-18 12:03:50,780 - Job - DEBUG - getting all active positions
+2019-03-18 12:03:50,903 - Job - DEBUG - getting all active positions
+2019-03-18 12:03:53,038 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:03:53,098 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:03:55,337 - Job - DEBUG - getting all students skills
+2019-03-18 12:03:55,406 - Job - DEBUG - getting all students skills
+2019-03-18 12:03:57,649 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:03:57,696 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:04:11,918 - Job - DEBUG - do_job
+2019-03-18 12:04:11,936 - Job - DEBUG - do_job
+2019-03-18 12:04:14,152 - Job - DEBUG - getting all active positions
+2019-03-18 12:04:14,199 - Job - DEBUG - getting all active positions
+2019-03-18 12:04:16,521 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:04:16,543 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:04:18,808 - Job - DEBUG - getting all students skills
+2019-03-18 12:04:18,809 - Job - DEBUG - getting all students skills
+2019-03-18 12:04:21,054 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:04:21,101 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:04:35,407 - Job - DEBUG - do_job
+2019-03-18 12:04:35,470 - Job - DEBUG - do_job
+2019-03-18 12:04:37,590 - Job - DEBUG - getting all active positions
+2019-03-18 12:04:37,728 - Job - DEBUG - getting all active positions
+2019-03-18 12:04:39,847 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:04:40,034 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:04:42,087 - Job - DEBUG - getting all students skills
+2019-03-18 12:04:42,308 - Job - DEBUG - getting all students skills
+2019-03-18 12:04:44,445 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:04:44,692 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:04:58,940 - Job - DEBUG - do_job
+2019-03-18 12:04:59,149 - Job - DEBUG - do_job
+2019-03-18 12:05:01,734 - Job - DEBUG - getting all active positions
+2019-03-18 12:05:01,749 - Job - DEBUG - getting all active positions
+2019-03-18 12:05:04,100 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:05:04,132 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:05:06,417 - Job - DEBUG - getting all students skills
+2019-03-18 12:05:06,448 - Job - DEBUG - getting all students skills
+2019-03-18 12:05:08,881 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:05:08,892 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:05:23,173 - Job - DEBUG - do_job
+2019-03-18 12:05:23,304 - Job - DEBUG - do_job
+2019-03-18 12:05:25,891 - Job - DEBUG - getting all active positions
+2019-03-18 12:05:26,319 - Job - DEBUG - getting all active positions
+2019-03-18 12:05:28,202 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:05:28,555 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:05:30,491 - Job - DEBUG - getting all students skills
+2019-03-18 12:05:30,848 - Job - DEBUG - getting all students skills
+2019-03-18 12:05:32,764 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:05:33,066 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:05:47,054 - Job - DEBUG - do_job
+2019-03-18 12:05:47,355 - Job - DEBUG - do_job
+2019-03-18 12:05:49,483 - Job - DEBUG - getting all active positions
+2019-03-18 12:05:49,683 - Job - DEBUG - getting all active positions
+2019-03-18 12:05:51,735 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:05:51,894 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:05:54,026 - Job - DEBUG - getting all students skills
+2019-03-18 12:05:54,102 - Job - DEBUG - getting all students skills
+2019-03-18 12:05:56,263 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:05:56,388 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:06:10,617 - Job - DEBUG - do_job
+2019-03-18 12:06:10,701 - Job - DEBUG - do_job
+2019-03-18 12:06:13,309 - Job - DEBUG - getting all active positions
+2019-03-18 12:06:13,346 - Job - DEBUG - getting all active positions
+2019-03-18 12:06:15,638 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:06:15,700 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:06:17,939 - Job - DEBUG - getting all students skills
+2019-03-18 12:06:18,021 - Job - DEBUG - getting all students skills
+2019-03-18 12:06:20,242 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:06:20,249 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:06:34,515 - Job - DEBUG - do_job
+2019-03-18 12:06:34,600 - Job - DEBUG - do_job
+2019-03-18 12:06:36,833 - Job - DEBUG - getting all active positions
+2019-03-18 12:06:36,898 - Job - DEBUG - getting all active positions
+2019-03-18 12:06:39,232 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:06:39,279 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:06:41,469 - Job - DEBUG - getting all students skills
+2019-03-18 12:06:41,585 - Job - DEBUG - getting all students skills
+2019-03-18 12:06:43,720 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:06:43,758 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:06:58,007 - Job - DEBUG - do_job
+2019-03-18 12:06:58,067 - Job - DEBUG - do_job
+2019-03-18 12:07:00,297 - Job - DEBUG - getting all active positions
+2019-03-18 12:07:00,312 - Job - DEBUG - getting all active positions
+2019-03-18 12:07:02,687 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:07:02,703 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:07:04,980 - Job - DEBUG - getting all students skills
+2019-03-18 12:07:05,009 - Job - DEBUG - getting all students skills
+2019-03-18 12:07:07,248 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:07:07,295 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:07:21,514 - Job - DEBUG - do_job
+2019-03-18 12:07:21,561 - Job - DEBUG - do_job
+2019-03-18 12:07:24,390 - Job - DEBUG - getting all active positions
+2019-03-18 12:07:24,406 - Job - DEBUG - getting all active positions
+2019-03-18 12:07:26,674 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:07:26,711 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:07:29,032 - Job - DEBUG - getting all students skills
+2019-03-18 12:07:29,063 - Job - DEBUG - getting all students skills
+2019-03-18 12:07:31,237 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:07:31,390 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:07:45,516 - Job - DEBUG - do_job
+2019-03-18 12:07:45,616 - Job - DEBUG - do_job
+2019-03-18 12:07:47,850 - Job - DEBUG - getting all active positions
+2019-03-18 12:07:47,923 - Job - DEBUG - getting all active positions
+2019-03-18 12:07:50,126 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:07:50,264 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:07:52,401 - Job - DEBUG - getting all students skills
+2019-03-18 12:07:52,532 - Job - DEBUG - getting all students skills
+2019-03-18 12:07:54,637 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:07:54,775 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:08:08,935 - Job - DEBUG - do_job
+2019-03-18 12:08:09,063 - Job - DEBUG - do_job
+2019-03-18 12:08:11,317 - Job - DEBUG - getting all active positions
+2019-03-18 12:08:11,486 - Job - DEBUG - getting all active positions
+2019-03-18 12:08:13,691 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:08:13,823 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:08:16,027 - Job - DEBUG - getting all students skills
+2019-03-18 12:08:16,143 - Job - DEBUG - getting all students skills
+2019-03-18 12:08:18,319 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:08:18,433 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:08:32,651 - Job - DEBUG - do_job
+2019-03-18 12:08:32,720 - Job - DEBUG - do_job
+2019-03-18 12:08:35,273 - Job - DEBUG - getting all active positions
+2019-03-18 12:08:35,289 - Job - DEBUG - getting all active positions
+2019-03-18 12:08:37,592 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:08:37,607 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:08:40,014 - Job - DEBUG - getting all students skills
+2019-03-18 12:08:40,029 - Job - DEBUG - getting all students skills
+2019-03-18 12:08:42,333 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:08:42,372 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:08:56,686 - Job - DEBUG - do_job
+2019-03-18 12:08:56,740 - Job - DEBUG - do_job
+2019-03-18 12:08:58,995 - Job - DEBUG - getting all active positions
+2019-03-18 12:08:59,146 - Job - DEBUG - getting all active positions
+2019-03-18 12:09:01,436 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:09:01,614 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:09:03,845 - Job - DEBUG - getting all students skills
+2019-03-18 12:09:04,142 - Job - DEBUG - getting all students skills
+2019-03-18 12:09:06,194 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:09:06,432 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:09:20,530 - Job - DEBUG - do_job
+2019-03-18 12:09:20,799 - Job - DEBUG - do_job
+2019-03-18 12:09:22,865 - Job - DEBUG - getting all active positions
+2019-03-18 12:09:23,089 - Job - DEBUG - getting all active positions
+2019-03-18 12:09:25,162 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:09:25,363 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:09:27,482 - Job - DEBUG - getting all students skills
+2019-03-18 12:09:27,714 - Job - DEBUG - getting all students skills
+2019-03-18 12:09:30,050 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:09:30,373 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:09:44,589 - Job - DEBUG - do_job
+2019-03-18 12:09:44,849 - Job - DEBUG - do_job
+2019-03-18 12:09:47,328 - Job - DEBUG - getting all active positions
+2019-03-18 12:09:47,328 - Job - DEBUG - getting all active positions
+2019-03-18 12:09:50,057 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:09:50,057 - Job - DEBUG - getting all active student profiles
+2019-03-18 12:09:52,921 - Job - DEBUG - getting all students skills
+2019-03-18 12:09:53,347 - Job - DEBUG - getting all students skills
+2019-03-18 12:09:55,972 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:09:56,755 - Job - DEBUG - getting all positions_skills
+2019-03-18 12:10:14,259 - Job - DEBUG - do_job
+2019-03-18 12:10:14,775 - Job - DEBUG - do_job
+2019-03-18 13:15:46,332 - Job - DEBUG - do_job
+2019-03-18 13:15:49,072 - Job - DEBUG - do_job
+2019-03-18 13:30:09,218 - Job - DEBUG - do_job
+2019-03-18 13:30:12,069 - Job - DEBUG - do_job
+2019-03-18 13:31:32,434 - Job - DEBUG - do_job
+2019-03-18 13:31:35,482 - Job - DEBUG - do_job
+2019-03-18 13:39:06,637 - Job - DEBUG - do_job
+2019-03-18 13:39:09,415 - Job - DEBUG - do_job
+2019-03-18 13:39:09,690 - Job - DEBUG - getting all active positions
+2019-03-18 13:39:11,879 - Job - DEBUG - getting all active positions
+2019-03-18 13:39:11,981 - Job - DEBUG - getting all active student profiles
+2019-03-18 13:40:19,898 - Job - DEBUG - do_job
+2019-03-18 13:40:22,491 - Job - DEBUG - getting all active positions
+2019-03-18 13:40:22,677 - Job - DEBUG - do_job
+2019-03-18 13:40:24,780 - Job - DEBUG - getting all active student profiles
+2019-03-18 13:40:27,046 - Job - DEBUG - getting all students skills
+2019-03-18 13:41:33,775 - Job - DEBUG - do_job
+2019-03-18 13:41:38,061 - Job - DEBUG - do_job

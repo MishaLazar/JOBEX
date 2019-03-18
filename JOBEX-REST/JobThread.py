@@ -25,6 +25,7 @@ SUB_CATEGORY = 0.3
 SKILLS = 0.3
 OTHERS = 0.2
 
+nltk.downloader.download('vader_lexicon')
 pos_tweets = [('I love this car', 'positive'),
               ('This view is amazing', 'positive'),
               ('I feel great this morning', 'positive'),

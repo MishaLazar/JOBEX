@@ -1,5 +1,5 @@
 
-from flask import Flask, jsonify, request, redirect, url_for
+from flask import Flask, jsonify, redirect, url_for, render_template, flash, session, request
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt)
 from flask_cors import CORS
@@ -12,16 +12,21 @@ from Controllers.auth_controller import AuthController
 from Utils.json_encoder import JSONEncoder
 #from jobs_service import JobThread
 from Utils.util import Utils
+from forms import RegistrationForm, LoginForm
+from jobex_web_app_helper import JobexWebHelper
+import json
 
 app = Flask(__name__)
 
 config = ConfigHelper.get_instance()
+app.config['SECRET_KEY'] = config.read_auth('SECRET_KEY')   # 'I8Is25DFOzLUKSx06WCyesvHJgmZJblt'
 app.config['JWT_SECRET_KEY'] = config.read_auth('SECRET_KEY')
 app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
 #CORS(app, resources={r"/*": {"origins": "*"}}, send_wildcard=True)
 CORS(app)
 jwt = JWTManager(app)
+jobex_web_helper = JobexWebHelper(host=config.read_db_params('MONGO_HOST'))
 
 
 @jwt.token_in_blacklist_loader
@@ -31,9 +36,13 @@ def check_if_token_in_blacklist(decrypted_token):
 
 
 @app.route('/')
-def home():
-    json_str = {"result": 0}
-    return jsonify(json_str)
+def home_view():
+    return render_template("home.html")
+
+
+@app.route("/about")
+def about_view():
+    return render_template('about.html', title='About')
 
 
 @app.route('/logout/<token_type>', methods=['POST'])
@@ -61,7 +70,7 @@ def logout_refresh():
     return AuthController.add_token_to_blacklist(jti)
 
 
-@app.route('/login', methods=['POST', 'GET'])
+@app.route('/login', methods=['POST'])
 def get_login():
     if request.method == 'POST':
         authentication = request.get_json()
@@ -85,6 +94,47 @@ def get_login():
         else:
             return jsonify({"message": "Wrong credentials"}), 403
 
+
+@app.route('/register')
+def register_view():
+    # todo check if authenticated then redirect to dashboard
+    form = RegistrationForm()
+
+    if form.validate_on_submit():
+        user_obj = {"username": form.username.data, "email": form.email.data, "password": form.password.data}
+        try:
+            jobex_web_helper.create_user(user_obj)
+            flash(f'Account created for {form.username.data}!', 'success')
+            return redirect(url_for('login_view'))
+        except IOError as err:
+            flash(f'Failed to create account for {form.username.data}! '
+                  f'Please contact our support - support@jobex.com',
+                  'warning')
+            flash(f'Error = ' + str(err), 'info')
+
+    return render_template("register.html", title='Register', form=form)
+
+
+@app.route('/login', methods=['GET'])
+def login_view():
+    # todo check if authenticated then redirect to dashboard
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        login_obj = {"username": form.username.data, "password": form.password.data}
+        try:
+            response = jobex_web_helper.login(login_obj)
+            if response.status_code == 200:
+                tokens = json.dumps(response.json())
+                session['tokens'] = tokens
+                session['username'] = form.username.data
+                return redirect(url_for('save_tokens', tokens=tokens, username=form.username.data))
+            else:
+                flash(f'Login unsuccessful! please check email and password', 'warning')
+        except IOError as err:
+            flash(f'Login call failed for {form.username.data}! Error = ' + str(err), 'warning')
+
+    return render_template("login.html", title='Login', form=form)
 
 @app.route('/register', methods=['POST'])
 def register_student():
@@ -215,6 +265,40 @@ def get_student_skills(student_id):
 
     return JSONEncoder().encode(result)
 
+
+# this will save tokens in the browser and redirect to dashboard with the username
+@app.route('/save_tokens')
+def save_tokens():
+    # todo how to block this route if it's not sourced by the server redirect?
+    tokens = json.loads(request.args['tokens'])
+    username = request.args['username']
+    return render_template("save_tokens.html", tokens=tokens, username=username)
+
+
+@app.route('/logout', methods=['GET', 'POST'])
+def logout_view():
+    # todo logout here
+    return redirect(url_for('home_view'))
+
+
+@app.route('/dashboard')
+def dashboard_view():
+    return render_template("dashboard.html", authenticated=True)
+
+
+@app.route('/engagements')
+def engagement_view():
+    return render_template("engagement.html", authenticated=True)
+
+
+@app.route('/positions')
+def position_view():
+    return render_template("position.html", authenticated=True)
+
+
+@app.route('/profile')
+def profile_view():
+    return render_template("profile.html", authenticated=True)
 
 
 if __name__ == '__main__':
