@@ -31,8 +31,10 @@ export class MyProfilePage implements OnInit {
     if(this.profileService.isProfileImgSet()){
       this.profileImg = this.profileService.myProfile.profileImg;
     }
-    this.profileListItems.push(new ListCardItem("Set your personal Data","body","create"));
-    this.profileListItems.push(new ListCardItem("Set your skills","checkbox-outline","create"));
+    this.profileListItems.push(new ListCardItem("Set your personal Data","body","create","personalData"));
+    this.profileListItems.push(new ListCardItem("Set your skills","checkbox-outline","create","skills"));
+    this.profileListItems.push(new ListCardItem("Best for you","color-wand","podium","best"));
+    this.profileListItems.push(new ListCardItem("My engagements","mail","done-all","engagements"));
     console.table(this.profileListItems.slice())
   }
 
@@ -40,4 +42,7 @@ export class MyProfilePage implements OnInit {
     this.menuCtrl.open();
   }
 
+  onItemClick(cardId:string) {
+    console.log(cardId);
+  }
 }

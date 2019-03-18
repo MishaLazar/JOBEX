@@ -11,12 +11,12 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-  <form #f (ngSubmit)="onSubmit(f)">
-    <ion-list>
-      <ion-item>
-        <ion-card>
+  <ion-grid>
+
+    <ion-row align-self-center>
+      <ion-col>
+        <ion-card >
           <ion-card-header>
             <ion-card-title>Profile Picture</ion-card-title>
           </ion-card-header>
@@ -24,15 +24,17 @@
             <img [src]="profileImg">
           </ion-item>
         </ion-card>
-      </ion-item>
-      <ion-item *ngFor="let listItem of profileListItems">
+      </ion-col>
+    </ion-row>
+      <ion-row *ngFor="let listItem of profileListItems" align-self-center (click)="onItemClick(listItem.cardId);">
+      <ion-col>
         <list-item-card leftIconName="{{listItem.leftIconName}}"
                         rightIconName="{{listItem.rightIconName}}"
                         CardContentText="{{listItem.ContentText}}"
         ></list-item-card>
-      </ion-item>
-    </ion-list>
-  </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <!-- <form #f (ngSubmit)="onSubmit(f)" >
    <ion-list>
      <ion-item>
