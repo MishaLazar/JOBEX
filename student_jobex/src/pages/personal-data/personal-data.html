@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-title>
+    Personal Data
+  </ion-title>
+</ion-header>
+
+<ion-content padding>
+  <form #f (ngSubmit)="onSubmit(f)" >
+    <ion-list>
+      <ion-item>
+        <ion-card>
+          <ion-item>
+            <img [src]="profileImg">
+          </ion-item>
+        </ion-card>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>First Name</ion-label>
+        <ion-input
+          name="firstName"
+          required
+          ngModel></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Last Name</ion-label>
+        <ion-input
+          name="lastName"
+          required
+          ngModel></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="call"></ion-icon>
+          Phone Number
+        </ion-label>
+        <ion-input
+          name="phone"
+          required
+          ngModel></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="mail"></ion-icon>
+          Mail
+        </ion-label>
+        <ion-input
+          name="mail"
+          required
+          ngModel></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="map"></ion-icon>
+          Address
+        </ion-label>
+        <ion-input
+          name="address"
+          required
+          ngModel></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="calendar"></ion-icon>
+          Birthday
+        </ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" min="1950-03-14" ></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-buttons>
+          <button ion-button block outline icon-start>
+            <ion-icon name="briefcase" ></ion-icon>
+            Skills
+          </button>
+        </ion-buttons>
+      </ion-item>
+    </ion-list>
+    <ion-buttons>
+      <button ion-button block icon-start type="submit" [disabled]="!f.valid">
+        <ion-icon name="create" >
+          Save
+        </ion-icon>
+      </button>
+    </ion-buttons>
+
+  </form>
+</ion-content>
