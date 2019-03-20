@@ -24,7 +24,7 @@ export class MyProfilePage implements OnInit {
   profileListItems:ListCardItem [] = [];
 
   constructor(public navCtrl: NavController,
-              private menuCtrl:MenuController,private profileService:MyProfileService,public modlaCtrl:ModalController) {
+              private menuCtrl:MenuController,private profileService:MyProfileService,public modalCtrl:ModalController) {
 
 
   }
@@ -55,7 +55,7 @@ export class MyProfilePage implements OnInit {
 
    async onOpenPersonnalData(){
     console.log("1");
-    const modal = await this.modlaCtrl.create(PersonalDataPage);
+    const modal = await this.modalCtrl.create(PersonalDataComponent);
 
      return await modal.present();
   }

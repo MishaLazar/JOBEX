@@ -45,8 +45,7 @@ import {PersonalDataPageModule} from "../pages/personal-data/personal-data.modul
     HomePage,
     LoginPage,
     RegisterPage,
-    MyProfilePage,
-    PersonalDataPage
+    MyProfilePage
   ],
   providers: [
     StatusBar,
