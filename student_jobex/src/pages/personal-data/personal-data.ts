@@ -32,6 +32,7 @@ export class PersonalDataPage implements  OnInit{
 
   async closePersonalData(){
    //await this.modalCtrl.;
+
   }
 
 }

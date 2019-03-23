@@ -18,8 +18,9 @@ import {StorageService} from "../services/storage.service";
 import {MyProfileService} from "../services/my-profile.service";
 
 import {ComponentsModule } from "../components/components.module";
-import {PersonalDataPage} from "../pages/personal-data/personal-data";
-import {PersonalDataPageModule} from "../pages/personal-data/personal-data.module";
+// import {PersonalDataPage} from "../pages/personal-data/personal-data";
+// import {PersonalDataPageModule} from "../pages/personal-data/personal-data.module";
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -35,7 +36,7 @@ import {PersonalDataPageModule} from "../pages/personal-data/personal-data.modul
     BrowserModule,
     HttpClientModule,
     ComponentsModule,
-    PersonalDataPageModule,
+    FormsModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],

@@ -1,10 +1,10 @@
 <ion-header>
   <ion-navbar>
-    <!--<ion-buttons right>-->
-      <!--&lt;!&ndash;<button ion-button (click)="onMod()">&ndash;&gt;-->
-        <!--&lt;!&ndash;<ion-icon name="menu"></ion-icon>&ndash;&gt;-->
-      <!--&lt;!&ndash;</button>&ndash;&gt;-->
-    <!--</ion-buttons>-->
+    <ion-buttons right>
+      <button ion-button (click)="dismiss()">
+        Back
+      </button>
+    </ion-buttons>
     <ion-title>
       Personal Data
     </ion-title>
@@ -12,15 +12,24 @@
 </ion-header>
 
 <ion-content padding>
-  <form  #f (ngSubmit)="onSubmit(f)" >
+  <ion-item align-items-center>
+    <ion-avatar slot="end">
+      <img class="item-avatar avatar" [src]="profileImg">
+    </ion-avatar>
+    <!--<ion-label>Item Avatar</ion-label>-->
+  </ion-item>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <ion-list>
-      <ion-item>
-        <ion-card>
+      <!--<ion-item>
+
           <ion-item>
-            <img [src]="profileImg">
+            <ion-avatar >
+              <img [src]="profileImg">
+            </ion-avatar>
+            <ion-label>Profile Picture</ion-label>
           </ion-item>
-        </ion-card>
-      </ion-item>
+
+      </ion-item>-->
       <ion-item>
         <ion-label floating>First Name</ion-label>
         <ion-input
@@ -29,54 +38,54 @@
           ngModel
           type="text"></ion-input>
       </ion-item>
-      <!--<ion-item>-->
-        <!--<ion-label floating>Last Name</ion-label>-->
-        <!--<ion-input-->
-          <!--name="lastName"-->
-          <!--required-->
-          <!--ngModel></ion-input>-->
-      <!--</ion-item>-->
-      <!--<ion-item>-->
-        <!--<ion-label floating>-->
-          <!--<ion-icon name="call"></ion-icon>-->
-          <!--Phone Number-->
-        <!--</ion-label>-->
-        <!--<ion-input-->
-          <!--name="phone"-->
-          <!--required-->
-          <!--ngModel></ion-input>-->
-      <!--</ion-item>-->
-      <!--<ion-item>-->
-        <!--<ion-label floating>-->
-          <!--<ion-icon name="mail"></ion-icon>-->
-          <!--Mail-->
-        <!--</ion-label>-->
-        <!--<ion-input-->
-          <!--name="mail"-->
-          <!--required-->
-          <!--ngModel></ion-input>-->
-      <!--</ion-item>-->
-      <!--<ion-item>-->
-        <!--<ion-label floating>-->
-          <!--<ion-icon name="map"></ion-icon>-->
-          <!--Address-->
-        <!--</ion-label>-->
-        <!--<ion-input-->
-          <!--name="address"-->
-          <!--required-->
-          <!--ngModel></ion-input>-->
-      <!--</ion-item>-->
-      <!--<ion-item>-->
-        <!--<ion-label floating>-->
-          <!--<ion-icon name="calendar"></ion-icon>-->
-          <!--Birthday-->
-        <!--</ion-label>-->
-        <!--<ion-datetime displayFormat="DD/MM/YYYY" min="1950-03-14" ></ion-datetime>-->
-      <!--</ion-item>-->
+      <ion-item>
+        <ion-label floating>Last Name</ion-label>
+        <ion-input
+          name="lastName"
+          required
+          ngModel></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="call"></ion-icon>
+          Phone Number
+        </ion-label>
+        <ion-input
+          name="phone"
+          required
+          ngModel></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="mail"></ion-icon>
+          Mail
+        </ion-label>
+        <ion-input
+          name="mail"
+          required
+          ngModel></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="map"></ion-icon>
+          Address
+        </ion-label>
+        <ion-input
+          name="address"
+          required
+          ngModel></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="calendar"></ion-icon>
+          Birthday
+        </ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" min="1950-03-14"></ion-datetime>
+      </ion-item>
     </ion-list>
     <ion-buttons>
       <button ion-button block icon-start type="submit" [disabled]="!f.valid">
-        <ion-icon name="create" >
+        <ion-icon name="create">
           Save
         </ion-icon>
       </button>

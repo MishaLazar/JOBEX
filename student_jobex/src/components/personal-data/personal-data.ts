@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MyProfileService} from "../../services/my-profile.service";
-import {Form} from "ionic-angular";
-import {collectExternalReferences} from "@angular/compiler";
+import {ModalController, ViewController} from "ionic-angular";
 
 /**
  * Generated class for the PersonalDataComponent component.
@@ -9,17 +8,21 @@ import {collectExternalReferences} from "@angular/compiler";
  * See https://angular.io/api/core/Component for more info on Angular
  * Components.
  */
+
+
 @Component({
   selector: 'personal-data',
   templateUrl: 'personal-data.html'
 })
+
 export class PersonalDataComponent implements OnInit{
   profileImg: string = "../assets/imgs/default_profile.png";
   text: string;
-
-  constructor(private profileService:MyProfileService ) {
-    console.log('Hello PersonalDataComponent Component');
+  @Input() value: number;
+  constructor(private profileService:MyProfileService, private viewController:ViewController) {
+    console.log('Hello PersonalDataComponent Component : ' + this.value);
     this.text = 'Hello World';
+
   }
 
   ngOnInit(): void {
@@ -30,6 +33,11 @@ export class PersonalDataComponent implements OnInit{
 
   onSubmit(form:any){
     console.log(form);
+  }
+
+  dismiss() {
+      this.viewController.dismiss();
+
   }
 
 }
