@@ -46,8 +46,11 @@ export class MyProfilePage implements OnInit {
 
   async onOpenPersonnalData() {
     console.log("1");
-    const modal = await this.modalCtrl.create(PersonalDataComponent, { value: 123 });
-
+    const modal = //await this.modalCtrl.create(PersonalDataComponent, { value: 123 });
+      await this.modalCtrl.create({
+        component:PersonalDataComponent,
+        componentProps: { value: 123 }
+      });
     return await modal.present();
 
 
