@@ -1,41 +1,17 @@
-<!--<ion-header>
-  <ion-navbar>
-    <ion-buttons right>
-      <button ion-button (click)="CloseModal()">
-        Back
-      </button>
-    </ion-buttons>
-    <ion-title>
-      Personal Data
-    </ion-title>
-  </ion-navbar>
-</ion-header>-->
-
 <ion-content padding>
   <ion-item align-items-center>
-    <ion-avatar slot="end">
+    <ion-avatar>
       <img class="item-avatar avatar" [src]="profileImg">
-    </ion-avatar>
-    <!--<ion-label>Item Avatar</ion-label>-->
+    </ion-avatar>    
   </ion-item>
-  <form #f (ngSubmit)="onSubmit(f)">
-    <ion-list>
-      <!--<ion-item>
-
-          <ion-item>
-            <ion-avatar >
-              <img [src]="profileImg">
-            </ion-avatar>
-            <ion-label>Profile Picture</ion-label>
-          </ion-item>
-
-      </ion-item>-->
+  <form #f  (ngSubmit)="onSubmit(f)">
+    <ion-list >      
       <ion-item>
         <ion-label floating>First Name</ion-label>
         <ion-input
                 name="firstName"
                 required
-                ngModel
+                ngModel                              
                 type="text"></ion-input>
       </ion-item>
       <ion-item>
@@ -83,8 +59,12 @@
         <ion-datetime displayFormat="DD/MM/YYYY" min="1950-03-14"></ion-datetime>
       </ion-item>
     </ion-list>
+    <ion-button expand="full" fill="outline" type="submit" [disabled]="!f.valid" ><ion-icon name="create">
+        Save
+      </ion-icon></ion-button>
     <ion-buttons>
-      <button ion-button block icon-start type="submit" [disabled]="!f.valid">
+      
+      <button ion-button full icon-start type="submit" [disabled]="!f.valid">
         <ion-icon name="create">
           Save
         </ion-icon>

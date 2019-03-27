@@ -1,34 +1,35 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Login</ion-title>
-    <ion-buttons slot="start">
-      <ion-menu-button autoHide="false"></ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-title>Login</ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button autoHide="false"></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-grid>
+    <ion-grid>
 
-    <ion-row align-self-center>
-      <ion-col>
-        <ion-card >
-          <ion-card-header>
-            <ion-card-title>Profile Picture</ion-card-title>
-          </ion-card-header>
-          <ion-item>
-            <img [src]="profileImg">
-          </ion-item>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row *ngFor="let listItem of profileListItems" align-self-center (click)="onItemClick(listItem.cardId);">
-      <ion-col>
-        <list-card-item leftIconName="{{listItem.leftIconName}}"
-                        rightIconName="{{listItem.rightIconName}}"
-                        CardContentText="{{listItem.ContentText}}"
-        ></list-card-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+        <ion-row align-self-center>
+            <ion-col>
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-title>Profile Picture</ion-card-title>
+                    </ion-card-header>
+                    <ion-item>
+                        <img [src]="profileImg">
+                    </ion-item>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let listItem of profileListItems" align-self-center (click)="onItemClick(listItem.cardId);">
+            <ion-col>
+
+                <list-card-item class="list-card-item" leftIconName="{{listItem.leftIconName}}"
+                                rightIconName="{{listItem.rightIconName}}"
+                                CardContentText="{{listItem.ContentText}}"
+                ></list-card-item>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

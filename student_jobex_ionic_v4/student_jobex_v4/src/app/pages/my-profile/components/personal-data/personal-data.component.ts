@@ -11,7 +11,7 @@ export class PersonalDataComponent implements OnInit {
 
     profileImg: string = "assets/img/default_profile.png";
     text: string;
-    @Input() value: number;
+    @Input() value: any;
     constructor(private profileService:MyProfileService, private modalCtrl:ModalController) {
         console.log('Hello PersonalDataComponent Component : ' + this.value);
         this.text = 'Hello World';
