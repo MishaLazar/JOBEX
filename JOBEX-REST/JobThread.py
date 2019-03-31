@@ -345,6 +345,7 @@ class JobThread(object):
                (sub_categories_similarity * SUB_CATEGORY) + \
                (skill_similarity * SKILLS) + \
                (OTHERS * 1)
+        #TODO:// Comapny grade
 
     def save_match(self, match):
         db_client = Client()

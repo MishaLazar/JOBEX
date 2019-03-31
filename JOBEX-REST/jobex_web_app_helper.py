@@ -28,7 +28,7 @@ class JobexWebHelper:
         return self.api_call(api_path="users/{}".format(user_id), obj=user_obj, method='DELETE',
                              access_token=access_token)
 
-    def create_position(self, position_obj, access_token):
+    def add_position(self, position_obj, access_token):
         return self.api_call(api_path="positions", obj=position_obj, method='POST', access_token=access_token)
 
     def edit_position(self, user_obj, position_id, access_token):

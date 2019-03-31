@@ -3,7 +3,8 @@ from DAL.mongo_db_handler import Client
 COLLECTION_NAMES = {
     "engagements_collection": "engagements",
     "positions_collection": "positions",
-    "users_collection": "users"
+    "users_collection": "users",
+    "matches_collection": "matches"
 }
 
 class WebController:
@@ -56,3 +57,13 @@ class WebController:
         db_client = Client()
         return db_client.insert_doc_to_collection(COLLECTION_NAMES["users_collection"], user_obj)
 
+    def get_matches(self, position_id=None, student_id=None):
+        db_client = Client()
+        if position_id:
+            return db_client.get_many_docs_from_collection(COLLECTION_NAMES["matches_collection"],
+                                                           json_query={"position_id": "{}".format(position_id)})
+        if student_id:
+            return db_client.get_many_docs_from_collection(COLLECTION_NAMES["matches_collection"],
+                                                           json_query={"student_id": "{}".format(student_id)})
+        else:
+            return db_client.get_many_docs_from_collection(COLLECTION_NAMES["matches_collection"])

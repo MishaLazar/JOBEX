@@ -1,27 +1,98 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1 id="position_name"></h1>
-    <h1 id="active"></h1>
-     <h1 id="department"></h1>
-    <script>
-            $(document).ready(function () {
-                debugger;
-                var access_token = window.localStorage.accessToken;
-                var req = new XMLHttpRequest();
-                var url_string = window.location.href;
-                var url = new URL(url_string);
-                var position_id = url.searchParams.get("position_id");
-                var API_url = "http://127.0.0.1:5050/positions/" + position_id;
-                req.open("GET", API_url, false);
-                req.setRequestHeader('Content-Type', 'application/json');
-                req.setRequestHeader('Access-Control-Allow-Origin', '*');
-                req.setRequestHeader("Authorization", "Bearer " + access_token);
-                req.send();
-                var results = JSON.parse(req.response);
-                console.log(results)
-                document.getElementById("position_name").innerHTML = results.position_name;
-                document.getElementById("active").innerHTML = results.active;
-                document.getElementById("department").innerHTML = results.department;
+<h1>Position Name:</h1>
+<h2 id="position_name"></h2>
+<h1>Position Activated:</h1>
+<h2 id="active"></h2>
+<h1>Position Department:</h1>
+<h2 id="department"></h2>
+<h1>Position matches:</h1>
+<h1>---------------------------------------------</h1>
+<table id="matches" style="width:100%">
+    <thead>
+    <tr>
+        <th>Match Level</th>
+        <th>Match Update Date</th>
+        <th>Engage!</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<h1>---------------------------------------------</h1>
+<h1>Active Engagements:</h1>
+<h1>---------------------------------------------</h1>
+<table id="engagements" style="width:100%">
+    <thead>
+    <tr>
+        <th>Engagement ID</th>
+        <th>Engagement Update Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<h1>---------------------------------------------</h1>
+<script>
+    $(document).ready(function () {
+        // debugger;
+        var access_token = window.localStorage.accessToken;
+        var req = new XMLHttpRequest();
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var position_id = url.searchParams.get("position_id");
+        var API_url = "http://127.0.0.1:5050/positions/" + position_id;
+        req.open("GET", API_url, false);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.setRequestHeader('Access-Control-Allow-Origin', '*');
+        req.setRequestHeader("Authorization", "Bearer " + access_token);
+        req.send();
+        var results = JSON.parse(req.response);
+        console.log(results);
+        document.getElementById("position_name").innerHTML = results.position_name;
+        document.getElementById("active").innerHTML = results.active;
+        document.getElementById("department").innerHTML = results.department;
+
+        var API_url = "http://127.0.0.1:5050/matches/position_id=" + position_id;
+        req.open("GET", API_url, false);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.setRequestHeader('Access-Control-Allow-Origin', '*');
+        req.setRequestHeader("Authorization", "Bearer " + access_token);
+        req.send();
+        var matches_arr = JSON.parse(req.response);
+
+        for (var lst_idx = 0; lst_idx < matches_arr.length; lst_idx++) {
+            console.log(matches_arr[lst_idx]);
+            var json = matches_arr[lst_idx];
+            tr = $('<tr/>');
+            tr.append("<td>" + json.match_level_id + "</td>");
+            tr.append("<td>" + json.match_update_date + "</td>");
+            var link = "<a href=\"http://127.0.0.1:5050/engagements?student_id=" + json.student_id + "\">Go</a>";
+            tr.append("<td>" + link + "</td>");
+            $('#matches').append(tr);
+        }
+
+        // var API_url = "http://127.0.0.1:5050/engagements/position_id=" + position_id;
+        // req.open("GET", API_url, false);
+        // req.setRequestHeader('Content-Type', 'application/json');
+        // req.setRequestHeader('Access-Control-Allow-Origin', '*');
+        // req.setRequestHeader("Authorization", "Bearer " + access_token);
+        // req.send();
+        // var engagements_arr = JSON.parse(req.response);
+        //
+        // for (var lst_idx = 0; lst_idx < results_arr.length; lst_idx++) {
+        //     console.log(engagements_arr[lst_idx]);
+        //     var json = engagements_arr[lst_idx];
+        //     tr = $('<tr/>');
+        //     tr.append("<td>" + json.engagement_id + "</td>");
+        //     tr.append("<td>" + json.engagement_update_date + "</td>");
+        //     $('#engagements').append(tr);
+        // }
+
     });
+</script>
+        <script>
+        $(document).ready(function () {$('#matches').DataTable();});
+        $(document).ready(function () {$('#engagements').DataTable();});
     </script>
 {% endblock content %}

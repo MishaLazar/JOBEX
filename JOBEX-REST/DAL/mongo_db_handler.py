@@ -132,6 +132,7 @@ class Client:
             collection = self.db[collection_name]
             if json_query:
                 for doc in collection.find(json_query):
+                    doc['_id'] = str(doc['_id'])
                     result.append(doc)
             else:
                 for doc in collection.find():
