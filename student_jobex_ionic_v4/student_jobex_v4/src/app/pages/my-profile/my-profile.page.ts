@@ -3,6 +3,9 @@ import {ListCardItem} from "../../models/list-card-item";
 import {MyProfileService} from "../../services/my-profile.service";
 import {ModalController} from "@ionic/angular";
 import {PersonalDataComponent} from "./components/personal-data/personal-data.component";
+import { EngagementsComponent } from './components/engagements/engagements.component';
+import { SkillsComponent } from './components/skills/skills.component';
+import { WishListComponent } from './components/wish-list/wish-list.component';
 
 @Component({
     selector: 'app-my-profile',
@@ -22,7 +25,7 @@ export class MyProfilePage implements OnInit {
         }
         this.profileListItems.push(new ListCardItem("Set your personal Data", "body", "create", "personalData"));
         this.profileListItems.push(new ListCardItem("Set your skills", "checkbox-outline", "create", "skills"));
-        this.profileListItems.push(new ListCardItem("Wish List", "color-wand", "podium", "best"));
+        this.profileListItems.push(new ListCardItem("Wish List", "color-wand", "podium", "wishList"));
         this.profileListItems.push(new ListCardItem("My engagements", "mail", "done-all", "engagements"));
         console.table(this.profileListItems.slice())
     }
@@ -32,7 +35,28 @@ export class MyProfilePage implements OnInit {
             case "personalData":
                 this.onOpenPersonalData();
                 break;
+            case "engagements":
+                this.onOpenEngagements();
+                break;
+            case "wishList":
+                this.onOpenWishList();
+                break;
+            case "skills":
+                this.onOpenSkills();
+                break;
         }
+    }
+    async onOpenSkills(){
+        const modal = await this.modalCtrl.create({
+            component:SkillsComponent
+        });
+        modal.present();
+    }
+    async onOpenWishList(){
+        const modal = await this.modalCtrl.create({
+            component:WishListComponent
+        });
+        modal.present();
     }
 
     async onOpenPersonalData() {
@@ -44,5 +68,11 @@ export class MyProfilePage implements OnInit {
         return await modal.present();
     }
 
+    async onOpenEngagements(){
+        const modal = await this.modalCtrl.create({
+            component:EngagementsComponent
+        });
 
+        return await modal.present();
+    }
 }

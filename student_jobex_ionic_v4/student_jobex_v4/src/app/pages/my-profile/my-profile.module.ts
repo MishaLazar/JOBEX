@@ -8,7 +8,11 @@ import {IonicModule} from '@ionic/angular';
 import {MyProfilePage} from './my-profile.page';
 import {PersonalDataComponent} from "./components/personal-data/personal-data.component";
 import {ListCardItemComponent} from "./components/list-card-item/list-card-item.component";
-import {ProfileComponentsModule} from "./components/profile-componentsModule";
+import { EngagementsComponent } from './components/engagements/engagements.component';
+import { ProfileComponentsModule } from './components/profile-componentsModule';
+import { WishListComponent } from './components/wish-list/wish-list.component';
+import { SkillsComponent } from './components/skills/skills.component';
+
 
 const routes: Routes = [
     {
@@ -26,7 +30,7 @@ const routes: Routes = [
         RouterModule.forChild(routes)
     ],
     declarations: [MyProfilePage],
-    entryComponents: [PersonalDataComponent,ListCardItemComponent]
+    entryComponents: [PersonalDataComponent,ListCardItemComponent,EngagementsComponent,WishListComponent,SkillsComponent]
 })
 export class MyProfilePageModule {
 }
