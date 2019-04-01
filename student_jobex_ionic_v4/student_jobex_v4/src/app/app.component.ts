@@ -11,10 +11,11 @@ import {MenuItem} from "./models/menu-item";
 })
 export class AppComponent {
   public appMenu=[
-      new MenuItem("Dashboard","","clipboard"),
+      new MenuItem("Dashboard","/dashboard","clipboard"),
       new MenuItem("Register","/register","create"),
       new MenuItem("Login","/login","log-in"),
       new MenuItem("My Profile","/my-profile","person")
+      
   ];
   constructor(
     private platform: Platform,
