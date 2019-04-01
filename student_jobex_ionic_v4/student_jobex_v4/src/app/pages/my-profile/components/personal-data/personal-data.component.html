@@ -4,6 +4,72 @@
       <img class="item-avatar avatar" [src]="profileImg">
     </ion-avatar>    
   </ion-item>
+
+  <form [formGroup]="personalData">
+    <ion-list >      
+      <ion-item>
+        <ion-label floating>First Name</ion-label>
+        <ion-input                
+                formControlName="firsName"                             
+                type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Last Name</ion-label>
+        <ion-input
+                formControlName="lastName"
+                type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="call"></ion-icon>
+          Phone Number
+        </ion-label>
+        <ion-input
+                formControlName="phone"
+                type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="mail"></ion-icon>
+          Mail
+        </ion-label>
+        <ion-input
+                formControlName="mail"
+                type="mail"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="map"></ion-icon>
+          Address
+        </ion-label>
+        <ion-input
+                
+                formControlName="address"
+                type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="calendar"></ion-icon>
+          Birthday
+        </ion-label>
+        <ion-datetime 
+        displayFormat="DD/MM/YYYY" 
+        min="1950-03-14"
+        formControlName="birthday"
+        ></ion-datetime>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="full" (click)="onProfileSave()">
+        Save
+      </ion-button>    
+  </form>
+</ion-content>
+<!-- <ion-content padding>
+  <ion-item align-items-center>
+    <ion-avatar>
+      <img class="item-avatar avatar" [src]="profileImg">
+    </ion-avatar>    
+  </ion-item>
   <form #f  (ngSubmit)="onSubmit(f)">
     <ion-list >      
       <ion-item>
@@ -71,4 +137,5 @@
       </button>
     </ion-buttons>
   </form>
-</ion-content>
+</ion-content> -->
+

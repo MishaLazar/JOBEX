@@ -13,12 +13,19 @@ import {ConfigService} from "./services/config.service";
 import {MyProfileService} from "./services/my-profile.service";
 import {StorageService} from "./services/storage.service";
 import {ProfileComponentsModule} from "./pages/my-profile/components/profile-componentsModule";
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,ProfileComponentsModule],
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule,
+    ReactiveFormsModule,
+    ProfileComponentsModule
+  ],
   providers: [
     StatusBar,
     SplashScreen,
@@ -27,6 +34,9 @@ import {ProfileComponentsModule} from "./pages/my-profile/components/profile-com
       StorageService,
       MyProfileService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+  ],
+  exports:[
+    ReactiveFormsModule,FormsModule
   ],
   bootstrap: [AppComponent]
 })
