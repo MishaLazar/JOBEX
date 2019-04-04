@@ -14,6 +14,9 @@ import {MyProfileService} from "./services/my-profile.service";
 import {StorageService} from "./services/storage.service";
 import {ProfileComponentsModule} from "./pages/my-profile/components/profile-componentsModule";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { SharedDataService } from './services/shared-data.service';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -23,6 +26,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
+    HttpClientModule,
     ReactiveFormsModule,
     ProfileComponentsModule
   ],
@@ -33,6 +37,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
       ConfigService,
       StorageService,
       MyProfileService,
+      SharedDataService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   exports:[

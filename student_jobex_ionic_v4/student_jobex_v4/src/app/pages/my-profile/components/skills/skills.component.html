@@ -1,3 +1,10 @@
-<p>
-  skills works!
-</p>
+<ion-searchbar showCancelButton cancelButtonText="Custom Cancel" (ionInput)="termChange($event)"></ion-searchbar>
+
+<ion-list >
+  <ion-item *ngFor="let skill of skills | SkillFilter:SkillSearchTerm,TextValue" >
+    
+    <h2> {{ skill.TextValue }} </h2>
+    <h3> Code: <strong>{{ skill.SkillCategoryId }}</strong> </h3>
+  
+  </ion-item>
+</ion-list>
