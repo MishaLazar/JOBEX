@@ -6,7 +6,7 @@ class DbCollections:
         "positions_col": "positions",
         "users_col": "users",
         "token_blacklist_collection": "token_blacklist",
-        "skills": "skills",
+        "skills": "Skills",
         "student_skills": "student_skills",
         "match": "match",
         "position_skills": "position_skills",

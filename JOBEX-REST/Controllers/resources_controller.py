@@ -2,6 +2,7 @@ from DAL import mongo_db_handler
 from DAL.db_collections import DbCollections
 
 
+
 class ResourcesController:
 
     __instance = None
@@ -28,4 +29,4 @@ class ResourcesController:
     def get_full_skillSet():
         db_client = mongo_db_handler.Client()
 
-        return db_client.find_by_collection(DbCollections.get_collection(key="skills"))
+        return db_client.get_many_docs_from_collection(DbCollections.get_collection(key="skills"))

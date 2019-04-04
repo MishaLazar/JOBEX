@@ -1,4 +1,6 @@
 from flask import Flask, jsonify, redirect, url_for, render_template, flash, session, request
+import requests
+import requests_cache
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt)
 from flask_cors import CORS
@@ -17,6 +19,7 @@ import json
 
 app = Flask(__name__)
 
+requests_cache.install_cache('rest-cache', backend='sqlite', expire_after=180)
 config = ConfigHelper.get_instance()
 app.config['SECRET_KEY'] = config.read_auth('SECRET_KEY')   # 'I8Is25DFOzLUKSx06WCyesvHJgmZJblt'
 app.config['JWT_SECRET_KEY'] = config.read_auth('SECRET_KEY')

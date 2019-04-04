@@ -1,6 +1,7 @@
 1 ) pip install flask
 2 ) pip install python-firebase
 3 ) pip install pyjwt
+4 ) pip install requests-cache
 Flask==1.0
 Jinja2==2.10
 MarkupSafe==1.0

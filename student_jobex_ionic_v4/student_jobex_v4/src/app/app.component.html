@@ -1,0 +1,22 @@
+<ion-app>
+    <ion-split-pane>
+        <ion-menu side="start">
+            <ion-header>
+                <ion-toolbar color="primary">
+                    <ion-title>Jobex</ion-title>
+                </ion-toolbar>
+            </ion-header>
+            <ion-content color="main_primary">
+                <ion-list>
+                    <ion-menu-toggle auto-hide="false" *ngFor="let menuItem of appMenu">
+                        <ion-item [routerDirection]="'root'" [routerLink]="menuItem.url">
+                            <ion-icon [name]="menuItem.icon" item-left></ion-icon>
+                            {{menuItem.title}}
+                        </ion-item>
+                    </ion-menu-toggle>
+                </ion-list>
+            </ion-content>
+        </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+    </ion-split-pane>
+</ion-app>

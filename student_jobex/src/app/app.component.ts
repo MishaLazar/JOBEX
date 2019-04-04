@@ -56,7 +56,7 @@ export class MyApp {
       }
       */
       this.isAuthenticated = true;
-      this.nav.setRoot(this.homePage);
+      this.nav.setRoot(this.myProfilePage);
       loader.dismiss();
     },100);
 
