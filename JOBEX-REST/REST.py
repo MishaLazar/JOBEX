@@ -1,4 +1,6 @@
 
+import requests
+import requests_cache
 from flask import Flask, jsonify, request, redirect, url_for
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt)
@@ -10,10 +12,12 @@ from Controllers.web_controller import WebController
 from Controllers.resources_controller import ResourcesController
 from Controllers.auth_controller import AuthController
 from Utils.json_encoder import JSONEncoder
-#from jobs_service import JobThread
+
 from Utils.util import Utils
 
 app = Flask(__name__)
+
+requests_cache.install_cache('rest-cache', backend='sqlite', expire_after=180)
 
 config = ConfigHelper.get_instance()
 app.config['JWT_SECRET_KEY'] = config.read_auth('SECRET_KEY')
