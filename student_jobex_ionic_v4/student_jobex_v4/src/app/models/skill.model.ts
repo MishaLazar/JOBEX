@@ -5,5 +5,6 @@ export class Skill{
         public SkillId:Number, 
         public TextValue:string , 
         public SkillSubCategoryId:Number , 
-        public SkillCategoryId:Number){}
+        public SkillCategoryId:Number , 
+        public IsChecked:boolean){}
 }
