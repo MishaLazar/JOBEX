@@ -8,11 +8,21 @@
 </ion-header>
 <ion-content padding>
 <ion-grid display="flex">
-  <ion-row>
+    <!-- <ion-row *ngFor="let engagement of studentLastEgagements">
     <ion-col size="12">
-      <dash-engagments></dash-engagments>
+      <ion-grid fixed>
+        <ion-row >
+          <ion-col size="12">
+              <dash-engagments 
+              jobTitle="{{engagement.jobTitle}}" 
+              jobShortDescription="{{engagement.jobShortDescription}}" 
+              companyRating="{{engagement.companyRating}}" 
+              companyName="{{engagement.companyName}}"></dash-engagments>
+          </ion-col>          
+        </ion-row>
+      </ion-grid>      
     </ion-col>    
-  </ion-row>
+  </ion-row> -->
   <ion-row>
     <ion-col size="6">
       <dash-chart-overtime></dash-chart-overtime>
@@ -26,5 +36,18 @@
           <dash-chart-active-engagements></dash-chart-active-engagements>
       </ion-col>
     </ion-row>
+    <ion-row>
+        <ion-col size="12">
+          <ion-list *ngFor="let engagement of studentLastEgagements" >
+            <ion-item button no-padding lines="none">
+                <dash-engagments 
+                jobTitle="{{engagement.jobTitle}}" 
+                jobShortDescription="{{engagement.jobShortDescription}}" 
+                companyRating="{{engagement.companyRating}}" 
+                companyName="{{engagement.companyName}}"></dash-engagments>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
 </ion-grid>
 </ion-content>

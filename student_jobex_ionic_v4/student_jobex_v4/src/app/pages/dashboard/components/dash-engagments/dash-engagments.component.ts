@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'dash-engagments',
@@ -7,7 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashEngagmentsComponent implements OnInit {
 
-  constructor() { }
+  @Input() jobTitle:any;
+  @Input() jobShortDescription:any;
+  @Input() companyName:any;
+  @Input() companyRating:any;
+  constructor() {
+
+    console.log(this.jobTitle);
+   }
 
   ngOnInit() {}
 

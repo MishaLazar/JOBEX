@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedDataService } from 'src/app/services/shared-data.service';
+import { Engagement } from 'src/app/models/engagement';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardPage implements OnInit {
 
-  constructor() { }
+
+  studentLastEgagements:Engagement[];
+  constructor(private sharedDataSvc:SharedDataService) { }
 
   ngOnInit() {
+    this.studentLastEgagements = this.sharedDataSvc.getStudentEngagments();
+    console.log(this.studentLastEgagements);
   }
+
+
 
 }
