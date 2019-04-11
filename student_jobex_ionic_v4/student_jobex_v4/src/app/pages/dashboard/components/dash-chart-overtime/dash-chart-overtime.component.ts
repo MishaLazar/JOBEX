@@ -11,9 +11,9 @@ export class DashChartOvertimeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.useAnotherOneWithWebpack(['Red', 'Blue'],[12, 19]);
+    this.initOverTimeChart(['Matches', 'Engaged'],[20, 10],[15, 5]);
   }
-  useAnotherOneWithWebpack(chartLabels:string[],chartData:number[]): any {
+  initOverTimeChart(chartLabels:string[],AvgDataSet:number[],CurrentDataSet:number[]): any {
     var ctx = (<any>document.getElementById('overTimeChart')).getContext('2d');
     var myChart = new Chart(ctx, {
       type: 'bar',
@@ -21,61 +21,102 @@ export class DashChartOvertimeComponent implements OnInit {
           labels: chartLabels,
           
           datasets: [{ 
-              label:"Chart Overtime",             
-              data: chartData,
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)'
-              ],
+              label:"AVG.Weak",             
+              data: AvgDataSet,
+              backgroundColor: "#caf270",
               borderWidth: 1
-          }]
+          },
+          { 
+            label:"Weak4",             
+            data: CurrentDataSet,
+            backgroundColor: "#45c490",
+            borderWidth: 1
+        }
+        ]
       },
-      options: {
-          maintainAspectRatio: false,
-          legend: {
-            "display": false
+      options:{
+        tooltips: {
+          displayColors: true,
+          callbacks:{
+            mode: 'x',
           },
-          tooltips: {
-            "enabled": false
-          },
-          scales: {
-            xAxes: [{
-                gridLines: {
-                  color: "rgba(0, 0, 0, 0)",
-              }
-            }],
-            yAxes: [{
-                ticks:{
-                  display:false,
-                  beginAtZero: true,                  
-                  max:Math.max.apply(Math,chartData) + 3
-                },                
-                gridLines: {
-                    color: "rgba(0, 0, 0, 0)",
-                    offsetGridLines: false
-                }
-            }]
-          },
-          animation: {
-        	duration: 1,
-						onComplete: function () {
-							var chartInstance = this.chart,
-								ctx = chartInstance.ctx;
-							
-							ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
-							ctx.textAlign = 'center';
-							ctx.textBaseline = 'bottom';
-
-							this.data.datasets.forEach(function (dataset, i) {
-								var meta = chartInstance.controller.getDatasetMeta(i);
-								meta.data.forEach(function (bar, index) {
-									var data = dataset.data[index];                            
-									ctx.fillText(data, bar._model.x, bar._model.y - 5);
-								});
-							});
-						}
         },
-      }          
+        scales: {
+          xAxes: [{
+            stacked: true,
+            gridLines: {
+              display: false,
+            }
+          }],
+          yAxes: [{
+            stacked: true,
+            display:false,
+            ticks: {
+              max: AvgDataSet[0] + CurrentDataSet[0] + 3,
+              display:false,
+              beginAtZero: true,
+            },
+            gridLines:{
+              display: false,
+            },
+            type: 'linear',
+          }]
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: { position: 'bottom' },
+        animation: {
+          duration: 1,
+            onComplete: function () {
+              var chartInstance = this.chart,
+                ctx = chartInstance.ctx;
+              
+              ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'middle'
+              
+
+              this.data.datasets.forEach(function (dataset, i) {
+                var meta = chartInstance.controller.getDatasetMeta(i);
+                meta.data.forEach(function (bar, index) {
+                  var data = dataset.data[index];                            
+                  ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                });
+              });
+            }
+        }
+       
+      }
+  //     options: {
+  //         maintainAspectRatio: false,
+  //         legend: {
+  //           "display": true
+  //         },
+  //         tooltips: {
+  //           "enabled": false
+  //         },
+  //         scales: {
+  //           //stacked: true,
+  //           xAxes: [{
+  //               gridLines: {
+  //                 color: "rgba(0, 0, 0, 0)",
+  //             }
+  //           }],
+  //           yAxes: [{
+  //             stacked: true,
+  //               ticks:{
+  //                 display:false,
+  //                 beginAtZero: true,                  
+  //                 //max:Math.max.apply(Math,chartData) + 3
+  //               },                
+  //               gridLines: {
+  //                   color: "rgba(0, 0, 0, 0)",
+  //                   offsetGridLines: false
+  //               }
+  //           }]
+  //         },
+  //        ,
+  //     }          
   });
   }
 
