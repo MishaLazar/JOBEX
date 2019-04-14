@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ListCardItem} from "../../models/list-card-item";
 import {MyProfileService} from "../../services/my-profile.service";
-import {ModalController} from "@ionic/angular";
+import {ModalController, NavController} from "@ionic/angular";
 import {PersonalDataComponent} from "./components/personal-data/personal-data.component";
 import { EngagementsComponent } from './components/engagements/engagements.component';
 import { SkillsComponent } from './components/skills/skills.component';
@@ -16,7 +16,8 @@ export class MyProfilePage implements OnInit {
     profileImg: string = "assets/img/default_profile.png";
     profileListItems: ListCardItem [] = [];
 
-    constructor(private profileService: MyProfileService, public modalCtrl: ModalController) {
+    constructor(private profileService: MyProfileService, public modalCtrl: ModalController,
+        private navCtrl:NavController) {
     }
 
     ngOnInit() {
@@ -68,11 +69,7 @@ export class MyProfilePage implements OnInit {
         return await modal.present();
     }
 
-    async onOpenEngagements(){
-        const modal = await this.modalCtrl.create({
-            component:EngagementsComponent
-        });
-
-        return await modal.present();
+    onOpenEngagements(){
+        this.navCtrl.navigateForward('my-profile/engagements-list')
     }
 }

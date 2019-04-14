@@ -10,7 +10,8 @@ export class SharedDataService {
 
   
   skills:any;
-  engagements:Engagement[] = [];
+  latestEngagements:Engagement[] = [];
+  activeEngagements:Engagement[] = [];
   constructor(private httpClient: HttpClient) { 
     // this.getSkillJson().subscribe(data => {
     //     this.skills = data;
@@ -22,16 +23,24 @@ export class SharedDataService {
   }
 
   initStudentEngagements(){
-    this.engagements.push(new Engagement('ads22331','DBA','Keep close to Nature\'s heart... and break clear away, once in awhile,and climb a mountain or spend a week in the woods. Wash your spirit clean.',
+    this.latestEngagements.push(new Engagement('ads22331','DBA','Keep close to Nature\'s heart... and break clear away, once in awhile,and climb a mountain or spend a week in the woods. Wash your spirit clean.',
     'NetApp','Bla Bla Bla', (5 * 0.8),'bla bla message'));
-    this.engagements.push(new Engagement('abdd2222','C#','Keep close to Nature\'s heart... and break clear away, once in awhile,and climb a mountain or spend a week in the woods. Wash your spirit clean.',
+    this.latestEngagements.push(new Engagement('abdd2222','C#','Keep close to Nature\'s heart... and break clear away, once in awhile,and climb a mountain or spend a week in the woods. Wash your spirit clean.',
     'CyberArk','Bla Bla Bla', (5 * 0.9),'blaa balala message 2'));
+
+    //TODO: delete prototype
+    this.activeEngagements = this.latestEngagements.slice();
   }
   
-  getStudentEngagments(){
-    return this.engagements.slice();
+  getStudentActiveEngagements(){
+    return this.activeEngagements.slice();
+  }
+
+  getStudentLatestEngagments(){
+    return this.latestEngagements.slice();
   }
   getStudentLatestEngagmentByMatchId(matchId:string){
-    return this.engagements.find(value => value.matchId == matchId);
+    return this.latestEngagements.find(value => value.matchId == matchId);
   }
+  
 }

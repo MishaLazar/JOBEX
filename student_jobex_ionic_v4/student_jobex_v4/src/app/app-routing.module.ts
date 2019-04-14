@@ -9,6 +9,9 @@ const routes: Routes = [
   { path: 'my-profile', loadChildren: './pages/my-profile/my-profile.module#MyProfilePageModule' },
   { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardPageModule' },
   { path: 'dashboard/engagement/:matchId', loadChildren: './pages/engagement/engagement.module#EngagementPageModule' },
+  { path: 'my-profile/engagements-list/engagement/:matchId', loadChildren: './pages/engagement/engagement.module#EngagementPageModule' },
+  { path: 'my-profile/engagements-list', loadChildren: './pages/engagements-list/engagements-list.module#EngagementsListPageModule' },
+
 
 ];
 

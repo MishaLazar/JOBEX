@@ -19,8 +19,7 @@ export class PersonalDataComponent implements OnInit {
         private modalCtrl:ModalController,
         public formBuilder: FormBuilder
         ) {
-        console.log('Hello PersonalDataComponent Component : ' + this.value);
-        this.text = 'Hello World';
+       
         this.formBuild();
     }
 
@@ -31,7 +30,7 @@ export class PersonalDataComponent implements OnInit {
     }
 
     onSubmit(form:any){
-      console.log(form);
+     
 
       this.CloseModal();
     }

@@ -15,8 +15,7 @@ export class DashboardPage implements OnInit {
   constructor(private sharedDataSvc:SharedDataService, private navCtrl:NavController) { }
 
   ngOnInit() {
-    this.studentLastEgagements = this.sharedDataSvc.getStudentEngagments();
-    console.log(this.studentLastEgagements);
+    this.studentLastEgagements = this.sharedDataSvc.getStudentLatestEngagments();    
   }
 
   onClickTest(mid:string){
