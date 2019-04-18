@@ -25,8 +25,8 @@ app.config['SECRET_KEY'] = config.read_auth('SECRET_KEY')   # 'I8Is25DFOzLUKSx06
 app.config['JWT_SECRET_KEY'] = config.read_auth('SECRET_KEY')
 app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
-# CORS(app, resources={r"/*": {"origins": "*"}}, send_wildcard=True)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}}, send_wildcard=True)
+#CORS(app)
 jwt = JWTManager(app)
 jobex_web_helper = JobexWebHelper(host='localhost')
 
