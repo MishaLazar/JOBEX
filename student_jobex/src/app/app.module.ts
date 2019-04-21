@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -17,6 +17,12 @@ import {IonicStorageModule } from "@ionic/storage";
 import {StorageService} from "../services/storage.service";
 import {MyProfileService} from "../services/my-profile.service";
 
+import {ComponentsModule } from "../components/components.module";
+// import {PersonalDataPage} from "../pages/personal-data/personal-data";
+// import {PersonalDataPageModule} from "../pages/personal-data/personal-data.module";
+import {FormsModule} from "@angular/forms";
+
+
 
 @NgModule({
   declarations: [
@@ -29,6 +35,8 @@ import {MyProfileService} from "../services/my-profile.service";
   imports: [
     BrowserModule,
     HttpClientModule,
+    ComponentsModule,
+    FormsModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],

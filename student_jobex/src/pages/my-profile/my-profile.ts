@@ -1,35 +1,58 @@
-import { Component,OnInit } from '@angular/core';
-import {IonicPage, MenuController, NavController} from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
+import {IonicPage, MenuController, ModalController, NavController} from 'ionic-angular';
 import {MyProfileService} from "../../services/my-profile.service";
-
-/**
- * Generated class for the MyProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {ListCardItem} from "../../models/list-card-item";
+import {PersonalDataComponent} from "../../components/personal-data/personal-data";
 
 @IonicPage()
 @Component({
   selector: 'page-my-profile',
   templateUrl: 'my-profile.html',
+
 })
 export class MyProfilePage implements OnInit {
   profileImg: string = "assets/imgs/default_profile.png";
+  profileListItems: ListCardItem [] = [];
 
   constructor(public navCtrl: NavController,
-              private menuCtrl:MenuController,private profileService:MyProfileService) {
+              private menuCtrl: MenuController, private profileService: MyProfileService, public modalCtrl: ModalController) {
+
 
   }
 
-  ngOnInit(){
+  ngOnInit() {
 
-    if(this.profileService.isProfileImgSet()){
+    if (this.profileService.isProfileImgSet()) {
       this.profileImg = this.profileService.myProfile.profileImg;
+    }
+    this.profileListItems.push(new ListCardItem("Set your personal Data", "body", "create", "personalData"));
+    this.profileListItems.push(new ListCardItem("Set your skills", "checkbox-outline", "create", "skills"));
+    this.profileListItems.push(new ListCardItem("Best for you", "color-wand", "podium", "best"));
+    this.profileListItems.push(new ListCardItem("My engagements", "mail", "done-all", "engagements"));
+    console.table(this.profileListItems.slice())
+  }
+
+  onMenuOpen() {
+    this.menuCtrl.open();
+  }
+
+  onItemClick(cardId: string) {
+    switch (cardId) {
+      case "personalData":
+        this.onOpenPersonnalData();
+        break;
     }
   }
 
-  onMenuOpen(){
-    this.menuCtrl.open();
+  async onOpenPersonnalData() {
+    console.log("1");
+    const modal = //await this.modalCtrl.create(PersonalDataComponent, { value: 123 });
+      await this.modalCtrl.create({
+        component:PersonalDataComponent,
+        componentProps: { value: 123 }
+      });
+    return await modal.present();
+
+
   }
 }

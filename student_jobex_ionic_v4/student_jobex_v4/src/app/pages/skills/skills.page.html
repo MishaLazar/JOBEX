@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Skills</ion-title>
+        <ion-searchbar showCancelButton cancelButtonText="Custom Cancel" [(ngModel)]="SkillSearchTerm"></ion-searchbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+  <ion-list >
+    <ion-item *ngFor="let skill of skills | SkillFilter:SkillSearchTerm,TextValue" (click)="skillTuched(skill)">
+      <ion-label>{{ skill.TextValue }}</ion-label>        
+      <ion-checkbox color="primary" [(ngModel)]="skill.IsChecked"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  
+  </ion-content>
+  <ion-footer>  
+        <ion-button expand="full" (click)="onSaveSkillsClick()">Save Skills</ion-button> 
+  </ion-footer>
