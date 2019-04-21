@@ -36,9 +36,7 @@
                     {{ form.remember.label(class="form-check-label") }}
                 </div>
             </fieldset>
-            <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
-            </div>
+            <input type="submit" class="btn btn-outline-info" onclick="return login()">
             <small class="text-muted ml-2">
                 <a href="#">Forgot Password?</a>
             </small>
@@ -49,4 +47,29 @@
             Need An Account? <a class="ml-2" href="{{ url_for('register_view') }}">Sign Up Now</a>
         </small>
     </div>
+<script>
+    function login() {
+        let req = new XMLHttpRequest();
+        let url = "http://127.0.0.1:5050/get_login";
+        req.open("POST", url, false);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.setRequestHeader('Access-Control-Allow-Origin', '*');
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        let body = JSON.stringify('{"username":"' + username + '",' + '"password":"' + password + '"}');
+        req.send(body);
+        let tokens = $.parseJSON(req.response);
+        console.log(tokens["access_token"]);
+        console.log(tokens["refresh_token"]);
+        let status_code = req.status;
+        if (status_code==200){
+            let access_token = tokens['access_token'];
+            let refresh_token = tokens['refresh_token'];
+            if (access_token != undefined) { window.localStorage.accessToken = access_token; }
+            if (refresh_token != undefined) { window.localStorage.refreshToken = refresh_token; }
+        }
+        window.location.href = "http://127.0.0.1:5050/dashboard?username=" + username;
+        return false;
+    }
+    </script>
 {% endblock content %}

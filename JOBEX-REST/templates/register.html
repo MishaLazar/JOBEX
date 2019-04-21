@@ -6,6 +6,20 @@
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Join Today</legend>
                 <div class="form-group">
+                    {{ form.company_name.label(class="form-control-label") }}
+
+                    {% if form.company_name.errors %}
+                        {{ form.company_name(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.company_name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.company_name(class="form-control form-control-lg", id="company_name") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
                     {{ form.username.label(class="form-control-label") }}
 
                     {% if form.username.errors %}
@@ -16,7 +30,7 @@
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.username(class="form-control form-control-lg") }}
+                        {{ form.username(class="form-control form-control-lg", id="username") }}
                     {% endif %}
                 </div>
                 <div class="form-group">
@@ -29,7 +43,7 @@
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.email(class="form-control form-control-lg") }}
+                        {{ form.email(class="form-control form-control-lg", id="email") }}
                     {% endif %}
                 </div>
                 <div class="form-group">
@@ -42,7 +56,7 @@
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.password(class="form-control form-control-lg") }}
+                        {{ form.password(class="form-control form-control-lg", id="password") }}
                     {% endif %}
                 </div>
                 <div class="form-group">
@@ -59,9 +73,7 @@
                     {% endif %}
                 </div>
             </fieldset>
-            <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
-            </div>
+            <input type="submit" class="btn btn-outline-info" onclick="return register()">
         </form>
     </div>
     <div class="border-top pt-3">
@@ -69,4 +81,59 @@
             Already Have An Account? <a class="ml-2" href="{{ url_for('login_view') }}">Sign In</a>
         </small>
     </div>
+<script>
+
+    function register() {
+        var req = new XMLHttpRequest();
+        var url = "http://127.0.0.1:5050/register";
+        var company_name = document.getElementById("company_name").value;
+        var username = document.getElementById("username").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var body = JSON.stringify('{"company_name":"' + company_name + '",' +
+            '"username":"' + username + '",' +
+            '"email":"' + email + '",' +
+            '"password":"' + password + '"}');
+        req.open("POST", url, false);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.setRequestHeader('Access-Control-Allow-Origin', '*');
+        req.send(body);
+        if (req.status==200){
+            let req = new XMLHttpRequest();
+            let url = "http://127.0.0.1:5050/get_login";
+            req.open("POST", url, false);
+            req.setRequestHeader('Content-Type', 'application/json');
+            req.setRequestHeader('Access-Control-Allow-Origin', '*');
+            let body = JSON.stringify('{"username":"' + username + '",' + '"password":"' + password + '"}');
+            req.send(body);
+            let tokens = $.parseJSON(req.response);
+            if (req.status == 200){
+                let access_token = tokens['access_token'];
+                let refresh_token = tokens['refresh_token'];
+                if (access_token != undefined) { window.localStorage.accessToken = access_token; }
+                if (refresh_token != undefined) { window.localStorage.refreshToken = refresh_token; }
+            }
+            window.location.href =  "http://127.0.0.1:5050/dashboard?username=" + username;
+            return false;
+        }
+    }
+    // function login(username, password) {
+    //     let req = new XMLHttpRequest();
+    //     let url = "http://127.0.0.1:5050/get_login";
+    //     req.open("POST", url, false);
+    //     req.setRequestHeader('Content-Type', 'application/json');
+    //     req.setRequestHeader('Access-Control-Allow-Origin', '*');
+    //     let body = JSON.stringify('{"username":"' + username + '",' + '"password":"' + password + '"}');
+    //     req.send(body);
+    //     let tokens = $.parseJSON(req.response);
+    //     if (req.status == 200){
+    //         let access_token = tokens['access_token'];
+    //         let refresh_token = tokens['refresh_token'];
+    //         if (access_token != undefined) { window.localStorage.accessToken = access_token; }
+    //         if (refresh_token != undefined) { window.localStorage.refreshToken = refresh_token; }
+    //     }
+    //     window.location.href =  "http://127.0.0.1:5050/dashboard?username=" + username;
+    //     return false;
+    // }
+    </script>
 {% endblock content %}
