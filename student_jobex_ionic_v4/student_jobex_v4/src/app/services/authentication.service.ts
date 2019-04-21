@@ -9,6 +9,7 @@ import { HttpHelpService } from './http-help.service';
 })
 export class AuthenticationService {
 
+  private isAuthenticatedStudent:boolean = false;
   constructor(private http:HttpHelpService,private storage:StorageService) { }
 
   onSignin(username:string, password:string){
@@ -22,7 +23,7 @@ export class AuthenticationService {
   }
 
   isAuthenticated() {
-    console.log('isAuthenticated :' + this.storage.getValueByKey('token'));
+    
     return this.storage.getValueByKey('token') !== null;
 
 

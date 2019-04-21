@@ -20,10 +20,11 @@ export class LoginPage implements OnInit {
     private authSvc:AuthenticationService,
     public loadingController: LoadingController,
     private myProfile:MyProfileService) {
-    this.buildForm();
+   
    }
 
   ngOnInit() {
+    this.buildForm();
   }
   buildForm(){
     this.loginForm = this.formBuilder.group({
@@ -49,7 +50,7 @@ export class LoginPage implements OnInit {
         this.storageSVC.setStorageValueByKey('refresh_token',response.refresh_token);
         loading.dismiss();
       }
-    })
+    });
   
 }
 
