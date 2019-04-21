@@ -1,31 +1,44 @@
 import { Injectable } from '@angular/core';
 import {MyProfile} from "../models/my-profile.model";
 import { Skill } from '../models/skill.model';
+import { HttpHelpService } from './http-help.service';
+import { error } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MyProfileService {
 
-    myProfile;
+    myProfile:MyProfile;
+    user_id:string;
+    isUpdated:boolean = false;
     myProfileSkills:Skill[]=[
         new Skill('a',44,'MySql',1,1,true),
         new Skill('b',108,'PL/SQL',1,2,true)
     ];
-    constructor(){
+    constructor(private http:HttpHelpService){
         this.myProfile =  new MyProfile(
             "Misha","lazar","misha.lazar89@gmail.com","Object1","address city","/assets/img/deadpool-profile.png"
         )
     }
 
-    editProfileSave(profile:MyProfile){
-        if (profile != null){
-            this.myProfile = profile;
-        }
+    editProfileSave(){
+        
     }
 
     loadProfile(){
-        return this.myProfile;
+        this.http.submitForm('','get_student_profile').subscribe(
+            (data:MyProfile) =>{
+                this.myProfile = data;
+            },
+            (error:any) =>{
+                console.log(error);
+            }
+        );
+    }
+    setMyProfileRegistration(myProfile:MyProfile){
+        this.myProfile = myProfile;
+        this.isUpdated = true;
     }
 
     isProfileImgSet(){
@@ -45,6 +58,22 @@ export class MyProfileService {
             this.myProfileSkills.splice(indexToRemove,1);
         }
     }
-       
     
+    onRegistration(basicProfile:MyProfile){
+
+       return this.http.submitForm(basicProfile,'register_student');
+
+    }
+    
+    onProfileSkillsUpdate(){           
+        return this.http.submitForm(this.myProfileSkills.slice(),'student/update_skills/'+this.myProfile.userId).subscribe(() => 
+        (error:any) => {
+            console.log(error);
+        },
+        (response) => {
+            console.log(response);
+        }
+        )
+    }
+
 }

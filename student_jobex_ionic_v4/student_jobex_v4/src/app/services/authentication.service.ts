@@ -2,25 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { ConfigService } from './config.service';
 import { StorageService } from './storage.service';
+import { HttpHelpService } from './http-help.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor(private config:ConfigService,private http:HttpClient,private storage:StorageService) { }
+  constructor(private http:HttpHelpService,private storage:StorageService) { }
 
   onSignin(username:string, password:string){
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Access-Control-Allow-Origin': '*'
-      })};
-
-
-   return this.http.post(this.config.getApiUrl()+'get_login',{username:username,password:password},httpOptions)
-
+    return this.http.submitForm({username:username,password:password},'get_login');
 
   }
 

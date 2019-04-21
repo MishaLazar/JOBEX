@@ -4,6 +4,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { LoadingController } from '@ionic/angular';
 import { StorageService } from 'src/app/services/storage.service';
 import { Token } from 'src/app/models/token.model';
+import { MyProfileService } from 'src/app/services/my-profile.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,12 @@ import { Token } from 'src/app/models/token.model';
 export class LoginPage implements OnInit {
 
   loginForm:FormGroup;
-  constructor(public formBuilder: FormBuilder,private storageSVC:StorageService,private authSvc:AuthenticationService,public loadingController: LoadingController) {
+  constructor(
+    public formBuilder: FormBuilder,
+    private storageSVC:StorageService,
+    private authSvc:AuthenticationService,
+    public loadingController: LoadingController,
+    private myProfile:MyProfileService) {
     this.buildForm();
    }
 
@@ -38,6 +44,7 @@ export class LoginPage implements OnInit {
     this.authSvc.onSignin(userName,userPassword).subscribe(
       () => {
       (response:Token) => {
+        this.myProfile.user_id = response.user_id;        
         this.storageSVC.setStorageValueByKey('access_token',response.access_token);
         this.storageSVC.setStorageValueByKey('refresh_token',response.refresh_token);
         loading.dismiss();

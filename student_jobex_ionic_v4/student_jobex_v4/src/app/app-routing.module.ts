@@ -11,6 +11,9 @@ const routes: Routes = [
   { path: 'dashboard/engagement/:matchId', loadChildren: './pages/engagement/engagement.module#EngagementPageModule' },
   { path: 'my-profile/engagements-list/engagement/:matchId', loadChildren: './pages/engagement/engagement.module#EngagementPageModule' },
   { path: 'my-profile/engagements-list', loadChildren: './pages/engagements-list/engagements-list.module#EngagementsListPageModule' },
+  { path: 'my-profile/personal-data', loadChildren: './pages/personal-data/personal-data.module#PersonalDataPageModule' },
+  { path: 'my-profile/skills', loadChildren: './pages/skills/skills.module#SkillsPageModule' },
+
 
 
 ];

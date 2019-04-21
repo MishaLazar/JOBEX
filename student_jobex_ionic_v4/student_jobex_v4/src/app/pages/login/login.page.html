@@ -8,23 +8,32 @@
 </ion-header>
 
 <ion-content>
-    <form [formGroup]="loginForm" >
-        <ion-list>
-          <ion-item>
-            <ion-label floating>User Name</ion-label>
-            <ion-input
-            type="email"
-            formControlName="mail"
-            ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label floating>Password</ion-label>
-            <ion-input
-            type="password"
-            formControlName="password"
-            ></ion-input>
-          </ion-item>
-        </ion-list>
-        <ion-button  expand="full" (click)="onLogin()">Sign in</ion-button>
-      </form>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12"></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+          <form [formGroup]="loginForm" >
+              <ion-list>
+                <ion-item>
+                  <ion-label floating>User Name</ion-label>
+                  <ion-input
+                  type="email"
+                  formControlName="mail"
+                  ></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>Password</ion-label>
+                  <ion-input
+                  type="password"
+                  formControlName="password"
+                  ></ion-input>
+                </ion-item>
+              </ion-list>
+              <ion-button  expand="full" (click)="onLogin()">Sign in</ion-button>
+            </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>    
 </ion-content>

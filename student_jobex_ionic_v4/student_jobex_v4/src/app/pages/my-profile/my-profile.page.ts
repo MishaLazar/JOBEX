@@ -47,11 +47,8 @@ export class MyProfilePage implements OnInit {
                 break;
         }
     }
-    async onOpenSkills(){
-        const modal = await this.modalCtrl.create({
-            component:SkillsComponent
-        });
-        modal.present();
+    onOpenSkills(){
+        this.navCtrl.navigateForward('my-profile/skills');
     }
     async onOpenWishList(){
         const modal = await this.modalCtrl.create({
@@ -60,16 +57,11 @@ export class MyProfilePage implements OnInit {
         modal.present();
     }
 
-    async onOpenPersonalData() {
-        const modal = await this.modalCtrl.create({
-            component:PersonalDataComponent,
-            componentProps: { value: 123 }
-        });
-
-        return await modal.present();
+    onOpenPersonalData() {
+        this.navCtrl.navigateForward('my-profile/personal-data');
     }
 
     onOpenEngagements(){
-        this.navCtrl.navigateForward('my-profile/engagements-list')
+        this.navCtrl.navigateForward('my-profile/engagements-list');
     }
 }

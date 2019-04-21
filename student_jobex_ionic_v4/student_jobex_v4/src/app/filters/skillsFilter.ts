@@ -16,8 +16,7 @@ import { MyProfileService } from '../services/my-profile.service';
   
     
     transform(value: Skill[], skill: string) {
-      var skillStatmentToSearch = skill;
-      debugger;
+      var skillStatmentToSearch = skill;     
       if (skill !== undefined && skill.length >= 2) {
         skill = skill.toLowerCase();        
         return value.filter(function(el: any) {                            

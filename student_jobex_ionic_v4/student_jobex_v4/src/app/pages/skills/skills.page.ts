@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Skill } from 'src/app/models/skill.model';
 import { ModalController } from '@ionic/angular';
 import { SharedDataService } from 'src/app/services/shared-data.service';
-import { Skill } from 'src/app/models/skill.model';
 import { MyProfileService } from 'src/app/services/my-profile.service';
 
 @Component({
   selector: 'app-skills',
-  templateUrl: './skills.component.html',
-  styleUrls: ['./skills.component.scss'],
+  templateUrl: './skills.page.html',
+  styleUrls: ['./skills.page.scss'],
 })
-export class SkillsComponent implements OnInit {
+export class SkillsPage implements OnInit {
 
   skills:Skill[];
   SkillSearchTerm:any;
@@ -61,5 +61,4 @@ export class SkillsComponent implements OnInit {
       });
     }
   }
-  
 }

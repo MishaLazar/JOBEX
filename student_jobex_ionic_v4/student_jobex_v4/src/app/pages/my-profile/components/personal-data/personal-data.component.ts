@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MyProfileService} from "../../../../services/my-profile.service";
 import {ModalController} from "@ionic/angular";
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { MyProfileService } from 'src/app/services/my-profile.service';
 
 @Component({
   selector: 'app-personal-data',
@@ -15,7 +15,7 @@ export class PersonalDataComponent implements OnInit {
     text: string;
     @Input() value: any;
     constructor(
-        private profileService:MyProfileService, 
+        private myProfile:MyProfileService, 
         private modalCtrl:ModalController,
         public formBuilder: FormBuilder
         ) {
@@ -24,20 +24,11 @@ export class PersonalDataComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        if(this.profileService.isProfileImgSet()){
-            this.profileImg = this.profileService.myProfile.profileImg;
+        if(this.myProfile.isProfileImgSet()){
+            this.profileImg = this.myProfile.myProfile.profileImg;
         }
     }
 
-    onSubmit(form:any){
-     
-
-      this.CloseModal();
-    }
-
-    private CloseModal() {
-        this.modalCtrl.dismiss();
-    }
 
     private formBuild(){
         this.personalData = this.formBuilder.group({
@@ -52,7 +43,18 @@ export class PersonalDataComponent implements OnInit {
     }
 
     onProfileSave(){
-        console.log(this.personalData.valid)
-        console.log(this.personalData.value)
+        if(!this.personalData.valid){
+
+        }else{
+            for (const control in this.personalData.controls) {
+                if (this.personalData.controls.hasOwnProperty(control)) {
+                    const element = this.personalData.controls[control];
+                    this.myProfile.myProfile[control] = element.value;
+                }
+            }            
+            this.myProfile.editProfileSave();
+            this.modalCtrl.dismiss();
+        }
+        
     }
 }
