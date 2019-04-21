@@ -1,6 +1,19 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectMultipleField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
+
+
+class Select2MultipleField(SelectMultipleField):
+
+    def pre_validate(self, form):
+        # Prevent "not a valid choice" error
+        pass
+
+    def process_formdata(self, valuelist):
+        if valuelist:
+            self.data = ",".join(valuelist)
+        else:
+            self.data = ""
 
 
 class RegistrationForm(FlaskForm):
@@ -9,6 +22,7 @@ class RegistrationForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired(), Length(min=6, max=12)])
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), Length(min=6, max=12), EqualTo('password')])
+    company_name = StringField('Company Name', validators=[DataRequired()])
     submit = SubmitField('Sign Up')
 
 
@@ -22,6 +36,11 @@ class LoginForm(FlaskForm):
 class AddPositionForm(FlaskForm):
     position_name = StringField('Position Name', validators=[DataRequired()])
     position_department = StringField('Position Department', validators=[DataRequired()])
-    position_active = BooleanField('Position Active', validators=[DataRequired()])
-    # todo complete the object
+    position_active = BooleanField('Position Active')
+    position_location = StringField('Position Location', validators=[DataRequired()])
+    position_skills = Select2MultipleField(u"Position Skills", [], choices=[],
+                                           description=u"Choose the position required skills",
+                                           render_kw={"multiple": "multiple"})
+    new_skill = StringField('New Skill', validators=[DataRequired()], description=u"Can't find what you're looking for?")
+    comment = StringField('Comment', description=u"anything to add?")
     submit = SubmitField('Add Position')

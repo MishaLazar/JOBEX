@@ -25,7 +25,17 @@ class ResourcesController:
             ResourcesController.__instance = self
 
     @staticmethod
-    def get_full_skillSet():
+    def get_all_skills():
         db_client = mongo_db_handler.Client()
-
         return db_client.find_by_collection(DbCollections.get_collection(key="skills"))
+
+    @staticmethod
+    def search_skills(skill_to_find):
+        db_client = mongo_db_handler.Client()
+        return db_client.get_many_docs_from_collection(DbCollections.get_collection(key="skills"),
+                                                       json_query={"skill_name": "{}".format(skill_to_find)})
+
+    @staticmethod
+    def add_skill(skill_obj):
+        db_client = mongo_db_handler.Client()
+        return db_client.insert_doc_to_collection(DbCollections.get_collection(key="skills"), doc=skill_obj)

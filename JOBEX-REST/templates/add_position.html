@@ -16,7 +16,7 @@
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.position_name(class="form-control form-control-lg") }}
+                        {{ form.position_name(class="form-control form-control-lg", id="position_name") }}
                     {% endif %}
                 </div>
                 <div class="form-group">
@@ -29,22 +29,106 @@
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.position_department(class="form-control form-control-lg") }}
+                        {{ form.position_department(class="form-control form-control-lg", id="position_department") }}
                     {% endif %}
                 </div>
+
+                <div class="form-group">
+                        {{ form.position_skills.label }}
+                        <small class="text-muted">{{ form.position_skills.description }}</small>
+                        {{ form.position_skills(class_="form-control") }}
+
+                        {% for error in form.position_skills.errors %}
+                        <span class="label label-danger">{{ error }}</span>
+                        {% endfor %}
+                </div>
+                <div class="form-group">
+                    {{ form.new_skill.label(class="form-control-label") }}
+                    <small class="text-muted">{{ form.new_skill.description }}</small>
+                    {{ form.new_skill(class="form-control form-control-lg") }}
+
+
+                </div>
+                <button class="btn btn-outline-info" onclick="add_skill()">Add Skill</button>
+                <br>
+                <div class="form-group">
+                    {{ form.comment.label(class="form-control-label") }}
+                    <small class="text-muted">{{ form.comment.description }}</small>
+                    {{ form.comment(class="form-control form-control-lg") }}
+
+
+                </div>
+
                 <div class="form-check">
                     {{ form.position_active(class="form-check-input") }}
-                    {{ form.position_active.label(class="form-check-label") }}
+                    {{ form.position_active.label(class="form-check-label", id="position_active") }}
                 </div>
             </fieldset>
-            <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
-            </div>
+            <button class="btn btn-outline-info" onclick="add_position()">
+                Add Position
+            </button>
         </form>
     </div>
-    <div class="border-top pt-3">
-        <small class="text-muted">
-            Already Have An Account? <a class="ml-2" href="{{ url_for('login_view') }}">Sign In</a>
-        </small>
-    </div>
+
+<script>
+    $(document).ready(function () {
+                var access_token = window.localStorage.accessToken;
+                var req = new XMLHttpRequest();
+                var url = "http://127.0.0.1:5050/resources/skills";
+                req.open("GET", url, false);
+                req.setRequestHeader('Content-Type', 'application/json');
+                req.setRequestHeader('Access-Control-Allow-Origin', '*');
+                req.setRequestHeader("Authorization", "Bearer " + access_token);
+                req.send();
+                var results_arr = JSON.parse(req.response);
+                var select = document.getElementById("position_skills");
+
+                for (var lst_idx = 0; lst_idx < results_arr.length; lst_idx++)
+                {
+                    var json = results_arr[lst_idx];
+                    var skill_name = json['skill_name'];
+                    select.options[select.options.length] = new Option(skill_name, skill_name);
+                }
+    });
+    function add_position() {
+                var access_token = window.localStorage.accessToken;
+                var req = new XMLHttpRequest();
+                var url = "http://127.0.0.1:5050/positions";
+                var position_name = document.getElementById("position_name").value;
+                var position_department = document.getElementById("position_department").value;
+                var position_active = document.getElementById("position_active").checked;
+                var position_skills = document.getElementById("position_skills");
+                var selected_skills = {};
+                for (var i = 0; i < position_skills.length; i++)
+                    if (position_skills.options[i].selected)
+                        selected_skills[position_skills.options[i].value] = position_skills.options[i].value;
+                selected_skills = JSON.stringify(selected_skills);
+                var comment = document.getElementById("comment").value;
+                var body = JSON.stringify('{"position_name":"' + position_name + '",' +
+                    '"position_department":"' + position_department + '",' +
+                    '"comment":"' + comment + '",' +
+                    '"skills":' + selected_skills + ',' +
+                    '"position_active":"' + position_active + '"}');
+                req.open("POST", url, false);
+                req.setRequestHeader('Content-Type', 'application/json');
+                req.setRequestHeader('Access-Control-Allow-Origin', '*');
+                req.setRequestHeader("Authorization", "Bearer " + access_token);
+                req.send(body);
+                // var results = req.response;
+    }
+    function add_skill() {
+                var access_token = window.localStorage.accessToken;
+                var req = new XMLHttpRequest();
+                var url = "http://127.0.0.1:5050/resources/skills";
+                var position_name = document.getElementById("new_skill").value;
+                var body = JSON.stringify('{"skill_name":"' + position_name + '"}');
+                req.open("POST", url, false);
+                req.setRequestHeader('Content-Type', 'application/json');
+                req.setRequestHeader('Access-Control-Allow-Origin', '*');
+                req.setRequestHeader("Authorization", "Bearer " + access_token);
+                req.send(body);
+                var select = document.getElementById("position_skills");
+                select.options[select.options.length] = new Option(position_name, position_name);
+    }
+    </script>
 {% endblock content %}
