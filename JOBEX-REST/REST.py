@@ -239,7 +239,7 @@ def register():
         return jsonify({'message': 'Method not supported'}), 500
 
 
-@app.route('/positions/<position_id>', methods=['POST', 'GET'])
+@app.route('/positions/<position_id>', methods=['GET'])
 @app.route('/positions', methods=['POST', 'GET'])
 def positions(position_id=None):
     if request.method == 'POST':
