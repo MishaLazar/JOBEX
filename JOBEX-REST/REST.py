@@ -129,9 +129,11 @@ def get_login():
             print("Failed to login. Error: {}".format(err))
 
         if result:
+
             access_token = create_access_token(identity=result)
             refresh_token = create_refresh_token(identity=result)
             data = {
+                'user_id': result,
                 "access_token": access_token,
                 "refresh_token": refresh_token
             }
@@ -140,6 +142,36 @@ def get_login():
             return jsonify({"message": "Wrong credentials"}), 403
     else:
         return jsonify({'message': 'Method not supported'}), 500
+
+
+@app.route('/get_student_profile', methods=['POST'])
+@jwt_required
+def get_student_profile():
+    if request.method == 'POST':
+        user_id = request.get_json()
+        mob_ctrl = MobileController()
+        data = mob_ctrl.get_student_profile(user_id)
+        return jsonify(data), 200
+    else:
+        return jsonify({"message": "Wrong user_id"}), 403
+
+
+@app.route('/register_student', methods=['POST'])
+def register_student():
+    if request.method == 'POST':
+        user = request.get_json()
+        mob_ctrl = MobileController()
+        new_user_id = mob_ctrl.register_user(user)
+        if new_user_id:
+            access_token = create_access_token(identity=new_user_id['user_id'])
+            refresh_token = create_refresh_token(identity=new_user_id['user_id'])
+        return jsonify({
+            'user_id': new_user_id,
+            'access_token': access_token,
+            'refresh_token': refresh_token
+        }), 200
+    else:
+        return jsonify({'message': 'Something went wrong'}), 500
 
 
 @app.route('/tokenRefresh', methods=['POST'])
@@ -166,7 +198,7 @@ def get_authentication_status():
 def put_object_with_auth():
     if request.method == 'POST':
         obj = request.get_json()
-        mob_ctrl = MobileController.get_instance()
+        mob_ctrl = MobileController()
         result = {
             "inserted_id": str(mob_ctrl.create_obj_with_authentication(obj))
         }
@@ -261,7 +293,7 @@ def skills(skill_to_find=None):
 
 @app.route('/student/getStudentEngagements/<student_Id>')
 def get_student_engagements(student_id):
-    mob_ctrl = MobileController.get_instance()
+    mob_ctrl = MobileController()
     result = mob_ctrl.get_StudentEngagements(studentId=student_id)
     return result
 
@@ -273,6 +305,19 @@ def get_student_skills(student_id):
         result = MobileController.get_student_skills(student_id)
     if request.method == 'GET':
         result = MobileController.get_student_skills(student_id)
+
+    return JSONEncoder().encode(result)
+
+
+@app.route('/student/update_skills/<student_id>', methods=['POST', 'GET'])
+def set_student_skills(student_id):
+    skills = request.get_json();
+    if request.method == 'POST':
+        mob_ctrl = MobileController()
+        result = mob_ctrl.set_student_skills(student_id, skills)
+    if request.method == 'GET':
+        mob_ctrl = MobileController()
+        result = mob_ctrl.set_student_skills(student_id, skills)
 
     return JSONEncoder().encode(result)
 
