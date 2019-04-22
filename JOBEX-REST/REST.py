@@ -118,7 +118,7 @@ def logout_refresh():
 @app.route('/get_login', methods=['POST'])
 def get_login():
     if request.method == 'POST':
-        authentication = json.loads(request.get_json())
+        authentication = request.get_json()
         username = authentication['username']
         password = authentication['password']
         result = None
@@ -163,10 +163,10 @@ def register_student():
         mob_ctrl = MobileController()
         new_user_id = mob_ctrl.register_user(user)
         if new_user_id:
-            access_token = create_access_token(identity=new_user_id['user_id'])
-            refresh_token = create_refresh_token(identity=new_user_id['user_id'])
+            access_token = create_access_token(identity=str(new_user_id))
+            refresh_token = create_refresh_token(identity=str(new_user_id))
         return jsonify({
-            'user_id': new_user_id,
+            'user_id': str(new_user_id),
             'access_token': access_token,
             'refresh_token': refresh_token
         }), 200

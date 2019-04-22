@@ -26,9 +26,9 @@ class MobileController:
     @staticmethod
     def register_user(new_user):
         db_client = Client()
-        new_user_id = db_client.insert_doc_to_collection(collection_name=DbCollections["users"], doc=new_user)
+        new_user_id = db_client.insert_doc_to_collection(collection_name=DbCollections.get_student_collection(), doc=new_user)
         if new_user_id:
-            return json.dumps({"new_user_id": new_user_id})
+            return new_user_id
         return None
 
     @staticmethod

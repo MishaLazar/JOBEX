@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { validateConfig } from '@angular/router/src/config';
 import { MyProfileService } from 'src/app/services/my-profile.service';
-import { MyProfile } from 'src/app/models/my-profile.model';
 import { LoadingController } from '@ionic/angular';
 import { StorageService } from 'src/app/services/storage.service';
 import { Token } from 'src/app/models/token.model';
 import { Registration } from 'src/app/models/registration';
+import { Router } from '@angular/router';
+import { error } from 'util';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +20,10 @@ export class RegisterPage implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     private myProfile:MyProfileService,
-    private loadingController:LoadingController,private storageSVC:StorageService) { 
+    private loadingController:LoadingController,
+    private router:Router,
+    private storageSVC:StorageService) { 
+
 
     this.buildForm();
   }
@@ -47,6 +50,7 @@ export class RegisterPage implements OnInit {
       this.registerForm.get('firstName').value,
       this.registerForm.get('lastName').value,
       this.registerForm.get('email').value,
+      this.registerForm.get('email').value,
       this.registerForm.get('password').value,null,null,null);
 
     //this.myProfile.setMyProfileRegistration(basicProfile);
@@ -55,19 +59,20 @@ export class RegisterPage implements OnInit {
       message:'login in ...'
     });
     loading.present();
-    this.myProfile.onRegistration(basicProfile).subscribe(() =>{
-        (response:Token) => {
+    this.myProfile.onRegistration(basicProfile).subscribe(
+      (response:Token) => {
+        debugger;
           this.myProfile.user_id = response.user_id;
           this.storageSVC.setStorageValueByKey('access_token',response.access_token);
           this.storageSVC.setStorageValueByKey('refresh_token',response.refresh_token);
           this.myProfile.loadProfile();
+          this.router.navigateByUrl('/dashboard');
           loading.dismiss();
-        }
-    },
-    (error:any) => {
-      console.log(error);
-      loading.dismiss();
-    }
+      },
+      error => {
+        console.log(error);
+        loading.dismiss();
+      }
     );
   }
 }

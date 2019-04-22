@@ -6,15 +6,25 @@
                     <ion-title>Jobex</ion-title>
                 </ion-toolbar>
             </ion-header>
-            <ion-content color="main_primary">
-                <ion-list>
-                    <ion-menu-toggle auto-hide="false" *ngFor="let menuItem of appMenu">
-                        <ion-item [routerDirection]="'root'" [routerLink]="menuItem.url">
-                            <ion-icon [name]="menuItem.icon" item-left></ion-icon>
-                            {{menuItem.title}}
+            <ion-content color="main_primary">                
+                    <ion-menu-toggle auto-hide="true" >
+                        <ion-list *ngFor="let menuItem of appMenu">
+                            <ion-item [routerDirection]="'root'" [routerLink]="menuItem.url" *ngIf="isAuthenticated">
+                                <ion-icon [name]="menuItem.icon" item-left></ion-icon>
+                                {{menuItem.title}}
+                            </ion-item>      
+                        </ion-list>     
+                        <ion-item (click)="onLogout()" *ngIf="isAuthenticated">
+                                <ion-icon name="log-out"></ion-icon>
+                                Logout
                         </ion-item>
+                        <ion-item  [routerLink]="['/login']" routerLinkActive="router-link-active"  *ngIf="!isAuthenticated">
+                                <ion-icon name="log-in"></ion-icon>
+                                login
+                        </ion-item>             
                     </ion-menu-toggle>
-                </ion-list>
+                    
+               
             </ion-content>
         </ion-menu>
     <ion-router-outlet main></ion-router-outlet>

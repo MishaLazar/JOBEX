@@ -23,11 +23,9 @@
                   formControlName="mail"
                   ></ion-input>
                 </ion-item>
-                  <div *ngIf="!loginForm.controls.mail.valid &&
-                  loginForm.controls.mail.dirty"
-                  >
-                Please enter a valid email.
-              </div>
+                  <div style="color:red;" *ngIf="!loginForm.controls.mail.valid && loginForm.controls.mail.touched">
+                    Please enter a valid email.
+                  </div>
                 <!-- <span class="validator-error"  *ngIf="loginForm.controls.mail.valid">ERROr</span> -->
                 <ion-item>
                   <ion-label floating>Password</ion-label>
@@ -36,8 +34,12 @@
                   formControlName="password"
                   ></ion-input>
                 </ion-item>
+                <div style="color:red;" *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.touched">
+                    Please enter a valid password, With min lenght of 4 characters.
+                  </div>
               </ion-list>
-              <ion-button  expand="full" (click)="onLogin()">Sign in</ion-button>
+              <ion-button  expand="full" (click)="onLogin()" [disabled]="!loginForm.valid">Sign in</ion-button>
+              <ion-button  expand="full" (click)="onRegister()" >Register</ion-button>
             </form>
       </ion-col>
     </ion-row>

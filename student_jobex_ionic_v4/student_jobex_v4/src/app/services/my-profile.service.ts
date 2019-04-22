@@ -29,6 +29,7 @@ export class MyProfileService {
     loadProfile(){
         this.http.submitForm('','get_student_profile').subscribe(
             (data:MyProfile) =>{
+                debugger;
                 this.myProfile = data;
             },
             (error:any) =>{

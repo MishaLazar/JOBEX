@@ -47,4 +47,9 @@ export class StorageService {
 
   }*/
   }
+
+  logout(){
+    localStorage.removeItem('refresh_token');
+    localStorage.removeItem('access_token');
+  }
 }

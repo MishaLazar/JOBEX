@@ -38,7 +38,7 @@ class AuthController:
     def login(username, password):
         db_client = Client()
         query = {
-            "UserName": username,
+            "username": username,
             "password": password
         }
         user_doc = db_client.get_single_doc_from_collection(DbCollections.get_student_collection(), query)

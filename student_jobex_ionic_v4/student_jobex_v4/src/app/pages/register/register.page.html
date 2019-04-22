@@ -16,13 +16,20 @@
               type="text"
               formControlName="firstName"
               ></ion-input>
+              <div style="color:red;" *ngIf="!registerForm.controls.firstName.valid && registerForm.controls.firstName.touched">
+                  Please enter a first name.
+                </div>
           </ion-item>
+          
           <ion-item>
             <ion-label floating>Last Name</ion-label>
             <ion-input
               formControlName="lastName"
               type="text">
             </ion-input>
+            <div style="color:red;" *ngIf="!registerForm.controls.firstName.valid && registerForm.controls.firstName.touched">
+                Please enter a last name.
+              </div>
           </ion-item>
           <ion-item>
             <ion-label floating>Cell Phone</ion-label>
@@ -30,6 +37,9 @@
               formControlName="cellPhone"
               type="tel"
               ></ion-input>
+              <div style="color:red;" *ngIf="!registerForm.controls.firstName.valid && registerForm.controls.firstName.touched">
+                  Please enter a cellPhone.
+                </div>
           </ion-item>
           <ion-item>
               <ion-label floating>Email</ion-label>
@@ -37,6 +47,9 @@
                 formControlName="email"
                 type="email"
                 ></ion-input>
+                <div style="color:red;" *ngIf="!registerForm.controls.email.valid && registerForm.controls.email.touched">
+                    Please enter a email.
+                  </div>
             </ion-item>
             <ion-item>
               <ion-label floating>Password</ion-label>
@@ -44,6 +57,9 @@
               type="password"
               formControlName="password"
               ></ion-input>
+              <div style="color:red;" *ngIf="!registerForm.controls.email.valid && registerForm.controls.email.touched">
+                  Please enter a password.
+                </div>
             </ion-item>
         </ion-list>
         <ion-button expand="full" (click)="onRegister()">

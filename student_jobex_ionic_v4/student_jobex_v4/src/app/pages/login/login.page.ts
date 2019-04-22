@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { StorageService } from 'src/app/services/storage.service';
 import { Token } from 'src/app/models/token.model';
 import { MyProfileService } from 'src/app/services/my-profile.service';
+import { Router } from '@angular/router';
+import { error } from 'util';
 
 @Component({
   selector: 'app-login',
@@ -17,9 +19,9 @@ export class LoginPage implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     private storageSVC:StorageService,
-    private authSvc:AuthenticationService,
+    private auth:AuthenticationService,
     public loadingController: LoadingController,
-    private myProfile:MyProfileService) {
+    private myProfile:MyProfileService, private router:Router,public toastController: ToastController) {
    
    }
 
@@ -38,28 +40,42 @@ export class LoginPage implements OnInit {
     }
     const userName = this.loginForm.get('mail').value;
     const userPassword = this.loginForm.get('password').value;
+    
     const loading = await this.loadingController.create({
       message:'login in ...'
     });
     loading.present();
-    this.authSvc.onSignin(userName,userPassword).subscribe(
-      () => {
+    this.auth.onSignin(userName,userPassword).subscribe(
+      
       (response:Token) => {
         this.myProfile.user_id = response.user_id;        
         this.storageSVC.setStorageValueByKey('access_token',response.access_token);
         this.storageSVC.setStorageValueByKey('refresh_token',response.refresh_token);
         loading.dismiss();
-      }
-    });
+        this.auth.stateSubject.next('login');
+        this.router.navigateByUrl('/dashboard')
+    },
+    error => {
+      loading.dismiss();
+      this.incorrectLogin();
+      
+    }
+    );
   
 }
+ async incorrectLogin() {
+    const toast  = await this.toastController.create({
+      message: 'email or password is incorrect',
+      position:"bottom",
+      duration: 2000
+    });
+    toast.present();
+  }
 
-async presentLoading() {
-  const loading = await this.loadingController.create({
-    message: 'Hellooo',
-    duration: 2000
-  });
-  await loading.present();
+
+
+
+onRegister(){
+  this.router.navigateByUrl('/register');
 }
-
 }

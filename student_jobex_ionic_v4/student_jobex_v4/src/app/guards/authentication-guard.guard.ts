@@ -12,7 +12,10 @@ export class AuthenticationGuardGuard implements  CanLoad{
 
   }
   canLoad(route:Route, segments: import("@angular/router").UrlSegment[]): boolean | Observable<boolean> | Promise<boolean> {
+    console.log("is authenticated:"+ this.auth.isAuthenticated());
     if(!this.auth.isAuthenticated()){
+     
+      
       this.router.navigateByUrl('/login')
     }
     return this.auth.isAuthenticated();

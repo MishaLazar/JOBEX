@@ -62,7 +62,7 @@ class Client:
         result = None
         try:
             collection = self.db[collection_name]
-            result = collection.insert_one(json.loads(doc)).inserted_id
+            result = collection.insert_one(doc).inserted_id
             result['_id'] = str(result['_id'])
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
