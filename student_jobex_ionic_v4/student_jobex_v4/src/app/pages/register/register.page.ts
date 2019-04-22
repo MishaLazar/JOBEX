@@ -51,7 +51,7 @@ export class RegisterPage implements OnInit {
       this.registerForm.get('lastName').value,
       this.registerForm.get('email').value,
       this.registerForm.get('email').value,
-      this.registerForm.get('password').value,null,null,null);
+      this.registerForm.get('password').value,null,false,null,null);
 
     //this.myProfile.setMyProfileRegistration(basicProfile);
 
@@ -62,7 +62,7 @@ export class RegisterPage implements OnInit {
     this.myProfile.onRegistration(basicProfile).subscribe(
       (response:Token) => {
         debugger;
-          this.myProfile.user_id = response.user_id;
+          this.myProfile.setUserIdOnLogin(response.user_id);
           this.storageSVC.setStorageValueByKey('access_token',response.access_token);
           this.storageSVC.setStorageValueByKey('refresh_token',response.refresh_token);
           this.myProfile.loadProfile();

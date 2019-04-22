@@ -9,6 +9,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthenticationService {
+  
 
   public stateSubject = new Subject();
   private isAuthenticatedStudent:boolean = false;
@@ -31,5 +32,9 @@ export class AuthenticationService {
     return this.storage.getValueByKey('access_token') !== null;
 
 
+  }
+
+  getToken() {
+    this.storage.getValueByKey('access_token');
   }
 }

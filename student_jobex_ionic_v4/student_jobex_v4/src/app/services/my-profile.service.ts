@@ -10,16 +10,17 @@ import { error } from 'protractor';
 export class MyProfileService {
 
     myProfile:MyProfile;
-    user_id:string;
+    private user_id:string;
     isUpdated:boolean = false;
     myProfileSkills:Skill[]=[
         new Skill('a',44,'MySql',1,1,true),
         new Skill('b',108,'PL/SQL',1,2,true)
     ];
+    isActiveProfile: boolean;
+
+
     constructor(private http:HttpHelpService){
-        this.myProfile =  new MyProfile(
-            "Misha","lazar","misha.lazar89@gmail.com","Object1","address city","/assets/img/deadpool-profile.png"
-        )
+        
     }
 
     editProfileSave(){
@@ -27,7 +28,10 @@ export class MyProfileService {
     }
 
     loadProfile(){
-        this.http.submitForm('','get_student_profile').subscribe(
+        const data = {
+            user_id:this.user_id
+        };
+        this.http.submitForm(data,'get_student_profile').subscribe(
             (data:MyProfile) =>{
                 debugger;
                 this.myProfile = data;
@@ -42,9 +46,9 @@ export class MyProfileService {
         this.isUpdated = true;
     }
 
-    isProfileImgSet(){
-        return this.myProfile.profileImg != null && this.myProfile.profileImg.length > 0 ? true:false;
-    }
+    // isProfileImgSet(){
+    //     return this.myProfile.profileImg != null && this.myProfile.profileImg.length > 0 ? true:false;
+    // }
 
     getMyProfileSkills(){
         return this.myProfileSkills.slice();
@@ -76,5 +80,23 @@ export class MyProfileService {
         }
         )
     }
+    setUserIdOnLogin(user_id:string){
+        this.user_id = user_id;
+    }
 
+    onUpdateProfileActivation(){
+        let data = {
+            user_id:this.user_id,
+            active:this.isActiveProfile
+        }
+        this.http.submitForm('','user/activate')
+    }
+
+    getMyProfileImgPath(){
+        return this.myProfile.profileImg
+    }
+
+    getMyProfile(){
+        return this.myProfile;
+    }
 }

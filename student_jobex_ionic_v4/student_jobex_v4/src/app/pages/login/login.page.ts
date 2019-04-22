@@ -48,11 +48,12 @@ export class LoginPage implements OnInit {
     this.auth.onSignin(userName,userPassword).subscribe(
       
       (response:Token) => {
-        this.myProfile.user_id = response.user_id;        
+        this.myProfile.setUserIdOnLogin(response.user_id); 
         this.storageSVC.setStorageValueByKey('access_token',response.access_token);
         this.storageSVC.setStorageValueByKey('refresh_token',response.refresh_token);
         loading.dismiss();
         this.auth.stateSubject.next('login');
+        this.myProfile.loadProfile();
         this.router.navigateByUrl('/dashboard')
     },
     error => {

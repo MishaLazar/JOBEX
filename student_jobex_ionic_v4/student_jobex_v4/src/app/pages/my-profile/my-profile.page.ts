@@ -21,9 +21,9 @@ export class MyProfilePage implements OnInit {
     }
 
     ngOnInit() {
-        if (this.profileService.isProfileImgSet()) {
-            this.profileImg = this.profileService.myProfile.profileImg;
-        }
+        
+            this.profileImg = this.profileService.getMyProfileImgPath()==undefined ? this.profileImg: this.profileService.getMyProfileImgPath();
+        
         this.profileListItems.push(new ListCardItem("Set your personal Data", "body", "create", "personalData"));
         this.profileListItems.push(new ListCardItem("Set your skills", "checkbox-outline", "create", "skills"));
         this.profileListItems.push(new ListCardItem("Wish List", "color-wand", "podium", "wishList"));
@@ -63,5 +63,10 @@ export class MyProfilePage implements OnInit {
 
     onOpenEngagements(){
         this.navCtrl.navigateForward('my-profile/engagements-list');
+    }
+
+    profileActivation(event:any){
+        debugger;
+        console.log(event.checked);
     }
 }

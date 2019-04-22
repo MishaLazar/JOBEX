@@ -24,9 +24,9 @@ export class PersonalDataPage implements OnInit {
   }
 
   ngOnInit(): void {
-      if(this.myProfile.isProfileImgSet()){
-          this.profileImg = this.myProfile.myProfile.profileImg;
-      }
+      
+          this.profileImg = this.myProfile.getMyProfileImgPath() == undefined ? this.profileImg: this.myProfile.getMyProfileImgPath();
+      
   }
 
 
@@ -49,7 +49,7 @@ export class PersonalDataPage implements OnInit {
           for (const control in this.personalData.controls) {
               if (this.personalData.controls.hasOwnProperty(control)) {
                   const element = this.personalData.controls[control];
-                  this.myProfile.myProfile[control] = element.value;
+                  this.myProfile.getMyProfile()[control] = element.value;
               }
           }            
           this.myProfile.editProfileSave();

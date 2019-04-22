@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class StorageService {
+  
 
   constructor() { }
   
@@ -52,4 +53,9 @@ export class StorageService {
     localStorage.removeItem('refresh_token');
     localStorage.removeItem('access_token');
   }
+
+  getToken(): any {
+    return this.getValueByKey('access_token');
+  }
 }
+

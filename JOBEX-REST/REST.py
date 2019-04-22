@@ -150,7 +150,7 @@ def get_student_profile():
     if request.method == 'POST':
         user_id = request.get_json()
         mob_ctrl = MobileController()
-        data = mob_ctrl.get_student_profile(user_id)
+        data = mob_ctrl.get_student_profile(user_id['user_id'])
         return jsonify(data), 200
     else:
         return jsonify({"message": "Wrong user_id"}), 403
