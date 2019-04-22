@@ -1,4 +1,3 @@
-import json
 from sshtunnel import SSHTunnelForwarder
 from pymongo import MongoClient, errors
 from Utils.config_helper import ConfigHelper

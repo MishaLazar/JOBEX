@@ -116,19 +116,5 @@
                 req.send(body);
                 // var results = req.response;
     }
-    function add_skill() {
-                var access_token = window.localStorage.accessToken;
-                var req = new XMLHttpRequest();
-                var url = "http://127.0.0.1:5050/resources/skills";
-                var position_name = document.getElementById("new_skill").value;
-                var body = JSON.stringify('{"skill_name":"' + position_name + '"}');
-                req.open("POST", url, false);
-                req.setRequestHeader('Content-Type', 'application/json');
-                req.setRequestHeader('Access-Control-Allow-Origin', '*');
-                req.setRequestHeader("Authorization", "Bearer " + access_token);
-                req.send(body);
-                var select = document.getElementById("position_skills");
-                select.options[select.options.length] = new Option(position_name, position_name);
-    }
     </script>
 {% endblock content %}

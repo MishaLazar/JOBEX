@@ -20,7 +20,6 @@
     <button onclick="window.location = 'http://127.0.0.1:5050/add_position'">Add New Position</button>
     <script>
             $(document).ready(function () {
-                {#debugger;#}
                 var access_token = window.localStorage.accessToken;
                 var req = new XMLHttpRequest();
                 var url = "http://127.0.0.1:5050/positions";
@@ -39,7 +38,7 @@
                     tr = $('<tr/>');
                     var link = "<a href=\"http://127.0.0.1:5050/position_view?position_id=" + json._id + "\">" + json.position_name + "</a>";
                     tr.append("<td>" +link + "</td>");
-                    tr.append("<td>" + json.department + "</td>");
+                    tr.append("<td>" + json.position_department + "</td>");
                     tr.append("<td>" + json.location + "</td>");
                     var skills = "";
                     for(var j=0; j< json.skills.length; j++)
