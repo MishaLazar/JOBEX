@@ -37,10 +37,9 @@ class AddPositionForm(FlaskForm):
     position_name = StringField('Position Name', validators=[DataRequired()])
     position_department = StringField('Position Department', validators=[DataRequired()])
     position_active = BooleanField('Position Active')
-    position_location = StringField('Position Location', validators=[DataRequired()])
+    position_location = StringField('Position Location', validators=[DataRequired()], description=u"where is it based?")
     position_skills = Select2MultipleField(u"Position Skills", [], choices=[],
                                            description=u"Choose the position required skills",
                                            render_kw={"multiple": "multiple"})
-    new_skill = StringField('New Skill', validators=[DataRequired()], description=u"Can't find what you're looking for?")
     comment = StringField('Comment', description=u"anything to add?")
     submit = SubmitField('Add Position')

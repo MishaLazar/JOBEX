@@ -22,21 +22,18 @@ class Client:
         self.client = MongoClient('127.0.0.1', self.server.local_bind_port)  # server.local_bind_port is assigned local port
         self.db = self.client[self.mongo_db]
 
-    def find_by_collection(self, collection_name, limit=100):
+    def find_by_collection(self, collection_name):
         """Insert doc to collection
 
-            :param collection_name: The name of the collection to insert in
+            :param collection_name: The name of the collection to get from
             :type collection_name: str
-            :param limit: (optional) how many docs will be returned
-            :type limit: int
             :returns list of docs
             :rtype list of JSON objects
         """
         result = []
         try:
             collection = self.db[collection_name]
-            sort = [("_id", -1)]
-            cursor = collection.find(sort=sort, limit=limit)
+            cursor = collection.find()
             try:
                 for doc in cursor:
                     doc['_id'] = str(doc['_id'])
