@@ -2,15 +2,16 @@
 class DbCollections:
 
     collection_names = {
-        "engagements_collection": "engagements",
-        "positions_col": "positions",
-        "users_col": "users",
-        "token_blacklist_collection": "token_blacklist",
-        "skills": "Skills",
+        "engagements": "engagements",
+        "positions": "positions",
+        "users": "users",
+        "token_blacklist": "token_blacklist",
+        "skills": "skills",
         "student_skills": "student_skills",
         "match": "match",
         "position_skills": "position_skills",
-        "jobs": "jobs"
+        "jobs": "jobs",
+        "companies": "companies"
     }
 
     @staticmethod
@@ -19,11 +20,11 @@ class DbCollections:
 
     @staticmethod
     def get_position_collection():
-        return DbCollections.collection_names['positions_col']
+        return DbCollections.collection_names['positions']
 
     @staticmethod
     def get_student_collection():
-        return DbCollections.collection_names['users_col']
+        return DbCollections.collection_names['users']
 
     @staticmethod
     def get_position_skills_collection():

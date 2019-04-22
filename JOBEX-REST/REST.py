@@ -194,9 +194,13 @@ def login():
 @app.route('/register', methods=['POST'])
 def register():
     if request.method == 'POST':
-        user = request.get_json()
         web_ctrl = WebController.getInstance()
-        new_user = web_ctrl.add_user(user)
+        user = request.get_json()
+        company_name = json.loads(user)['company_name']
+        if company_name not in companies:
+            web_ctrl.add_company(company_name)
+            companies.append(company_name)
+        new_user = web_ctrl.add_user(json.loads(user))
         if new_user:
             return jsonify({'result': 'success'}), 200
     else:
@@ -290,11 +294,19 @@ def matches(student_id=None, position_id=None):
         return {"error": "method {} not supported!".format(request.method)}
 
 
+# Boot functions
+
+def get_companies_list():
+    web_ctrl = WebController.getInstance()
+    return web_ctrl.get_companies_list()
+
+
 if __name__ == '__main__':
     if config.read_app_settings(Key='ServerDebug') == '1':
         app.debug = True
     if config.read_app_settings(Key='RunMatchEngine') == '1':
         example = JobThread(interval=Utils.int_try_parse(config.read_job(Key='DELAY_INTERVAL'),20))
 
+    companies = get_companies_list()
     app.run(port=5050, threaded=True)
 
