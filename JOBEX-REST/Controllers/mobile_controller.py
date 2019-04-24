@@ -54,7 +54,10 @@ class MobileController:
         query = {
             "student_id": student_id
         }
-        return db_client.update_single_doc_in_collection(DbCollections.get_student_skills_collection(),query,skills,True)
+        doc = {
+            "$set": { "student_skill_list" : skills }
+        }
+        return db_client.update_single_doc_in_collection(DbCollections.get_student_skills_collection(),query,doc,True)
 
     @staticmethod
     def get_student_profile(student_id):

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {MyProfile} from "../models/my-profile.model";
 import { Skill } from '../models/skill.model';
 import { HttpHelpService } from './http-help.service';
-import { error } from 'protractor';
+import { StudentSkill } from '../models/student_skill';
+import { LiteSkill } from '../models/lite.skill.modal';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class MyProfileService {
     private user_id:string;
     isProfileLoaded:boolean = false;
     isUpdated:boolean = false;
+    myStudentSkills:StudentSkill[] = [];
     myProfileSkills:Skill[]=[
         new Skill('a',44,'MySql',1,1,true),
         new Skill('b',108,'PL/SQL',1,2,true)
@@ -59,11 +61,31 @@ export class MyProfileService {
     }
 
     addSkillToProfile(skillToAdd:Skill){
+        let foundStudentSkill = this.myStudentSkills.findIndex(skill => skill.category_id === skillToAdd.SkillCategoryId && skill.sub_category_id === skillToAdd.SkillSubCategoryId)
+        if(foundStudentSkill >= 0){
+            this.myStudentSkills[foundStudentSkill].skills.push(new LiteSkill(skillToAdd.SkillId));
+        }
+        else {
+            let newSkill = new StudentSkill(skillToAdd.SkillCategoryId,skillToAdd.SkillSubCategoryId);
+            newSkill.skills.push(new LiteSkill(skillToAdd.SkillId));
+            this.myStudentSkills.push(newSkill);
+        }
         this.myProfileSkills.push(skillToAdd);
     }
     removeSkillFromProfile(skillToRemove:Skill){
+        let foundStudentSkill = this.myStudentSkills.findIndex(skill => skill.category_id === skillToRemove.SkillCategoryId && skill.sub_category_id === skillToRemove.SkillSubCategoryId)
+        if(foundStudentSkill >= 0){
+            let skillIndex = this.myStudentSkills[foundStudentSkill].skills.findIndex(skill => skill.skill_Id === skillToRemove.SkillId);
+            if(skillIndex >= 0){
+                this.myStudentSkills[foundStudentSkill].skills.splice(skillIndex,1);
+                if(this.myStudentSkills[foundStudentSkill].skills.length == 0){
+                    this.myStudentSkills.splice(foundStudentSkill,1);
+                }
+            }
+
+        }
         var indexToRemove = this.myProfileSkills.findIndex(el => el.SkillId == skillToRemove.SkillId);
-        if(indexToRemove > 0){
+        if(indexToRemove >= 0){
             this.myProfileSkills.splice(indexToRemove,1);
         }
     }
@@ -75,7 +97,7 @@ export class MyProfileService {
     }
     
     onProfileSkillsUpdate(){           
-        return this.http.submitForm(this.myProfileSkills.slice(),'student/update_skills/'+this.myProfile.userId).subscribe(() => 
+        return this.http.submitForm(this.myStudentSkills.slice(),'student/update_skills/'+this.user_id).subscribe(() => 
         (error:any) => {
             console.log(error);
         },

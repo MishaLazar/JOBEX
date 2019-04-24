@@ -35,7 +35,7 @@ export class SkillsPage implements OnInit {
 
   skillTuched(tuchedSkill:Skill){
 
-    if(tuchedSkill.IsChecked){
+    if(!tuchedSkill.IsChecked){
       this.myProfileService.removeSkillFromProfile(tuchedSkill);
     }
     else {
@@ -50,7 +50,7 @@ export class SkillsPage implements OnInit {
     let indexArray:number[] = [];
     profileSkills.forEach(profileSkill => {
       let index = this.skills.findIndex(el=> el.SkillId === profileSkill.SkillId);
-      if(index > 0){
+      if(index >= 0){
         indexArray.push(index);
       }
     });

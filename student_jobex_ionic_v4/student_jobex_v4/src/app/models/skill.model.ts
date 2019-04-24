@@ -2,9 +2,9 @@ export class Skill{
 
     constructor(
         public _id:string,
-        public SkillId:Number, 
+        public SkillId:number, 
         public TextValue:string , 
-        public SkillSubCategoryId:Number , 
-        public SkillCategoryId:Number , 
+        public SkillSubCategoryId:number , 
+        public SkillCategoryId:number , 
         public IsChecked:boolean){}
 }
