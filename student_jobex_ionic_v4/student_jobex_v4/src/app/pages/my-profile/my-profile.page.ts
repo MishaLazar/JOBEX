@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ListCardItem} from "../../models/list-card-item";
 import {MyProfileService} from "../../services/my-profile.service";
-import {ModalController, NavController} from "@ionic/angular";
-import {PersonalDataComponent} from "./components/personal-data/personal-data.component";
-import { EngagementsComponent } from './components/engagements/engagements.component';
-import { SkillsComponent } from './components/skills/skills.component';
+import {ModalController, NavController} from "@ionic/angular";  
 import { WishListComponent } from './components/wish-list/wish-list.component';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-my-profile',
@@ -16,19 +14,23 @@ export class MyProfilePage implements OnInit {
     profileImg: string = "assets/img/default_profile.png";
     profileListItems: ListCardItem [] = [];
 
-    constructor(private profileService: MyProfileService, public modalCtrl: ModalController,
+    constructor(private profile: MyProfileService, public modalCtrl: ModalController,private router:Router,
         private navCtrl:NavController) {
+            
     }
 
     ngOnInit() {
+        if(!this.profile.isProfileLoaded){
+            this.router.navigateByUrl('/dashboard');
+        }
         
-            this.profileImg = this.profileService.getMyProfileImgPath()==undefined ? this.profileImg: this.profileService.getMyProfileImgPath();
+        this.profileImg = this.profile.getMyProfileImgPath()==undefined ? this.profileImg: this.profile.getMyProfileImgPath();
         
         this.profileListItems.push(new ListCardItem("Set your personal Data", "body", "create", "personalData"));
         this.profileListItems.push(new ListCardItem("Set your skills", "checkbox-outline", "create", "skills"));
         this.profileListItems.push(new ListCardItem("Wish List", "color-wand", "podium", "wishList"));
         this.profileListItems.push(new ListCardItem("My engagements", "mail", "done-all", "engagements"));
-        console.table(this.profileListItems.slice())
+        //console.table(this.profileListItems.slice())
     }
 
     onItemClick(cardId: string) {
@@ -66,7 +68,9 @@ export class MyProfilePage implements OnInit {
     }
 
     profileActivation(event:any){
-        debugger;
-        console.log(event.checked);
+        
+        this.profile.isActiveProfile = event.detail.checked;
+        this.profile.myProfile.active = event.detail.checked;
+        this.profile.onUpdateProfileActivation();        
     }
 }

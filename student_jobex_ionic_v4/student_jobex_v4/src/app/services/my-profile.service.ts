@@ -11,6 +11,7 @@ export class MyProfileService {
 
     myProfile:MyProfile;
     private user_id:string;
+    isProfileLoaded:boolean = false;
     isUpdated:boolean = false;
     myProfileSkills:Skill[]=[
         new Skill('a',44,'MySql',1,1,true),
@@ -30,16 +31,19 @@ export class MyProfileService {
     loadProfile(){
         const data = {
             user_id:this.user_id
-        };
-        this.http.submitForm(data,'get_student_profile').subscribe(
-            (data:MyProfile) =>{
-                debugger;
-                this.myProfile = data;
-            },
-            (error:any) =>{
-                console.log(error);
-            }
-        );
+        }
+        if(!this.isProfileLoaded){
+            this.http.submitForm(data,'get_student_profile').subscribe(
+                (data:MyProfile) =>{
+                    this.myProfile = data;
+                    this.isProfileLoaded = true;
+                },
+                (error:any) =>{
+                    console.log(error);
+                }
+            );
+        }
+        
     }
     setMyProfileRegistration(myProfile:MyProfile){
         this.myProfile = myProfile;
@@ -87,9 +91,17 @@ export class MyProfileService {
     onUpdateProfileActivation(){
         let data = {
             user_id:this.user_id,
-            active:this.isActiveProfile
+            active_status:this.isActiveProfile
         }
-        this.http.submitForm('','user/activate')
+        this.http.submitForm(data,'activate_student_profile').subscribe(
+            (response:any) =>{
+                debugger;
+                console.log(response);
+            },
+            error => {
+                console.log(error);
+            }
+        );
     }
 
     getMyProfileImgPath(){

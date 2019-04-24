@@ -18,6 +18,7 @@ export class AuthenticationGuardGuard implements  CanLoad{
       
       this.router.navigateByUrl('/login')
     }
+    this.auth.setUserIdFromStorage();
     return this.auth.isAuthenticated();
   }
   

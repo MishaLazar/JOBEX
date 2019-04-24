@@ -187,11 +187,17 @@ def get_refreshed_token():
         return jsonify({'message': 'Something went wrong'}), 500
 
 
-@app.route('/checkAuthenticationStatus', methods=['POST'])
+@app.route('/activate_student_profile', methods=['POST'])
 @jwt_required
 def get_authentication_status():
     if request.method == 'POST':
-        return jsonify({'message': 'you are authenticated!'}), 200
+        request_data = request.get_json()
+        user_id = request_data['user_id']
+        active_status = request_data['active_status']
+        response = MobileController.set_active_status_on_profile(user_id,active_status)
+        if bool(active_status):
+            MobileController.set_student_for_rematch(user_id)
+        return jsonify(response), 200
 
 
 @app.route('/putWithAuth', methods=['POST'])

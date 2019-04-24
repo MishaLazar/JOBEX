@@ -1,3 +1,5 @@
+from bson import ObjectId
+from datetime import datetime
 from DAL.mongo_db_handler import Client
 from DAL.db_collections import DbCollections
 import json
@@ -58,4 +60,28 @@ class MobileController:
     def get_student_profile(student_id):
         db_client = Client()
         return db_client.get_single_doc_from_collection(DbCollections.get_student_collection(), object_id=student_id)
+
+    @staticmethod
+    def set_active_status_on_profile(student_id,active_status):
+        db_client = Client()
+        doc_filter = {
+            "_id": ObjectId(student_id),
+
+        }
+        doc = {
+         "$set": {"active": active_status}
+        }
+        return db_client.update_single_doc_in_collection(DbCollections.get_student_collection(), filter_json=doc_filter,
+                                                         doc_update_json=doc)
+
+    @staticmethod
+    def set_student_for_rematch(student_id):
+        db_client = Client()
+        doc = {
+            "job_type_id": 1,
+            "source_objectid": student_id,
+            "creation_date": datetime.now(),
+            "status": 0
+        }
+        return db_client.insert_doc_to_collection(DbCollections.get_job_collection(),doc)
 

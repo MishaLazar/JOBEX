@@ -7,6 +7,7 @@ import {MenuItem} from "./models/menu-item";
 import { StorageService } from './services/storage.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
+import { MyProfileService } from './services/my-profile.service';
 
 @Component({
   selector: 'app-root',

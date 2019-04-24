@@ -210,7 +210,8 @@ class JobThread(object):
                                                   self.calculate_match_level(category_similarity,
                                                                              sub_categories_similarity,
                                                                              skill_similarity))
-                                    matches.append(match)
+                                    if match.match_level_id > ConfigHelper.read_app_settings('MinMatchLevel'):
+                                        matches.append(match)
                 elif int(_job.job_type_id) == 2:  # rematch by position
                     log.debug('rematch by position :' + _job.source_objectid)
                     position_skills = self.get_positions_skill_list_by_position_id(_job.source_objectid,
@@ -251,7 +252,8 @@ class JobThread(object):
                                                   self.calculate_match_level(category_similarity,
                                                                              sub_categories_similarity,
                                                                              skill_similarity))
-                                    matches.append(match)
+                                    if match.match_level_id > ConfigHelper.read_app_settings('MinMatchLevel'):
+                                        matches.append(match)
                 elif int(_job.job_type_id) == 3:  # Sentiment analysis
                     log.debug('start sentiment analysis job for object_id:' + _job.source_objectid)
                     txt_to_evaluate = self.get_text_to_analise(_job.source_objectid)

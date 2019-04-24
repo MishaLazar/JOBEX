@@ -4,16 +4,21 @@ import { ConfigService } from './config.service';
 import { StorageService } from './storage.service';
 import { HttpHelpService } from './http-help.service';
 import { Subject } from 'rxjs';
+import { MyProfileService } from './my-profile.service';
+import { RefreshTokenInterceptor } from '../Utils/RefreshTokenInterceptor';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+    
   
 
   public stateSubject = new Subject();
   private isAuthenticatedStudent:boolean = false;
-  constructor(private http:HttpHelpService,private storage:StorageService) { }
+  constructor(private http:HttpHelpService,private storage:StorageService,private profile:MyProfileService) { 
+
+  }
 
 
   onSignin(username:string, password:string){
@@ -33,8 +38,22 @@ export class AuthenticationService {
 
 
   }
+ 
+  setRefreshedToken(token:string){
+    this.storage.setStorageValueByKey('access_token',token)
+  }
 
   getToken() {
-    this.storage.getValueByKey('access_token');
+    return this.storage.getValueByKey('access_token');
   }
+  
+  refreshAccessToken(): any {
+    return this.http.refreshToken('tokenRefresh');
+  }
+
+  setUserIdFromStorage(): any {
+    this.profile.setUserIdOnLogin(this.storage.getUserId());
+  }
+
+
 }

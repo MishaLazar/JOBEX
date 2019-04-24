@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import skillsJson from '../testDataFiles/skills.json';
 import { Engagement } from '../models/engagement.js';
+import { HttpHelpService } from './http-help.service.js';
+import { Skill } from '../models/skill.model.js';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,14 +12,11 @@ export class SharedDataService {
 
   
   skills:any;
+  isSkillsLoaded:boolean = false;
   latestEngagements:Engagement[] = [];
   activeEngagements:Engagement[] = [];
-  constructor(private httpClient: HttpClient) { 
-    // this.getSkillJson().subscribe(data => {
-    //     this.skills = data;
-    //     console.log(this.skills);
-    // });
-    //console.log(skillsJson);
+  constructor(private http: HttpHelpService) { 
+  
     this.skills = skillsJson;
     this.initStudentEngagements();
   }
@@ -42,5 +41,19 @@ export class SharedDataService {
   getStudentLatestEngagmentByMatchId(matchId:string){
     return this.latestEngagements.find(value => value.matchId == matchId);
   }
-  
+  loadAllSkills(){
+    if(!this.isSkillsLoaded){
+      this.http.get('resources/skills').subscribe(
+        (data:Skill[]) => {
+          this.skills = data;
+          this.isSkillsLoaded = true;
+          //console.log('loaded :' + data.length + ' skills');
+        },
+        error =>{
+          console.log(error);
+        }
+
+      );
+    }
+  }
 }

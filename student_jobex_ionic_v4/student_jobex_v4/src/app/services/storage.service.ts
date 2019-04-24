@@ -57,5 +57,11 @@ export class StorageService {
   getToken(): any {
     return this.getValueByKey('access_token');
   }
+  getRefreshToken(): any {
+    return this.getValueByKey('refresh_token');
+  }
+  getUserId(){
+    return this.getValueByKey('user_id');
+  }
 }
 

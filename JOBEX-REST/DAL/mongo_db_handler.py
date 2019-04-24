@@ -179,6 +179,29 @@ class Client:
         try:
             collection = self.db[collection_name]
             result = collection.update_one(filter=filter_json, update=doc_update_json,upsert=update_if_exists).modified_count
+
+        except errors.ServerSelectionTimeoutError as err:
+            return 'DB timeout error: {}'.format(err)
+        finally:
+            return result
+
+    def update_field_in_single_doc_in_collection(self, collection_name, filter_json, doc_update_json):
+        """ Update doc in collection
+
+                :param collection_name: The name of the collection to update in
+                :type collection_name: str
+                :param filter_json: filter of which doc to update, best to use _id
+                :type filter_json: json str
+                :param doc_update_json: the values to update in the doc ,
+                       update_if_exists: if not exists insert else update
+                :type doc_update_json: json str
+                :returns modified_count, should be 1 as single doc should be updated
+                :rtype int
+        """
+        result = None
+        try:
+            collection = self.db[collection_name]
+            result = collection.update_one(filter_json, doc_update_json, upsert=False)
             result['_id'] = str(result['_id'])
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)

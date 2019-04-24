@@ -15,7 +15,8 @@ import {StorageService} from "./services/storage.service";
 import {ProfileComponentsModule} from "./pages/my-profile/components/profile-componentsModule";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedDataService } from './services/shared-data.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RefreshTokenInterceptor } from './Utils/RefreshTokenInterceptor';
 
 
 
@@ -38,7 +39,12 @@ import { HttpClientModule } from '@angular/common/http';
       StorageService,
       MyProfileService,
       SharedDataService,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RefreshTokenInterceptor,
+      multi: true
+    }
   ],
   exports:[
     ReactiveFormsModule,FormsModule
