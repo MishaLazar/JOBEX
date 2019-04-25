@@ -1,4 +1,19 @@
 export class Engagement{
-    constructor(public matchId:string,public jobTitle:string,public jobShortDescription:string,public companyName:string,
-        public aboutCompany:string, public companyRating:number,public message:string){}
+    constructor(
+        public _id:string,
+        public position_id:string,
+        public student_id:string,
+        public match_id:string,
+        public position_description:string,
+        public position_title:string,
+        public position_location:string,
+        public company_name:string,        
+        public message:string,
+        public is_new:boolean,
+        public status:string,
+        public is_deleted:boolean,
+        public match_level_id:number,
+        public creation_date:Date
+        
+        ){}
 }

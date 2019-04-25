@@ -23,8 +23,10 @@ export class DashboardPage implements OnInit {
     }
   }
 
-  onClickTest(mid:string){
-    this.navCtrl.navigateForward('dashboard/engagement/'+mid);
+  // onClickTest(mid:string){
+  //   this.navCtrl.navigateForward('dashboard/engagement/'+mid);
+  // }
+  onClick(){
+    this.profile.loadStudentSkills();
   }
-
 }

@@ -22,10 +22,8 @@ export class SkillsPage implements OnInit {
     this.init();
   }
 
-  onSaveSkillsClick(){
-    debugger;
-    this.myProfileService.onProfileSkillsUpdate();
-    this.modalController.dismiss();
+  onSaveSkillsClick(){    
+    this.myProfileService.onProfileSkillsUpdate();    
   }
 
   termChange(term:any){

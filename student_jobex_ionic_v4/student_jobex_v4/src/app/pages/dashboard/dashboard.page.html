@@ -28,7 +28,10 @@
       <dash-chart-overtime></dash-chart-overtime>
     </ion-col>
     <ion-col size="6">
-      <dash-chart-best4you></dash-chart-best4you>
+      <ion-button (click)="onClick()">
+        Click me
+      </ion-button>
+      <!-- <dash-chart-best4you></dash-chart-best4you> -->
     </ion-col>
   </ion-row>
   <ion-row>
@@ -38,16 +41,10 @@
     </ion-row>
     <ion-row>
         <ion-col size="12">
-          <ion-list *ngFor="let engagement of studentLastEgagements" >
-            <!-- <ion-item button no-padding lines="none" routerLink="engagement/{{engagement.matchId}}" routerDirection="forward" (click)="onClickTest(engagement.matchId)"> -->
-              <ion-item button no-padding lines="none" (click)="onClickTest(engagement.matchId)">
-                <dash-engagments 
-                jobTitle="{{engagement.jobTitle}}" 
-                jobShortDescription="{{engagement.jobShortDescription}}" 
-                companyRating="{{engagement.companyRating}}" 
-                companyName="{{engagement.companyName}}"></dash-engagments>
-            </ion-item>
-          </ion-list>
+          
+            <!-- <ion-item button no-padding lines="none" routerLink="engagement/{{engagement.matchId}}" routerDirection="forward" (click)="onClickTest(engagement.matchId)"> -->              
+                <dash-engagments></dash-engagments>           
+          
         </ion-col>
       </ion-row>
 </ion-grid>

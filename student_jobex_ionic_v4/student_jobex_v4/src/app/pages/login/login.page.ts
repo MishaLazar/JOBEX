@@ -48,7 +48,7 @@ export class LoginPage implements OnInit {
     this.auth.onSignin(userName,userPassword).subscribe(
       
       (response:Token) => {
-        debugger;
+        
         this.myProfile.setUserIdOnLogin(response.user_id); 
         this.storageSVC.setStorageValueByKey('user_id',response.user_id);
         this.storageSVC.setStorageValueByKey('access_token',response.access_token);

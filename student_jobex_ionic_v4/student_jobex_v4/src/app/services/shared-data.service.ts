@@ -22,11 +22,6 @@ export class SharedDataService {
   }
 
   initStudentEngagements(){
-    this.latestEngagements.push(new Engagement('ads22331','DBA','Keep close to Nature\'s heart... and break clear away, once in awhile,and climb a mountain or spend a week in the woods. Wash your spirit clean.',
-    'NetApp','Bla Bla Bla', (5 * 0.8),'bla bla message'));
-    this.latestEngagements.push(new Engagement('abdd2222','C#','Keep close to Nature\'s heart... and break clear away, once in awhile,and climb a mountain or spend a week in the woods. Wash your spirit clean.',
-    'CyberArk','Bla Bla Bla', (5 * 0.9),'blaa balala message 2'));
-
     //TODO: delete prototype
     this.activeEngagements = this.latestEngagements.slice();
   }
@@ -38,8 +33,8 @@ export class SharedDataService {
   getStudentLatestEngagments(){
     return this.latestEngagements.slice();
   }
-  getStudentLatestEngagmentByMatchId(matchId:string){
-    return this.latestEngagements.find(value => value.matchId == matchId);
+  getStudentLatestEngagmentByMatchId(match_Id:string){
+    return this.latestEngagements.find(value => value.match_id == match_Id);
   }
   loadAllSkills(){
     if(!this.isSkillsLoaded){

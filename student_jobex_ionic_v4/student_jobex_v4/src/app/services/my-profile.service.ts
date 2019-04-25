@@ -4,25 +4,27 @@ import { Skill } from '../models/skill.model';
 import { HttpHelpService } from './http-help.service';
 import { StudentSkill } from '../models/student_skill';
 import { LiteSkill } from '../models/lite.skill.modal';
+import { switchMap, catchError } from 'rxjs/operators';
+import { ConfigService } from './config.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MyProfileService {
+ 
 
     myProfile:MyProfile;
-    private user_id:string;
+    user_id:string;
     isProfileLoaded:boolean = false;
     isUpdated:boolean = false;
     myStudentSkills:StudentSkill[] = [];
-    myProfileSkills:Skill[]=[
-        new Skill('a',44,'MySql',1,1,true),
-        new Skill('b',108,'PL/SQL',1,2,true)
-    ];
+    myProfileSkills:Skill[]=[];
     isActiveProfile: boolean;
+    isStudentSkillsLoaded: boolean = false;
 
 
-    constructor(private http:HttpHelpService){
+    constructor(private http:HttpHelpService,private config:ConfigService){
         
     }
 
@@ -52,6 +54,26 @@ export class MyProfileService {
         this.isUpdated = true;
     }
 
+    loadStudentSkills(){        
+        if(!this.isStudentSkillsLoaded){
+            this.http.get('student/skills/' + this.user_id).subscribe(
+                (skills:StudentSkill[]) =>{
+                    this.isStudentSkillsLoaded = true;
+                    this.myStudentSkills = skills;
+                    this.processLoadedStudentSkill(this.myStudentSkills);
+                },
+                (error:any) =>{
+                    console.log(error);
+                });            
+        }
+    }
+    processLoadedStudentSkill(studentSkills: StudentSkill[]) {
+        studentSkills.forEach(sSkill => {
+            sSkill.skills.forEach(skill => {
+                this.myProfileSkills.push(new Skill(skill.skill_Id,sSkill.sub_category_id,sSkill.category_id,true))
+            });
+        });
+    }
     // isProfileImgSet(){
     //     return this.myProfile.profileImg != null && this.myProfile.profileImg.length > 0 ? true:false;
     // }
@@ -97,13 +119,16 @@ export class MyProfileService {
     }
     
     onProfileSkillsUpdate(){           
-        return this.http.submitForm(this.myStudentSkills.slice(),'student/update_skills/'+this.user_id).subscribe(() => 
-        (error:any) => {
+        return this.http.submitForm(this.myStudentSkills.slice(),'student/update_skills/'+this.user_id).subscribe(
+            (response) => {
+                debugger;
+                this.isStudentSkillsLoaded = false;
+                console.log(response);
+            },
+            (error:any) => {
             console.log(error);
-        },
-        (response) => {
-            console.log(response);
-        }
+            }
+        
         )
     }
     setUserIdOnLogin(user_id:string){
@@ -133,4 +158,12 @@ export class MyProfileService {
     getMyProfile(){
         return this.myProfile;
     }
+
+    loadLatestsEngagements(maxOfLatests: number): Observable<Object> {
+        let data = {
+            student_id:this.user_id,
+            limit:this.config.getMaxNumOfLatests()
+        }
+        return this.http.submitForm(data,'student/getStudentEngagements');
+      }
 }

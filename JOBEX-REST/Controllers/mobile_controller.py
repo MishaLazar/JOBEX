@@ -33,12 +33,12 @@ class MobileController:
             return new_user_id
         return None
 
-    @staticmethod
-    def get_student_engagements(student_id):
-        db_client = Client()
-        result = db_client.get_single_doc_from_collection(collection_name=DbCollections.get_collection("users"),
-                                                          object_id=student_id)
-        return result
+    # @staticmethod
+    # def get_student_engagements(student_id):
+    #     db_client = Client()
+    #     result = db_client.get_single_doc_from_collection(collection_name=DbCollections.get_collection("users"),
+    #                                                       object_id=student_id)
+    #     return result
 
     @staticmethod
     def get_student_skills(student_id):
@@ -46,7 +46,10 @@ class MobileController:
         query = {
             "student_id": student_id
         }
-        return db_client.get_single_doc_from_collection(DbCollections.get_collection("student_skills"), json_query=query)
+        result = db_client.get_single_doc_from_collection(DbCollections.get_collection("student_skills"), json_query=query)
+        if result:
+            result = result['student_skill_list']
+        return result
 
     @staticmethod
     def set_student_skills(student_id,skills):
@@ -87,4 +90,25 @@ class MobileController:
             "status": 0
         }
         return db_client.insert_doc_to_collection(DbCollections.get_job_collection(),doc)
+
+
+    @staticmethod
+    def get_student_engagements(student_id, limit=-1):
+        db_client = Client()
+        query = {
+            "student_id": student_id
+        }
+        sort_order_param = "creation_date"
+        return db_client.get_many_docs_from_collection(DbCollections.get_engagements_collection(), json_query=query,
+                                                       sort_order_parameter=sort_order_param,direction=True,
+                                                       limit=limit)
+
+    @staticmethod
+    def get_student_engagement_by_match(student_id, match_id):
+        db_client = Client()
+        query = {
+            "student_id": student_id,
+            "match_id":match_id
+        }
+        return db_client.get_single_doc_from_collection(DbCollections.get_engagements_collection(),json_query=query)
 

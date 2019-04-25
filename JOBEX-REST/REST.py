@@ -297,14 +297,35 @@ def skills(skill_to_find=None):
     return JSONEncoder().encode(result)
 
 
-@app.route('/student/getStudentEngagements/<student_Id>')
-def get_student_engagements(student_id):
-    mob_ctrl = MobileController()
-    result = mob_ctrl.get_StudentEngagements(studentId=student_id)
-    return result
+@app.route('/student/getStudentEngagements', methods=['POST','GET'])
+@jwt_required
+def get_student_engagements():
+    result = None
+    if request.method == 'POST':
+        request_data = request.get_json()
+        student_id = request_data['student_id']
+        limit = request_data['limit']
+        result = MobileController.get_student_engagements(student_id=student_id,limit=limit)
+    elif request.method == 'GET':
+        pass
+    return JSONEncoder().encode(result)
+
+@app.route('/student/get_student_engagement_by_match', methods=['POST','GET'])
+@jwt_required
+def get_student_engagement_by_match():
+    result = None
+    if request.method == 'POST':
+        request_data = request.get_json()
+        student_id = request_data['student_id']
+        match_id = request_data['match_id']
+        result = MobileController.get_student_engagement_by_match(student_id=student_id,match_id=match_id)
+    elif request.method == 'GET':
+        pass
+    return JSONEncoder().encode(result)
 
 
 @app.route('/student/skills/<student_id>', methods=['POST', 'GET'])
+@jwt_required
 def get_student_skills(student_id):
     result = None
     if request.method == 'POST':
@@ -316,6 +337,7 @@ def get_student_skills(student_id):
 
 
 @app.route('/student/update_skills/<student_id>', methods=['POST', 'GET'])
+@jwt_required
 def set_student_skills(student_id):
     skills = request.get_json();
     if request.method == 'POST':

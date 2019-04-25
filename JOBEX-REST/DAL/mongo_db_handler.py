@@ -1,5 +1,5 @@
 from sshtunnel import SSHTunnelForwarder
-from pymongo import MongoClient, errors
+from pymongo import MongoClient, errors, DESCENDING, ASCENDING
 from Utils.config_helper import ConfigHelper
 from bson.objectid import ObjectId
 
@@ -114,23 +114,42 @@ class Client:
         finally:
             return result
 
-    def get_many_docs_from_collection(self, collection_name, json_query=None):
+    def get_many_docs_from_collection(self, collection_name,
+                                      json_query=None,
+                                      sort_order_parameter=None,
+                                      direction=None,
+                                      limit=None):
         """ Getting many docs from collection by collection name
 
                 :param collection_name: The name of the collection to insert in
                 :type collection_name: str
+                :param sort_order_parameter: field to sort by
+                :type sort_order_parameter: str
+                :param direction: True = Desc else Asc
+                :type direction: boolean
+                :param limit: max number of doc to find
+                :type limit: int
                 :param json_query: the json query to search with
-                :type JSON str
+                :type json_query str
                 :returns many docs
                 :rtype JSON objects of the docs found in the collection
         """
         result = []
+        if direction:
+            direction = DESCENDING
+        else:
+            direction = ASCENDING
         try:
             collection = self.db[collection_name]
             if json_query:
-                for doc in collection.find(json_query):
-                    doc['_id'] = str(doc['_id'])
-                    result.append(doc)
+                if sort_order_parameter:
+                    for doc in collection.find(json_query).sort(sort_order_parameter, direction).limit(limit):
+                        doc['_id'] = str(doc['_id'])
+                        result.append(doc)
+                else:
+                    for doc in collection.find(json_query):
+                        doc['_id'] = str(doc['_id'])
+                        result.append(doc)
             else:
                 for doc in collection.find():
                     doc['_id'] = str(doc['_id'])

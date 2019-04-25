@@ -7,7 +7,20 @@
   </ion-toolbar>
 </ion-header>
 
-
-<ion-content>
-  {{engagement.jobShortDescription}}
-</ion-content>
+  <ion-content *ngIf="engagement">
+      <ion-grid>
+          <ion-row>
+              <ion-col size="6">
+                 {{ engagement.position_title}}
+              </ion-col>
+              <ion-col  >
+                  {{engagement.company_name}}
+              </ion-col>                
+          </ion-row>
+          <ion-row style="font-size:12px; line-height:1.2;">
+              <ion-col size="12" class="ellipsis">
+                  {{engagement.position_description}}
+              </ion-col>
+          </ion-row>
+      </ion-grid>    
+  </ion-content>

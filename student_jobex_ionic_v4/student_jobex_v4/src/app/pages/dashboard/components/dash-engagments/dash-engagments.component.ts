@@ -1,4 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MyProfileService } from 'src/app/services/my-profile.service';
+import { ConfigService } from 'src/app/services/config.service';
+import { NavController } from '@ionic/angular';
+import { Engagement } from 'src/app/models/engagement';
 
 @Component({
   selector: 'dash-engagments',
@@ -7,15 +11,37 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DashEngagmentsComponent implements OnInit {
 
-  @Input() jobTitle:any;
-  @Input() jobShortDescription:any;
-  @Input() companyName:any;
-  @Input() companyRating:any;
-  constructor() {
+  engagments:Engagement[];
+  constructor(
+    private profile:MyProfileService,
+    private config:ConfigService,    
+    private navCtrl:NavController) {
 
-    console.log(this.jobTitle);
+    
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadEngagements();
+  }
 
+  async loadEngagements(){
+    // const loading = await this.loadingController.create();
+    // loading.present();
+
+    this.profile.loadLatestsEngagements(this.config.getMaxNumOfLatests()).subscribe(
+      (data:Engagement[]) => {
+        this.engagments = data;
+        console.log(data);
+        // loading.dismiss();
+      },
+      (error) => {
+        console.log(error);
+        // loading.dismiss();
+      }
+    );
+  }
+
+  onEngagmentClick(match_id:string){
+    this.navCtrl.navigateForward('dashboard/engagement/'+match_id);
+  }
 }

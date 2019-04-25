@@ -43,5 +43,9 @@ class DbCollections:
         return DbCollections.collection_names['jobs']
 
     @staticmethod
-    def get_match_collectio():
+    def get_engagements_collection():
+        return DbCollections.collection_names['engagements']
+
+    @staticmethod
+    def get_match_collection():
         return DbCollections.collection_names['match']
