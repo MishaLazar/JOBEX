@@ -296,6 +296,7 @@ def skills(skill_to_find=None):
 
     return JSONEncoder().encode(result)
 
+
 @app.route('/student/getStudentEngagements/<student_id>', methods=['GET'])
 @app.route('/student/getStudentEngagements', methods=['POST', 'GET'])
 @jwt_required
@@ -309,6 +310,20 @@ def get_student_engagements(student_id=None):
     elif request.method == 'GET':
         result = MobileController.get_student_engagements(student_id=student_id)
     return JSONEncoder().encode(result)
+
+
+@app.route('/student/engagement_update', methods=['POST'])
+@jwt_required
+def get_student_engagement_update():
+    if request.method == 'POST':
+        request_data = request.get_json()
+        student_id = request_data['student_id']
+        engagement_id = request_data['engagement_id']
+        update_fields = request_data['update_fields']
+        result = MobileController.get_student_engagement_update(student_id=student_id,engagement_id=engagement_id,
+                                                                  update_fields=update_fields)
+    return JSONEncoder().encode(result)
+
 
 @app.route('/student/get_student_engagement_by_match', methods=['POST','GET'])
 @jwt_required

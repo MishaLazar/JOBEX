@@ -1,26 +1,28 @@
-<div *ngIf="engagments">
+<div *ngIf="engagements">
 <ion-list>
-    <ion-item *ngFor="let engagment of engagments" button no-padding lines="none" >
-        <ion-grid (click)="onEngagmentClick(engagment.match_id)">
+    <ion-item *ngFor="let engagement of engagements" button no-padding lines="none" (click)="onEngagmentClick(engagement.match_id)">
+        <ion-grid>
                 <ion-row>
                     <ion-col size="6" class="col-title">
-                        {{engagment.position_title}}
+                        {{engagement.position_title}}
                     </ion-col>
                     <ion-col class="col-subTitle" >
-                        {{engagment.company_name}}
+                        {{engagement.company_name}}
                     </ion-col>                
                 </ion-row>
                 <ion-row style="font-size:12px; line-height:1.2;">
-                    <ion-col size="12" class="ellipsis">
-                        {{engagment.position_description}}
+                    <ion-col size="8" class="ellipsis">
+                        {{engagement.position_description}}
                     </ion-col>
                 </ion-row>
             </ion-grid>
-    </ion-item>    
+            <ion-radio slot="end" [(checked)] = "engagement.is_new"></ion-radio>
+    </ion-item>   
+    
 </ion-list>
 </div>
-<div *ngIf="!engagments">
-        <ion-list>
+<div *ngIf="!engagements">
+        <ion-list *ngFor="let item of [1,2]">
                 <ion-list-header>
                   <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
                 </ion-list-header>
@@ -34,10 +36,7 @@
                     </h3>
                     <p>
                       <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
-                    </p>
-                    <p>
-                      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-                    </p>
+                    </p>                  
                   </ion-label>
                 </ion-item>               
               </ion-list>

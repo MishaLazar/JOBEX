@@ -11,7 +11,7 @@ import { Engagement } from 'src/app/models/engagement';
 })
 export class DashEngagmentsComponent implements OnInit {
 
-  engagments:Engagement[];
+  engagements:Engagement[];
   constructor(
     private profile:MyProfileService,
     private config:ConfigService,    
@@ -30,7 +30,7 @@ export class DashEngagmentsComponent implements OnInit {
 
     this.profile.loadLatestsEngagements(this.config.getMaxNumOfLatests()).subscribe(
       (data:Engagement[]) => {
-        this.engagments = data;
+        this.engagements = data;
         console.log(data);
         // loading.dismiss();
       },
@@ -42,6 +42,7 @@ export class DashEngagmentsComponent implements OnInit {
   }
 
   onEngagmentClick(match_id:string){
+    console.log(match_id);
     this.navCtrl.navigateForward('dashboard/engagement/'+match_id);
   }
 }

@@ -112,3 +112,16 @@ class MobileController:
         }
         return db_client.get_single_doc_from_collection(DbCollections.get_engagements_collection(),json_query=query)
 
+    @staticmethod
+    def get_student_engagement_update(student_id, engagement_id, update_fields):
+        db_client = Client()
+        query = {
+            "_id": ObjectId(engagement_id),
+            "student_id": student_id
+        }
+        doc = {
+            "$set": update_fields
+        }
+        return db_client.update_single_doc_in_collection(DbCollections.get_engagements_collection(), filter_json=query,
+                                                         doc_update_json=doc)
+

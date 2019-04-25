@@ -13,8 +13,7 @@ import { MyProfileService } from 'src/app/services/my-profile.service';
 })
 export class EngagementPage implements OnInit {
 
-  match_id:string;  
-  eng:Engagement;
+  match_id:string;    
   engagement:Engagement = null;
   constructor(private activateRoute:ActivatedRoute,private profile:MyProfileService,private loadingController: LoadingController,
     private http:HttpHelpService) {
@@ -24,7 +23,7 @@ export class EngagementPage implements OnInit {
   ngOnInit() {
     
     this.match_id = this.activateRoute.snapshot.paramMap.get('matchId');
-    this.loadEngagmentByMatchId();
+    this.loadEngagmentByMatchId();    
     // this.engagement = this.sharedDateSvc.getStudentLatestEngagmentByMatchId(this.matchId);
   }
 
@@ -43,9 +42,9 @@ export class EngagementPage implements OnInit {
     this.http.submitForm(data,'student/get_student_engagement_by_match').subscribe(
       (data:Engagement) => {
         this.engagement = data;
-        this.eng = data;
-        
-        
+        if(this.engagement.is_new){
+          this.setEngagementIsOpened();
+        }        
         loading.dismiss();
       },
       (error) =>{
@@ -56,4 +55,22 @@ export class EngagementPage implements OnInit {
     )
   }
 
+  setEngagementIsOpened(){
+    let data = {
+      student_id:this.profile.user_id,
+      engagement_id:this.engagement._id,
+      update_fields:{
+        is_new:false
+      }
+    }
+
+    this.http.submitForm(data,'student/engagement_update').subscribe(
+      (success:any) =>{
+        console.log(success);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }

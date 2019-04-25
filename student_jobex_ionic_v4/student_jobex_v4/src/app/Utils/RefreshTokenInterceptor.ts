@@ -19,7 +19,7 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError((error, caught) => {
-            console.log('my log: 1');
+            
             // We don't want to refresh token for some requests like login or refresh token itself
             // So we verify url and we throw an error if it's the case
             if (
@@ -32,27 +32,23 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
                 if (request.url.includes("tokenRefresh")) {
                     this.auth.onLogout();
                 }
-                console.log('my log: 2');
                 return throwError(error);
             }
 
             // If error status is different than 401 we want to skip refresh token
             // So we check that and throw the error if it's the case
             if (error.status !== 401) {
-                console.log('my log: 3');
                 return throwError(error);
             }
 
             if (this.refreshTokenInProgress) {
                 // If refreshTokenInProgress is true, we will wait until refreshTokenSubject has a non-null value
                 // – which means the new token is ready and we can retry the request again
-                console.log('my log: 5');
                 return this.refreshTokenSubject.pipe(
                     filter(result => result !== null)
                     ,take(1)
                     ,switchMap(() => next.handle(this.addAuthenticationToken(request))));
             } else {
-                console.log('my log: 6');
                 this.refreshTokenInProgress = true;
 
                 // Set the refreshTokenSubject to null so that subsequent API calls will wait until the new token has been retrieved
