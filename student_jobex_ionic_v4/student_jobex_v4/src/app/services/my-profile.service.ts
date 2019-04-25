@@ -7,6 +7,7 @@ import { LiteSkill } from '../models/lite.skill.modal';
 import { switchMap, catchError } from 'rxjs/operators';
 import { ConfigService } from './config.service';
 import { Observable } from 'rxjs';
+import { Engagement } from '../models/engagement';
 
 @Injectable({
   providedIn: 'root'
@@ -165,5 +166,9 @@ export class MyProfileService {
             limit:this.config.getMaxNumOfLatests()
         }
         return this.http.submitForm(data,'student/getStudentEngagements');
-      }
+    }
+    getStudentEngagments(): Observable<Object> {        
+        return this.http.get('student/getStudentEngagements/'+this.user_id);
+    }
+    
 }

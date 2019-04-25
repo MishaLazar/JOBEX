@@ -44,12 +44,12 @@ export class EngagementPage implements OnInit {
       (data:Engagement) => {
         this.engagement = data;
         this.eng = data;
-        console.log(this.engagement);                
+        
         
         loading.dismiss();
       },
       (error) =>{
-        console.log(error);
+        
         loading.dismiss();
       }
       
