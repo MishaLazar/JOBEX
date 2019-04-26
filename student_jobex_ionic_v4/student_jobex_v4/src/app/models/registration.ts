@@ -1,3 +1,5 @@
+import { SkillList } from './student_skill';
+
 export class Registration{
 
     constructor(public firstName:string,
@@ -8,7 +10,8 @@ export class Registration{
                 public userId:string,
                 public active:boolean,
                 public address:string,
-                public profileImg:string
+                public profileImg:string,
+                public student_skill_list:SkillList[]
                 ){}
   
   }

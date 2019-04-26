@@ -31,7 +31,7 @@ export class DashEngagmentsComponent implements OnInit {
     this.profile.loadLatestsEngagements(this.config.getMaxNumOfLatests()).subscribe(
       (data:Engagement[]) => {
         this.engagements = data;
-        console.log(data);
+        
         // loading.dismiss();
       },
       (error) => {

@@ -1,3 +1,4 @@
+import { SkillList } from './student_skill';
 
 export class MyProfile{
 
@@ -7,7 +8,8 @@ export class MyProfile{
               public userId:string,
               public address:string,
               public active:boolean,
-              public profileImg:string
+              public profileImg:string,
+              public student_skill_list:SkillList[]
               ){}
 
 }

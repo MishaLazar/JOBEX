@@ -39,9 +39,12 @@ export class MyProfileService {
         }
         if(!this.isProfileLoaded){
             this.http.submitForm(data,'get_student_profile').subscribe(
-                (data:MyProfile) =>{
+                (data:MyProfile) =>{                    
                     this.myProfile = data;
+                    this.myStudentSkills = this.myProfile.student_skill_list;
+                    this.loadStudentSkills();
                     this.isProfileLoaded = true;
+
                 },
                 (error:any) =>{
                     console.log(error);
@@ -57,15 +60,14 @@ export class MyProfileService {
 
     loadStudentSkills(){        
         if(!this.isStudentSkillsLoaded){
-            this.http.get('student/skills/' + this.user_id).subscribe(
-                (skills:SkillList[]) =>{
-                    this.isStudentSkillsLoaded = true;
-                    this.myStudentSkills = skills;
-                    this.processLoadedStudentSkill(this.myStudentSkills);
-                },
-                (error:any) =>{
-                    console.log(error);
-                });            
+            // this.http.get('student/skills/' + this.user_id).subscribe(
+            //     (skills:SkillList[]) =>{
+            this.isStudentSkillsLoaded = true;                
+            this.processLoadedStudentSkill(this.myStudentSkills);
+                // },
+                // (error:any) =>{
+                //     console.log(error);
+                // });            
         }
     }
     processLoadedStudentSkill(studentSkills: SkillList[]) {

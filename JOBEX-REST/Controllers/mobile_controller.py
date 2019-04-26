@@ -113,6 +113,51 @@ class MobileController:
         return db_client.get_single_doc_from_collection(DbCollections.get_engagements_collection(), json_query=query)
 
     @staticmethod
+    def get_student_profile_and_skill(student_id):
+        db_client = Client()
+        pipeline = [
+            {
+                "$addFields": {
+                    "s_id": {
+                        "$toString": "$_id"
+                    }
+
+                }
+            },
+            {
+                "$lookup": {
+                    "from": "student_skills",
+                    "localField": "s_id",
+                    "foreignField": "student_id",
+                    "as": "student_skills"
+                }
+
+            },
+            {
+                "$match": {
+                    "$and": [{"s_id": student_id}]
+                }
+            }
+            , {"$unwind": "$student_skills"},
+            {
+                "$project": {
+                    "_id": 1,
+                    "firstName": 1,
+                    "lastName": 1,
+                    "email": 1,
+                    "username": 1,
+                    "password": 1,
+                    "userId": 1,
+                    "address": 1,
+                    "profileImg": 1,
+                    "active": 1,
+                    "student_skills": 1
+                }
+            }
+        ]
+        return db_client.get_aggregate_document(DbCollections.get_student_collection(), pipeline=pipeline)
+
+    @staticmethod
     def get_student_engagement_by_match2(match_id):
         db_client = Client()
         pipeline = [

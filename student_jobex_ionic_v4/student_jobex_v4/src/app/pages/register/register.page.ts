@@ -51,7 +51,7 @@ export class RegisterPage implements OnInit {
       this.registerForm.get('lastName').value,
       this.registerForm.get('email').value,
       this.registerForm.get('email').value,
-      this.registerForm.get('password').value,null,false,null,null);
+      this.registerForm.get('password').value,null,false,null,null,null);
 
     //this.myProfile.setMyProfileRegistration(basicProfile);
 

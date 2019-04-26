@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, redirect, url_for, render_template, flash, session, request
 from flask_jwt_extended import JWTManager
-from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt)
+from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required,
+                                get_jwt_identity, get_raw_jwt)
 from flask_cors import CORS
 from JobThread import JobThread
 from Utils.config_helper import ConfigHelper
@@ -17,7 +18,7 @@ import json
 app = Flask(__name__)
 
 config = ConfigHelper.get_instance()
-app.config['SECRET_KEY'] = config.read_auth('SECRET_KEY')   # 'I8Is25DFOzLUKSx06WCyesvHJgmZJblt'
+app.config['SECRET_KEY'] = config.read_auth('SECRET_KEY')  # 'I8Is25DFOzLUKSx06WCyesvHJgmZJblt'
 app.config['JWT_SECRET_KEY'] = config.read_auth('SECRET_KEY')
 app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
@@ -149,9 +150,22 @@ def get_login():
 def get_student_profile():
     if request.method == 'POST':
         user_id = request.get_json()
-        mob_ctrl = MobileController()
-        data = mob_ctrl.get_student_profile(user_id['user_id'])
-        return jsonify(data), 200
+        # mob_ctrl = MobileController()
+        # data = mob_ctrl.get_student_profile(user_id['user_id'])
+        data = MobileController.get_student_profile_and_skill(user_id['user_id'])
+        result = {
+            "userId": str(data["_id"]),
+            "firstName": data["firstName"],
+            "lastName": data["lastName"],
+            "email": data["email"],
+            "username": data["username"],
+            "userId": data["userId"],
+            "address": data["address"],
+            "profileImg": data["profileImg"],
+            "active": data["active"],
+            "student_skill_list":data["student_skills"]["student_skill_list"]
+        }
+        return jsonify(result), 200
     else:
         return jsonify({"message": "Wrong user_id"}), 403
 
@@ -181,8 +195,8 @@ def get_refreshed_token():
         user_id = get_jwt_identity()
         access_token = create_access_token(identity=user_id)
         return jsonify({
-                'access_token': access_token
-               }), 200
+            'access_token': access_token
+        }), 200
     else:
         return jsonify({'message': 'Something went wrong'}), 500
 
@@ -194,7 +208,7 @@ def get_authentication_status():
         request_data = request.get_json()
         user_id = request_data['user_id']
         active_status = request_data['active_status']
-        response = MobileController.set_active_status_on_profile(user_id,active_status)
+        response = MobileController.set_active_status_on_profile(user_id, active_status)
         if bool(active_status):
             MobileController.set_student_for_rematch(user_id)
         return jsonify(response), 200
@@ -306,7 +320,7 @@ def get_student_engagements(student_id=None):
         request_data = request.get_json()
         student_id = request_data['student_id']
         limit = request_data['limit']
-        result = MobileController.get_student_engagements(student_id=student_id,limit=limit)
+        result = MobileController.get_student_engagements(student_id=student_id, limit=limit)
     elif request.method == 'GET':
         result = MobileController.get_student_engagements(student_id=student_id)
     return JSONEncoder().encode(result)
@@ -320,12 +334,12 @@ def get_student_engagement_update():
         student_id = request_data['student_id']
         engagement_id = request_data['engagement_id']
         update_fields = request_data['update_fields']
-        result = MobileController.get_student_engagement_update(student_id=student_id,engagement_id=engagement_id,
-                                                                  update_fields=update_fields)
+        result = MobileController.get_student_engagement_update(student_id=student_id, engagement_id=engagement_id,
+                                                                update_fields=update_fields)
     return JSONEncoder().encode(result)
 
 
-@app.route('/student/get_student_engagement_by_match', methods=['POST','GET'])
+@app.route('/student/get_student_engagement_by_match', methods=['POST', 'GET'])
 @jwt_required
 def get_student_engagement_by_match():
     result = None
@@ -333,7 +347,7 @@ def get_student_engagement_by_match():
         request_data = request.get_json()
         student_id = request_data['student_id']
         match_id = request_data['match_id']
-        #result = MobileController.get_student_engagement_by_match(student_id=student_id,match_id=match_id)
+        # result = MobileController.get_student_engagement_by_match(student_id=student_id,match_id=match_id)
         result = MobileController.get_student_engagement_by_match2(match_id=match_id)
     elif request.method == 'GET':
         pass
@@ -406,8 +420,7 @@ if __name__ == '__main__':
     if config.read_app_settings(Key='ServerDebug') == '1':
         app.debug = True
     if config.read_app_settings(Key='RunMatchEngine') == '1':
-        example = JobThread(interval=Utils.int_try_parse(config.read_job(Key='DELAY_INTERVAL'),20))
+        example = JobThread(interval=Utils.int_try_parse(config.read_job(Key='DELAY_INTERVAL'), 20))
 
     companies = get_companies_list()
     app.run(port=5050, threaded=True)
-
