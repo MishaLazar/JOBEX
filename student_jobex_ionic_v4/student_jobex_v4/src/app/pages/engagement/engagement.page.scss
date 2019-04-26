@@ -1,0 +1,27 @@
+.list .item.item-accordion {
+    line-height: 38px;
+    padding-left: 40px;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: 0.09s all linear;
+  }
+  
+  .list .item.item-accordion.ng-hide {
+    line-height: 0px;
+  }
+  
+  .list .item.item-accordion.ng-hide-add,
+  .list .item.item-accordion.ng-hide-remove {
+    display: block !important;
+  }
+  
+  .sub-item {
+    padding-left: 20px;
+  }
+
+  .engagment-card-posDescription{
+    width:100%;
+  }
+  .required-skills-label{
+    font-size: 16px;
+  }

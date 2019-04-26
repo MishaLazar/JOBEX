@@ -204,7 +204,7 @@ class Client:
         finally:
             return result
 
-    def update_field_in_single_doc_in_collection(self, collection_name, filter_json, doc_update_json):
+    def get_aggregate_document(self, collection_name, pipeline):
         """ Update doc in collection
 
                 :param collection_name: The name of the collection to update in
@@ -220,8 +220,8 @@ class Client:
         result = None
         try:
             collection = self.db[collection_name]
-            result = collection.update_one(filter_json, doc_update_json, upsert=False)
-            result['_id'] = str(result['_id'])
+            cursor = collection.aggregate(pipeline=pipeline)
+            result = list(cursor)[0]
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:

@@ -11,7 +11,7 @@ import { Skill } from '../models/skill.model.js';
 export class SharedDataService {
 
   
-  skills:any;
+  skills:Skill[];
   isSkillsLoaded:boolean = false;
   latestEngagements:Engagement[] = [];
   activeEngagements:Engagement[] = [];

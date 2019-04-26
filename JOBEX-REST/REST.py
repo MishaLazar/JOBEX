@@ -333,7 +333,8 @@ def get_student_engagement_by_match():
         request_data = request.get_json()
         student_id = request_data['student_id']
         match_id = request_data['match_id']
-        result = MobileController.get_student_engagement_by_match(student_id=student_id,match_id=match_id)
+        #result = MobileController.get_student_engagement_by_match(student_id=student_id,match_id=match_id)
+        result = MobileController.get_student_engagement_by_match2(match_id=match_id)
     elif request.method == 'GET':
         pass
     return JSONEncoder().encode(result)
@@ -347,6 +348,18 @@ def get_student_skills(student_id):
         result = MobileController.get_student_skills(student_id)
     if request.method == 'GET':
         result = MobileController.get_student_skills(student_id)
+
+    return JSONEncoder().encode(result)
+
+
+@app.route('/position/skills/<position_id>', methods=['POST', 'GET'])
+@jwt_required
+def get_position_skills(position_id):
+    result = None
+    if request.method == 'POST':
+        result = MobileController.get_position_skills(position_id=position_id)
+    if request.method == 'GET':
+        result = MobileController.get_position_skills(position_id=position_id)
 
     return JSONEncoder().encode(result)
 

@@ -5,6 +5,7 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
 import { LoadingController } from '@ionic/angular';
 import { HttpHelpService } from 'src/app/services/http-help.service';
 import { MyProfileService } from 'src/app/services/my-profile.service';
+import { SkillList } from 'src/app/models/student_skill';
 
 @Component({
   selector: 'app-engagement',
@@ -13,9 +14,12 @@ import { MyProfileService } from 'src/app/services/my-profile.service';
 })
 export class EngagementPage implements OnInit {
 
-  match_id:string;    
+  match_id:string;  
+  shownSection:any;  
   engagement:Engagement = null;
-  constructor(private activateRoute:ActivatedRoute,private profile:MyProfileService,private loadingController: LoadingController,
+  positionSkills: SkillList[];
+  skillsToDisplay:String[] = [];
+  constructor(private activateRoute:ActivatedRoute,private profile:MyProfileService,private loadingController: LoadingController,private sharedData:SharedDataService,
     private http:HttpHelpService) {
 
    }
@@ -44,8 +48,10 @@ export class EngagementPage implements OnInit {
         this.engagement = data;
         if(this.engagement.is_new){
           this.setEngagementIsOpened();
-        }        
+        }     
+        this.toggleSection('position_description');
         loading.dismiss();
+        this.setPositionSkills();
       },
       (error) =>{
         
@@ -53,6 +59,29 @@ export class EngagementPage implements OnInit {
       }
       
     )
+  }
+
+  setPositionSkills(){
+    let tempSkillsFlat:number[] = [];
+    let skills = this.sharedData.skills.slice();
+    this.positionSkills = this.engagement.position_skill_list.slice();
+    this.positionSkills.forEach(positionSkill => 
+      positionSkill.skills.forEach(skill =>
+        tempSkillsFlat.push(skill.skill_Id)
+      )
+    );
+    tempSkillsFlat.forEach(skill =>
+      {
+        
+        let index = skills.findIndex(
+          el => el.SkillId === Number(skill));
+        if(index >= 0){
+          
+          this.skillsToDisplay.push(this.sharedData.skills[index].TextValue);
+        }
+      }
+    );      
+     
   }
 
   setEngagementIsOpened(){
@@ -73,4 +102,20 @@ export class EngagementPage implements OnInit {
       }
     );
   }
+
+  toggleSection(section) {
+    if (this.isShownSection(section)) {
+      this.shownSection = null;
+    } else {
+      this.shownSection = section;
+    }
+    // $ionicScrollDelegate.resize();
+  }
+
+
+  isShownSection(section) {
+    return this.shownSection === section;
+  }
+
+  
 }

@@ -23,7 +23,7 @@ export class MyProfilePage implements OnInit {
         if(!this.profile.isProfileLoaded){
             this.router.navigateByUrl('/dashboard');
         }
-        
+        this.profile.loadStudentSkills();
         this.profileImg = this.profile.getMyProfileImgPath()==undefined ? this.profileImg: this.profile.getMyProfileImgPath();
         
         this.profileListItems.push(new ListCardItem("Set your personal Data", "body", "create", "personalData"));

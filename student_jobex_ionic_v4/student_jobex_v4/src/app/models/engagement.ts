@@ -1,3 +1,5 @@
+import { SkillList } from './student_skill';
+
 export class Engagement{
     constructor(
         public _id:string,
@@ -13,7 +15,7 @@ export class Engagement{
         public status:string,
         public is_deleted:boolean,
         public match_level_id:number,
-        public creation_date:Date
-        
+        public creation_date:Date,
+        public position_skill_list:SkillList[]
         ){}
 }

@@ -16,11 +16,14 @@ export class DashboardPage implements OnInit {
   constructor(private sharedDataSvc:SharedDataService, private navCtrl:NavController,private profile:MyProfileService) { }
 
   ngOnInit() {
-    this.studentLastEgagements = this.sharedDataSvc.getStudentLatestEngagments();    
-    this.sharedDataSvc.loadAllSkills();
+     
+    
     if(!this.profile.isProfileLoaded){
       this.profile.loadProfile();
     }
+    this.studentLastEgagements = this.sharedDataSvc.getStudentLatestEngagments();
+
+    this.sharedDataSvc.loadAllSkills();
   }
 
   // onClickTest(mid:string){

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {MyProfile} from "../models/my-profile.model";
 import { Skill } from '../models/skill.model';
 import { HttpHelpService } from './http-help.service';
-import { StudentSkill } from '../models/student_skill';
+import { SkillList } from '../models/student_skill';
 import { LiteSkill } from '../models/lite.skill.modal';
 import { switchMap, catchError } from 'rxjs/operators';
 import { ConfigService } from './config.service';
@@ -19,7 +19,7 @@ export class MyProfileService {
     user_id:string;
     isProfileLoaded:boolean = false;
     isUpdated:boolean = false;
-    myStudentSkills:StudentSkill[] = [];
+    myStudentSkills:SkillList[] = [];
     myProfileSkills:Skill[]=[];
     isActiveProfile: boolean;
     isStudentSkillsLoaded: boolean = false;
@@ -58,7 +58,7 @@ export class MyProfileService {
     loadStudentSkills(){        
         if(!this.isStudentSkillsLoaded){
             this.http.get('student/skills/' + this.user_id).subscribe(
-                (skills:StudentSkill[]) =>{
+                (skills:SkillList[]) =>{
                     this.isStudentSkillsLoaded = true;
                     this.myStudentSkills = skills;
                     this.processLoadedStudentSkill(this.myStudentSkills);
@@ -68,10 +68,10 @@ export class MyProfileService {
                 });            
         }
     }
-    processLoadedStudentSkill(studentSkills: StudentSkill[]) {
+    processLoadedStudentSkill(studentSkills: SkillList[]) {
         studentSkills.forEach(sSkill => {
             sSkill.skills.forEach(skill => {
-                this.myProfileSkills.push(new Skill(skill.skill_Id,sSkill.sub_category_id,sSkill.category_id,true))
+                this.myProfileSkills.push(new Skill(skill.skill_Id,null,sSkill.sub_category_id,sSkill.category_id,true))
             });
         });
     }
@@ -89,7 +89,7 @@ export class MyProfileService {
             this.myStudentSkills[foundStudentSkill].skills.push(new LiteSkill(skillToAdd.SkillId));
         }
         else {
-            let newSkill = new StudentSkill(skillToAdd.SkillCategoryId,skillToAdd.SkillSubCategoryId);
+            let newSkill = new SkillList(skillToAdd.SkillCategoryId,skillToAdd.SkillSubCategoryId);
             newSkill.skills.push(new LiteSkill(skillToAdd.SkillId));
             this.myStudentSkills.push(newSkill);
         }

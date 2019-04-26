@@ -1,6 +1,6 @@
 import { LiteSkill } from './lite.skill.modal';
 
-export class StudentSkill{
+export class SkillList{
 
     constructor(
         public category_id:number,

@@ -7,7 +7,74 @@
   </ion-toolbar>
 </ion-header>
 
-  <ion-content *ngIf="engagement">
+<ion-content *ngIf="engagement">
+<ion-list>
+    <ion-list-header>
+            <ion-label color="primary">{{engagement.position_title}}</ion-label>
+    </ion-list-header>
+    <ion-item button (click)="toggleSection('position_description')">
+            
+            <ion-label>Position Description</ion-label>
+            <ion-icon *ngIf="isShownSection('position_description')" name="arrow-dropup"></ion-icon>
+            <ion-icon *ngIf="!isShownSection('position_description')" name="arrow-dropdown"></ion-icon>
+    </ion-item>
+    <ion-item  [hidden]="!isShownSection('position_description')">
+            <ion-card class="engagment-card-posDescription">
+                    <ion-card-header>
+                        <ion-card-subtitle>{{engagement.position_location}} <ion-icon name="pin"></ion-icon></ion-card-subtitle>                        
+                        <ion-card-title>{{engagement.position_title}}</ion-card-title>
+                    </ion-card-header>
+                    
+                    <ion-card-content>
+                        {{engagement.position_description}}
+                                                                       
+                        <ion-label color="primary" class="required-skills-label">Required Skills:</ion-label>
+                        
+                        <ion-item lines="inset" *ngFor="let skill of skillsToDisplay">
+                                <ion-label color="secondary">{{skill}}</ion-label>      
+                                <ion-icon name="checkbox-outline" slot="end"></ion-icon>                          
+                              </ion-item>
+                       
+                    </ion-card-content>
+                    
+                            
+                        
+            </ion-card>                            
+            
+        <!-- <ion-label>{{engagement.position_description}}</ion-label> -->
+    </ion-item>
+    <ion-item button (click)="toggleSection('company')">
+            <ion-label>About Company</ion-label>
+            <ion-icon *ngIf="isShownSection('company')" name="arrow-dropup"></ion-icon>
+            <ion-icon *ngIf="!isShownSection('company')" name="arrow-dropdown"></ion-icon>
+    </ion-item>
+    <ion-item  [hidden]="!isShownSection('company')">
+        <!-- <ion-label>{{engagement.company_name}}</ion-label> -->
+        <ion-card>
+                <ion-item>
+                  <ion-icon name="ribbon" slot="start"></ion-icon>
+                  <ion-label>{{engagement.company_name}}</ion-label>
+                </ion-item>
+                <ion-card-content>                    
+                  This is content, without any paragraph or header tags,
+                  within an ion-card-content element.
+                </ion-card-content>
+              </ion-card>
+    </ion-item>
+
+    <!-- <div *ngFor="let section of ['aaa','bbb','ccc']">
+        <ion-item button (click)="toggleSection(section)">
+            <ion-label>{{section}}</ion-label>
+            <ion-icon *ngIf="isShownSection(section)" name="arrow-dropup"></ion-icon>
+            <ion-icon *ngIf="!isShownSection(section)" name="arrow-dropdown"></ion-icon>
+        </ion-item>
+        <ion-item  [hidden]="!isShownSection(section)" *ngFor="let item of [1,2,3,4]">
+            <ion-label>Awesome Label + {{item}}</ion-label>
+        </ion-item>
+    </div> -->
+</ion-list>
+</ion-content>
+  <!-- <ion-content *ngIf="engagement">
       <ion-grid>
           <ion-row>
               <ion-col size="6">
@@ -23,4 +90,4 @@
               </ion-col>
           </ion-row>
       </ion-grid>    
-  </ion-content>
+  </ion-content> -->

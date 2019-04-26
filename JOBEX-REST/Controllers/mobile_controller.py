@@ -23,12 +23,11 @@ class MobileController:
         # else:
         #     MobileController.__instance = self
 
-
-
     @staticmethod
     def register_user(new_user):
         db_client = Client()
-        new_user_id = db_client.insert_doc_to_collection(collection_name=DbCollections.get_student_collection(), doc=new_user)
+        new_user_id = db_client.insert_doc_to_collection(collection_name=DbCollections.get_student_collection(),
+                                                         doc=new_user)
         if new_user_id:
             return new_user_id
         return None
@@ -46,21 +45,23 @@ class MobileController:
         query = {
             "student_id": student_id
         }
-        result = db_client.get_single_doc_from_collection(DbCollections.get_collection("student_skills"), json_query=query)
+        result = db_client.get_single_doc_from_collection(DbCollections.get_collection("student_skills"),
+                                                          json_query=query)
         if result:
             result = result['student_skill_list']
         return result
 
     @staticmethod
-    def set_student_skills(student_id,skills):
+    def set_student_skills(student_id, skills):
         db_client = Client()
         query = {
             "student_id": student_id
         }
         doc = {
-            "$set": { "student_skill_list" : skills }
+            "$set": {"student_skill_list": skills}
         }
-        return db_client.update_single_doc_in_collection(DbCollections.get_student_skills_collection(),query,doc,True)
+        return db_client.update_single_doc_in_collection(DbCollections.get_student_skills_collection(), query, doc,
+                                                         True)
 
     @staticmethod
     def get_student_profile(student_id):
@@ -68,14 +69,14 @@ class MobileController:
         return db_client.get_single_doc_from_collection(DbCollections.get_student_collection(), object_id=student_id)
 
     @staticmethod
-    def set_active_status_on_profile(student_id,active_status):
+    def set_active_status_on_profile(student_id, active_status):
         db_client = Client()
         doc_filter = {
             "_id": ObjectId(student_id),
 
         }
         doc = {
-         "$set": {"active": active_status}
+            "$set": {"active": active_status}
         }
         return db_client.update_single_doc_in_collection(DbCollections.get_student_collection(), filter_json=doc_filter,
                                                          doc_update_json=doc)
@@ -89,8 +90,7 @@ class MobileController:
             "creation_date": datetime.now(),
             "status": 0
         }
-        return db_client.insert_doc_to_collection(DbCollections.get_job_collection(),doc)
-
+        return db_client.insert_doc_to_collection(DbCollections.get_job_collection(), doc)
 
     @staticmethod
     def get_student_engagements(student_id, limit=-1):
@@ -100,7 +100,7 @@ class MobileController:
         }
         sort_order_param = "creation_date"
         return db_client.get_many_docs_from_collection(DbCollections.get_engagements_collection(), json_query=query,
-                                                       sort_order_parameter=sort_order_param,direction=True,
+                                                       sort_order_parameter=sort_order_param, direction=True,
                                                        limit=limit)
 
     @staticmethod
@@ -108,9 +108,42 @@ class MobileController:
         db_client = Client()
         query = {
             "student_id": student_id,
-            "match_id":match_id
+            "match_id": match_id
         }
-        return db_client.get_single_doc_from_collection(DbCollections.get_engagements_collection(),json_query=query)
+        return db_client.get_single_doc_from_collection(DbCollections.get_engagements_collection(), json_query=query)
+
+    @staticmethod
+    def get_student_engagement_by_match2(match_id):
+        db_client = Client()
+        pipeline = [
+            {"$addFields": {
+                "position_id": {
+                    "$toObjectId": "$position_id"
+
+                }
+
+            }
+
+            },
+            {
+                "$lookup": {
+                    "from": "position_skills",
+                    "localField": "position_id",
+                    "foreignField": "position_id",
+                    "as": "position_skills"
+                }
+            },
+            {
+                "$match": {
+                    "match_id": match_id
+                }
+            },
+            {
+                "$replaceRoot": {"newRoot": {"$mergeObjects": [{"$arrayElemAt": ["$position_skills", 0]}, "$$ROOT"]}}
+            },
+            {"$project": {"position_skills": 0}}
+        ]
+        return db_client.get_aggregate_document(DbCollections.get_engagements_collection(), pipeline=pipeline)
 
     @staticmethod
     def get_student_engagement_update(student_id, engagement_id, update_fields):
@@ -125,3 +158,14 @@ class MobileController:
         return db_client.update_single_doc_in_collection(DbCollections.get_engagements_collection(), filter_json=query,
                                                          doc_update_json=doc)
 
+    @staticmethod
+    def get_position_skills(position_id):
+        db_client = Client()
+        query = {
+            "position_id": ObjectId(position_id)
+        }
+        result = db_client.get_single_doc_from_collection(DbCollections.get_position_skills_collection(),
+                                                          json_query=query)
+        if result:
+            result = result['position_skill_list']
+        return result
