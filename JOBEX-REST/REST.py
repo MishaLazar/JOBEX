@@ -145,6 +145,17 @@ def get_login():
         return jsonify({'message': 'Method not supported'}), 500
 
 
+@app.route('/get_dashboard_main_chart_data', methods=['POST'])
+@jwt_required
+def get_dashboard_matches_for_charts():
+    if request.method == 'POST':
+        user_id = request.get_json()["user_id"]
+        result = MobileController.get_dashboard_counters_for_main_chart(student_id=user_id)
+        return jsonify(result), 200
+    else:
+        return jsonify({"message": "Oops ..."}), 403
+
+
 @app.route('/get_student_profile', methods=['POST'])
 @jwt_required
 def get_student_profile():
@@ -152,7 +163,7 @@ def get_student_profile():
         user_id = request.get_json()
         # mob_ctrl = MobileController()
         # data = mob_ctrl.get_student_profile(user_id['user_id'])
-        data = MobileController.get_student_profile_and_skill(user_id['user_id'])
+        data = MobileController.get_student_profile_and_skill(user_id['user_id'])[0]
         result = {
             "userId": str(data["_id"]),
             "firstName": data["firstName"],
@@ -163,7 +174,9 @@ def get_student_profile():
             "address": data["address"],
             "profileImg": data["profileImg"],
             "active": data["active"],
-            "student_skill_list":data["student_skills"]["student_skill_list"]
+            "activation_data":data["activation_data"],
+            "creation_data":data["creation_data"],
+            "student_skill_list": data["student_skills"]["student_skill_list"]
         }
         return jsonify(result), 200
     else:

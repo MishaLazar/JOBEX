@@ -45,7 +45,7 @@ export class RegisterPage implements OnInit {
   async onRegister(){
     if(!this.registerForm.valid){
         console.log('registration form not valid');
-    }
+    }    
     let basicProfile = new Registration(
       this.registerForm.get('firstName').value,
       this.registerForm.get('lastName').value,

@@ -21,13 +21,13 @@ export class DashChartOvertimeComponent implements OnInit {
           labels: chartLabels,
           
           datasets: [{ 
-              label:"AVG.Weak",             
+              label:"AVG.Week",             
               data: AvgDataSet,
               backgroundColor: "#caf270",
               borderWidth: 1
           },
           { 
-            label:"Weak4",             
+            label:"Week4",             
             data: CurrentDataSet,
             backgroundColor: "#45c490",
             borderWidth: 1

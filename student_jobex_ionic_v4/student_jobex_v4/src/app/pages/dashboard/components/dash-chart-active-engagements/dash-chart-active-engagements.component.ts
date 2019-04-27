@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
 import { matches } from '@ionic/core/dist/types/components/nav/view-controller';
+import { MyProfileService } from 'src/app/services/my-profile.service';
+import { Utils } from 'src/app/Utils/Utils';
 @Component({
   selector: 'dash-chart-active-engagements',
   templateUrl: './dash-chart-active-engagements.component.html',
@@ -8,13 +10,25 @@ import { matches } from '@ionic/core/dist/types/components/nav/view-controller';
 })
 export class DashChartActiveEngagementsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private profile:MyProfileService) { }
 
   ngOnInit() {
-    this.initActiveEngagementsDonat(['weak1','weak2','weak3','weak4'],[20,30,40,50,55,49],[10,23,4,5,10,20.25]);
+    let weeks:number = Utils.weekesFromActivation(this.profile.myProfile.activation_data);
+    let MatchesDataSet = new Array(weeks).fill(0);
+    let ActiveEngagementsDataSet = new Array(weeks).fill(0);
+    ActiveEngagementsDataSet = Utils.fillDataSetCounters(ActiveEngagementsDataSet,this.profile.myProfile.activation_data,this.profile.engagemtnsCounts);
+    
+    MatchesDataSet = Utils.fillDataSetCounters(MatchesDataSet,this.profile.myProfile.activation_data,this.profile.matchesCounts);
+    
+    this.initActiveEngagementsDonat(weeks,MatchesDataSet,ActiveEngagementsDataSet);
   }
 
-  initActiveEngagementsDonat(chartLabels:string[],MatchesDataSet:any[],ActiveEngagementsDataSet:any[]): any {
+  initActiveEngagementsDonat(weeks:number,MatchesDataSet:number[],ActiveEngagementsDataSet:number[]): any {
+    let chartLabels:string[] = [];
+    for (let index = 0; index < weeks; index++) {
+      const label = 'week' + (index+1);
+      chartLabels.push(label);   
+    }
     var ctx = (<any>document.getElementById('activeEngagementsChart')).getContext('2d');
     var myChart = new Chart(ctx, {
       type: 'line',

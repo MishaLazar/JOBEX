@@ -221,7 +221,7 @@ class Client:
         try:
             collection = self.db[collection_name]
             cursor = collection.aggregate(pipeline=pipeline)
-            result = list(cursor)[0]
+            result = list(cursor)
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:

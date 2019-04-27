@@ -2,7 +2,6 @@ from bson import ObjectId
 from datetime import datetime
 from DAL.mongo_db_handler import Client
 from DAL.db_collections import DbCollections
-import json
 
 
 class MobileController:
@@ -71,12 +70,19 @@ class MobileController:
     @staticmethod
     def set_active_status_on_profile(student_id, active_status):
         db_client = Client()
+        if active_status:
+            activation_date = datetime.now()
+
+            doc = {
+                "$set": {"active": active_status,"activation_date": activation_date}
+            }
+        else:
+            doc = {
+                "$set": {"active": active_status}
+            }
         doc_filter = {
             "_id": ObjectId(student_id),
 
-        }
-        doc = {
-            "$set": {"active": active_status}
         }
         return db_client.update_single_doc_in_collection(DbCollections.get_student_collection(), filter_json=doc_filter,
                                                          doc_update_json=doc)
@@ -151,6 +157,8 @@ class MobileController:
                     "address": 1,
                     "profileImg": 1,
                     "active": 1,
+                    "activation_data": 1,
+                    "creation_data": 1,
                     "student_skills": 1
                 }
             }
@@ -202,6 +210,50 @@ class MobileController:
         }
         return db_client.update_single_doc_in_collection(DbCollections.get_engagements_collection(), filter_json=query,
                                                          doc_update_json=doc)
+
+    @staticmethod
+    def get_dashboard_counters_for_main_chart(student_id):
+        db_client = Client()
+        matches_pipeline = [
+            {
+                "$match": {
+                    "student_id": student_id
+                }
+            },
+            {
+                "$group": {
+                    "_id": {"month": {"$month": "$match_update_date"}, "day": {"$dayOfMonth": "$match_update_date"},
+                            "year": {"$year": "$match_update_date"}},
+
+                    "count": {"$sum": 1}
+                }
+            }
+        ]
+
+        engagements_pipeline = [
+            {
+                "$match": {
+                    "student_id": student_id
+                }
+            },
+            {
+                "$group": {
+                    "_id": {"month": {"$month": "$creation_date"}, "day": {"$dayOfMonth": "$creation_date"},
+                            "year": {"$year": "$creation_date"}},
+
+                    "count": {"$sum": 1}
+                }
+            }
+        ]
+
+        matches_couts = db_client.get_aggregate_document(DbCollections.get_matches_collection(), pipeline=matches_pipeline)
+        engagements_counts = db_client.get_aggregate_document(DbCollections.get_engagements_collection(), pipeline=engagements_pipeline)
+
+        result = {
+            "matches_couts": matches_couts if matches_couts else  [],
+            "engagements_counts": engagements_counts if engagements_counts else []
+        }
+        return result
 
     @staticmethod
     def get_position_skills(position_id):

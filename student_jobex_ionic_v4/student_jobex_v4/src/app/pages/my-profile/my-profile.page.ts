@@ -4,6 +4,7 @@ import {MyProfileService} from "../../services/my-profile.service";
 import {ModalController, NavController} from "@ionic/angular";  
 import { WishListComponent } from './components/wish-list/wish-list.component';
 import { Router } from '@angular/router';
+import { MyProfile } from 'src/app/models/my-profile.model';
 
 @Component({
     selector: 'app-my-profile',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 export class MyProfilePage implements OnInit {
     profileImg: string = "assets/img/default_profile.png";
     profileListItems: ListCardItem [] = [];
-
+    myProfile:MyProfile
     constructor(private profile: MyProfileService, public modalCtrl: ModalController,private router:Router,
         private navCtrl:NavController) {
             
@@ -23,7 +24,8 @@ export class MyProfilePage implements OnInit {
         if(!this.profile.isProfileLoaded){
             this.router.navigateByUrl('/dashboard');
         }
-        this.profile.loadStudentSkills();
+        this.myProfile = this.profile.myProfile;
+        //this.profile.loadStudentSkills();
         this.profileImg = this.profile.getMyProfileImgPath()==undefined ? this.profileImg: this.profile.getMyProfileImgPath();
         
         this.profileListItems.push(new ListCardItem("Set your personal Data", "body", "create", "personalData"));

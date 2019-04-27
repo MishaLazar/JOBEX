@@ -34,11 +34,12 @@
       <!-- <dash-chart-best4you></dash-chart-best4you> -->
     </ion-col>
   </ion-row>
-  <ion-row>
+  <ion-row >
       <ion-col size="12">
-          <dash-chart-active-engagements></dash-chart-active-engagements>
+          <ion-spinner *ngIf="!mainChartDisplay"></ion-spinner>
+          <dash-chart-active-engagements *ngIf="mainChartDisplay" ></dash-chart-active-engagements>
       </ion-col>
-    </ion-row>
+    </ion-row>    
     <ion-row>
         <ion-col size="12">
           

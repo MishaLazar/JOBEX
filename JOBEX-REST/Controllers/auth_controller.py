@@ -3,7 +3,6 @@ from DAL.db_collections import DbCollections
 
 
 class AuthController:
-
     __instance = None
 
     @staticmethod
@@ -24,7 +23,8 @@ class AuthController:
     def add_token_to_blacklist(jti):
         db_client = Client()
         try:
-            db_client.insert_doc_to_collection(DbCollections.get_collection(Key="token_blacklist_collection"),jti)
+            db_client.insert_doc_to_collection(DbCollections.get_collection("token_blacklist_collection")
+                                               , jti)
             return {'message': 'tokens has been revoked'}, 200
         except:
             return {'message': 'Something went wrong'}, 500
@@ -32,7 +32,7 @@ class AuthController:
     @staticmethod
     def check_token_in_blacklist(jti):
         db_client = Client()
-        return bool(db_client.count_docs_in_collection(DbCollections.get_student_collection(),jti))
+        return bool(db_client.count_docs_in_collection(DbCollections.get_collection("token_blacklist_collection"), jti))
 
     @staticmethod
     def login(username, password):

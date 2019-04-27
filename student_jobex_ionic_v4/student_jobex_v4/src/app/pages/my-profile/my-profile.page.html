@@ -29,7 +29,7 @@
             <ion-col size="6">               
                     <ion-item style="--inner-border-width:0px;">
                             <ion-label>Activate</ion-label>
-                            <ion-toggle [(ngModel)]="activate" (ionChange)="profileActivation($event)"></ion-toggle>
+                            <ion-toggle [(ngModel)]="myProfile.active" (ionChange)="profileActivation($event)" ></ion-toggle>
                     </ion-item>                           
             </ion-col>                     
         </ion-row>

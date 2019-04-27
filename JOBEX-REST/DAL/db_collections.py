@@ -8,10 +8,11 @@ class DbCollections:
         "token_blacklist": "token_blacklist",
         "skills": "skills",
         "student_skills": "student_skills",
-        "match": "match",
+        "matches": "matches",
         "position_skills": "position_skills",
         "jobs": "jobs",
-        "companies": "companies"
+        "companies": "companies",
+        "token_blacklist_collection":"token_blacklist"
     }
 
     @staticmethod
@@ -47,5 +48,5 @@ class DbCollections:
         return DbCollections.collection_names['engagements']
 
     @staticmethod
-    def get_match_collection():
-        return DbCollections.collection_names['match']
+    def get_matches_collection():
+        return DbCollections.collection_names['matches']

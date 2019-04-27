@@ -6,8 +6,10 @@ import { SkillList } from '../models/student_skill';
 import { LiteSkill } from '../models/lite.skill.modal';
 import { switchMap, catchError } from 'rxjs/operators';
 import { ConfigService } from './config.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Engagement } from '../models/engagement';
+import { Registration } from '../models/registration';
+import { Count} from '../models/charts_models/counts.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +25,12 @@ export class MyProfileService {
     myProfileSkills:Skill[]=[];
     isActiveProfile: boolean;
     isStudentSkillsLoaded: boolean = false;
+    profileLoadedSubject:Subject<string> = new Subject();
 
+
+    //chartsData
+    matchesCounts:Count[];
+    engagemtnsCounts:Count[];
 
     constructor(private http:HttpHelpService,private config:ConfigService){
         
@@ -39,12 +46,12 @@ export class MyProfileService {
         }
         if(!this.isProfileLoaded){
             this.http.submitForm(data,'get_student_profile').subscribe(
-                (data:MyProfile) =>{                    
+                (data:MyProfile) =>{                                
                     this.myProfile = data;
                     this.myStudentSkills = this.myProfile.student_skill_list;
                     this.loadStudentSkills();
                     this.isProfileLoaded = true;
-
+                    this.profileLoadedSubject.next('loaded');
                 },
                 (error:any) =>{
                     console.log(error);
@@ -115,7 +122,7 @@ export class MyProfileService {
         }
     }
     
-    onRegistration(basicProfile:MyProfile){
+    onRegistration(basicProfile:Registration){
 
        return this.http.submitForm(basicProfile,'register_student');
 
@@ -141,7 +148,7 @@ export class MyProfileService {
     onUpdateProfileActivation(){
         let data = {
             user_id:this.user_id,
-            active_status:this.isActiveProfile
+            active_status:this.isActiveProfile            
         }
         this.http.submitForm(data,'activate_student_profile').subscribe(
             (response:any) =>{
