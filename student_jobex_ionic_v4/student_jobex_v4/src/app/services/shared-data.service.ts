@@ -5,6 +5,7 @@ import skillsJson from '../testDataFiles/skills.json';
 import { Engagement } from '../models/engagement.js';
 import { HttpHelpService } from './http-help.service.js';
 import { Skill } from '../models/skill.model.js';
+import { PositionData } from '../models/position-data.js';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,10 +16,13 @@ export class SharedDataService {
   isSkillsLoaded:boolean = false;
   latestEngagements:Engagement[] = [];
   activeEngagements:Engagement[] = [];
+  positionsDataset:PositionData[] = [];
+  isPositionDatasetLoaded:boolean = false;
   constructor(private http: HttpHelpService) { 
   
-    this.skills = skillsJson;
+    //this.skills = skillsJson;
     this.initStudentEngagements();
+    this.loadPositionDataset();
   }
 
   initStudentEngagements(){
@@ -42,6 +46,23 @@ export class SharedDataService {
         (data:Skill[]) => {
           this.skills = data;
           this.isSkillsLoaded = true;
+          //console.log('loaded :' + data.length + ' skills');
+        },
+        error =>{
+          console.log(error);
+        }
+
+      );
+    }
+  }
+
+  loadPositionDataset(){
+    if(!this.isPositionDatasetLoaded){
+      this.http.get('resources/getPositionDataSet').subscribe(
+        (data:PositionData[]) => {
+          this.positionsDataset = data;
+          this.isPositionDatasetLoaded = true;
+          debugger;
           //console.log('loaded :' + data.length + ' skills');
         },
         error =>{
