@@ -25,7 +25,8 @@
   </ion-row> -->
   <ion-row>
     <ion-col size="6">
-      <dash-chart-overtime></dash-chart-overtime>
+        <ion-spinner *ngIf="!mayChartDisplay"></ion-spinner>
+       <dash-chart-overtime *ngIf="mayChartDisplay"></dash-chart-overtime>
     </ion-col>
     <ion-col size="6">
       <ion-button (click)="onClick()">
@@ -36,8 +37,8 @@
   </ion-row>
   <ion-row >
       <ion-col size="12">
-          <ion-spinner *ngIf="!mainChartDisplay"></ion-spinner>
-          <dash-chart-active-engagements *ngIf="mainChartDisplay" ></dash-chart-active-engagements>
+          <ion-spinner *ngIf="!mayChartDisplay"></ion-spinner>
+          <dash-chart-active-engagements *ngIf="mayChartDisplay" ></dash-chart-active-engagements>
       </ion-col>
     </ion-row>    
     <ion-row>

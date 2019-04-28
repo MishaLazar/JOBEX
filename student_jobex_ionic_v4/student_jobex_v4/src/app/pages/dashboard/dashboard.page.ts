@@ -14,7 +14,7 @@ export class DashboardPage implements OnInit {
 
 
   studentLastEgagements: Engagement[];
-  mainChartDisplay: boolean = false;
+  mayChartDisplay: boolean = false;
   constructor(private sharedDataSvc: SharedDataService,
     private http: HttpHelpService,
     private navCtrl: NavController, private profile: MyProfileService) { }
@@ -24,7 +24,7 @@ export class DashboardPage implements OnInit {
       this.profile.loadProfile();
     }
 
-    this.loadMainChart();
+    this.loadDashCharts();
 
 
 
@@ -33,7 +33,7 @@ export class DashboardPage implements OnInit {
     this.sharedDataSvc.loadAllSkills();
   }
 
-  loadMainChart() {
+  loadDashCharts() {
     this.profile.profileLoadedSubject.subscribe(
       (value) => {
         if (value == 'loaded') {
@@ -42,7 +42,7 @@ export class DashboardPage implements OnInit {
           }
           this.http.submitForm(data, 'get_dashboard_main_chart_data').subscribe(
             (data: any) => {
-              this.mainChartDisplay = true;
+              this.mayChartDisplay = true;
               this.profile.engagemtnsCounts = data["engagements_counts"];
               this.profile.matchesCounts =  data["matches_couts"];
           
