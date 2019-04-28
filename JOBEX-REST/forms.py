@@ -23,14 +23,15 @@ class RegistrationForm(FlaskForm):
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), Length(min=6, max=12), EqualTo('password')])
     company_name = StringField('Company Name', validators=[DataRequired()])
-    submit = SubmitField('Sign Up')
+    company_description = StringField('Company Description', validators=[DataRequired()])
+    # submit = SubmitField('Sign Up')
 
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=6, max=12)])
     password = PasswordField('Password', validators=[DataRequired(), Length(min=6, max=12)])
     remember = BooleanField('Remember Me')
-    submit = SubmitField('Login')
+    # submit = SubmitField('Login')
 
 
 class AddPositionForm(FlaskForm):
@@ -42,4 +43,4 @@ class AddPositionForm(FlaskForm):
                                            description=u"Choose the position required skills",
                                            render_kw={"multiple": "multiple"})
     comment = StringField('Comment', description=u"anything to add?")
-    submit = SubmitField('Add Position')
+    # submit = SubmitField('Add Position')

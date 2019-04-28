@@ -56,19 +56,24 @@
         req.setRequestHeader('Access-Control-Allow-Origin', '*');
         let username = document.getElementById("username").value;
         let password = document.getElementById("password").value;
-        let body = JSON.stringify('{"username":"' + username + '",' + '"password":"' + password + '"}');
+        let body = JSON.stringify({
+            username:username,
+            password: password
+        });
         req.send(body);
-        let tokens = $.parseJSON(req.response);
-        console.log(tokens["access_token"]);
-        console.log(tokens["refresh_token"]);
+        let response = $.parseJSON(req.response);
+        console.log(response["access_token"]);
+        console.log(response["refresh_token"]);
         let status_code = req.status;
         if (status_code==200){
-            let access_token = tokens['access_token'];
-            let refresh_token = tokens['refresh_token'];
+            let access_token = response['access_token'];
+            let refresh_token = response['refresh_token'];
             if (access_token != undefined) { window.localStorage.accessToken = access_token; }
             if (refresh_token != undefined) { window.localStorage.refreshToken = refresh_token; }
+            window.localStorage.username = username;
+            window.localStorage.company_id = response['company_id'];
         }
-        window.location.href = "http://127.0.0.1:5050/dashboard?username=" + username;
+        window.location.href = "http://127.0.0.1:5050/dashboard";
         return false;
     }
     </script>

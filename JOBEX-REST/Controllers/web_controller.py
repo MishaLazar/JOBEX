@@ -1,3 +1,5 @@
+from bson import ObjectId
+
 from DAL.mongo_db_handler import Client
 from DAL.db_collections import DbCollections
 from datetime import datetime
@@ -36,14 +38,14 @@ class WebController:
 
     def add_position(self, position_obj):
         db_client = Client()
-        position_obj = json.loads(position_obj)
 
         position_doc = {
             "position_name": position_obj['position_name'],
             "position_department": position_obj['position_department'],
             "position_location": position_obj['position_location'],
             "comment": position_obj['comment'],
-            "position_active": position_obj['position_active']
+            "position_active": position_obj['position_active'],
+            "company_id": ObjectId(position_obj['company_id'])
         }
         position_id = db_client.insert_doc_to_collection(DbCollections.get_collection("positions"), position_doc)
 
@@ -67,13 +69,14 @@ class WebController:
 
         return position_id, position_skills_id, job_id
 
-    def get_positions(self, position_id=None):
+    def get_positions(self, position_id=None, company_id=None):
         db_client = Client()
         if position_id:
             return db_client.get_single_doc_from_collection(DbCollections.get_collection("positions"),
                                                             object_id=position_id)
         else:
-            return db_client.get_many_docs_from_collection(DbCollections.get_collection("positions"))
+            return db_client.get_many_docs_from_collection(DbCollections.get_collection("positions"),
+                                                           json_query={"company_id": ObjectId(company_id)})
 
     def get_user(self, user_id):
         db_client = Client()
@@ -81,7 +84,6 @@ class WebController:
 
     def add_user(self, user_obj):
         db_client = Client()
-
         return db_client.insert_doc_to_collection(DbCollections.get_collection("users"), user_obj)
 
     def get_matches(self, position_id=None, student_id=None):
@@ -104,8 +106,8 @@ class WebController:
             companies_list.append(company_name)
         return companies_list
 
-    def add_company(self, company_name):
+    def add_company(self, company_name, company_description):
         db_client = Client()
-        company_obj = {"name": company_name}
+        company_obj = {"name": company_name, "description": company_description}
         return db_client.insert_doc_to_collection(DbCollections.get_collection("companies"), company_obj)
 

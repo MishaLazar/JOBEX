@@ -41,9 +41,9 @@ class AuthController:
             "username": username,
             "password": password
         }
-        user_doc = db_client.get_single_doc_from_collection(DbCollections.get_student_collection(), query)
-        if user_doc:
-            user_id = str(user_doc['_id'])
-            return user_id
-        else:
-            return None
+        return db_client.get_single_doc_from_collection(DbCollections.get_student_collection(), query)
+        # if user_doc:
+        #     user_id = str(user_doc['_id'])
+        #     return user_id
+        # else:
+        #     return None

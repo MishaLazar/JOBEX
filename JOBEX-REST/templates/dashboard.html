@@ -8,7 +8,7 @@
             <th>Position</th>
             <th>Department</th>
             <th>Location</th>
-            <th>Skills</th>
+<!--            <th>Skills</th>-->
             <th>Active</th>
             <th>Comment</th>
         </tr>
@@ -20,42 +20,28 @@
     <button onclick="window.location = 'http://127.0.0.1:5050/add_position'">Add New Position</button>
     <script>
             $(document).ready(function () {
-                var access_token = window.localStorage.accessToken;
-                var req = new XMLHttpRequest();
-                var url = "http://127.0.0.1:5050/positions";
+                let access_token = window.localStorage.accessToken;
+                let company_id = window.localStorage.company_id;
+                let req = new XMLHttpRequest();
+                let url = "http://127.0.0.1:5050/positions?company_id=" + company_id;
                 req.open("GET", url, false);
                 req.setRequestHeader('Content-Type', 'application/json');
                 req.setRequestHeader('Access-Control-Allow-Origin', '*');
                 req.setRequestHeader("Authorization", "Bearer " + access_token);
                 req.send();
-                var results = req.response;
+                let results = req.response;
 
-                var results_arr = JSON.parse(results);
-                for (var lst_idx = 0; lst_idx < results_arr.length; lst_idx++)
+                let results_arr = JSON.parse(results);
+                for (let lst_idx = 0; lst_idx < results_arr.length; lst_idx++)
                 {
-                    console.log(results_arr[lst_idx]);
-                    var json = results_arr[lst_idx];
-                    tr = $('<tr/>');
-                    var link = "<a href=\"http://127.0.0.1:5050/position_view?position_id=" + json._id + "\">" + json.position_name + "</a>";
+                    // console.log(results_arr[lst_idx]);
+                    let json = results_arr[lst_idx];
+                    let tr = $('<tr/>');
+                    let link = "<a href=\"http://127.0.0.1:5050/position_view?position_id=" + json._id + "\">" + json.position_name + "</a>";
                     tr.append("<td>" +link + "</td>");
                     tr.append("<td>" + json.position_department + "</td>");
-                    tr.append("<td>" + json.location + "</td>");
-                    var skills = "";
-                    for(var j=0; j< json.skills.length; j++)
-                    {
-                        console.log(skills);
-                        if (j != json.skills.length-1){
-                            skills = skills + json.skills[j]+ ", ";
-                            console.log(skills);
-                        }
-                        else{
-                            skills = skills + json.skills[j];
-                            console.log(skills);
-                        }
-                    }
-                    console.log(skills);
-                    tr.append("<td>"+ skills + "</td>");
-                    tr.append("<td>" + json.active + "</td>");
+                    tr.append("<td>" + json.position_location + "</td>");
+                    tr.append("<td>" + json.position_active + "</td>");
                     tr.append("<td>" + json.comment + "</td>");
                     $('#positions').append(tr);
                 }

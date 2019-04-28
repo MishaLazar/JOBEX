@@ -88,26 +88,30 @@
                 }
     });
     function add_position() {
-                var access_token = window.localStorage.accessToken;
-                var req = new XMLHttpRequest();
-                var url = "http://127.0.0.1:5050/positions";
-                var position_name = document.getElementById("position_name").value;
-                var position_department = document.getElementById("position_department").value;
-                var position_location = document.getElementById("position_location").value;
-                var position_active = document.getElementById("position_active").checked;
-                var position_skills = document.getElementById("position_skills");
-                var selected_skills = [];
-                for (var i = 0; i < position_skills.length; i++)
+                let access_token = window.localStorage.accessToken;
+                let req = new XMLHttpRequest();
+                let url = "http://127.0.0.1:5050/positions";
+                let company_id = window.localStorage.company_id;
+                let position_name = document.getElementById("position_name").value;
+                let position_department = document.getElementById("position_department").value;
+                let position_location = document.getElementById("position_location").value;
+                let position_active = document.getElementById("position_active").checked;
+                let position_skills = document.getElementById("position_skills");
+                let selected_skills = [];
+                for (let i = 0; i < position_skills.length; i++)
                     if (position_skills.options[i].selected)
                         selected_skills.push(position_skills.options[i].value);
-                selected_skills = JSON.stringify(selected_skills);
-                var comment = document.getElementById("comment").value;
-                var body = JSON.stringify('{"position_name":"' + position_name + '",' +
-                    '"position_department":"' + position_department + '",' +
-                    '"position_location":"' + position_location + '",' +
-                    '"comment":"' + comment + '",' +
-                    '"skills":' + selected_skills + ',' +
-                    '"position_active":"' + position_active + '"}');
+                selected_skills = selected_skills;
+                let comment = document.getElementById("comment").value;
+                let body = JSON.stringify({
+                    position_name: position_name,
+                    position_department: position_department,
+                    position_location: position_location,
+                    comment: comment,
+                    skills: selected_skills,
+                    position_active: position_active,
+                    company_id: company_id
+                });
                 req.open("POST", url, false);
                 req.setRequestHeader('Content-Type', 'application/json');
                 req.setRequestHeader('Access-Control-Allow-Origin', '*');

@@ -130,7 +130,7 @@ class Client:
                 :param limit: max number of doc to find
                 :type limit: int
                 :param json_query: the json query to search with
-                :type json_query str
+                :type json_query dict
                 :returns many docs
                 :rtype JSON objects of the docs found in the collection
         """

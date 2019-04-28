@@ -130,11 +130,11 @@ def get_login():
             print("Failed to login. Error: {}".format(err))
 
         if result:
-
-            access_token = create_access_token(identity=result)
-            refresh_token = create_refresh_token(identity=result)
+            access_token = create_access_token(identity=str(result["_id"]))
+            refresh_token = create_refresh_token(identity=str(result["_id"]))
             data = {
-                'user_id': result,
+                "username": result["username"],
+                "company_id": str(result["company_id"]),
                 "access_token": access_token,
                 "refresh_token": refresh_token
             }
@@ -261,11 +261,13 @@ def register():
     if request.method == 'POST':
         web_ctrl = WebController.getInstance()
         user = request.get_json()
-        company_name = json.loads(user)['company_name']
+        company_name = user['company_name']
+        company_description = user['company_description']
         if company_name not in companies:
-            web_ctrl.add_company(company_name)
+            company_id = web_ctrl.add_company(company_name, company_description)
+            user["company_id"] = company_id
             companies.append(company_name)
-        new_user = web_ctrl.add_user(json.loads(user))
+        new_user = web_ctrl.add_user(user)
         if new_user:
             return jsonify({'result': 'success'}), 200
     else:
@@ -282,10 +284,11 @@ def positions(position_id=None):
         return jsonify(result)
     elif request.method == 'GET':
         web_ctrl = WebController.getInstance()
+        company_id = request.args['company_id']
         if position_id:
             result = web_ctrl.get_positions(position_id=position_id)
         else:
-            result = web_ctrl.get_positions()
+            result = web_ctrl.get_positions(company_id=company_id)
         return JSONEncoder().encode(result)
     else:
         return {"error": "method {} not supported!".format(request.method)}
