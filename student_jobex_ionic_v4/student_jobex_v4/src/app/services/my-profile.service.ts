@@ -69,6 +69,7 @@ export class MyProfileService {
         if(!this.isStudentSkillsLoaded){
             // this.http.get('student/skills/' + this.user_id).subscribe(
             //     (skills:SkillList[]) =>{
+        
             this.isStudentSkillsLoaded = true;                
             this.processLoadedStudentSkill(this.myStudentSkills);
                 // },

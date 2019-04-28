@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
+import { Utils } from 'src/app/Utils/Utils';
+import { MyProfileService } from 'src/app/services/my-profile.service';
 @Component({
   selector: 'dash-chart-overtime',
   templateUrl: './dash-chart-overtime.component.html',
@@ -7,11 +9,21 @@ import Chart from 'chart.js';
 })
 export class DashChartOvertimeComponent implements OnInit {
 
-  constructor() { }
+  constructor(public profile:MyProfileService) { }
 
-  ngOnInit() {
-
-    this.initOverTimeChart(['Matches', 'Engaged'],[20, 10],[15, 5]);
+  ngOnInit() { 
+    let weeks:number = Utils.weekesFromActivation(this.profile.myProfile.activation_data);
+    let MatchesDataSet = new Array(weeks).fill(0);
+    let ActiveEngagementsDataSet = new Array(weeks).fill(0);
+    let AvgMatchesDataSet = new Array(2).fill(0);
+    let CurrentWeekDataSet = new Array(2).fill(0);
+    ActiveEngagementsDataSet = Utils.fillDataSetCounters(ActiveEngagementsDataSet,this.profile.myProfile.activation_data,this.profile.engagemtnsCounts);    
+    MatchesDataSet = Utils.fillDataSetCounters(MatchesDataSet,this.profile.myProfile.activation_data,this.profile.matchesCounts);
+    AvgMatchesDataSet = Utils.calculateAvgDataSet(AvgMatchesDataSet,weeks,MatchesDataSet,ActiveEngagementsDataSet);
+    CurrentWeekDataSet[0] = MatchesDataSet[weeks-1];
+    CurrentWeekDataSet[1] = ActiveEngagementsDataSet[weeks-1];
+    debugger;
+    this.initOverTimeChart(['Matches', 'Engaged'],AvgMatchesDataSet,CurrentWeekDataSet);
   }
   initOverTimeChart(chartLabels:string[],AvgDataSet:number[],CurrentDataSet:number[]): any {
     var ctx = (<any>document.getElementById('overTimeChart')).getContext('2d');
@@ -79,8 +91,12 @@ export class DashChartOvertimeComponent implements OnInit {
               this.data.datasets.forEach(function (dataset, i) {
                 var meta = chartInstance.controller.getDatasetMeta(i);
                 meta.data.forEach(function (bar, index) {
-                  var data = dataset.data[index];                            
-                  ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                 
+                  var data = dataset.data[index]; 
+                  if(data > 0){
+                    ctx.fillText(data, bar._model.x, bar._model.y - 5);
+                  }                           
+                  
                 });
               });
             }

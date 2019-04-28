@@ -62,6 +62,7 @@ export class EngagementPage implements OnInit {
   }
 
   setPositionSkills(){
+    debugger;
     let tempSkillsFlat:number[] = [];
     let skills = this.sharedData.skills.slice();
     this.positionSkills = this.engagement.position_skill_list.slice();
