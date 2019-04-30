@@ -9,7 +9,8 @@
   </ion-header>
   
   <ion-content padding>
-  <ion-list >
+  <ion-spinner name="crescent" *ngIf="!skills"></ion-spinner>
+  <ion-list style="background-color: blueviolet"*ngIf="skills" >
     <ion-item *ngFor="let skill of skills | SkillFilter:SkillSearchTerm,TextValue" (click)="skillTuched(skill)">
       <ion-label>{{ skill.TextValue }}</ion-label>        
       <ion-checkbox color="primary" [(ngModel)]="skill.IsChecked"></ion-checkbox>

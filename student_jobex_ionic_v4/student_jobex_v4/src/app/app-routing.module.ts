@@ -14,6 +14,8 @@ const routes: Routes = [
   { path: 'my-profile/engagements-list', loadChildren: './pages/engagements-list/engagements-list.module#EngagementsListPageModule',canLoad:[AuthenticationGuardGuard] },
   { path: 'my-profile/personal-data', loadChildren: './pages/personal-data/personal-data.module#PersonalDataPageModule',canLoad:[AuthenticationGuardGuard] },
   { path: 'my-profile/skills', loadChildren: './pages/skills/skills.module#SkillsPageModule',canLoad:[AuthenticationGuardGuard] },
+  { path: 'my-profile/wish-list', loadChildren: './pages/wish-list/wish-list.module#WishListPageModule' ,canLoad:[AuthenticationGuardGuard]},
+
 
 
 

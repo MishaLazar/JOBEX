@@ -8,8 +8,7 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-grid>
-
+    <ion-grid *ngIf="myProfile">
         <ion-row align-self-center>
             <ion-col>
                 <ion-card>
@@ -43,4 +42,5 @@
             </ion-col>
         </ion-row>
     </ion-grid>
+    <ion-spinner name="crescent" *ngIf="!myProfile"></ion-spinner>
 </ion-content>

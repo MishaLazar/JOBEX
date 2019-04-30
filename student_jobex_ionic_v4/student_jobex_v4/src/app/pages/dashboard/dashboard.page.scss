@@ -1,12 +1,16 @@
 ion-grid {
-    height: 100%;
-    //border: 2px solid black;
-  }
+  height: 100%;
+  //border: 2px solid black;
+}
 
-  ion-row {
-    height: 33.33%;
-    
-  }
-  ion-col{
-  //  border: 2px solid red;
-  }
+ion-row {
+  height: 33.33%;
+  
+}
+// ion-col{
+// //  border: 2px solid red;
+// }
+
+.custom-skeleton ion-skeleton-text {
+  line-height: 90%;
+}

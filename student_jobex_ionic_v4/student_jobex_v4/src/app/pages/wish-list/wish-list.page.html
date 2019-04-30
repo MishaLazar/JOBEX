@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Wish-List</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+        <ion-button (click)="onWishListSaveClick()" *ngIf="!inSaveProcess">
+          <ion-icon slot="icon-only" name="checkmark"></ion-icon>
+        </ion-button>
+        <ion-spinner name="crescent" *ngIf="inSaveProcess"></ion-spinner>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>  
+  <ion-grid fixed style="height: 100%;"
+    *ngIf="positionDataset">
+    <ion-row style="height: 10%">
+      <ion-col size="12">
+        <ion-searchbar showCancelButton cancelButtonText="Custom Cancel"
+          [(ngModel)]="JobTitleSearchTerm"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+    <ion-row style="height: 60%">
+      <ion-col>
+        <ion-list>
+          <ion-item *ngFor="let position of positionDataset |
+            PositionTitleFilter:JobTitleSearchTerm,position_name"
+            (click)="positionTuched(position)">
+            <ion-label>{{ position.position_name }}</ion-label>
+            <ion-checkbox color="primary" [(ngModel)]="position.IsChecked"></ion-checkbox>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row style="height: 30%">
+      <ion-col size="12">
+        <ion-list>
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>Selected:</ion-title>
+            </ion-toolbar>
+          </ion-header>
+          <ion-item>        
+              <div *ngIf="positionSelected.length> 0">
+                  <span class="selected-wish-list" *ngFor="let position of positionSelected">{{position.position_name}}
+                      <ion-icon name="close" (click)="removeFromWishList(position)"></ion-icon>
+                  </span>
+                  
+                </div>    
+          </ion-item>
+        </ion-list>
+        
+      </ion-col>
+
+
+    </ion-row>
+  </ion-grid>
+  <!-- <div style="background-color: aqua; height: 50%"></div> -->
+</ion-content>
+<!-- <ion-footer>
+  <ion-button expand="full" (click)="onWishListSaveClick()">Save WishList</ion-button>
+</ion-footer> -->

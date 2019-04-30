@@ -74,7 +74,7 @@ class MobileController:
             activation_date = datetime.now()
 
             doc = {
-                "$set": {"active": active_status,"activation_date": activation_date}
+                "$set": {"active": active_status, "activation_date": activation_date}
             }
         else:
             doc = {
@@ -246,11 +246,13 @@ class MobileController:
             }
         ]
 
-        matches_couts = db_client.get_aggregate_document(DbCollections.get_matches_collection(), pipeline=matches_pipeline)
-        engagements_counts = db_client.get_aggregate_document(DbCollections.get_engagements_collection(), pipeline=engagements_pipeline)
+        matches_couts = db_client.get_aggregate_document(DbCollections.get_matches_collection(),
+                                                         pipeline=matches_pipeline)
+        engagements_counts = db_client.get_aggregate_document(DbCollections.get_engagements_collection(),
+                                                              pipeline=engagements_pipeline)
 
         result = {
-            "matches_couts": matches_couts if matches_couts else  [],
+            "matches_couts": matches_couts if matches_couts else [],
             "engagements_counts": engagements_counts if engagements_counts else []
         }
         return result
@@ -266,3 +268,66 @@ class MobileController:
         if result:
             result = result['position_skill_list']
         return result
+
+    @staticmethod
+    def get_position_dataset():
+        db_client = Client()
+        matches_pipeline = [
+            {
+                "$lookup": {
+                    "from": "position_skills",
+                    "localField": "_id",
+                    "foreignField": "position_id",
+                    "as": "position_skills"
+                }
+            },
+            {
+                "$replaceRoot": {"newRoot": {"$mergeObjects": [{"$arrayElemAt": ["$position_skills", 0]}, "$$ROOT"]}}
+            }
+            ,
+            {
+                "$project": {
+                    "position_name": 1,
+                    "position_department": 1,
+                    "position_skill_list": 1
+                }
+            }]
+        return db_client.get_aggregate_document(DbCollections.get_position_collection(),
+                                                pipeline=matches_pipeline)
+
+    @staticmethod
+    def wish_list_save(student_id, wish_list):
+        db_client = Client()
+        query = {
+            "student_id": ObjectId(student_id)
+        }
+        doc = {
+            "$set": {
+                "student_id": ObjectId(student_id),
+                "wish_list": wish_list}
+        }
+        return db_client.update_single_doc_in_collection(DbCollections.get_wish_list_collection(), query, doc,
+                                                         False)
+
+    @staticmethod
+    def get_wish_list(student_id):
+        db_client = Client()
+        matches_pipeline = [
+
+            {
+                "$match": {
+                    "student_id": ObjectId(student_id)
+                }
+            },
+            {
+                "$project": {
+                    "_id": 0,
+                    "wish_list": 1
+
+                }
+            }
+
+        ]
+        result = db_client.get_aggregate_document(DbCollections.get_wish_list_collection(),
+                                                pipeline=matches_pipeline)
+        return  result[0]["wish_list"] if result[0]["wish_list"] else []

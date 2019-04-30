@@ -1,6 +1,4 @@
-
 class DbCollections:
-
     collection_names = {
         "engagements": "engagements",
         "positions": "positions",
@@ -12,7 +10,8 @@ class DbCollections:
         "position_skills": "position_skills",
         "jobs": "jobs",
         "companies": "companies",
-        "token_blacklist_collection":"token_blacklist"
+        "token_blacklist_collection": "token_blacklist",
+        "wish_list": "wish_list"
     }
 
     @staticmethod
@@ -50,3 +49,7 @@ class DbCollections:
     @staticmethod
     def get_matches_collection():
         return DbCollections.collection_names['matches']
+
+    @staticmethod
+    def get_wish_list_collection():
+        return DbCollections.collection_names['wish_list']

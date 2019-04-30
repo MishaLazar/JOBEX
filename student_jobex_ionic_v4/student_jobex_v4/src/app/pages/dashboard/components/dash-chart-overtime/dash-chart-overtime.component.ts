@@ -22,7 +22,7 @@ export class DashChartOvertimeComponent implements OnInit {
     AvgMatchesDataSet = Utils.calculateAvgDataSet(AvgMatchesDataSet,weeks,MatchesDataSet,ActiveEngagementsDataSet);
     CurrentWeekDataSet[0] = MatchesDataSet[weeks-1];
     CurrentWeekDataSet[1] = ActiveEngagementsDataSet[weeks-1];
-    debugger;
+    
     this.initOverTimeChart(['Matches', 'Engaged'],AvgMatchesDataSet,CurrentWeekDataSet);
   }
   initOverTimeChart(chartLabels:string[],AvgDataSet:number[],CurrentDataSet:number[]): any {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import skillsJson from '../testDataFiles/skills.json';
 import { Engagement } from '../models/engagement.js';
 import { HttpHelpService } from './http-help.service.js';
@@ -12,15 +12,16 @@ import { PositionData } from '../models/position-data.js';
 export class SharedDataService {
 
   
-  skills:Skill[];
-  isSkillsLoaded:boolean = false;
+  skills:Skill[];  
   latestEngagements:Engagement[] = [];
   activeEngagements:Engagement[] = [];
-  positionsDataset:PositionData[] = [];
-  isPositionDatasetLoaded:boolean = false;
+  positionsDataset:PositionData[];
+  skillsLoadedSubject:Subject<string> = new Subject();
+  positionDataSetLoadedSubject:Subject<string> = new Subject();
+
   constructor(private http: HttpHelpService) { 
   
-    //this.skills = skillsJson;
+    //this.skills = skillsJson;    
     this.initStudentEngagements();
     this.loadPositionDataset();
   }
@@ -41,29 +42,29 @@ export class SharedDataService {
     return this.latestEngagements.find(value => value.match_id == match_Id);
   }
   loadAllSkills(){
-    if(!this.isSkillsLoaded){
+    
       this.http.get('resources/skills').subscribe(
         (data:Skill[]) => {
           this.skills = data;
-          this.isSkillsLoaded = true;
-          //console.log('loaded :' + data.length + ' skills');
+          this.skillsLoadedSubject.next('loaded');
+          console.log('loaded :' + data.length + ' skills');
         },
         error =>{
           console.log(error);
         }
 
       );
-    }
+    
   }
 
   loadPositionDataset(){
-    if(!this.isPositionDatasetLoaded){
+    
       this.http.get('resources/getPositionDataSet').subscribe(
         (data:PositionData[]) => {
-          this.positionsDataset = data;
-          this.isPositionDatasetLoaded = true;
           debugger;
-          //console.log('loaded :' + data.length + ' skills');
+          this.positionsDataset = data;          
+          this.positionDataSetLoadedSubject.next('loaded');
+          console.log('loaded :' + data.length + ' positionsDataset');
         },
         error =>{
           console.log(error);
@@ -71,5 +72,5 @@ export class SharedDataService {
 
       );
     }
-  }
+  
 }

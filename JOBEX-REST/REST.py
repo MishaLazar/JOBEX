@@ -339,6 +339,14 @@ def get_student_engagements(student_id=None):
     return JSONEncoder().encode(result)
 
 
+@app.route('/resources/getPositionDataSet', methods=['GET'])
+def get_position_dataset():
+    result = None
+    if request.method == 'GET':
+        result = MobileController.get_position_dataset()
+    return JSONEncoder().encode(result)
+
+
 @app.route('/student/engagement_update', methods=['POST'])
 @jwt_required
 def get_student_engagement_update():
@@ -352,6 +360,28 @@ def get_student_engagement_update():
     return JSONEncoder().encode(result)
 
 
+@app.route('/student/wish_list_save', methods=['POST'])
+@jwt_required
+def set_wish_list_save():
+    if request.method == 'POST':
+        request_data = request.get_json()
+        student_id = request_data['student_id']
+        wish_list = request_data['wish_list']
+
+        result = MobileController.wish_list_save(student_id=student_id, wish_list=wish_list)
+    return JSONEncoder().encode(result)
+
+
+@app.route('/student/get_wish_list', methods=['POST'])
+@jwt_required
+def get_wish_list():
+    if request.method == 'POST':
+        request_data = request.get_json()
+        student_id = request_data['student_id']
+
+        result = MobileController.get_wish_list(student_id=student_id)
+    return JSONEncoder().encode(result)
+
 @app.route('/student/get_student_engagement_by_match', methods=['POST', 'GET'])
 @jwt_required
 def get_student_engagement_by_match():
@@ -364,7 +394,7 @@ def get_student_engagement_by_match():
         result = MobileController.get_student_engagement_by_match2(match_id=match_id)
     elif request.method == 'GET':
         pass
-    return JSONEncoder().encode(result)
+    return JSONEncoder().encode(result[0])
 
 
 @app.route('/student/skills/<student_id>', methods=['POST', 'GET'])
