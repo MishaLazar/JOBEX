@@ -1,7 +1,32 @@
 {% extends "layout.html" %}
 {% block content %}
-    {%  if engagement %}
-        <h1>{{  engagement.name }}</h1>
-    {% else %}
-        <h1> ERROR: engagement not found! </h1>
+<h1>Student ID:</h1>
+<h2 id="student_id"></h2>
+<h1>Engagement Activated:</h1>
+<h2 id="match_id"></h2>
+<h1>Engagement Status:</h1>
+<h2 id="status"></h2>
+<h1>Creation Date:</h1>
+<h2 id="creation_date"></h2>
+<script>
+    $(document).ready(function () {
+        let access_token = window.localStorage.accessToken;
+        let req = new XMLHttpRequest();
+        let url_string = window.location.href;
+        let url = new URL(url_string);
+        let engagement_id = url.searchParams.get("engagement_id");
+        var API_url = "http://127.0.0.1:5050/engagements?engagement_id=" + engagement_id;
+        req.open("GET", API_url, false);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.setRequestHeader('Access-Control-Allow-Origin', '*');
+        req.setRequestHeader("Authorization", "Bearer " + access_token);
+        req.send();
+        let results = JSON.parse(req.response);
+        // console.log(results);
+        document.getElementById("student_id").innerHTML = results.student_id;
+        document.getElementById("match_id").innerHTML = results.match_id;
+        document.getElementById("status").innerHTML = results.status;
+        document.getElementById("creation_date").innerHTML = results.creation_date;
+    });
+</script>
 {% endblock content %}

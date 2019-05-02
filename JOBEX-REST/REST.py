@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, redirect, url_for, render_template, flash, session, request
+from flask import Flask, jsonify, redirect, url_for, render_template, request  # ,flash, session
 from flask_jwt_extended import JWTManager
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required,
                                 get_jwt_identity, get_raw_jwt)
@@ -13,7 +13,8 @@ from Utils.json_encoder import JSONEncoder
 # from jobs_service import JobThread
 from Utils.util import Utils
 from forms import RegistrationForm, LoginForm, AddPositionForm
-import json
+from werkzeug import exceptions
+# import json
 
 app = Flask(__name__)
 
@@ -68,7 +69,7 @@ def add_position_view():
     return render_template("add_position.html", title='Add Position', form=form, authenticated=True)
 
 
-@app.route('/engagements')
+@app.route('/engagement_view')
 def engagement_view():
     return render_template("engagement.html", authenticated=True)
 
@@ -284,18 +285,18 @@ def positions(position_id=None):
         return jsonify(result)
     elif request.method == 'GET':
         web_ctrl = WebController.getInstance()
-        company_id = request.args['company_id']
         if position_id:
             result = web_ctrl.get_positions(position_id=position_id)
         else:
+            company_id = request.args['company_id']
             result = web_ctrl.get_positions(company_id=company_id)
         return JSONEncoder().encode(result)
     else:
         return {"error": "method {} not supported!".format(request.method)}
 
 
-@app.route('/engagements/<company_name>/<engagement_id>', methods=['POST', 'GET'])
-def engagements(company_name=None, engagement_id=None):
+@app.route('/engagements', methods=['POST', 'GET'])
+def engagements():
     if request.method == 'POST':
         engagement = request.get_json()
         web_ctrl = WebController.getInstance()
@@ -303,10 +304,15 @@ def engagements(company_name=None, engagement_id=None):
         return jsonify(result)
     elif request.method == 'GET':
         web_ctrl = WebController.getInstance()
-        if company_name and engagement_id:
-            result = web_ctrl.get_engagements(company_name=company_name, engagement_id=engagement_id)
-        elif company_name:
-            result = web_ctrl.get_engagements(engagement_id=engagement_id)
+        try:
+            position_id = request.args['position_id']
+            result = web_ctrl.get_engagements(position_id=position_id)
+        except exceptions.BadRequestKeyError:
+            try:
+                engagement_id = request.args['engagement_id']
+                result = web_ctrl.get_engagements(engagement_id=engagement_id)
+            except exceptions.BadRequestKeyError:
+                print("no engagement args")
         return JSONEncoder().encode(result)
     else:
         return {"error": "method {} not supported!".format(request.method)}
@@ -397,7 +403,7 @@ def get_position_skills(position_id):
 @app.route('/student/update_skills/<student_id>', methods=['POST', 'GET'])
 @jwt_required
 def set_student_skills(student_id):
-    skills = request.get_json();
+    skills = request.get_json()
     if request.method == 'POST':
         mob_ctrl = MobileController()
         result = mob_ctrl.set_student_skills(student_id, skills)
@@ -408,18 +414,19 @@ def set_student_skills(student_id):
     return JSONEncoder().encode(result)
 
 
-@app.route('/matches/position_id=<position_id>', methods=['GET'])
-@app.route('/matches/student_id=<student_id>', methods=['GET'])
 @app.route('/matches', methods=['GET'])
-def matches(student_id=None, position_id=None):
+def matches():
     if request.method == 'GET':
         web_ctrl = WebController.getInstance()
-        if position_id:
+        try:
+            position_id = request.args['position_id']
             result = web_ctrl.get_matches(position_id=position_id)
-        elif student_id:
-            result = web_ctrl.get_matches(student_id=student_id)
-        else:
-            result = web_ctrl.get_matches()
+        except exceptions.BadRequestKeyError:
+            try:
+                student_id = request.args['student_id']
+                result = web_ctrl.get_matches(student_id=student_id)
+            except exceptions.BadRequestKeyError:
+                result = web_ctrl.get_matches()
         return JSONEncoder().encode(result)
     else:
         return {"error": "method {} not supported!".format(request.method)}

@@ -28,11 +28,14 @@ class WebController:
         db_client = Client()
         return db_client.insert_doc_to_collection(DbCollections.get_collection("engagements"), engagement_obj)
 
-    def get_engagements(self, engagement_id=None):
+    def get_engagements(self, engagement_id=None, position_id=None):
         db_client = Client()
         if engagement_id:
             return db_client.get_single_doc_from_collection(DbCollections.get_collection("engagements"),
                                                             object_id=engagement_id)
+        if position_id:
+            return db_client.get_many_docs_from_collection(DbCollections.get_collection("engagements"),
+                                                           json_query={"position_id": position_id})
         else:
             return db_client.get_many_docs_from_collection(DbCollections.get_collection("engagements"))
 
