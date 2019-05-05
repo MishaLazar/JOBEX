@@ -28,6 +28,13 @@ class WebController:
         db_client = Client()
         return db_client.insert_doc_to_collection(DbCollections.get_collection("engagements"), engagement_obj)
 
+    def modify_engagement(self, engagement_obj):
+        db_client = Client()
+        return db_client.update_single_doc_in_collection(DbCollections.get_collection("engagements"),
+                                                         filter_json={"_id": ObjectId(engagement_obj['_id'])},
+                                                         doc_update_json={"$set": {"status": engagement_obj['status']}},
+                                                         update_if_exists=True)
+
     def get_engagements(self, engagement_id=None, position_id=None):
         db_client = Client()
         if engagement_id:
@@ -66,7 +73,7 @@ class WebController:
             "job_type_id": "2",
             "source_objectid": str(position_id),
             "creation_date": str(now),
-            "status": "0"
+            "status": 0
         }
         job_id = db_client.insert_doc_to_collection(DbCollections.get_collection("jobs"), job_obj)
 
@@ -114,3 +121,12 @@ class WebController:
         company_obj = {"name": company_name, "description": company_description}
         return db_client.insert_doc_to_collection(DbCollections.get_collection("companies"), company_obj)
 
+    def post_feedback(self, feedback_text, engagement_id):
+        db_client = Client()
+        feedback_obj = {"feedback_text": feedback_text, "engagement_id": engagement_id}
+        return db_client.insert_doc_to_collection(DbCollections.get_collection("feedbacks"), feedback_obj)
+
+    def get_feedback(self, engagement_id):
+        db_client = Client()
+        return db_client.get_single_doc_from_collection(DbCollections.get_collection("feedbacks"),
+                                                        json_query={"engagement_id": "{}".format(engagement_id)})

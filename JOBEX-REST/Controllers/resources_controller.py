@@ -39,3 +39,8 @@ class ResourcesController:
     def add_skill(skill_obj):
         db_client = mongo_db_handler.Client()
         return db_client.insert_doc_to_collection(DbCollections.get_collection(key="skills"), doc=skill_obj)
+
+    @staticmethod
+    def get_all_cities():
+        db_client = mongo_db_handler.Client()
+        return db_client.find_by_collection(DbCollections.get_collection(key="cities"))

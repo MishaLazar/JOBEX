@@ -8,7 +8,6 @@
             <th>Position</th>
             <th>Department</th>
             <th>Location</th>
-<!--            <th>Skills</th>-->
             <th>Active</th>
             <th>Comment</th>
         </tr>
@@ -17,7 +16,7 @@
         </tbody>
     </table>
     <h1>---------------------------------------------</h1>
-    <button onclick="window.location = 'http://127.0.0.1:5050/add_position'">Add New Position</button>
+    <button class="btn btn-outline-info" onclick="window.location = 'http://127.0.0.1:5050/add_position'">Add New Position</button>
     <script>
             $(document).ready(function () {
                 let access_token = window.localStorage.accessToken;
@@ -34,7 +33,6 @@
                 let results_arr = JSON.parse(results);
                 for (let lst_idx = 0; lst_idx < results_arr.length; lst_idx++)
                 {
-                    // console.log(results_arr[lst_idx]);
                     let json = results_arr[lst_idx];
                     let tr = $('<tr/>');
                     let link = "<a href=\"http://127.0.0.1:5050/position_view?position_id=" + json._id + "\">" + json.position_name + "</a>";

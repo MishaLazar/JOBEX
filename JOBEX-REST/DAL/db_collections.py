@@ -12,7 +12,9 @@ class DbCollections:
         "position_skills": "position_skills",
         "jobs": "jobs",
         "companies": "companies",
-        "token_blacklist_collection":"token_blacklist"
+        "token_blacklist_collection":"token_blacklist",
+        "feedbacks": "feedbacks",
+        "cities": "cities"
     }
 
     @staticmethod

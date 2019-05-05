@@ -45,7 +45,7 @@
                 <div class="form-group">
                     {{ form.position_location.label(class="form-control-label") }}
                     <small class="text-muted">{{ form.position_location.description }}</small>
-                    {{ form.position_location(class="form-control form-control-lg") }}
+                    {{ form.position_location(class="form-control form-control-lg", id="position_location") }}
                 </div>
                 <br>
                 <div class="form-group">
@@ -61,30 +61,45 @@
             <button class="btn btn-outline-info" onclick="add_position()">
                 Add Position
             </button>
+            <button class="btn btn-outline-info" onclick="goBack()">Go Back</button>
         </form>
     </div>
 
 <script>
     $(document).ready(function () {
-                var access_token = window.localStorage.accessToken;
-                var req = new XMLHttpRequest();
-                var url = "http://127.0.0.1:5050/resources/skills";
+                let access_token = window.localStorage.accessToken;
+                let req = new XMLHttpRequest();
+                let url = "http://127.0.0.1:5050/resources/skills";
                 req.open("GET", url, false);
                 req.setRequestHeader('Content-Type', 'application/json');
                 req.setRequestHeader('Access-Control-Allow-Origin', '*');
                 req.setRequestHeader("Authorization", "Bearer " + access_token);
                 req.send();
-                var results_arr = JSON.parse(req.response);
-                var select = document.getElementById("position_skills");
-                for (var lst_idx = 0; lst_idx < results_arr.length; lst_idx++)
+                let results_arr = JSON.parse(req.response);
+                let position_skills_select = document.getElementById("position_skills");
+                for (let lst_idx = 0; lst_idx < results_arr.length; lst_idx++)
                 {
-                    var json = results_arr[lst_idx];
-                    var skill_name = json['TextValue'];
-                    var skill_id = json['SkillId'];
-                    var skill_sub_cat = json['SkillSubCategoryId']
-                    var skill_cat = json['SkillCategoryId']
-                    var skill_metadata = skill_id + "," + skill_sub_cat + "," + skill_cat;
-                    select.options[select.options.length] = new Option(skill_name, skill_metadata);
+                    let json = results_arr[lst_idx];
+                    let skill_name = json['TextValue'];
+                    let skill_id = json['SkillId'];
+                    let skill_sub_cat = json['SkillSubCategoryId']
+                    let skill_cat = json['SkillCategoryId']
+                    let skill_metadata = skill_id + "," + skill_sub_cat + "," + skill_cat;
+                    position_skills_select.options[position_skills_select.options.length] = new Option(skill_name, skill_metadata);
+                }
+                url = "http://127.0.0.1:5050/resources/cities";
+                req.open("GET", url, false);
+                req.setRequestHeader('Content-Type', 'application/json');
+                req.setRequestHeader('Access-Control-Allow-Origin', '*');
+                req.setRequestHeader("Authorization", "Bearer " + access_token);
+                req.send();
+                results_arr = JSON.parse(req.response);
+                let cities_select = document.getElementById("position_location");
+                for (let lst_idx = 0; lst_idx < results_arr.length; lst_idx++)
+                {
+                    let json = results_arr[lst_idx];
+                    let city_name = json['city_desc'];
+                    cities_select.options[cities_select.options.length] = new Option(city_name, city_name);
                 }
     });
     function add_position() {
@@ -117,7 +132,12 @@
                 req.setRequestHeader('Access-Control-Allow-Origin', '*');
                 req.setRequestHeader("Authorization", "Bearer " + access_token);
                 req.send(body);
-                // var results = req.response;
+                window.location.href = "http://127.0.0.1:5050/dashboard";
     }
     </script>
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
 {% endblock content %}

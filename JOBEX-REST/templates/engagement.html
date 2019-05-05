@@ -8,6 +8,9 @@
 <h2 id="status"></h2>
 <h1>Creation Date:</h1>
 <h2 id="creation_date"></h2>
+<button class="btn btn-outline-info" id="advanced_btn" onclick="update_engagement_status('advanced')">Advanced</button>
+<button class="btn btn-outline-info" id="rejected_btn" onclick="update_engagement_status('rejected')">Rejected</button>
+<button class="btn btn-outline-info" onclick="goBack()">Go Back</button>
 <script>
     $(document).ready(function () {
         let access_token = window.localStorage.accessToken;
@@ -15,18 +18,46 @@
         let url_string = window.location.href;
         let url = new URL(url_string);
         let engagement_id = url.searchParams.get("engagement_id");
-        var API_url = "http://127.0.0.1:5050/engagements?engagement_id=" + engagement_id;
+        let API_url = "http://127.0.0.1:5050/engagements?engagement_id=" + engagement_id;
         req.open("GET", API_url, false);
         req.setRequestHeader('Content-Type', 'application/json');
         req.setRequestHeader('Access-Control-Allow-Origin', '*');
         req.setRequestHeader("Authorization", "Bearer " + access_token);
         req.send();
         let results = JSON.parse(req.response);
-        // console.log(results);
         document.getElementById("student_id").innerHTML = results.student_id;
         document.getElementById("match_id").innerHTML = results.match_id;
         document.getElementById("status").innerHTML = results.status;
         document.getElementById("creation_date").innerHTML = results.creation_date;
+        if (results.status == "advanced"){
+            document.getElementById("advanced_btn").hidden = true;
+            document.getElementById("rejected_btn").hidden = true;
+        }
     });
+</script>
+<script>
+    function update_engagement_status(status) {
+        let access_token = window.localStorage.accessToken;
+        let req = new XMLHttpRequest();
+        let url_string = window.location.href;
+        let url = new URL(url_string);
+        let engagement_id = url.searchParams.get("engagement_id");
+        let body = JSON.stringify({
+            status: status,
+            _id:engagement_id
+        });
+        let API_url = "http://127.0.0.1:5050/engagements?engagement_id=" + engagement_id;
+        req.open("PUT", API_url, false);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.setRequestHeader('Access-Control-Allow-Origin', '*');
+        req.setRequestHeader("Authorization", "Bearer " + access_token);
+        req.send(body);
+        location.reload();
+    }
+</script>
+<script>
+function goBack() {
+  window.history.back();
+}
 </script>
 {% endblock content %}

@@ -32,9 +32,9 @@
     </tbody>
 </table>
 <h1>---------------------------------------------</h1>
+<button class="btn btn-outline-info" onclick="goBack()">Go Back</button>
 <script>
     $(document).ready(function () {
-        // debugger;
         let access_token = window.localStorage.accessToken;
         let req = new XMLHttpRequest();
         let url_string = window.location.href;
@@ -66,8 +66,10 @@
             tr = $('<tr/>');
             tr.append("<td>" + json.match_level_id + "</td>");
             tr.append("<td>" + json.match_update_date + "</td>");
-            let link = "<a href=\"http://127.0.0.1:5050/engagements?student_id=" + json.student_id + "\">Go</a>";
-            tr.append("<td>" + link + "</td>");
+            let student_id_str = "'" + json.student_id + "'";
+            let match_id_str = "'" + json._id + "'";
+            let go_btn = "<button class=\"btn btn-outline-info\" onclick=\"post_engagement(" + student_id_str + ', ' +  match_id_str + ")\">Go</button>";
+            tr.append("<td>" + go_btn + "</td>");
             $('#matches').append(tr);
         }
 
@@ -95,4 +97,38 @@
         $(document).ready(function () {$('#matches').DataTable();});
         $(document).ready(function () {$('#engagements').DataTable();});
     </script>
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+<script>
+    function post_engagement(student_id, match_id) {
+        let access_token = window.localStorage.accessToken;
+        let req = new XMLHttpRequest();
+        let API_url = "http://127.0.0.1:5050/engagements";
+        req.open("POST", API_url, false);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.setRequestHeader('Access-Control-Allow-Origin', '*');
+        req.setRequestHeader("Authorization", "Bearer " + access_token);
+        let url_string = window.location.href;
+        let url = new URL(url_string);
+        let position_id = url.searchParams.get("position_id");
+        let today = new Date();
+        let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        let creation_date = date+', '+time;
+        let body = JSON.stringify({
+            student_id: student_id,
+            match_id: match_id,
+            position_id: position_id,
+            is_new: true,
+            is_deleted: false,
+            status: "initiated",
+            creation_date: creation_date
+        });
+        req.send(body);
+        location.reload();
+    }
+</script>
 {% endblock content %}

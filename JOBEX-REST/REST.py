@@ -54,7 +54,6 @@ def login_view():
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout_view():
-    # todo replace this with JS code
     return redirect(url_for('home_view'))
 
 
@@ -295,12 +294,18 @@ def positions(position_id=None):
         return {"error": "method {} not supported!".format(request.method)}
 
 
-@app.route('/engagements', methods=['POST', 'GET'])
+@app.route('/engagements', methods=['POST', 'GET', 'PUT'])
 def engagements():
+    result = ""
     if request.method == 'POST':
         engagement = request.get_json()
         web_ctrl = WebController.getInstance()
         result = {"engagement_id": str(web_ctrl.add_engagement(engagement))}
+        return jsonify(result)
+    if request.method == 'PUT':
+        engagement = request.get_json()
+        web_ctrl = WebController.getInstance()
+        result = {"engagement_id": str(web_ctrl.modify_engagement(engagement))}
         return jsonify(result)
     elif request.method == 'GET':
         web_ctrl = WebController.getInstance()
@@ -318,6 +323,25 @@ def engagements():
         return {"error": "method {} not supported!".format(request.method)}
 
 
+@app.route('/feedback', methods=['POST', 'GET'])
+def feedback():
+    try:
+        engagement_id = request.args['engagement_id']
+        if request.method == 'POST':
+            feedback_text = request.get_json()['feedback_text']
+            web_ctrl = WebController.getInstance()
+            result = {"feedback_id": str(web_ctrl.post_feedback(feedback_text, engagement_id))}
+            return jsonify(result)
+        elif request.method == 'GET':
+            web_ctrl = WebController.getInstance()
+            result = web_ctrl.get_feedback(engagement_id=engagement_id)
+            return JSONEncoder().encode(result)
+        else:
+            return {"error": "method {} not supported!".format(request.method)}
+    except exceptions.BadRequestKeyError:
+        return {"error": "missing mandatory argument engagement_id"}
+
+
 @app.route('/resources/skills/skill=<skill_to_find>', methods=['GET'])
 @app.route('/resources/skills', methods=['POST', 'GET'])
 def skills(skill_to_find=None):
@@ -329,6 +353,15 @@ def skills(skill_to_find=None):
             result = res_control.search_skills(skill_to_find)
         else:
             result = res_control.get_all_skills()
+
+    return JSONEncoder().encode(result)
+
+
+@app.route('/resources/cities')
+def cities():
+    res_control = ResourcesController.get_instance()
+    if request.method == 'GET':
+        result = res_control.get_all_cities()
 
     return JSONEncoder().encode(result)
 

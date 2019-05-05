@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectMultipleField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectMultipleField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 
@@ -38,9 +38,9 @@ class AddPositionForm(FlaskForm):
     position_name = StringField('Position Name', validators=[DataRequired()])
     position_department = StringField('Position Department', validators=[DataRequired()])
     position_active = BooleanField('Position Active')
-    position_location = StringField('Position Location', validators=[DataRequired()], description=u"where is it based?")
+    position_location = SelectField('Position Location', validators=[DataRequired()], description=u"where is it based?",
+                                    choices=[])
     position_skills = Select2MultipleField(u"Position Skills", [], choices=[],
                                            description=u"Choose the position required skills",
                                            render_kw={"multiple": "multiple"})
     comment = StringField('Comment', description=u"anything to add?")
-    # submit = SubmitField('Add Position')
