@@ -14,16 +14,17 @@ from DAL.mongo_db_handler import Client
 from DAL.db_collections import DbCollections
 from Utils.json_encoder import JSONEncoder
 from Utils.similarity import Similarity
-from Utils.Logger import  Logger
+from Utils.Logger import Logger
 
 config = ConfigHelper.get_instance()
 log = Logger(name='Job').logger
 
 CONST_USE_SAVED_PICKLE = config.read_sentiment(Key='CONST_USE_SAVED_PICKLE')
-CATEGORY = 0.2
-SUB_CATEGORY = 0.3
-SKILLS = 0.3
-OTHERS = 0.2
+CATEGORY = 0.1
+SUB_CATEGORY = 0.2
+SKILLS = 0.2
+OTHERS = 0.1
+LOCATION = 0.4
 
 nltk.downloader.download('vader_lexicon')
 pos_tweets = [('I love this car', 'positive'),
@@ -83,7 +84,7 @@ for (words, sentiment) in pos_tweets + neg_tweets:
 def get_words_in_tweets(tweets):
     all_words = []
     for (words, sentiment) in tweets:
-      all_words.extend(words)
+        all_words.extend(words)
     return all_words
 
 
@@ -108,7 +109,7 @@ if CONST_USE_SAVED_PICKLE != 1:
 
 if CONST_USE_SAVED_PICKLE != 1:
     # optional to save your classifier so you can load it elsewhere without having to rebuild training set every time
-    save_classifier = open("tweetposneg.pickle","wb")
+    save_classifier = open("tweetposneg.pickle", "wb")
     pickle.dump(classifier, save_classifier)
     save_classifier.close()
 
@@ -116,7 +117,6 @@ else:  # optional load from classifier that was saved previously
     classifier_f = open("tweetposneg.pickle", "rb")
     classifier = pickle.load(classifier_f)
     classifier_f.close()
-
 
 sid = SentimentIntensityAnalyzer()
 
@@ -133,10 +133,10 @@ class JobThread(object):
         :param interval: Check interval, in seconds
         """
         self.interval = interval
-
+        self.cities = self.get_cities()
         thread = threading.Thread(target=self.run, args=())
-        thread.daemon = True                            # Daemonize thread
-        thread.start()                                  # Start the execution
+        thread.daemon = True  # Daemonize thread
+        thread.start()  # Start the execution
 
     def run(self):
         """ Method that runs forever """
@@ -149,14 +149,15 @@ class JobThread(object):
     def do_job(self):
         log.debug('do_job')
         jobs = self.get_jobs()
-        log.debug('getting all active positions')
-        all_active_positions = self.get_all_active_positions()
-        log.debug('getting all active student profiles')
-        all_active_students = self.get_all_active_students()
-        log.debug('getting all students skills')
-        all_students_skills = self.get_all_students_skills()
-        log.debug('getting all positions_skills')
-        all_positions_skills = self.get_all_positions_skills()
+        if jobs.__len__() > 0:
+            log.debug('getting all active positions')
+            all_active_positions = self.get_all_active_positions()
+            log.debug('getting all active student profiles')
+            all_active_students = self.get_all_active_students()
+            log.debug('getting all students skills')
+            all_students_skills = self.get_all_students_skills()
+            log.debug('getting all positions_skills')
+            all_positions_skills = self.get_all_positions_skills()
 
         matches = []
         for j in jobs:
@@ -169,7 +170,7 @@ class JobThread(object):
                            status=int(json_obj['status']))
                 log.debug('job working on:' + _job.job_id)
                 if int(_job.job_type_id) == 1:  # rematch by student
-
+                    working_student = self.student_by_id(student_id=_job.source_objectid,students=all_active_students)
                     log.debug('rematch by student_id :' + _job.source_objectid)
                     student_skills = self.on_get_student_skills(_job.source_objectid, all_students_skills)
                     if student_skills is not None:
@@ -195,24 +196,28 @@ class JobThread(object):
                                 log.debug('job working on position:' + position['position_name'])
                                 for ps in position_skills:
                                     if not ps['category_id'] in p_categories:
-                                        p_categories.append(ps['category_id'])
+                                        p_categories.append(int(ps['category_id']))
                                     if not ps['sub_category_id'] in p_sub_categories:
-                                        p_sub_categories.append(ps['sub_category_id'])
+                                        p_sub_categories.append((ps['sub_category_id']))
                                     for s in ps['skills']:
                                         if not s['skill_Id'] in p_skills:
-                                            p_skills.append(s['skill_Id'])
+                                            p_skills.append(int(s['skill_Id']))
                                 if p_categories.__len__() > 0:
                                     category_similarity = self.calculate_similarity(s_categories, p_categories)
                                     sub_categories_similarity = self.calculate_similarity(s_sub_categories,
                                                                                           p_sub_categories)
                                     skill_similarity = self.calculate_similarity(s_skills, p_skills)
+                                    location_match = \
+                                        self.get_location_match(position_location=position['position_location'],
+                                                                student_location=working_student['location'])
                                     match = Match(_job.source_objectid, str(position['_id']),
                                                   self.calculate_match_level(category_similarity,
                                                                              sub_categories_similarity,
-                                                                             skill_similarity))
-                                    if match.match_level_id > ConfigHelper.read_app_settings('MinMatchLevel'):
+                                                                             skill_similarity,location=location_match))
+                                    if match.match_level_id > float(ConfigHelper.read_app_settings('MinMatchLevel')):
                                         matches.append(match)
                 elif int(_job.job_type_id) == 2:  # rematch by position
+                    working_position = self.position_by_id(position_id=_job.source_objectid, positions=all_active_positions)
                     log.debug('rematch by position :' + _job.source_objectid)
                     position_skills = self.get_positions_skill_list_by_position_id(_job.source_objectid,
                                                                                    all_positions_skills)
@@ -222,12 +227,12 @@ class JobThread(object):
                     if position_skills is not None:
                         for ps in position_skills:
                             if not ps['category_id'] in p_categories:
-                                p_categories.append(ps['category_id'])
+                                p_categories.append(int(ps['category_id']))
                             if not ps['sub_category_id'] in p_sub_categories:
-                                p_sub_categories.append(ps['sub_category_id'])
+                                p_sub_categories.append(int(ps['sub_category_id']))
                             for s in ps['skills']:
                                 if not s['skill_Id'] in p_skills:
-                                    p_skills.append(s['skill_Id'])
+                                    p_skills.append(int(s['skill_Id']))
                         for student in all_active_students:
                             log.debug('job working on student:' + student['email'])
                             student_skills = self.on_get_student_skills(str(student['_id']), all_students_skills)
@@ -244,15 +249,17 @@ class JobThread(object):
                                         if not s['skill_Id'] in s_skills:
                                             s_skills.append(s['skill_Id'])
                                 if s_categories.__len__() > 0:
-                                    category_similarity = self.calculate_similarity(s_categories, p_categories)
-                                    sub_categories_similarity = self.calculate_similarity(s_sub_categories,
-                                                                                          p_sub_categories)
-                                    skill_similarity = self.calculate_similarity(s_skills, p_skills)
+                                    category_similarity = self.calculate_similarity(p_categories,s_categories)
+                                    sub_categories_similarity = self.calculate_similarity(p_sub_categories,s_sub_categories)
+                                    skill_similarity = self.calculate_similarity(p_skills,s_skills)
+                                    location_match = \
+                                        self.get_location_match(position_location=working_position['position_location'],
+                                                                student_location=student['location'])
                                     match = Match(student['_id'], _job.source_objectid,
                                                   self.calculate_match_level(category_similarity,
                                                                              sub_categories_similarity,
-                                                                             skill_similarity))
-                                    if match.match_level_id > ConfigHelper.read_app_settings('MinMatchLevel'):
+                                                                             skill_similarity,location=location_match))
+                                    if match.match_level_id > float(ConfigHelper.read_app_settings('MinMatchLevel')):
                                         matches.append(match)
                 elif int(_job.job_type_id) == 3:  # Sentiment analysis
                     log.debug('start sentiment analysis job for object_id:' + _job.source_objectid)
@@ -284,15 +291,15 @@ class JobThread(object):
     def get_all_active_positions(self):
         db_client = Client()
         query = {
-            "active": "Yes"
+            "position_active": True
         }
         return db_client.get_many_docs_from_collection(DbCollections.get_position_collection(), query)
 
     def get_all_active_students(self):
         db_client = Client()
         query = {
-            "UserTypeId": 1,
-            "status": 1
+            "user_type": "student",
+            "active": True
         }
         return db_client.get_many_docs_from_collection(DbCollections.get_student_collection(), query)
 
@@ -306,7 +313,7 @@ class JobThread(object):
 
     def on_get_student_skills(self, _id, all_student_skills):
         for ss in all_student_skills:
-            if ss['student_id'] == _id:
+            if str(ss['student_id']) == _id:
                 return ss['student_skill_list']
 
     def on_get_position_skills(self, _id):
@@ -330,7 +337,7 @@ class JobThread(object):
 
     def get_positions_skill_list_by_position_id(self, position_id, positions_skills_list):
         for ps in positions_skills_list:
-            if ps['position_id'] == position_id:
+            if str(ps['position_id']) == position_id:
                 return ps['position_skill_list']
 
         return None
@@ -339,15 +346,18 @@ class JobThread(object):
         db_client = Client()
         return db_client.find_by_collection(DbCollections.get_student_skills_collection())
 
-    def calculate_similarity(self, s_skills, p_skills):
-        return Similarity.jaccard_similarity(s_skills, p_skills)
+    def calculate_similarity(self, set1, set2):
+        return Similarity.jaccard_similarity(set1, set2)
 
-    def calculate_match_level(self, category_similarity, sub_categories_similarity, skill_similarity):
+    def calculate_match_level(self, category_similarity, sub_categories_similarity, skill_similarity
+                              , others=1
+                              , location=1):
         return (category_similarity * CATEGORY) + \
                (sub_categories_similarity * SUB_CATEGORY) + \
                (skill_similarity * SKILLS) + \
-               (OTHERS * 1)
-        #TODO:// Comapny grade
+               (OTHERS * others) + \
+               (LOCATION * location)
+        # TODO:// Comapny grade
 
     def save_match(self, match):
         db_client = Client()
@@ -355,7 +365,7 @@ class JobThread(object):
             "student_id": match.student_id,
             "position_id": match.position_id
         }
-        je = JSONEncoder()
+
         doc_json = {
             '$set': {
                 "student_id": match.student_id,
@@ -365,7 +375,7 @@ class JobThread(object):
                 "is_deleted": match.is_deleted
             }
         }
-        result = db_client.update_single_doc_in_collection(DbCollections.get_match_collectio(),
+        result = db_client.update_single_doc_in_collection(DbCollections.get_matches_collection(),
                                                            filter_json, doc_json,
                                                            update_if_exists=True)
 
@@ -377,3 +387,46 @@ class JobThread(object):
 
     def get_text_to_analise(self, source_objectid):
         return 'good job'
+
+    def get_cities(self):
+        db_client = Client()
+        return db_client.find_by_collection(DbCollections.get_cities())
+
+    def get_location_match(self, position_location:str, student_location:int):
+        location = 0
+        student_location = ""
+        for city in self.cities:
+            if city["city_id"] == student_location:
+                student_location = city['city_desc']
+                if str(city['city_desc']).lower() == position_location.lower():
+                    location = 1
+
+        if location < 1:
+            if self.get_city_base(student_location) == self.get_city_base(position_location):
+                location = 0.5
+
+        return location
+
+    def get_city_base(self,city_desv:str):
+        for city in self.cities:
+            if city['city_desc'] == city_desv:
+                return city['city_base_id']
+            else:
+                return None
+    def student_by_id(self, student_id: str, students):
+        for student in students:
+            if str(student['_id']) == student_id:
+                return  student
+
+        return None
+
+    def position_by_id(self, position_id: str, positions):
+        for position in positions:
+            if str(position['_id']) == position_id:
+                return position
+
+        return None
+
+
+
+

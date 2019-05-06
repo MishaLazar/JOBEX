@@ -22,9 +22,12 @@ class AuthController:
     @staticmethod
     def add_token_to_blacklist(jti):
         db_client = Client()
+        data = {
+            "token": jti
+        }
         try:
             db_client.insert_doc_to_collection(DbCollections.get_collection("token_blacklist_collection")
-                                               , jti)
+                                               , data)
             return {'message': 'tokens has been revoked'}, 200
         except:
             return {'message': 'Something went wrong'}, 500
@@ -32,7 +35,11 @@ class AuthController:
     @staticmethod
     def check_token_in_blacklist(jti):
         db_client = Client()
-        return bool(db_client.count_docs_in_collection(DbCollections.get_collection("token_blacklist_collection"), jti))
+        data = {
+            "token": jti
+        }
+
+        return bool(db_client.count_docs_in_collection(DbCollections.get_collection("token_blacklist_collection"), data))
 
     @staticmethod
     def login(username, password):
