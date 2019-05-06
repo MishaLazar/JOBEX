@@ -61,33 +61,17 @@
                 </ion-card-content>
               </ion-card>
     </ion-item>
-
-    <!-- <div *ngFor="let section of ['aaa','bbb','ccc']">
-        <ion-item button (click)="toggleSection(section)">
-            <ion-label>{{section}}</ion-label>
-            <ion-icon *ngIf="isShownSection(section)" name="arrow-dropup"></ion-icon>
-            <ion-icon *ngIf="!isShownSection(section)" name="arrow-dropdown"></ion-icon>
-        </ion-item>
-        <ion-item  [hidden]="!isShownSection(section)" *ngFor="let item of [1,2,3,4]">
-            <ion-label>Awesome Label + {{item}}</ion-label>
-        </ion-item>
-    </div> -->
 </ion-list>
 </ion-content>
-  <!-- <ion-content *ngIf="engagement">
-      <ion-grid>
-          <ion-row>
-              <ion-col size="6">
-                 {{ engagement.position_title}}
-              </ion-col>
-              <ion-col  >
-                  {{engagement.company_name}}
-              </ion-col>                
-          </ion-row>
-          <ion-row style="font-size:12px; line-height:1.2;">
-              <ion-col size="12" class="ellipsis">
-                  {{engagement.position_description}}
-              </ion-col>
-          </ion-row>
-      </ion-grid>    
-  </ion-content> -->
+<ion-grid fixed class="footer-buttons" *ngIf="engagement">        
+        <ion-row *ngIf="engagement.status === 'declined' || engagement.status === 'rejected'">
+                <ion-col ><ion-button size="large" expand="block" color="danger" disabled="true">{{engagement.status}}</ion-button></ion-col>
+        </ion-row>
+        <ion-row *ngIf="engagement.status === 'approved' || engagement.status === 'advanced'">                
+                <ion-col ><ion-button size="large" expand="block" color="success" disabled="true">{{engagement.status}}</ion-button></ion-col>
+        </ion-row>
+        <ion-row *ngIf="engagement.status === 'initiation'">
+                <ion-col size="6"><ion-button size="large" expand="block" color="success" (click)="RevileMySelfEngagmenet(true)">Revile my self</ion-button></ion-col>
+                <ion-col size="6"><ion-button size="large" expand="block" color="danger" (click)="declineEngagmenet(true)">Decline</ion-button></ion-col>
+        </ion-row>
+</ion-grid>

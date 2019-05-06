@@ -10,11 +10,13 @@ import { Observable, Subject } from 'rxjs';
 import { Engagement } from '../models/engagement';
 import { Registration } from '../models/registration';
 import { Count} from '../models/charts_models/counts.model';
+import { PositionData } from '../models/position-data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MyProfileService {
+ 
  
 
     myProfile:MyProfile;
@@ -23,6 +25,7 @@ export class MyProfileService {
     isUpdated:boolean = false;
     myStudentSkills:SkillList[] = [];
     myProfileSkills:Skill[]=[];
+    wish_list:PositionData[] = [];
     isActiveProfile: boolean;
     isStudentSkillsLoaded: boolean = false;
     profileLoadedSubject:Subject<string> = new Subject();
@@ -180,5 +183,31 @@ export class MyProfileService {
     getStudentEngagments(): Observable<Object> {        
         return this.http.get('student/getStudentEngagements/'+this.user_id);
     }
+
+    loadWishlist():Promise<string> {
+        return new Promise((resolve, reject) => {
+            let data = {
+                student_id: this.user_id
+            }
+            this.http.submitForm(data,'student/get_wish_list').toPromise()
+                .then(
+                    (data:PositionData[]) =>{
+                  
+                        this.wish_list = data;
+                        console.log(this.wish_list);
+                        resolve("success");
+                      }
+                      ,
+                    (error) => {
+                    
+                    console.log(error);
+                    resolve("error");
+                    
+                    }
+                )
+                
+                });
+        } 
+    
     
 }

@@ -42,26 +42,25 @@ export class SharedDataService {
     return this.latestEngagements.find(value => value.match_id == match_Id);
   }
   loadAllSkills(){
-    
-      this.http.get('resources/skills').subscribe(
-        (data:Skill[]) => {
-          this.skills = data;
-          this.skillsLoadedSubject.next('loaded');
-          console.log('loaded :' + data.length + ' skills');
-        },
-        error =>{
-          console.log(error);
-        }
-
-      );
-    
+      if(!this.skills){
+        this.http.get('resources/skills').subscribe(
+          (data:Skill[]) => {
+            this.skills = data;
+            this.skillsLoadedSubject.next('loaded');
+            console.log('loaded :' + data.length + ' skills');
+          },
+          error =>{
+            console.log(error);
+          }
+  
+        );
+      }
   }
 
   loadPositionDataset(){
     
       this.http.get('resources/getPositionDataSet').subscribe(
-        (data:PositionData[]) => {
-          debugger;
+        (data:PositionData[]) => {          
           this.positionsDataset = data;          
           this.positionDataSetLoadedSubject.next('loaded');
           console.log('loaded :' + data.length + ' positionsDataset');

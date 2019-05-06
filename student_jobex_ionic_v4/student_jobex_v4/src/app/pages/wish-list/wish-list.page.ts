@@ -15,6 +15,7 @@ export class WishListPage implements OnInit {
   positionDataset: PositionData[];
   positionSelected: PositionData[] = [];
   JobTitleSearchTerm: any
+  inSaveProcess:boolean = false;
   constructor(
     private profile: MyProfileService,
     private sharedData: SharedDataService,
@@ -31,28 +32,21 @@ export class WishListPage implements OnInit {
   }
 
   async loadWishList() {
-    let data = {
-      student_id: this.profile.user_id
-    }
+    
     const loading = await this.loadingController.create({
       message: "loading.."
     });
     loading.present();
-    this.http.submitForm(data,'student/get_wish_list').subscribe(
-      (wish_list:PositionData[]) =>{
-        
-        // wish_list[0].wish_list.forEach(positionData => {
-        //   this.positionSelected.push(positionData)
-        // });
-        this.positionSelected = wish_list.slice();
-        debugger;
-        this.loadPositionDataSet();
-        loading.dismiss()
-        console.log(this.positionSelected);
-      },
-      (error) => {
-        console.log(error);
-        loading.dismiss()
+    this.profile.loadWishlist().then(
+      (status:string) =>{
+        if(status === 'success'){
+          this.positionSelected = this.profile.wish_list.slice();        
+          this.loadPositionDataSet();
+          console.log(this.positionSelected);
+        }else{
+          console.log("error loading studend skills");
+        }
+        loading.dismiss()        
       }
     );
 
@@ -67,7 +61,7 @@ export class WishListPage implements OnInit {
       
       this.sharedData.positionDataSetLoadedSubject.subscribe(
         (value) => {
-debugger;
+
           if (value == 'loaded') {
 
             this.finallizeLoading();
@@ -122,6 +116,7 @@ debugger;
   }
 
   onWishListSaveClick() {
+    this.inSaveProcess = true;
     let data = {
       student_id: this.profile.user_id,
       wish_list: this.positionSelected
@@ -129,10 +124,11 @@ debugger;
     this.http.submitForm(data, 'student/wish_list_save').subscribe(
       (Response) => {
         console.log(Response);
-
+        this.inSaveProcess = false;
       },
       (error) => {
         console.log(error);
+        this.inSaveProcess = false;
       }
 
     )
