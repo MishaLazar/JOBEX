@@ -57,6 +57,8 @@ class Similarity():
 
     @staticmethod
     def jaccard_similarity(set1, set2):
+        set1 = list(map(int,set1))
+        set2 = list(map(int, set2))
 
         matched = []
         for s in set1:
