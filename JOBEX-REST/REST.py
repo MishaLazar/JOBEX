@@ -3,6 +3,8 @@ from flask_jwt_extended import JWTManager
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required,
                                 get_jwt_identity, get_raw_jwt)
 from flask_cors import CORS
+
+from Classes.match import Match
 from JobThread import JobThread
 from Utils.config_helper import ConfigHelper
 from Controllers.mobile_controller import MobileController
@@ -174,8 +176,8 @@ def get_student_profile():
             "address": data["address"],
             "profileImg": data["profileImg"],
             "active": data["active"],
-            "activation_data":data["activation_data"],
-            "creation_data":data["creation_data"],
+            "activation_data": data["activation_data"],
+            "creation_data": data["creation_data"],
             "student_skill_list": data["student_skills"]["student_skill_list"]
         }
         return jsonify(result), 200
@@ -372,6 +374,19 @@ def set_wish_list_save():
     return JSONEncoder().encode(result)
 
 
+@app.route('/student/wish_list/calculate_suggested_skill', methods=['POST'])
+@jwt_required
+def calculate_suggested_skill():
+    if request.method == 'POST':
+        request_data = request.get_json()
+        student_id = request_data['student_id']
+        student_skills = request_data['student_skills']
+        wl_positions = request_data['wl_positions']
+        result = Match.wl_suggestion_skill_id(student_id=student_id, student_skills=student_skills,
+                                              wl_positions=wl_positions)
+    return JSONEncoder().encode(result)
+
+
 @app.route('/student/get_wish_list', methods=['POST'])
 @jwt_required
 def get_wish_list():
@@ -381,6 +396,7 @@ def get_wish_list():
 
         result = MobileController.get_wish_list(student_id=student_id)
     return JSONEncoder().encode(result)
+
 
 @app.route('/student/get_student_engagement_by_match', methods=['POST', 'GET'])
 @jwt_required

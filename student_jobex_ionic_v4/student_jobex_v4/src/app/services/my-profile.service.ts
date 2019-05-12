@@ -53,6 +53,7 @@ export class MyProfileService {
                     this.myProfile = data;
                     this.myStudentSkills = this.myProfile.student_skill_list;
                     this.loadStudentSkills();
+                    this.loadWishlist();
                     this.isProfileLoaded = true;
                     this.profileLoadedSubject.next('loaded');
                 },
@@ -210,4 +211,26 @@ export class MyProfileService {
         } 
     
     
+    calculateWishlistSggestedSkill():Promise<string>{
+        return new Promise((resolve,reject) =>{
+
+            let data = {
+                student_id: this.user_id,
+                student_skills:this.myStudentSkills,
+                wl_positions:this.wish_list
+            }
+            this.http.submitForm(data,'student/wish_list/calculate_suggested_skill').toPromise()
+            .then(
+                (data:any) => {
+                    debugger;
+                    console.log(data);
+                    resolve("success");
+                },
+                (error) =>{
+                    console.log(error);
+                    resolve("error");
+                }
+            )
+        });
+    }
 }

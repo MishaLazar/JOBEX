@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MyProfileService } from 'src/app/services/my-profile.service';
 import { PositionData } from 'src/app/models/position-data';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'dash-chart-best4you',
@@ -17,7 +18,7 @@ export class DashChartBest4youComponent implements OnInit {
   LOCATION = 0.4
 
 
-  constructor(private profile:MyProfileService) { 
+  constructor(private profile:MyProfileService,private loadingController:LoadingController) { 
     
   }
 
@@ -26,7 +27,25 @@ export class DashChartBest4youComponent implements OnInit {
     
   }
 
-  calculateWhatIsBestForStudent(){
+  async loadWishListSuggestedSkill() {
+    
+    const loading = await this.loadingController.create({
+      message: "loading.."
+    });
+    loading.present();
+    this.profile.calculateWishlistSggestedSkill().then(
+      (status:string) =>{
+        if(status === 'success'){         
+          console.log("success");
+        }else{
+          console.log("error loading studend skills");
+        }
+        loading.dismiss()        
+      }
+    );
+
+
+    
 
   }
 

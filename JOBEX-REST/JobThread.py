@@ -21,8 +21,8 @@ log = Logger(name='Job').logger
 
 CONST_USE_SAVED_PICKLE = config.read_sentiment(Key='CONST_USE_SAVED_PICKLE')
 CATEGORY = 0.1
-SUB_CATEGORY = 0.2
-SKILLS = 0.2
+SUB_CATEGORY = 0.15
+SKILLS = 0.25
 OTHERS = 0.1
 LOCATION = 0.4
 
