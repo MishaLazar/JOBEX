@@ -25,19 +25,20 @@
   </ion-row> -->
   <ion-row>
     <ion-col size="6">
-        <ion-spinner *ngIf="!mayChartDisplay"></ion-spinner>
+        <!-- <ion-spinner *ngIf="!mayChartDisplay"></ion-spinner> -->
+        
+        <ion-skeleton-text  *ngIf="!mayChartDisplay" animated style="height:90%"></ion-skeleton-text>
+          
        <dash-chart-overtime *ngIf="mayChartDisplay"></dash-chart-overtime>
     </ion-col>
-    <ion-col size="6">
-      <ion-button (click)="onClick()">
-        Click me
-      </ion-button>
-      <!-- <dash-chart-best4you></dash-chart-best4you> -->
+    <ion-col size="6">      
+      <dash-chart-best4you></dash-chart-best4you>
     </ion-col>
   </ion-row>
   <ion-row >
       <ion-col size="12">
-          <ion-spinner *ngIf="!mayChartDisplay"></ion-spinner>
+          <!-- <ion-spinner *ngIf="!mayChartDisplay"></ion-spinner> -->
+          <ion-skeleton-text *ngIf="!mayChartDisplay" animated style="height:90%"></ion-skeleton-text>
           <dash-chart-active-engagements *ngIf="mayChartDisplay" ></dash-chart-active-engagements>
       </ion-col>
     </ion-row>    

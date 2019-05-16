@@ -1,3 +1,19 @@
-<p>
-  dash-chart-best4you works!
-</p>
+<div *ngIf="!skill_id">
+    <div class="ion-padding custom-skeleton">
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        <ion-skeleton-text animated></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+    </div>
+</div>
+<ion-content *ngIf="skill_id">
+    <ion-grid style="height: 100%">
+        <ion-row text-center justify-content-center align-items-center style="height: 100%; flex-direction: column">            
+            <span>{{skill_text_value}}</span> 
+            <span>Will improve your match</span>              
+            <span>by {{skill_diff}}%</span>
+        </ion-row>
+    </ion-grid>    
+</ion-content>
+

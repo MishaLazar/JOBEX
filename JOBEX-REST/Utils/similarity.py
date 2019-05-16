@@ -56,15 +56,17 @@ class Similarity():
         return intersection_cardinality/float(union_cardinality)
 
     @staticmethod
-    def jaccard_similarity(student, positions):
+    def jaccard_similarity(set1, set2):
+        set1 = list(map(int,set1))
+        set2 = list(map(int, set2))
 
         matched = []
-        for s in student:
-            if s in positions:
+        for s in set1:
+            if s in set2:
                 matched.append(s)
 
-        intersection_cardinality = len(set.intersection(*[set(student), set(matched)]))
+        intersection_cardinality = len(set.intersection(*[set(set1), set(matched)]))
 
-        union_cardinality = len(set.union(*[set(student), set(matched)]))
+        union_cardinality = len(set.union(*[set(set1), set(matched)]))
 
         return intersection_cardinality / float(union_cardinality)

@@ -1,0 +1,102 @@
+2019-05-11 04:44:20,614 - Job - DEBUG - do_job
+2019-05-11 04:44:22,995 - Job - DEBUG - getting all active positions
+2019-05-11 04:44:25,375 - Job - DEBUG - getting all active student profiles
+2019-05-11 04:44:27,731 - Job - DEBUG - getting all students skills
+2019-05-11 04:44:29,765 - Job - DEBUG - do_job
+2019-05-11 04:44:30,111 - Job - DEBUG - getting all positions_skills
+2019-05-11 04:44:32,127 - Job - DEBUG - getting all active positions
+2019-05-11 04:44:32,471 - Job - DEBUG - job working on:5ccf1fd6be16790c509c6275
+2019-05-11 04:44:32,472 - Job - DEBUG - rematch by position :5ccf1fd5be16790c509c6273
+2019-05-11 04:44:34,503 - Job - DEBUG - getting all active student profiles
+2019-05-11 04:44:36,788 - Job - DEBUG - getting all students skills
+2019-05-11 04:44:39,124 - Job - DEBUG - getting all positions_skills
+2019-05-11 04:44:41,466 - Job - DEBUG - job working on:5ccf1fd6be16790c509c6275
+2019-05-11 04:44:41,467 - Job - DEBUG - rematch by position :5ccf1fd5be16790c509c6273
+2019-05-11 04:45:51,813 - Job - DEBUG - do_job
+2019-05-11 04:45:54,122 - Job - DEBUG - getting all active positions
+2019-05-11 04:45:56,483 - Job - DEBUG - getting all active student profiles
+2019-05-11 04:45:58,737 - Job - DEBUG - getting all students skills
+2019-05-11 04:46:00,654 - Job - DEBUG - do_job
+2019-05-11 04:46:01,160 - Job - DEBUG - getting all positions_skills
+2019-05-11 04:46:02,973 - Job - DEBUG - getting all active positions
+2019-05-11 04:46:03,438 - Job - DEBUG - job working on:5ccf1fd6be16790c509c6275
+2019-05-11 04:46:03,439 - Job - DEBUG - rematch by position :5ccf1fd5be16790c509c6273
+2019-05-11 04:46:05,316 - Job - DEBUG - getting all active student profiles
+2019-05-11 04:46:07,544 - Job - DEBUG - getting all students skills
+2019-05-11 04:46:09,854 - Job - DEBUG - getting all positions_skills
+2019-05-11 04:46:12,204 - Job - DEBUG - job working on:5ccf1fd6be16790c509c6275
+2019-05-11 04:46:12,205 - Job - DEBUG - rematch by position :5ccf1fd5be16790c509c6273
+2019-05-11 04:47:27,274 - Job - DEBUG - do_job
+2019-05-11 04:47:29,644 - Job - DEBUG - getting all active positions
+2019-05-11 04:47:32,009 - Job - DEBUG - getting all active student profiles
+2019-05-11 04:47:34,320 - Job - DEBUG - getting all students skills
+2019-05-11 04:47:36,248 - Job - DEBUG - do_job
+2019-05-11 04:47:36,602 - Job - DEBUG - getting all positions_skills
+2019-05-11 04:47:38,563 - Job - DEBUG - getting all active positions
+2019-05-11 04:47:38,944 - Job - DEBUG - job working on:5ccf1fd6be16790c509c6275
+2019-05-11 04:47:38,945 - Job - DEBUG - rematch by position :5ccf1fd5be16790c509c6273
+2019-05-11 04:47:40,930 - Job - DEBUG - getting all active student profiles
+2019-05-11 04:47:43,331 - Job - DEBUG - getting all students skills
+2019-05-11 04:47:45,677 - Job - DEBUG - getting all positions_skills
+2019-05-11 04:47:47,955 - Job - DEBUG - job working on:5ccf1fd6be16790c509c6275
+2019-05-11 04:47:47,956 - Job - DEBUG - rematch by position :5ccf1fd5be16790c509c6273
+2019-05-11 04:47:53,598 - Job - DEBUG - finished working on job_id: 5ccf1fd6be16790c509c6275
+2019-05-11 04:48:07,983 - Job - DEBUG - do_job
+2019-05-11 04:48:22,356 - Job - DEBUG - do_job
+2019-05-11 04:49:45,315 - Job - DEBUG - do_job
+2019-05-11 04:49:54,212 - Job - DEBUG - do_job
+2019-05-11 04:49:59,685 - Job - DEBUG - do_job
+2019-05-11 04:50:08,581 - Job - DEBUG - do_job
+2019-05-11 04:50:14,074 - Job - DEBUG - do_job
+2019-05-11 04:50:22,933 - Job - DEBUG - do_job
+2019-05-11 04:50:33,901 - Job - DEBUG - do_job
+2019-05-11 04:50:42,914 - Job - DEBUG - do_job
+2019-05-11 04:50:45,351 - Job - DEBUG - getting all active positions
+2019-05-11 04:50:47,671 - Job - DEBUG - getting all active student profiles
+2019-05-11 04:50:48,257 - Job - DEBUG - do_job
+2019-05-11 04:50:49,995 - Job - DEBUG - getting all students skills
+2019-05-11 04:50:50,663 - Job - DEBUG - getting all active positions
+2019-05-11 04:50:52,315 - Job - DEBUG - getting all positions_skills
+2019-05-11 04:50:53,010 - Job - DEBUG - getting all active student profiles
+2019-05-11 04:50:54,697 - Job - DEBUG - job working on:5ccf1fd6be16790c509c6275
+2019-05-11 04:50:54,697 - Job - DEBUG - rematch by position :5ccf1fd5be16790c509c6273
+2019-05-11 04:50:55,441 - Job - DEBUG - getting all students skills
+2019-05-11 04:50:57,808 - Job - DEBUG - getting all positions_skills
+2019-05-11 04:51:00,195 - Job - DEBUG - job working on:5ccf1fd6be16790c509c6275
+2019-05-11 04:51:00,196 - Job - DEBUG - rematch by position :5ccf1fd5be16790c509c6273
+2019-05-11 04:53:01,975 - Job - DEBUG - do_job
+2019-05-11 04:53:04,304 - Job - DEBUG - getting all active positions
+2019-05-11 04:53:06,573 - Job - DEBUG - getting all active student profiles
+2019-05-11 04:53:08,940 - Job - DEBUG - getting all students skills
+2019-05-11 04:53:10,879 - Job - DEBUG - do_job
+2019-05-11 04:53:11,271 - Job - DEBUG - getting all positions_skills
+2019-05-11 04:53:13,239 - Job - DEBUG - getting all active positions
+2019-05-11 04:53:13,628 - Job - DEBUG - job working on:5ccf1fd6be16790c509c6275
+2019-05-11 04:53:13,629 - Job - DEBUG - rematch by position :5ccf1fd5be16790c509c6273
+2019-05-11 04:53:15,505 - Job - DEBUG - getting all active student profiles
+2019-05-11 04:53:17,802 - Job - DEBUG - getting all students skills
+2019-05-11 04:53:20,778 - Job - DEBUG - getting all positions_skills
+2019-05-11 04:53:23,470 - Job - DEBUG - job working on:5ccf1fd6be16790c509c6275
+2019-05-11 04:53:23,471 - Job - DEBUG - rematch by position :5ccf1fd5be16790c509c6273
+2019-05-11 04:57:40,848 - Job - DEBUG - do_job
+2019-05-11 04:57:43,209 - Job - DEBUG - getting all active positions
+2019-05-11 04:57:45,494 - Job - DEBUG - getting all active student profiles
+2019-05-11 04:57:47,835 - Job - DEBUG - getting all students skills
+2019-05-11 04:57:49,699 - Job - DEBUG - do_job
+2019-05-11 04:57:50,124 - Job - DEBUG - getting all positions_skills
+2019-05-11 04:57:52,015 - Job - DEBUG - getting all active positions
+2019-05-11 04:57:52,452 - Job - DEBUG - job working on:5ccf1fd6be16790c509c6275
+2019-05-11 04:57:52,453 - Job - DEBUG - rematch by position :5ccf1fd5be16790c509c6273
+2019-05-11 04:57:54,350 - Job - DEBUG - getting all active student profiles
+2019-05-11 04:57:56,629 - Job - DEBUG - getting all students skills
+2019-05-11 04:57:58,970 - Job - DEBUG - getting all positions_skills
+2019-05-11 04:58:01,200 - Job - DEBUG - job working on:5ccf1fd6be16790c509c6275
+2019-05-11 04:58:01,201 - Job - DEBUG - rematch by position :5ccf1fd5be16790c509c6273
+2019-05-11 04:58:17,022 - Job - DEBUG - finished working on job_id: 5ccf1fd6be16790c509c6275
+2019-05-11 04:58:17,033 - Job - DEBUG - finished working on job_id: 5ccf1fd6be16790c509c6275
+2019-05-11 04:58:19,386 - Job - DEBUG - student:5cbdbe62f4578f2eb8853f44 psition: 5ccf1fd5be16790c509c6273 match_level0.8
+2019-05-11 04:58:19,392 - Job - DEBUG - student:5cbdbe62f4578f2eb8853f44 psition: 5ccf1fd5be16790c509c6273 match_level0.8
+2019-05-11 04:58:21,718 - Job - DEBUG - save_match: 1
+2019-05-11 04:58:21,745 - Job - DEBUG - save_match: 1
+2019-05-11 04:58:33,720 - Job - DEBUG - do_job
+2019-05-11 04:58:33,747 - Job - DEBUG - do_job

@@ -4,17 +4,19 @@ import { Skill } from '../models/skill.model';
 import { HttpHelpService } from './http-help.service';
 import { SkillList } from '../models/student_skill';
 import { LiteSkill } from '../models/lite.skill.modal';
-import { switchMap, catchError } from 'rxjs/operators';
+
 import { ConfigService } from './config.service';
 import { Observable, Subject } from 'rxjs';
-import { Engagement } from '../models/engagement';
+
 import { Registration } from '../models/registration';
 import { Count} from '../models/charts_models/counts.model';
+import { PositionData } from '../models/position-data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MyProfileService {
+ 
  
 
     myProfile:MyProfile;
@@ -23,10 +25,12 @@ export class MyProfileService {
     isUpdated:boolean = false;
     myStudentSkills:SkillList[] = [];
     myProfileSkills:Skill[]=[];
+    wish_list:PositionData[] = [];
     isActiveProfile: boolean;
     isStudentSkillsLoaded: boolean = false;
     profileLoadedSubject:Subject<string> = new Subject();
-
+    WL_SuggestedSubject:Subject<string> = new Subject();
+    wl_suggested:any;
 
     //chartsData
     matchesCounts:Count[];
@@ -50,6 +54,8 @@ export class MyProfileService {
                     this.myProfile = data;
                     this.myStudentSkills = this.myProfile.student_skill_list;
                     this.loadStudentSkills();
+                    this.loadWishlist();
+                    
                     this.isProfileLoaded = true;
                     this.profileLoadedSubject.next('loaded');
                 },
@@ -180,5 +186,64 @@ export class MyProfileService {
     getStudentEngagments(): Observable<Object> {        
         return this.http.get('student/getStudentEngagements/'+this.user_id);
     }
+
+    loadWishlist():Promise<string> {
+        return new Promise((resolve, reject) => {
+            let data = {
+                student_id: this.user_id
+            }
+            this.http.submitForm(data,'student/get_wish_list').toPromise()
+                .then(
+                    (data:PositionData[]) =>{
+                  
+                        this.wish_list = data;
+                        this.calculateWishlistSggestedSkill();                        
+                        console.log(this.wish_list);
+                        resolve("success");
+                      }
+                      ,
+                    (error) => {
+                    
+                    console.log(error);
+                    resolve("error");
+                    
+                    }
+                )
+                
+                });
+        } 
     
+    
+    calculateWishlistSggestedSkill(){
+        return new Promise((resolve,reject) =>{
+
+            let data = {
+                student_id: this.user_id,
+                student_skills:this.myStudentSkills,
+                wl_positions:this.wish_list
+            }
+            this.http.submitForm(data,'student/wish_list/calculate_suggested_skill').toPromise()
+            .then(
+                (data:any) => { 
+                    
+                    const wl_suggested_result = {
+                        diff:data['diff'],
+                        new_match_level_id:data['new_match_level_id'],
+                        old_match_level_id:data['old_match_level_id'],
+                        new_skill_category_id:data['new_skill'][0],
+                        new_skill_sub_category_id:data['new_skill'][1],
+                        new_skill_skill_id:data['new_skill'][2]
+                    }
+                    this.wl_suggested = wl_suggested_result;
+                    console.log(this.wl_suggested);
+                    this.WL_SuggestedSubject.next('success');
+                    
+                },
+                (error) =>{
+                    console.log(error);
+                    this.WL_SuggestedSubject.next('failed');
+                }
+            )
+        });
+    }
 }
