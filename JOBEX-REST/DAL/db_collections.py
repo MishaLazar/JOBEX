@@ -10,7 +10,7 @@ class DbCollections:
         "position_skills": "position_skills",
         "jobs": "jobs",
         "companies": "companies",
-		"feedbacks": "feedbacks",
+        "feedbacks": "feedbacks",
         "token_blacklist_collection": "token_blacklist",
         "wish_list": "wish_list",
         "cities": "cities"
