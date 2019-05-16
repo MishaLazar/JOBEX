@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MyProfileService } from 'src/app/services/my-profile.service';
 import { PositionData } from 'src/app/models/position-data';
 import { LoadingController } from '@ionic/angular';
+import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
   selector: 'dash-chart-best4you',
@@ -10,37 +11,34 @@ import { LoadingController } from '@ionic/angular';
 })
 export class DashChartBest4youComponent implements OnInit {
 
-  studentWishList:PositionData[] = []
-  CATEGORY = 0.1
-  SUB_CATEGORY = 0.2
-  SKILLS = 0.2
-  OTHERS = 0.1
-  LOCATION = 0.4
+  
+  
+  skill_id:number;
+  skill_text_value:string;
+  skill_diff:number = 18;
 
-
-  constructor(private profile:MyProfileService,private loadingController:LoadingController) { 
+  constructor(private profile:MyProfileService,private loadingController:LoadingController, private sharedData:SharedDataService) { 
     
   }
 
   ngOnInit() {
-    this.studentWishList = this.profile.wish_list.slice();
+    
+    this.loadWishListSuggestedSkill();
     
   }
 
   async loadWishListSuggestedSkill() {
     
-    const loading = await this.loadingController.create({
-      message: "loading.."
-    });
-    loading.present();
-    this.profile.calculateWishlistSggestedSkill().then(
+    
+    this.profile.WL_SuggestedSubject.subscribe(
       (status:string) =>{
         if(status === 'success'){         
-          console.log("success");
+          this.skill_id = this.profile.wl_suggested.new_skill_skill_id;
+          this.skill_text_value = this.sharedData.getSkillTextValueById(this.skill_id);
+          console.log(this.skill_text_value);
         }else{
           console.log("error loading studend skills");
-        }
-        loading.dismiss()        
+        }        
       }
     );
 

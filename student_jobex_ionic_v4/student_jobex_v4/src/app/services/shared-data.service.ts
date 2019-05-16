@@ -72,4 +72,11 @@ export class SharedDataService {
       );
     }
   
+   getSkillTextValueById(skill_id) {
+     if(!this.skills){
+       return "Oops!";
+     }
+     let skill_result = this.skills.find(skill => skill.SkillId == skill_id )
+     return skill_result.TextValue;
+   }
 }
