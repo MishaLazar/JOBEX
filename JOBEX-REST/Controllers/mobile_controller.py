@@ -166,35 +166,129 @@ class MobileController:
         return db_client.get_aggregate_document(DbCollections.get_student_collection(), pipeline=pipeline)
 
     @staticmethod
+    def get_student_engagements2(student_id, limit=100):
+        db_client = Client()
+        pipeline = [
+            {
+                "$addFields": {
+                    "p_id": {
+                        "$toObjectId": "$position_id"
+
+                    }
+                }
+            }, {
+                "$lookup": {
+                    "from": "positions",
+                    "localField": "p_id",
+                    "foreignField": "_id",
+                    "as": "positions"
+                }
+
+            }, {
+                "$unwind": "$positions"
+            }, {
+                "$lookup": {
+                    "from": "companies",
+                    "localField": "positions.company_id",
+                    "foreignField": "_id",
+                    "as": "company"
+                }
+            }, {
+                "$unwind": "$company"
+            }, {
+                "$match": {
+                    "$and": [{"student_id": student_id}]
+                }
+            }, {
+                "$project": {
+                    "position_id": 1,
+                    "student_id": 1,
+                    "match_id": 1,
+                    "position_description": "$positions.position_description",
+                    "position_title": "$positions.position_name",
+                    "position_location": "$positions.position_location",
+                    "is_new": 1,
+                    "status": 1,
+                    "is_deleted": 1,
+                    "creation_date": 1,
+                    "company_name": "$company.name"
+                }
+
+            }, {
+                "$sort": {
+                    "creation_date": 1
+                }
+            }, {
+                "$limit": limit
+            }
+
+        ]
+        return db_client.get_aggregate_document(DbCollections.get_engagements_collection(), pipeline=pipeline)
+
+    @staticmethod
     def get_student_engagement_by_match2(match_id):
         db_client = Client()
         pipeline = [
-            {"$addFields": {
-                "position_id": {
-                    "$toObjectId": "$position_id"
+            {
+                "$addFields": {
+                    "p_id": {
+                        "$toObjectId": "$position_id"
 
+                    }
+                }
+            }, {
+                "$lookup": {
+                    "from": "positions",
+                    "localField": "p_id",
+                    "foreignField": "_id",
+                    "as": "positions"
                 }
 
-            }
+            }, {
+                "$unwind": "$positions"
+            },
+            {
+                "$lookup": {
+                    "from": "companies",
+                    "localField": "positions.company_id",
+                    "foreignField": "_id",
+                    "as": "company"
+                }
 
+            }, {
+                "$unwind": "$company"
             },
             {
                 "$lookup": {
                     "from": "position_skills",
-                    "localField": "position_id",
+                    "localField": "p_id",
                     "foreignField": "position_id",
                     "as": "position_skills"
                 }
-            },
-            {
+            }, {
+                "$unwind": "$position_skills"
+            }, {
                 "$match": {
-                    "match_id": match_id
+                    "$and": [{"match_id": match_id}]
                 }
-            },
-            {
-                "$replaceRoot": {"newRoot": {"$mergeObjects": [{"$arrayElemAt": ["$position_skills", 0]}, "$$ROOT"]}}
-            },
-            {"$project": {"position_skills": 0}}
+            }, {
+                "$project": {
+                    "position_id": 1,
+                    "student_id": 1,
+                    "match_id": 1,
+                    "position_description": "$positions.position_description",
+                    "position_title": "$positions.position_name",
+                    "position_location": "$positions.position_location",
+                    "is_new": 1,
+                    "status": 1,
+                    "is_deleted": 1,
+                    "creation_date": 1,
+                    "company_name": "$company.name",
+                    "position_skill_list": "$position_skills.position_skill_list"
+                }
+
+            }
+
         ]
         return db_client.get_aggregate_document(DbCollections.get_engagements_collection(), pipeline=pipeline)
 
@@ -329,5 +423,5 @@ class MobileController:
 
         ]
         result = db_client.get_aggregate_document(DbCollections.get_wish_list_collection(),
-                                                pipeline=matches_pipeline)
-        return  result[0]["wish_list"] if result[0]["wish_list"] else []
+                                                  pipeline=matches_pipeline)
+        return result[0]["wish_list"] if result[0]["wish_list"] else []

@@ -377,9 +377,9 @@ def get_student_engagements(student_id=None):
         request_data = request.get_json()
         student_id = request_data['student_id']
         limit = request_data['limit']
-        result = MobileController.get_student_engagements(student_id=student_id, limit=limit)
+        result = MobileController.get_student_engagements2(student_id=student_id, limit=limit)
     elif request.method == 'GET':
-        result = MobileController.get_student_engagements(student_id=student_id)
+        result = MobileController.get_student_engagements2(student_id=student_id)
     return JSONEncoder().encode(result)
 
 
