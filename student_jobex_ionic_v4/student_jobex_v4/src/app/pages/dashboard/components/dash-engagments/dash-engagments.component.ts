@@ -24,21 +24,20 @@ export class DashEngagmentsComponent implements OnInit {
     this.loadEngagements();
   }
 
-  async loadEngagements(){
-    // const loading = await this.loadingController.create();
-    // loading.present();
-
-    this.profile.loadLatestsEngagements(this.config.getMaxNumOfLatests()).subscribe(
-      (data:Engagement[]) => {
-        this.engagements = data;
-        
-        // loading.dismiss();
-      },
-      (error) => {
-        console.log(error);
-        // loading.dismiss();
-      }
-    );
+  async loadEngagements(){    
+    if(!this.profile.latestEngagemants){
+      this.profile.loadLatestsEngagements(this.config.getMaxNumOfLatests()).subscribe(
+        (data:Engagement[]) => {
+          this.profile.setLatestEngagemants(data); 
+          this.engagements = this.profile.getLatestEngagemants();         
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }else{
+      this.engagements = this.profile.getLatestEngagemants();
+    }    
   }
 
   onEngagmentClick(match_id:string){

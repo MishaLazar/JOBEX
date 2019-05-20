@@ -13,14 +13,18 @@
                                 <ion-icon [name]="menuItem.icon" item-left></ion-icon>
                                 {{menuItem.title}}
                             </ion-item>      
-                        </ion-list>     
+                        </ion-list>
+                        <ion-item [routerDirection]="'root'" routerLink="/register" *ngIf="!isAuthenticated">
+                                <ion-icon name="create"></ion-icon>
+                                Register
+                        </ion-item>     
                         <ion-item (click)="onLogout()" *ngIf="isAuthenticated">
                                 <ion-icon name="log-out"></ion-icon>
                                 Logout
                         </ion-item>
                         <ion-item  [routerLink]="['/login']" routerLinkActive="router-link-active"  *ngIf="!isAuthenticated">
                                 <ion-icon name="log-in"></ion-icon>
-                                login
+                                Login
                         </ion-item>             
                     </ion-menu-toggle>
                     

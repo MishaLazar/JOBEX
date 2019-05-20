@@ -16,7 +16,7 @@ import { MyProfileService } from './services/my-profile.service';
 export class AppComponent {
   public appMenu=[
       new MenuItem("Dashboard","/dashboard","clipboard"),
-      new MenuItem("Register","/register","create"),      
+      //new MenuItem("Register","/register","create"),      
       new MenuItem("My Profile","/my-profile","person")
       
       //new MenuItem("Logout","/logout","log-in")

@@ -11,6 +11,7 @@ import { Observable, Subject } from 'rxjs';
 import { Registration } from '../models/registration';
 import { Count} from '../models/charts_models/counts.model';
 import { PositionData } from '../models/position-data';
+import { Engagement } from '../models/engagement';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,8 @@ export class MyProfileService {
     profileLoadedSubject:Subject<string> = new Subject();
     WL_SuggestedSubject:Subject<string> = new Subject();
     wl_suggested:any;
-
+    latestEngagemants: Engagement[];
+   
     //chartsData
     matchesCounts:Count[];
     engagemtnsCounts:Count[];
@@ -48,15 +50,14 @@ export class MyProfileService {
         const data = {
             user_id:this.user_id
         }
-        if(!this.isProfileLoaded){
+        if(!this.myProfile){
             this.http.submitForm(data,'get_student_profile').subscribe(
                 (data:MyProfile) =>{                                
                     this.myProfile = data;
                     this.myStudentSkills = this.myProfile.student_skill_list;
+                    this.wish_list = this.myProfile.wish_list;
                     this.loadStudentSkills();
                     this.loadWishlist();
-                    
-                    this.isProfileLoaded = true;
                     this.profileLoadedSubject.next('loaded');
                 },
                 (error:any) =>{
@@ -65,24 +66,18 @@ export class MyProfileService {
             );
         }
         
-    }
+    }  
+
+
     setMyProfileRegistration(myProfile:MyProfile){
         this.myProfile = myProfile;
         this.isUpdated = true;
     }
 
-    loadStudentSkills(){        
-        if(!this.isStudentSkillsLoaded){
-            // this.http.get('student/skills/' + this.user_id).subscribe(
-            //     (skills:SkillList[]) =>{
-        
+    loadStudentSkills(){   
             this.isStudentSkillsLoaded = true;                
             this.processLoadedStudentSkill(this.myStudentSkills);
-                // },
-                // (error:any) =>{
-                //     console.log(error);
-                // });            
-        }
+               
     }
     processLoadedStudentSkill(studentSkills: SkillList[]) {
         studentSkills.forEach(sSkill => {
@@ -91,9 +86,7 @@ export class MyProfileService {
             });
         });
     }
-    // isProfileImgSet(){
-    //     return this.myProfile.profileImg != null && this.myProfile.profileImg.length > 0 ? true:false;
-    // }
+    
 
     getMyProfileSkills(){
         return this.myProfileSkills.slice();
@@ -187,30 +180,32 @@ export class MyProfileService {
         return this.http.get('student/getStudentEngagements/'+this.user_id);
     }
 
-    loadWishlist():Promise<string> {
-        return new Promise((resolve, reject) => {
-            let data = {
-                student_id: this.user_id
-            }
-            this.http.submitForm(data,'student/get_wish_list').toPromise()
-                .then(
-                    (data:PositionData[]) =>{
+    loadWishlist() {
+        this.calculateWishlistSggestedSkill();
+
+        // return new Promise((resolve, reject) => {
+        //     let data = {
+        //         student_id: this.user_id
+        //     }
+        //     this.http.submitForm(data,'student/get_wish_list').toPromise()
+        //         .then(
+        //             (data:PositionData[]) =>{
                   
-                        this.wish_list = data;
-                        this.calculateWishlistSggestedSkill();                        
-                        console.log(this.wish_list);
-                        resolve("success");
-                      }
-                      ,
-                    (error) => {
+        //                 this.wish_list = data;
+        //                 this.calculateWishlistSggestedSkill();                        
+        //                 console.log(this.wish_list);
+        //                 resolve("success");
+        //               }
+        //               ,
+        //             (error) => {
                     
-                    console.log(error);
-                    resolve("error");
+        //             console.log(error);
+        //             resolve("error");
                     
-                    }
-                )
+        //             }
+        //         )
                 
-                });
+        //         });
         } 
     
     
@@ -245,5 +240,12 @@ export class MyProfileService {
                 }
             )
         });
+    }
+
+    getLatestEngagemants(): Engagement[] {
+        return this.latestEngagemants.slice();
+    }
+    setLatestEngagemants(engagements: Engagement[]) {
+        this.latestEngagemants = engagements;
     }
 }

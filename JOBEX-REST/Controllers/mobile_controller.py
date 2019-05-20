@@ -62,10 +62,7 @@ class MobileController:
         return db_client.update_single_doc_in_collection(DbCollections.get_student_skills_collection(), query, doc,
                                                          True)
 
-    @staticmethod
-    def get_student_profile(student_id):
-        db_client = Client()
-        return db_client.get_single_doc_from_collection(DbCollections.get_student_collection(), object_id=student_id)
+
 
     @staticmethod
     def set_active_status_on_profile(student_id, active_status):
@@ -119,7 +116,7 @@ class MobileController:
         return db_client.get_single_doc_from_collection(DbCollections.get_engagements_collection(), json_query=query)
 
     @staticmethod
-    def get_student_profile_and_skill(student_id):
+    def get_student_profile(student_id):
         db_client = Client()
         pipeline = [
             {
@@ -139,12 +136,23 @@ class MobileController:
                 }
 
             },
+            {"$unwind": "$student_skills"},
             {
                 "$match": {
                     "$and": [{"s_id": student_id}]
                 }
             }
-            , {"$unwind": "$student_skills"},
+        ,
+            {
+                "$lookup": {
+                    "from": "wish_list",
+                    "localField": "_id",
+                    "foreignField": "student_id",
+                    "as": "wish_list"
+                }
+
+            },
+            {"$unwind": "$wish_list"},
             {
                 "$project": {
                     "_id": 1,
@@ -159,7 +167,8 @@ class MobileController:
                     "active": 1,
                     "activation_data": 1,
                     "creation_data": 1,
-                    "student_skills": 1
+                    "student_skill_list": "$student_skills.student_skill_list",
+                    "wish_list":"$wish_list.wish_list"
                 }
             }
         ]

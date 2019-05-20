@@ -28,22 +28,22 @@ export class DashChartBest4youComponent implements OnInit {
   }
 
   async loadWishListSuggestedSkill() {
-    
-    
-    this.profile.WL_SuggestedSubject.subscribe(
-      (status:string) =>{
-        if(status === 'success'){         
-          this.skill_id = this.profile.wl_suggested.new_skill_skill_id;
-          this.skill_text_value = this.sharedData.getSkillTextValueById(this.skill_id);
-          console.log(this.skill_text_value);
-        }else{
-          console.log("error loading studend skills");
-        }        
-      }
-    );
-
-
-    
+    if(!this.profile.wl_suggested){
+      this.profile.WL_SuggestedSubject.subscribe(
+        (status:string) =>{
+          if(status === 'success'){         
+            this.skill_id = this.profile.wl_suggested.new_skill_skill_id;
+            this.skill_text_value = this.sharedData.getSkillTextValueById(this.skill_id);
+            console.log(this.skill_text_value);
+          }else{
+            console.log("error loading studend skills");
+          }        
+        }
+      );
+    }else {
+      this.skill_id = this.profile.wl_suggested.new_skill_skill_id;
+      this.skill_text_value = this.sharedData.getSkillTextValueById(this.skill_id);
+    }
 
   }
 

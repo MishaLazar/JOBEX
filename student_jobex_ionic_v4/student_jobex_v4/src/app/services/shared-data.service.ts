@@ -54,22 +54,28 @@ export class SharedDataService {
           }
   
         );
+      }else{
+        this.skillsLoadedSubject.next('loaded');
       }
   }
 
   loadPositionDataset(){
-    
-      this.http.get('resources/getPositionDataSet').subscribe(
-        (data:PositionData[]) => {          
-          this.positionsDataset = data;          
-          this.positionDataSetLoadedSubject.next('loaded');
-          console.log('loaded :' + data.length + ' positionsDataset');
-        },
-        error =>{
-          console.log(error);
-        }
-
-      );
+      if(!this.positionsDataset){
+        this.http.get('resources/getPositionDataSet').subscribe(
+          (data:PositionData[]) => {          
+            this.positionsDataset = data;          
+            this.positionDataSetLoadedSubject.next('loaded');
+            console.log('loaded :' + data.length + ' positionsDataset');
+          },
+          error =>{
+            console.log(error);
+          }
+  
+        );
+      }else {
+        this.positionDataSetLoadedSubject.next('loaded');
+      }
+      
     }
   
    getSkillTextValueById(skill_id) {

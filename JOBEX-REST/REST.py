@@ -134,9 +134,13 @@ def get_login():
         if result:
             access_token = create_access_token(identity=str(result["_id"]))
             refresh_token = create_refresh_token(identity=str(result["_id"]))
+            company_id = ""
+            if "company_id" in result:
+                company_id = str(result["company_id"])
             data = {
+                "user_id":str(result['_id']),
                 "username": result["username"],
-                "company_id": str(result["company_id"]),
+                "company_id":company_id,
                 "access_token": access_token,
                 "refresh_token": refresh_token
             }
@@ -165,7 +169,7 @@ def get_student_profile():
         user_id = request.get_json()
         # mob_ctrl = MobileController()
         # data = mob_ctrl.get_student_profile(user_id['user_id'])
-        data = MobileController.get_student_profile_and_skill(user_id['user_id'])[0]
+        data = MobileController.get_student_profile(user_id['user_id'])[0]
         result = {
             "userId": str(data["_id"]),
             "firstName": data["firstName"],
@@ -178,7 +182,8 @@ def get_student_profile():
             "active": data["active"],
             "activation_data": data["activation_data"],
             "creation_data": data["creation_data"],
-            "student_skill_list": data["student_skills"]["student_skill_list"]
+            "student_skill_list": data["student_skill_list"],
+            "wish_list":data["wish_list"]
         }
         return jsonify(result), 200
     else:

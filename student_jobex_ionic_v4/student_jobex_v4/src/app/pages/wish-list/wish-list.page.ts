@@ -27,33 +27,34 @@ export class WishListPage implements OnInit {
   }
 
   ngOnInit() {
-    this.loadWishList();
+    this.positionSelected = this.profile.wish_list.slice();        
+    this.loadPositionDataSet();
 
   }
 
-  async loadWishList() {
+  // async loadWishList() {
     
-    const loading = await this.loadingController.create({
-      message: "loading.."
-    });
-    loading.present();
-    this.profile.loadWishlist().then(
-      (status:string) =>{
-        if(status === 'success'){
-          this.positionSelected = this.profile.wish_list.slice();        
-          this.loadPositionDataSet();
-          console.log(this.positionSelected);
-        }else{
-          console.log("error loading studend skills");
-        }
-        loading.dismiss()        
-      }
-    );
+  //   const loading = await this.loadingController.create({
+  //     message: "loading.."
+  //   });
+  //   loading.present();
+  //   this.profile.loadWishlist().then(
+  //     (status:string) =>{
+  //       if(status === 'success'){
+  //         this.positionSelected = this.profile.wish_list.slice();        
+  //         this.loadPositionDataSet();
+  //         console.log(this.positionSelected);
+  //       }else{
+  //         console.log("error loading studend skills");
+  //       }
+  //       loading.dismiss()        
+  //     }
+  //   );
 
 
     
 
-  }
+  // }
 
 
   loadPositionDataSet(){

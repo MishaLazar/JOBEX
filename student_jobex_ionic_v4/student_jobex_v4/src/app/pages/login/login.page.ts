@@ -47,15 +47,17 @@ export class LoginPage implements OnInit {
     loading.present();
     this.auth.onSignin(userName,userPassword).subscribe(
       
-      (response:Token) => {
+      (response:any) => {
+        let user_id = response['user_id'];
+        let access_token = response['access_token'];
+        let refresh_token = response['refresh_token'];
         
-        this.myProfile.setUserIdOnLogin(response.user_id); 
-        this.storageSVC.setStorageValueByKey('user_id',response.user_id);
-        this.storageSVC.setStorageValueByKey('access_token',response.access_token);
-        this.storageSVC.setStorageValueByKey('refresh_token',response.refresh_token);
-        loading.dismiss();
+        this.myProfile.setUserIdOnLogin(user_id); 
+        this.storageSVC.setStorageValueByKey('user_id',user_id);
+        this.storageSVC.setStorageValueByKey('access_token',access_token);
+        this.storageSVC.setStorageValueByKey('refresh_token',refresh_token);
+        loading.dismiss();        
         this.auth.stateSubject.next('login');
-        this.myProfile.loadProfile();
         this.router.navigateByUrl('/dashboard')
     },
     error => {
