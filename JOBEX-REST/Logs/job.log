@@ -100,3 +100,247 @@
 2019-05-11 04:58:21,745 - Job - DEBUG - save_match: 1
 2019-05-11 04:58:33,720 - Job - DEBUG - do_job
 2019-05-11 04:58:33,747 - Job - DEBUG - do_job
+2019-05-20 02:20:09,222 - Job - DEBUG - do_job
+2019-05-20 02:20:11,518 - Job - DEBUG - getting all active positions
+2019-05-20 02:20:13,880 - Job - DEBUG - getting all active student profiles
+2019-05-20 02:20:16,292 - Job - DEBUG - getting all students skills
+2019-05-20 02:20:18,677 - Job - DEBUG - do_job
+2019-05-20 02:20:18,750 - Job - DEBUG - getting all positions_skills
+2019-05-20 02:20:21,093 - Job - DEBUG - getting all active positions
+2019-05-20 02:20:21,128 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 02:20:21,129 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 02:20:23,470 - Job - DEBUG - getting all active student profiles
+2019-05-20 02:20:25,877 - Job - DEBUG - getting all students skills
+2019-05-20 02:20:28,227 - Job - DEBUG - getting all positions_skills
+2019-05-20 02:20:30,628 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 02:20:30,628 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 02:22:03,789 - Job - DEBUG - do_job
+2019-05-20 02:22:06,249 - Job - DEBUG - getting all active positions
+2019-05-20 02:22:08,585 - Job - DEBUG - getting all active student profiles
+2019-05-20 02:22:10,926 - Job - DEBUG - getting all students skills
+2019-05-20 02:22:13,060 - Job - DEBUG - do_job
+2019-05-20 02:22:13,398 - Job - DEBUG - getting all positions_skills
+2019-05-20 02:22:15,481 - Job - DEBUG - getting all active positions
+2019-05-20 02:22:15,834 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 02:22:15,835 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 02:22:17,805 - Job - DEBUG - getting all active student profiles
+2019-05-20 02:22:20,184 - Job - DEBUG - getting all students skills
+2019-05-20 02:22:22,559 - Job - DEBUG - getting all positions_skills
+2019-05-20 02:22:25,570 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 02:22:25,570 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 02:24:18,709 - Job - DEBUG - do_job
+2019-05-20 02:24:21,078 - Job - DEBUG - getting all active positions
+2019-05-20 02:24:23,518 - Job - DEBUG - getting all active student profiles
+2019-05-20 02:24:25,867 - Job - DEBUG - getting all students skills
+2019-05-20 02:24:28,105 - Job - DEBUG - do_job
+2019-05-20 02:24:28,329 - Job - DEBUG - getting all positions_skills
+2019-05-20 02:24:30,478 - Job - DEBUG - getting all active positions
+2019-05-20 02:24:30,748 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 02:24:30,749 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 02:24:32,899 - Job - DEBUG - getting all active student profiles
+2019-05-20 02:24:35,269 - Job - DEBUG - getting all students skills
+2019-05-20 02:24:37,664 - Job - DEBUG - getting all positions_skills
+2019-05-20 02:24:40,562 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 02:24:40,563 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 02:29:20,617 - Job - DEBUG - do_job
+2019-05-20 02:29:22,979 - Job - DEBUG - getting all active positions
+2019-05-20 02:29:25,409 - Job - DEBUG - getting all active student profiles
+2019-05-20 02:29:27,917 - Job - DEBUG - getting all students skills
+2019-05-20 02:29:29,950 - Job - DEBUG - do_job
+2019-05-20 02:29:30,327 - Job - DEBUG - getting all positions_skills
+2019-05-20 02:29:32,374 - Job - DEBUG - getting all active positions
+2019-05-20 02:29:32,818 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 02:29:32,820 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 02:29:34,726 - Job - DEBUG - getting all active student profiles
+2019-05-20 02:29:37,130 - Job - DEBUG - getting all students skills
+2019-05-20 02:29:39,563 - Job - DEBUG - getting all positions_skills
+2019-05-20 02:29:41,897 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 02:29:41,897 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:24:37,218 - Job - DEBUG - do_job
+2019-05-20 03:24:39,737 - Job - DEBUG - getting all active positions
+2019-05-20 03:24:42,275 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:24:44,785 - Job - DEBUG - getting all students skills
+2019-05-20 03:24:46,669 - Job - DEBUG - do_job
+2019-05-20 03:24:47,297 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:24:49,295 - Job - DEBUG - getting all active positions
+2019-05-20 03:24:49,880 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:24:49,881 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:24:51,829 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:24:54,472 - Job - DEBUG - getting all students skills
+2019-05-20 03:24:57,052 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:24:59,418 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:24:59,419 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:27:25,161 - Job - DEBUG - do_job
+2019-05-20 03:27:27,466 - Job - DEBUG - getting all active positions
+2019-05-20 03:27:29,843 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:27:32,290 - Job - DEBUG - getting all students skills
+2019-05-20 03:27:34,414 - Job - DEBUG - do_job
+2019-05-20 03:27:34,662 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:27:36,849 - Job - DEBUG - getting all active positions
+2019-05-20 03:27:37,115 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:27:37,116 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:27:39,344 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:27:41,717 - Job - DEBUG - getting all students skills
+2019-05-20 03:27:44,139 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:27:46,606 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:27:46,607 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:37:00,752 - Job - DEBUG - do_job
+2019-05-20 03:37:03,101 - Job - DEBUG - getting all active positions
+2019-05-20 03:37:05,543 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:37:07,957 - Job - DEBUG - getting all students skills
+2019-05-20 03:37:09,970 - Job - DEBUG - do_job
+2019-05-20 03:37:10,358 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:37:12,394 - Job - DEBUG - getting all active positions
+2019-05-20 03:37:12,972 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:37:12,973 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:37:15,013 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:37:17,649 - Job - DEBUG - getting all students skills
+2019-05-20 03:37:20,114 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:37:21,014 - Job - DEBUG - update_company_score: 1
+2019-05-20 03:37:21,016 - Job - DEBUG - finished working on job_id: 5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:37:22,567 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:37:22,568 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:37:30,328 - Job - DEBUG - update_company_score: 0
+2019-05-20 03:37:30,328 - Job - DEBUG - finished working on job_id: 5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:37:35,592 - Job - DEBUG - do_job
+2019-05-20 03:37:44,703 - Job - DEBUG - do_job
+2019-05-20 03:37:50,265 - Job - DEBUG - do_job
+2019-05-20 03:37:59,220 - Job - DEBUG - do_job
+2019-05-20 03:38:04,646 - Job - DEBUG - do_job
+2019-05-20 03:38:13,669 - Job - DEBUG - do_job
+2019-05-20 03:38:16,702 - Job - DEBUG - getting all active positions
+2019-05-20 03:38:19,073 - Job - DEBUG - do_job
+2019-05-20 03:38:19,175 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:38:21,522 - Job - DEBUG - getting all active positions
+2019-05-20 03:38:21,637 - Job - DEBUG - getting all students skills
+2019-05-20 03:38:23,962 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:38:24,092 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:38:26,344 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:38:26,345 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:38:26,402 - Job - DEBUG - getting all students skills
+2019-05-20 03:38:28,859 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:38:31,271 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:38:31,272 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:40:23,149 - Job - DEBUG - do_job
+2019-05-20 03:40:25,530 - Job - DEBUG - getting all active positions
+2019-05-20 03:40:27,945 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:40:30,911 - Job - DEBUG - getting all students skills
+2019-05-20 03:40:33,675 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:40:46,553 - Job - DEBUG - do_job
+2019-05-20 03:40:49,204 - Job - DEBUG - getting all active positions
+2019-05-20 03:40:52,133 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:40:54,665 - Job - DEBUG - getting all students skills
+2019-05-20 03:40:56,562 - Job - DEBUG - do_job
+2019-05-20 03:40:57,144 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:40:59,697 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:40:59,698 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:42:21,274 - Job - DEBUG - do_job
+2019-05-20 03:42:23,998 - Job - DEBUG - getting all active positions
+2019-05-20 03:42:26,502 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:43:04,986 - Job - DEBUG - do_job
+2019-05-20 03:43:08,331 - Job - DEBUG - getting all active positions
+2019-05-20 03:43:11,561 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:43:14,138 - Job - DEBUG - getting all students skills
+2019-05-20 03:43:15,265 - Job - DEBUG - do_job
+2019-05-20 03:43:16,747 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:43:17,956 - Job - DEBUG - getting all active positions
+2019-05-20 03:43:19,442 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:43:19,443 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:43:20,593 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:43:23,983 - Job - DEBUG - getting all students skills
+2019-05-20 03:43:26,621 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:43:29,372 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:43:29,373 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:44:49,833 - Job - DEBUG - update_company_score: 1
+2019-05-20 03:44:49,834 - Job - DEBUG - finished working on job_id: 5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:44:50,044 - Job - DEBUG - update_company_score: 0
+2019-05-20 03:44:50,046 - Job - DEBUG - finished working on job_id: 5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:45:04,283 - Job - DEBUG - do_job
+2019-05-20 03:45:04,483 - Job - DEBUG - do_job
+2019-05-20 03:45:18,752 - Job - DEBUG - do_job
+2019-05-20 03:45:18,834 - Job - DEBUG - do_job
+2019-05-20 03:45:33,288 - Job - DEBUG - do_job
+2019-05-20 03:45:33,309 - Job - DEBUG - do_job
+2019-05-20 03:45:47,725 - Job - DEBUG - do_job
+2019-05-20 03:45:47,738 - Job - DEBUG - do_job
+2019-05-20 03:45:50,134 - Job - DEBUG - getting all active positions
+2019-05-20 03:45:50,148 - Job - DEBUG - getting all active positions
+2019-05-20 03:45:52,512 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:45:52,580 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:45:54,860 - Job - DEBUG - getting all students skills
+2019-05-20 03:45:55,029 - Job - DEBUG - getting all students skills
+2019-05-20 03:45:57,257 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:45:57,453 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:45:59,706 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:45:59,707 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:45:59,882 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:45:59,882 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:46:13,807 - Job - DEBUG - update_company_score: 1
+2019-05-20 03:46:13,810 - Job - DEBUG - finished working on job_id: 5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:46:13,816 - Job - DEBUG - update_company_score: 0
+2019-05-20 03:46:13,817 - Job - DEBUG - finished working on job_id: 5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:46:28,199 - Job - DEBUG - do_job
+2019-05-20 03:46:28,282 - Job - DEBUG - do_job
+2019-05-20 03:46:42,678 - Job - DEBUG - do_job
+2019-05-20 03:46:42,717 - Job - DEBUG - do_job
+2019-05-20 03:46:57,804 - Job - DEBUG - do_job
+2019-05-20 03:46:58,096 - Job - DEBUG - do_job
+2019-05-20 03:47:12,140 - Job - DEBUG - do_job
+2019-05-20 03:47:12,534 - Job - DEBUG - do_job
+2019-05-20 03:47:26,625 - Job - DEBUG - do_job
+2019-05-20 03:47:27,009 - Job - DEBUG - do_job
+2019-05-20 03:47:41,059 - Job - DEBUG - do_job
+2019-05-20 03:47:41,512 - Job - DEBUG - do_job
+2019-05-20 03:47:55,504 - Job - DEBUG - do_job
+2019-05-20 03:47:55,862 - Job - DEBUG - do_job
+2019-05-20 03:48:09,936 - Job - DEBUG - do_job
+2019-05-20 03:48:10,260 - Job - DEBUG - do_job
+2019-05-20 03:48:24,329 - Job - DEBUG - do_job
+2019-05-20 03:48:24,713 - Job - DEBUG - do_job
+2019-05-20 03:48:26,744 - Job - DEBUG - getting all active positions
+2019-05-20 03:48:27,158 - Job - DEBUG - getting all active positions
+2019-05-20 03:48:29,223 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:48:29,552 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:48:31,646 - Job - DEBUG - getting all students skills
+2019-05-20 03:48:31,915 - Job - DEBUG - getting all students skills
+2019-05-20 03:48:34,096 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:48:34,252 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:48:36,481 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:48:36,482 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:48:36,686 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:48:36,687 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:49:29,985 - Job - DEBUG - update_company_score: 0
+2019-05-20 03:49:29,988 - Job - DEBUG - finished working on job_id: 5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:50:45,035 - Job - DEBUG - do_job
+2019-05-20 03:50:47,427 - Job - DEBUG - getting all active positions
+2019-05-20 03:50:49,757 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:50:52,082 - Job - DEBUG - getting all students skills
+2019-05-20 03:50:54,149 - Job - DEBUG - do_job
+2019-05-20 03:50:54,560 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:50:56,531 - Job - DEBUG - getting all active positions
+2019-05-20 03:50:56,927 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:50:56,928 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:50:58,923 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:51:01,286 - Job - DEBUG - getting all students skills
+2019-05-20 03:51:03,667 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:51:06,053 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:51:06,054 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:52:46,320 - Job - DEBUG - do_job
+2019-05-20 03:52:48,758 - Job - DEBUG - getting all active positions
+2019-05-20 03:52:51,229 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:52:53,633 - Job - DEBUG - getting all students skills
+2019-05-20 03:52:55,503 - Job - DEBUG - do_job
+2019-05-20 03:52:56,003 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:52:57,852 - Job - DEBUG - getting all active positions
+2019-05-20 03:52:58,446 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:52:58,447 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:53:00,244 - Job - DEBUG - getting all active student profiles
+2019-05-20 03:53:02,679 - Job - DEBUG - getting all students skills
+2019-05-20 03:53:05,084 - Job - DEBUG - getting all positions_skills
+2019-05-20 03:53:07,432 - Job - DEBUG - job working on:5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:53:07,432 - Job - DEBUG - start sentiment analysis job for object_id:5ce1e46ff4578f3fe08df4b3
+2019-05-20 03:53:34,147 - Job - DEBUG - update_company_score: 1
+2019-05-20 03:53:34,149 - Job - DEBUG - finished working on job_id: 5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:53:35,907 - Job - DEBUG - update_company_score: 0
+2019-05-20 03:53:35,907 - Job - DEBUG - finished working on job_id: 5ce1e47ef4578f3fe08df4b4
+2019-05-20 03:53:49,401 - Job - DEBUG - do_job

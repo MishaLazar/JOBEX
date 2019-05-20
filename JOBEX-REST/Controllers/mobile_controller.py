@@ -211,7 +211,11 @@ class MobileController:
                     "status": 1,
                     "is_deleted": 1,
                     "creation_date": 1,
-                    "company_name": "$company.name"
+                    "company_name": "$company.name",
+                    "company_id": {
+                        "$toString": "$company._id"
+
+                    }
                 }
 
             }, {
@@ -284,6 +288,10 @@ class MobileController:
                     "is_deleted": 1,
                     "creation_date": 1,
                     "company_name": "$company.name",
+                    "company_id": {
+                        "$toString": "$company._id"
+
+                    },
                     "position_skill_list": "$position_skills.position_skill_list"
                 }
 
@@ -425,3 +433,18 @@ class MobileController:
         result = db_client.get_aggregate_document(DbCollections.get_wish_list_collection(),
                                                   pipeline=matches_pipeline)
         return result[0]["wish_list"] if result[0]["wish_list"] else []
+
+    @staticmethod
+    def post_feedback(feedback_text, engagement_id, company_id):
+        db_client = Client()
+        feedback_obj = {"feedback_text": feedback_text, "engagement_id": engagement_id, "company_id": company_id}
+
+        feedback_id = db_client.insert_doc_to_collection(DbCollections.get_collection("feedbacks"), doc=feedback_obj)
+        job_doc = {
+            "job_type_id": 3,
+            "source_objectid": feedback_id,
+            "creation_date": datetime.now(),
+            "status": 0
+        }
+
+        return db_client.insert_doc_to_collection(DbCollections.get_job_collection(), job_doc)

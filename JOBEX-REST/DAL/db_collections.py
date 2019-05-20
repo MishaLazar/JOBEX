@@ -14,6 +14,7 @@ class DbCollections:
         "token_blacklist_collection": "token_blacklist",
         "wish_list": "wish_list",
         "cities": "cities"
+
     }
 
     @staticmethod
@@ -59,3 +60,11 @@ class DbCollections:
     @staticmethod
     def get_cities():
         return DbCollections.collection_names['cities']
+
+    @staticmethod
+    def get_feedback():
+        return DbCollections.collection_names['feedbacks']
+
+    @staticmethod
+    def get_company():
+        return DbCollections.collection_names['companies']

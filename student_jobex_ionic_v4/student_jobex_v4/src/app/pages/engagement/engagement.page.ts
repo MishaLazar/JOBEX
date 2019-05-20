@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Engagement } from 'src/app/models/engagement';
 import { ActivatedRoute } from '@angular/router';
 import { SharedDataService } from 'src/app/services/shared-data.service';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, AlertController, ToastController } from '@ionic/angular';
 import { HttpHelpService } from 'src/app/services/http-help.service';
 import { MyProfileService } from 'src/app/services/my-profile.service';
 import { SkillList } from 'src/app/models/student_skill';
@@ -19,7 +19,13 @@ export class EngagementPage implements OnInit {
   engagement:Engagement = null;
   positionSkills: SkillList[];
   skillsToDisplay:String[] = [];
-  constructor(private activateRoute:ActivatedRoute,private profile:MyProfileService,private loadingController: LoadingController,private sharedData:SharedDataService,
+  constructor(
+    private activateRoute:ActivatedRoute,
+    private profile:MyProfileService,
+    private loadingController: LoadingController,
+    private sharedData:SharedDataService,
+    private alertController:AlertController,
+    private toastController:ToastController,
     private http:HttpHelpService) {
 
    }
@@ -50,8 +56,10 @@ export class EngagementPage implements OnInit {
           this.setEngagementIsOpened();
         }     
         this.toggleSection('position_description');
-        loading.dismiss();
+        
         this.setPositionSkills();
+        this.presentFeedbackPrompt();
+        loading.dismiss();
       },
       (error) =>{
         
@@ -61,8 +69,7 @@ export class EngagementPage implements OnInit {
     )
   }
 
-  setPositionSkills(){
-    debugger;
+  setPositionSkills(){    
     let tempSkillsFlat:number[] = [];
     let skills = this.sharedData.skills.slice();
     this.positionSkills = this.engagement.position_skill_list.slice();
@@ -119,4 +126,66 @@ export class EngagementPage implements OnInit {
   }
 
   
+  async presentFeedbackPrompt() {
+    const alert = await this.alertController.create({
+      header: 'feedback',
+      inputs: [
+        {
+          name: 'feedback_text',
+          type: 'text',
+          placeholder: 'Enter Your Feedback Please'
+        }
+      ],
+      buttons: [
+        {
+          text: 'No Thanks!',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: ()  => {
+            let data = {
+              feedback_text:"",
+              engagement_id:this.engagement._id,
+              company_id:this.engagement.company_id,
+              status:true
+            }
+            this.http.submitForm(data,'engagement/feedback').subscribe(
+              (success:any) =>{
+                this.toastController.create({
+                  message:"Thanks",
+                  duration:500
+                })
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
+          }
+        }, {
+          text: 'Submit',
+          handler: feedback => {            
+            let data = {
+              feedback_text:feedback["feedback_text"],
+              engagement_id:this.engagement._id,
+              company_id:this.engagement.company_id,
+              status:true
+            }
+            this.http.submitForm(data,'engagement/feedback').subscribe(
+              (success:any) =>{
+                this.toastController.create({
+                  message:"Thanks",
+                  duration:500
+                })
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
 }

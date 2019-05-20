@@ -10,6 +10,7 @@ export class Engagement{
         public position_title:string,
         public position_location:string,
         public company_name:string,        
+        public company_id:string,
         public message:string,
         public is_new:boolean,
         public status:string,

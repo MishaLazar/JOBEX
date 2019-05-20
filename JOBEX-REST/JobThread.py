@@ -25,7 +25,7 @@ SUB_CATEGORY = 0.15
 SKILLS = 0.25
 OTHERS = 0.1
 LOCATION = 0.4
-
+COMPANY_SCORE = 5.0
 nltk.downloader.download('vader_lexicon')
 pos_tweets = [('I love this car', 'positive'),
               ('This view is amazing', 'positive'),
@@ -210,15 +210,38 @@ class JobThread(object):
                                 matches.append(working)
                 elif int(_job.job_type_id) == 3:  # Sentiment analysis
                     log.debug('start sentiment analysis job for object_id:' + _job.source_objectid)
-                    txt_to_evaluate = self.get_text_to_analise(_job.source_objectid)
+                    feedback = self.get_text_to_analise(_job.source_objectid)
+                    company_id = feedback['company_id']
+                    txt_to_evaluate = feedback['feedback_text']
                     valued = classifier.classify(extract_features(txt_to_evaluate.split()))
                     lineLen = len(txt_to_evaluate.split())
                     ss = sid.polarity_scores(txt_to_evaluate)
-                    for k in ss:
-                        if (k != 'compound' and k != 'pos'):
-                            log.debug("{0}: {1}, ".format(k, ss[k]))
-                        if (k == 'pos'):
-                            log.debug("{0}: {1} ".format(k, ss[k]))
+                    positive = ss['pos']
+                    negative = ss['neg']
+                    neutral = ss['neu']
+                    compound = ss['compound']
+
+                    company_score = self.get_company_score(company_id)
+
+                    if compound > 0:
+                        if positive > 0.6:
+                            if company_score < COMPANY_SCORE:
+                                p_cs =  company_score / COMPANY_SCORE
+                                p_to_accumulate = 1 - p_cs
+                                avg_dividend = company_score + p_to_accumulate
+                                company_score = (company_score + avg_dividend) / 2
+                    elif compound < 0:
+                        if negative < 0.5:
+                            if company_score > 0:
+                                p_cs = company_score / COMPANY_SCORE
+                                if p_cs == 1:
+                                    p_cs = p_cs - 0.2
+                                p_to_accumulate = 1 - p_cs
+                                avg_dividend = company_score - p_to_accumulate
+                                company_score = (company_score + avg_dividend) / 2
+
+                    self.update_company_score(company_score=company_score, company_id= company_id)
+
                 log.debug('finished working on job_id: ' + _job.job_id)
                 self.on_job_finish(job=_job, status=1)
             except IOError:
@@ -333,7 +356,12 @@ class JobThread(object):
             log.error("failled to save match: " + str(json.dumps(doc_json)))
 
     def get_text_to_analise(self, source_objectid):
-        return 'good job'
+        db_client = Client()
+        query = {
+            "_id": ObjectId(source_objectid)
+        }
+        return db_client.get_single_doc_from_collection(DbCollections.get_feedback(), query)
+
 
     def get_cities(self):
         db_client = Client()
@@ -374,3 +402,37 @@ class JobThread(object):
                 return position
 
         return None
+
+    def get_company_score(self, company_id):
+        db_client = Client()
+        query = {
+            "_id": ObjectId(company_id)
+        }
+        company = db_client.get_single_doc_from_collection(DbCollections.get_company(), query)
+        company_score = COMPANY_SCORE
+        if 'company_score'  in company:
+            company_score = company['company_score']
+
+        return company_score
+
+    def update_company_score(self, company_score, company_id):
+        db_client = Client()
+        filter_json = {
+            "_id": ObjectId(company_id),
+
+        }
+
+        doc_json = {
+            '$set': {
+                "company_score": company_score
+            }
+        }
+        result = db_client.update_single_doc_in_collection(DbCollections.get_company(),
+                                                           filter_json, doc_json,
+                                                           update_if_exists=True)
+
+        if result is not None:
+            log.debug("update_company_score: " + str(json.dumps(result)))
+            return result
+        else:
+            log.error("failled to update_company_score: " + str(json.dumps(doc_json)))

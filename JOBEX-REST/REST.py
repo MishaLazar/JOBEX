@@ -344,6 +344,26 @@ def feedback():
         return {"error": "missing mandatory argument engagement_id"}
 
 
+@app.route('/engagement/feedback', methods=['POST', 'GET'])
+def engagement_feedback():
+    try:
+        r = request.get_json()
+        engagement_id =r['engagement_id']
+        if request.method == 'POST':
+            feedback_text = r['feedback_text']
+            company_id = r['company_id']
+            result = {"feedback_id": str(MobileController.post_feedback(feedback_text, engagement_id,company_id))}
+            return jsonify(result)
+        elif request.method == 'GET':
+            web_ctrl = WebController.getInstance()
+            result = web_ctrl.get_feedback(engagement_id=engagement_id)
+            return JSONEncoder().encode(result)
+        else:
+            return {"error": "method {} not supported!".format(request.method)}
+    except exceptions.BadRequestKeyError:
+        return {"error": "missing mandatory argument engagement_id"}
+
+
 @app.route('/resources/skills/skill=<skill_to_find>', methods=['GET'])
 @app.route('/resources/skills', methods=['POST', 'GET'])
 def skills(skill_to_find=None):
