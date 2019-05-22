@@ -7,3 +7,4 @@ jobex-web-app/venv/*
 /JOBEX-REST/Controllers/__pycache__/*.pyc
 /JOB-Service/Logs/*.log
 /JOBEX-REST/*.sqlite
+/JOB-REST/Logs/*.log

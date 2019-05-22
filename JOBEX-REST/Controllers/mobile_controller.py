@@ -301,6 +301,7 @@ class MobileController:
                         "$toString": "$company._id"
 
                     },
+                    "company_description":"$company.description",
                     "position_skill_list": "$position_skills.position_skill_list"
                 }
 

@@ -34,11 +34,7 @@
                                 <ion-label color="secondary">{{skill}}</ion-label>      
                                 <ion-icon name="checkbox-outline" slot="end"></ion-icon>                          
                               </ion-item>
-                       
                     </ion-card-content>
-                    
-                            
-                        
             </ion-card>                            
             
         <!-- <ion-label>{{engagement.position_description}}</ion-label> -->
@@ -55,12 +51,34 @@
                   <ion-icon name="ribbon" slot="start"></ion-icon>
                   <ion-label>{{engagement.company_name}}</ion-label>
                 </ion-item>
-                <ion-card-content>                    
-                  This is content, without any paragraph or header tags,
-                  within an ion-card-content element.
+                <ion-card-content>{{engagement.company_description}}
                 </ion-card-content>
               </ion-card>
     </ion-item>
+    <ion-item button (click)="toggleSection('feedback')" *ngIf="itsTimeForFeedback">
+                <ion-label>Feedback</ion-label>
+                <ion-icon *ngIf="isShownSection('feedback')" name="arrow-dropup"></ion-icon>
+                <ion-icon *ngIf="!isShownSection('feedback')" name="arrow-dropdown"></ion-icon>
+        </ion-item>
+        <ion-item  [hidden]="!isShownSection('feedback')">
+            <!-- <ion-label>{{engagement.company_name}}</ion-label> -->
+                <ion-grid fixed>
+                        <ion-row>
+                                <ion-col size="12">
+                                        <ion-textarea placeholder="Enter more information here..." type="text" (input)="adjustTextarea($event);" ></ion-textarea>
+                                </ion-col>
+                        </ion-row>
+                        <ion-row>
+                                <ion-col size="12">
+                                        <ion-button  size="large" expand="block" color="success" (click)="postFeedback()">
+                                                        Submit feedback
+                                        </ion-button>
+                                </ion-col>
+                        </ion-row>
+                </ion-grid>            
+               
+              
+        </ion-item>
 </ion-list>
 </ion-content>
 <ion-grid fixed class="footer-buttons" *ngIf="engagement">        
@@ -70,8 +88,8 @@
         <ion-row *ngIf="engagement.status === 'approved' || engagement.status === 'advanced'">                
                 <ion-col ><ion-button size="large" expand="block" color="success" disabled="true">{{engagement.status}}</ion-button></ion-col>
         </ion-row>
-        <ion-row *ngIf="engagement.status === 'initiation'">
-                <ion-col size="6"><ion-button size="large" expand="block" color="success" (click)="RevileMySelfEngagmenet(true)">Reveal my self</ion-button></ion-col>
-                <ion-col size="6"><ion-button size="large" expand="block" color="danger" (click)="declineEngagmenet(true)">Decline</ion-button></ion-col>
+        <ion-row *ngIf="engagement.status === 'initiated'">
+                <ion-col size="6"><ion-button size="large" expand="block" color="success" (click)="changeEngagmenetStatus('approved')">Reveal my self</ion-button></ion-col>
+                <ion-col size="6"><ion-button size="large" expand="block" color="danger" (click)="changeEngagmenetStatus('decline')">Decline</ion-button></ion-col>
         </ion-row>
 </ion-grid>
