@@ -1,5 +1,8 @@
 {
   "name": "student_jobex_v4",
-  "integrations": {},
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
   "type": "angular"
 }

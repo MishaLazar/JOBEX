@@ -550,4 +550,7 @@ if __name__ == '__main__':
         example = JobThread(interval=Utils.int_try_parse(config.read_job(Key='DELAY_INTERVAL'), 20))
 
     companies = get_companies_list()
-    app.run(port=5050, threaded=True)
+    if config.read_app_settings(Key='MachineIp') == '1':
+        app.run(host= '0.0.0.0',port=5050, threaded=True)
+    else:
+        app.run(port=5050, threaded=True)

@@ -1,0 +1,7 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "student_jobex_v4",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}

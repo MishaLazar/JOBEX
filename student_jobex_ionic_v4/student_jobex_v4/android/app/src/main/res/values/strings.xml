@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">JOBEX</string>
+    <string name="title_activity_main">jobex</string>
+    <string name="package_name">com.ionic.student_jobex_v4</string>
+    <string name="fileprovider_authority">com.ionic.student_jobex_v4</string>
+    <string name="custom_url_scheme">com.ionic.student_jobex_v4</string>
+</resources>
