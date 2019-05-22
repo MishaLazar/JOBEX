@@ -6,6 +6,8 @@
 <h2 id="active"></h2>
 <h1>Position Department:</h1>
 <h2 id="department"></h2>
+<h1>Position Skills:</h1>
+<h3 id="skills"></h3>
 <h1>Position matches:</h1>
 <h1>---------------------------------------------</h1>
 <table id="matches" style="width:100%">
@@ -26,6 +28,7 @@
     <thead>
     <tr>
         <th>Student</th>
+        <th>Status</th>
     </tr>
     </thead>
     <tbody>
@@ -52,6 +55,16 @@
         document.getElementById("active").innerHTML = results.position_active;
         document.getElementById("department").innerHTML = results.position_department;
 
+        // API_url = "http://127.0.0.1:5050/position/skills/" + position_id;
+        // req.open("GET", API_url, false);
+        // req.setRequestHeader('Content-Type', 'application/json');
+        // req.setRequestHeader('Access-Control-Allow-Origin', '*');
+        // req.setRequestHeader("Authorization", "Bearer " + access_token);
+        // req.send();
+        // results = JSON.parse(req.response);
+        // todo display position skills
+
+
         API_url = "http://127.0.0.1:5050/matches?position_id=" + position_id;
         req.open("GET", API_url, false);
         req.setRequestHeader('Content-Type', 'application/json');
@@ -61,16 +74,16 @@
         let matches_arr = JSON.parse(req.response);
 
         for (let lst_idx = 0; lst_idx < matches_arr.length; lst_idx++) {
-            // console.log(matches_arr[lst_idx]);
             let json = matches_arr[lst_idx];
+            if (json.is_engaged == false){
             tr = $('<tr/>');
-            tr.append("<td>" + json.match_level_id + "</td>");
+            tr.append("<td>" + parseFloat(json.match_level_id * 100) + '%'+"</td>");
             tr.append("<td>" + json.match_update_date + "</td>");
             let student_id_str = "'" + json.student_id + "'";
             let match_id_str = "'" + json._id + "'";
             let go_btn = "<button class=\"btn btn-outline-info\" onclick=\"post_engagement(" + student_id_str + ', ' +  match_id_str + ")\">Go</button>";
             tr.append("<td>" + go_btn + "</td>");
-            $('#matches').append(tr);
+            $('#matches').append(tr);}
         }
 
         API_url = "http://127.0.0.1:5050/engagements?position_id=" + position_id;
@@ -85,9 +98,21 @@
             // console.log(engagements_arr[lst_idx]);
             let json = engagements_arr[lst_idx];
             let tr = $('<tr/>');
-            let link = "<a href=\"http://127.0.0.1:5050/engagement_view?engagement_id=" + json._id + "\">" + json.student_id + "\</a>";
-            tr.append("<td>" + link + "</td>");
-            // tr.append("<td>" + json.student_id + "</td>");
+            if (json.status == "initiated" || json.status == "declined"){
+                let link = "<a href=\"http://127.0.0.1:5050/engagement_view?engagement_id=" + json._id + "\">" + json.student_id + "\</a>";
+                tr.append("<td>" + link + "</td>");
+            } else {
+                API_url = "http://127.0.0.1:5050/get_student_fullname/" + json.student_id;
+                req.open("GET", API_url, false);
+                req.setRequestHeader('Content-Type', 'application/json');
+                req.setRequestHeader('Access-Control-Allow-Origin', '*');
+                req.setRequestHeader("Authorization", "Bearer " + access_token);
+                req.send();
+                let res = JSON.parse(req.response);
+                let link = "<a href=\"http://127.0.0.1:5050/engagement_view?engagement_id=" + json._id + "\">" + res.fullname + "\</a>";
+                tr.append("<td>" + link + "</td>");
+            }
+            tr.append("<td>" + json.status + "</td>");
             $('#engagements').append(tr);
         }
 
@@ -114,10 +139,10 @@ function goBack() {
         let url_string = window.location.href;
         let url = new URL(url_string);
         let position_id = url.searchParams.get("position_id");
-        let today = new Date();
-        let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-        let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        let creation_date = date+', '+time;
+        // let today = new Date();
+        // let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        // let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        // let creation_date = today;
         let body = JSON.stringify({
             student_id: student_id,
             match_id: match_id,
@@ -125,9 +150,47 @@ function goBack() {
             is_new: true,
             is_deleted: false,
             status: "initiated",
-            creation_date: creation_date
+            creation_date: null
         });
         req.send(body);
+        /*API_url = "http://127.0.0.1:5050/matches";
+        req.open("PUT", API_url, false);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.setRequestHeader('Access-Control-Allow-Origin', '*');
+        req.setRequestHeader("Authorization", "Bearer " + access_token);
+        body = JSON.stringify({
+            match_id: match_id,
+            is_engaged: true
+        });
+        req.send(body);*/
+
+$("#loader").show();
+ body = JSON.stringify({
+            match_id: match_id,
+            is_engaged: true
+        });
+         $.ajax({
+            type: 'POST',
+            url: "http://127.0.0.1:5050/matches",
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(body)
+        })
+        .done(function(data){
+
+            // show the response
+            $("#loader").hide();
+            console.log(JSON.stringify(data));
+        })
+        .fail(function() {
+            $("#loader").hide();
+
+            // just in case posting your form failed
+            console.error( "Posting failed." );
+
+        });
+
+
         location.reload();
     }
 </script>

@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
     <script src="/static/js/jquery-3.2.1.slim.min.js"></script>
     <script src="/static/js/jquery.dataTables.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     {% if title %}
         <title>JOBEX - {{ title }}</title>
     {% else %}
@@ -19,6 +20,7 @@
     {% endif %}
 </head>
 <body>
+<div style="display: none;position: absolute;top: 50%;right: 50%;" id="loader" class="loader"></div>
 <header class="site-header">
     <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
@@ -48,10 +50,32 @@
             </div>
         </div>
     </nav>
+    <style>
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
 </header>
 <main role="main" class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 placeholders" style="display: none;">
             {% block content %}{% endblock %}
         </div>
     </div>

@@ -190,6 +190,16 @@ def get_student_profile():
         return jsonify({"message": "Wrong user_id"}), 403
 
 
+@app.route('/get_student_fullname/<student_id>', methods=['GET'])
+def get_student_fullname(student_id):
+    if request.method == 'GET':
+        data = MobileController.get_student_profile(student_id)[0]
+        result = {"fullname": data["firstName"] + " " + data["lastName"]}
+        return jsonify(result), 200
+    else:
+        return jsonify({"message": "no such user"}), 403
+
+
 @app.route('/register_student', methods=['POST'])
 def register_student():
     if request.method == 'POST':
@@ -518,7 +528,7 @@ def set_student_skills(student_id):
     return JSONEncoder().encode(result)
 
 
-@app.route('/matches', methods=['GET'])
+@app.route('/matches', methods=['GET', 'PUT'])
 def matches():
     if request.method == 'GET':
         web_ctrl = WebController.getInstance()
@@ -531,6 +541,11 @@ def matches():
                 result = web_ctrl.get_matches(student_id=student_id)
             except exceptions.BadRequestKeyError:
                 result = web_ctrl.get_matches()
+        return JSONEncoder().encode(result)
+    if request.method == 'PUT':
+        web_ctrl = WebController.getInstance()
+        data = request.get_json()
+        result = web_ctrl.modify_match(match_id=data['match_id'], is_enagaged=data['is_engaged'])
         return JSONEncoder().encode(result)
     else:
         return {"error": "method {} not supported!".format(request.method)}

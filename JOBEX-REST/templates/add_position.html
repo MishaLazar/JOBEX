@@ -58,7 +58,7 @@
                     {{ form.position_active.label(class="form-check-label", id="position_active") }}
                 </div>
             </fieldset>
-            <button class="btn btn-outline-info" onclick="add_position()">
+            <button class="btn btn-outline-info" onclick="return add_position()">
                 Add Position
             </button>
             <button class="btn btn-outline-info" onclick="goBack()">Go Back</button>
@@ -133,6 +133,7 @@
                 req.setRequestHeader("Authorization", "Bearer " + access_token);
                 req.send(body);
                 window.location.href = "http://127.0.0.1:5050/dashboard";
+                return false;
     }
     </script>
 <script>

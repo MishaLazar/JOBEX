@@ -24,8 +24,16 @@ class WebController:
         else:
             WebController.__instance = self
 
+    def modify_match(self, match_id, is_enagaged):
+        db_client = Client()
+        return db_client.update_single_doc_in_collection(DbCollections.get_collection("matches"),
+                                                         filter_json={"_id": ObjectId(match_id)},
+                                                         doc_update_json={"$set": {"is_engaged": is_enagaged}},
+                                                         update_if_exists=True)
+
     def add_engagement(self, engagement_obj):
         db_client = Client()
+        engagement_obj['creation_date'] = datetime.now()
         return db_client.insert_doc_to_collection(DbCollections.get_collection("engagements"), engagement_obj)
 
     def modify_engagement(self, engagement_obj):

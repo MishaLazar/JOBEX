@@ -13,26 +13,51 @@
 <button class="btn btn-outline-info" onclick="goBack()">Go Back</button>
 <script>
     $(document).ready(function () {
-        let access_token = window.localStorage.accessToken;
-        let req = new XMLHttpRequest();
         let url_string = window.location.href;
         let url = new URL(url_string);
         let engagement_id = url.searchParams.get("engagement_id");
-        let API_url = "http://127.0.0.1:5050/engagements?engagement_id=" + engagement_id;
-        req.open("GET", API_url, false);
-        req.setRequestHeader('Content-Type', 'application/json');
-        req.setRequestHeader('Access-Control-Allow-Origin', '*');
-        req.setRequestHeader("Authorization", "Bearer " + access_token);
-        req.send();
-        let results = JSON.parse(req.response);
-        document.getElementById("student_id").innerHTML = results.student_id;
-        document.getElementById("match_id").innerHTML = results.match_id;
-        document.getElementById("status").innerHTML = results.status;
-        document.getElementById("creation_date").innerHTML = results.creation_date;
-        if (results.status == "advanced"){
-            document.getElementById("advanced_btn").hidden = true;
-            document.getElementById("rejected_btn").hidden = true;
+
+        $("#loader").show();
+
+         $.ajax({
+            type: 'GET',
+            url:"http://127.0.0.1:5050/engagements?engagement_id=" + engagement_id,
+            dataType: 'json',
+              headers: {
+            'Access-Control-Allow-Origin': '*'
+            },
+            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', "Bearer " + window.localStorage.accessToken); },
+            contentType: 'application/json',
+            data: JSON.stringify("")
+        })
+        .done(function(data){
+
+            // show the response
+
+             let results = data;
+            document.getElementById("student_id").innerHTML = results.student_id;
+            document.getElementById("match_id").innerHTML = results.match_id;
+            document.getElementById("status").innerHTML = results.status;
+            document.getElementById("creation_date").innerHTML = results.creation_date;
+            if (results.status != "approved"){
+                document.getElementById("advanced_btn").hidden = true;
+                document.getElementById("rejected_btn").hidden = true;
         }
+            $(".placeholders").show();
+            $("#loader").hide();
+        })
+        .fail(function() {
+            $("#loader").hide();
+
+            // just in case posting your form failed
+            console.error( "Posting failed." );
+
+        });
+
+
+
+
+
     });
 </script>
 <script>
