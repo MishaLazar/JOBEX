@@ -8,3 +8,4 @@ jobex-web-app/venv/*
 /JOB-Service/Logs/*.log
 /JOBEX-REST/*.sqlite
 /JOB-REST/Logs/*.log
+/JOBEX-REST/Logs/*.log
