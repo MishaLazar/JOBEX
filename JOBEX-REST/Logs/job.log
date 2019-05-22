@@ -1972,3 +1972,1143 @@
 2019-05-22 04:29:15,003 - Job - DEBUG - do_job
 2019-05-22 04:29:21,955 - Job - DEBUG - do_job
 2019-05-22 04:29:29,450 - Job - DEBUG - do_job
+2019-05-22 17:35:08,205 - Job - DEBUG - do_job
+2019-05-22 17:35:19,504 - Job - DEBUG - do_job
+2019-05-22 17:35:22,897 - Job - DEBUG - do_job
+2019-05-22 17:35:41,707 - Job - DEBUG - do_job
+2019-05-22 17:35:57,773 - Job - DEBUG - do_job
+2019-05-22 17:35:58,862 - Job - DEBUG - do_job
+2019-05-22 17:36:14,165 - Job - DEBUG - do_job
+2019-05-22 17:36:15,321 - Job - DEBUG - do_job
+2019-05-22 17:36:29,121 - Job - DEBUG - do_job
+2019-05-22 17:36:29,863 - Job - DEBUG - do_job
+2019-05-22 17:36:45,145 - Job - DEBUG - do_job
+2019-05-22 17:36:46,112 - Job - DEBUG - do_job
+2019-05-22 17:37:00,525 - Job - DEBUG - do_job
+2019-05-22 17:37:01,003 - Job - DEBUG - do_job
+2019-05-22 17:37:15,263 - Job - DEBUG - do_job
+2019-05-22 17:37:15,338 - Job - DEBUG - do_job
+2019-05-22 17:37:29,795 - Job - DEBUG - do_job
+2019-05-22 17:37:30,520 - Job - DEBUG - do_job
+2019-05-22 17:37:44,094 - Job - DEBUG - do_job
+2019-05-22 17:37:44,912 - Job - DEBUG - do_job
+2019-05-22 17:37:59,671 - Job - DEBUG - do_job
+2019-05-22 17:38:00,019 - Job - DEBUG - do_job
+2019-05-22 17:38:14,396 - Job - DEBUG - do_job
+2019-05-22 17:38:14,931 - Job - DEBUG - do_job
+2019-05-22 17:38:28,728 - Job - DEBUG - do_job
+2019-05-22 17:38:29,194 - Job - DEBUG - do_job
+2019-05-22 17:38:42,947 - Job - DEBUG - do_job
+2019-05-22 17:38:43,519 - Job - DEBUG - do_job
+2019-05-22 17:38:57,266 - Job - DEBUG - do_job
+2019-05-22 17:38:57,755 - Job - DEBUG - do_job
+2019-05-22 17:38:59,610 - Job - DEBUG - getting all active positions
+2019-05-22 17:39:00,731 - Job - DEBUG - getting all active positions
+2019-05-22 17:39:02,409 - Job - DEBUG - getting all active student profiles
+2019-05-22 17:39:03,508 - Job - DEBUG - getting all active student profiles
+2019-05-22 17:39:04,809 - Job - DEBUG - getting all students skills
+2019-05-22 17:39:05,816 - Job - DEBUG - getting all students skills
+2019-05-22 17:39:07,091 - Job - DEBUG - getting all positions_skills
+2019-05-22 17:39:08,617 - Job - DEBUG - getting all positions_skills
+2019-05-22 17:39:09,541 - Job - DEBUG - job working on:5ce55efff4578f7e545dffd9
+2019-05-22 17:39:09,542 - Job - DEBUG - start sentiment analysis job for object_id:5ce55efef4578f7e545dffd8
+2019-05-22 17:39:12,668 - Job - DEBUG - job working on:5ce55efff4578f7e545dffd9
+2019-05-22 17:39:12,668 - Job - DEBUG - start sentiment analysis job for object_id:5ce55efef4578f7e545dffd8
+2019-05-22 17:39:20,423 - Job - DEBUG - update_company_score: 0
+2019-05-22 17:39:20,425 - Job - DEBUG - finished working on job_id: 5ce55efff4578f7e545dffd9
+2019-05-22 17:39:20,964 - Job - DEBUG - update_company_score: 0
+2019-05-22 17:39:20,965 - Job - DEBUG - finished working on job_id: 5ce55efff4578f7e545dffd9
+2019-05-22 17:39:35,806 - Job - DEBUG - do_job
+2019-05-22 17:39:35,974 - Job - DEBUG - do_job
+2019-05-22 17:39:51,362 - Job - DEBUG - do_job
+2019-05-22 17:39:53,993 - Job - DEBUG - do_job
+2019-05-22 17:40:06,622 - Job - DEBUG - do_job
+2019-05-22 17:40:08,340 - Job - DEBUG - do_job
+2019-05-22 17:40:21,030 - Job - DEBUG - do_job
+2019-05-22 17:40:22,621 - Job - DEBUG - do_job
+2019-05-22 17:40:43,097 - Job - DEBUG - do_job
+2019-05-22 17:40:45,337 - Job - DEBUG - do_job
+2019-05-22 17:40:57,967 - Job - DEBUG - do_job
+2019-05-22 17:40:59,981 - Job - DEBUG - do_job
+2019-05-22 17:41:12,566 - Job - DEBUG - do_job
+2019-05-22 17:41:14,384 - Job - DEBUG - do_job
+2019-05-22 17:41:27,002 - Job - DEBUG - do_job
+2019-05-22 17:41:28,885 - Job - DEBUG - do_job
+2019-05-22 17:41:41,378 - Job - DEBUG - do_job
+2019-05-22 17:41:43,240 - Job - DEBUG - do_job
+2019-05-22 17:41:56,012 - Job - DEBUG - do_job
+2019-05-22 17:41:57,543 - Job - DEBUG - do_job
+2019-05-22 17:42:11,194 - Job - DEBUG - do_job
+2019-05-22 17:42:13,487 - Job - DEBUG - do_job
+2019-05-22 17:42:26,727 - Job - DEBUG - do_job
+2019-05-22 17:42:28,523 - Job - DEBUG - do_job
+2019-05-22 17:42:41,073 - Job - DEBUG - do_job
+2019-05-22 17:42:43,440 - Job - DEBUG - do_job
+2019-05-22 17:42:56,245 - Job - DEBUG - do_job
+2019-05-22 17:42:57,696 - Job - DEBUG - do_job
+2019-05-22 17:43:11,586 - Job - DEBUG - do_job
+2019-05-22 17:43:12,134 - Job - DEBUG - do_job
+2019-05-22 17:43:25,962 - Job - DEBUG - do_job
+2019-05-22 17:43:26,588 - Job - DEBUG - do_job
+2019-05-22 17:43:40,666 - Job - DEBUG - do_job
+2019-05-22 17:43:41,094 - Job - DEBUG - do_job
+2019-05-22 17:43:55,275 - Job - DEBUG - do_job
+2019-05-22 17:43:55,748 - Job - DEBUG - do_job
+2019-05-22 17:44:09,600 - Job - DEBUG - do_job
+2019-05-22 17:44:10,353 - Job - DEBUG - do_job
+2019-05-22 17:44:24,667 - Job - DEBUG - do_job
+2019-05-22 17:44:24,827 - Job - DEBUG - do_job
+2019-05-22 17:44:40,366 - Job - DEBUG - do_job
+2019-05-22 17:44:40,533 - Job - DEBUG - do_job
+2019-05-22 17:44:55,205 - Job - DEBUG - do_job
+2019-05-22 17:44:55,454 - Job - DEBUG - do_job
+2019-05-22 17:45:10,737 - Job - DEBUG - do_job
+2019-05-22 17:45:11,137 - Job - DEBUG - do_job
+2019-05-22 17:45:25,947 - Job - DEBUG - do_job
+2019-05-22 17:45:26,477 - Job - DEBUG - do_job
+2019-05-22 17:45:40,325 - Job - DEBUG - do_job
+2019-05-22 17:45:42,780 - Job - DEBUG - do_job
+2019-05-22 17:45:54,800 - Job - DEBUG - do_job
+2019-05-22 17:45:59,398 - Job - DEBUG - do_job
+2019-05-22 17:46:10,036 - Job - DEBUG - do_job
+2019-05-22 17:46:13,954 - Job - DEBUG - do_job
+2019-05-22 17:46:29,783 - Job - DEBUG - do_job
+2019-05-22 17:46:29,997 - Job - DEBUG - do_job
+2019-05-22 17:46:47,416 - Job - DEBUG - do_job
+2019-05-22 17:46:50,252 - Job - DEBUG - do_job
+2019-05-22 17:47:02,023 - Job - DEBUG - do_job
+2019-05-22 17:47:07,559 - Job - DEBUG - do_job
+2019-05-22 17:47:20,869 - Job - DEBUG - do_job
+2019-05-22 17:47:23,497 - Job - DEBUG - do_job
+2019-05-22 17:47:35,922 - Job - DEBUG - do_job
+2019-05-22 17:47:38,288 - Job - DEBUG - do_job
+2019-05-22 17:47:50,370 - Job - DEBUG - do_job
+2019-05-22 17:47:52,640 - Job - DEBUG - do_job
+2019-05-22 17:48:05,401 - Job - DEBUG - do_job
+2019-05-22 17:48:08,764 - Job - DEBUG - do_job
+2019-05-22 17:48:21,265 - Job - DEBUG - do_job
+2019-05-22 17:48:24,170 - Job - DEBUG - do_job
+2019-05-22 17:48:36,123 - Job - DEBUG - do_job
+2019-05-22 17:48:39,842 - Job - DEBUG - do_job
+2019-05-22 17:48:50,355 - Job - DEBUG - do_job
+2019-05-22 17:48:55,280 - Job - DEBUG - do_job
+2019-05-22 17:49:09,580 - Job - DEBUG - do_job
+2019-05-22 17:49:12,341 - Job - DEBUG - do_job
+2019-05-22 17:49:23,853 - Job - DEBUG - do_job
+2019-05-22 17:49:26,740 - Job - DEBUG - do_job
+2019-05-22 17:49:38,920 - Job - DEBUG - do_job
+2019-05-22 17:49:42,666 - Job - DEBUG - do_job
+2019-05-22 17:49:54,342 - Job - DEBUG - do_job
+2019-05-22 17:49:57,330 - Job - DEBUG - do_job
+2019-05-22 17:50:09,011 - Job - DEBUG - do_job
+2019-05-22 17:50:12,262 - Job - DEBUG - do_job
+2019-05-22 17:50:23,293 - Job - DEBUG - do_job
+2019-05-22 17:50:26,526 - Job - DEBUG - do_job
+2019-05-22 17:50:38,267 - Job - DEBUG - do_job
+2019-05-22 17:50:40,982 - Job - DEBUG - do_job
+2019-05-22 17:50:52,788 - Job - DEBUG - do_job
+2019-05-22 17:50:55,449 - Job - DEBUG - do_job
+2019-05-22 17:51:07,250 - Job - DEBUG - do_job
+2019-05-22 17:51:09,799 - Job - DEBUG - do_job
+2019-05-22 17:51:22,191 - Job - DEBUG - do_job
+2019-05-22 17:51:25,286 - Job - DEBUG - do_job
+2019-05-22 17:51:37,623 - Job - DEBUG - do_job
+2019-05-22 17:51:39,672 - Job - DEBUG - do_job
+2019-05-22 17:51:52,071 - Job - DEBUG - do_job
+2019-05-22 17:51:54,259 - Job - DEBUG - do_job
+2019-05-22 17:52:06,827 - Job - DEBUG - do_job
+2019-05-22 17:52:09,383 - Job - DEBUG - do_job
+2019-05-22 17:52:22,185 - Job - DEBUG - do_job
+2019-05-22 17:52:25,496 - Job - DEBUG - do_job
+2019-05-22 17:52:40,348 - Job - DEBUG - do_job
+2019-05-22 17:52:40,435 - Job - DEBUG - do_job
+2019-05-22 17:52:55,953 - Job - DEBUG - do_job
+2019-05-22 17:52:57,151 - Job - DEBUG - do_job
+2019-05-22 17:53:10,370 - Job - DEBUG - do_job
+2019-05-22 17:53:11,509 - Job - DEBUG - do_job
+2019-05-22 17:53:24,827 - Job - DEBUG - do_job
+2019-05-22 17:53:25,927 - Job - DEBUG - do_job
+2019-05-22 17:53:40,385 - Job - DEBUG - do_job
+2019-05-22 17:53:40,468 - Job - DEBUG - do_job
+2019-05-22 17:53:54,826 - Job - DEBUG - do_job
+2019-05-22 17:53:54,835 - Job - DEBUG - do_job
+2019-05-22 17:54:09,354 - Job - DEBUG - do_job
+2019-05-22 17:54:09,358 - Job - DEBUG - do_job
+2019-05-22 17:54:23,848 - Job - DEBUG - do_job
+2019-05-22 17:54:23,858 - Job - DEBUG - do_job
+2019-05-22 17:54:38,403 - Job - DEBUG - do_job
+2019-05-22 17:54:38,456 - Job - DEBUG - do_job
+2019-05-22 17:54:52,947 - Job - DEBUG - do_job
+2019-05-22 17:54:53,518 - Job - DEBUG - do_job
+2019-05-22 17:55:07,620 - Job - DEBUG - do_job
+2019-05-22 17:55:08,257 - Job - DEBUG - do_job
+2019-05-22 17:55:22,132 - Job - DEBUG - do_job
+2019-05-22 17:55:22,786 - Job - DEBUG - do_job
+2019-05-22 17:55:36,733 - Job - DEBUG - do_job
+2019-05-22 17:55:37,373 - Job - DEBUG - do_job
+2019-05-22 17:55:51,374 - Job - DEBUG - do_job
+2019-05-22 17:55:52,053 - Job - DEBUG - do_job
+2019-05-22 17:56:11,403 - Job - DEBUG - do_job
+2019-05-22 17:56:12,546 - Job - DEBUG - do_job
+2019-05-22 17:56:26,093 - Job - DEBUG - do_job
+2019-05-22 17:56:27,206 - Job - DEBUG - do_job
+2019-05-22 17:56:44,865 - Job - DEBUG - do_job
+2019-05-22 17:56:51,392 - Job - DEBUG - do_job
+2019-05-22 17:57:09,021 - Job - DEBUG - do_job
+2019-05-22 17:57:11,734 - Job - DEBUG - do_job
+2019-05-22 17:57:36,704 - Job - DEBUG - do_job
+2019-05-22 17:57:40,834 - Job - DEBUG - do_job
+2019-05-22 17:57:53,064 - Job - DEBUG - do_job
+2019-05-22 17:57:56,865 - Job - DEBUG - do_job
+2019-05-22 17:58:08,718 - Job - DEBUG - do_job
+2019-05-22 17:58:12,023 - Job - DEBUG - do_job
+2019-05-22 17:58:23,110 - Job - DEBUG - do_job
+2019-05-22 17:58:27,470 - Job - DEBUG - do_job
+2019-05-22 17:58:37,858 - Job - DEBUG - do_job
+2019-05-22 17:58:43,137 - Job - DEBUG - do_job
+2019-05-22 17:59:11,026 - Job - DEBUG - do_job
+2019-05-22 17:59:13,477 - Job - DEBUG - do_job
+2019-05-22 17:59:27,401 - Job - DEBUG - do_job
+2019-05-22 17:59:29,789 - Job - DEBUG - do_job
+2019-05-22 17:59:42,156 - Job - DEBUG - do_job
+2019-05-22 17:59:45,319 - Job - DEBUG - do_job
+2019-05-22 17:59:56,637 - Job - DEBUG - do_job
+2019-05-22 18:00:00,386 - Job - DEBUG - do_job
+2019-05-22 18:00:15,495 - Job - DEBUG - do_job
+2019-05-22 18:00:17,587 - Job - DEBUG - do_job
+2019-05-22 18:00:32,012 - Job - DEBUG - do_job
+2019-05-22 18:00:34,633 - Job - DEBUG - do_job
+2019-05-22 18:00:47,100 - Job - DEBUG - do_job
+2019-05-22 18:00:50,173 - Job - DEBUG - do_job
+2019-05-22 18:01:01,610 - Job - DEBUG - do_job
+2019-05-22 18:01:08,584 - Job - DEBUG - do_job
+2019-05-22 18:01:16,239 - Job - DEBUG - do_job
+2019-05-22 18:01:23,827 - Job - DEBUG - do_job
+2019-05-22 18:01:31,067 - Job - DEBUG - do_job
+2019-05-22 18:01:38,492 - Job - DEBUG - do_job
+2019-05-22 18:01:45,500 - Job - DEBUG - do_job
+2019-05-22 18:01:54,068 - Job - DEBUG - do_job
+2019-05-22 18:02:00,389 - Job - DEBUG - do_job
+2019-05-22 18:02:08,922 - Job - DEBUG - do_job
+2019-05-22 18:02:14,773 - Job - DEBUG - do_job
+2019-05-22 18:02:23,466 - Job - DEBUG - do_job
+2019-05-22 18:02:29,303 - Job - DEBUG - do_job
+2019-05-22 18:02:39,411 - Job - DEBUG - do_job
+2019-05-22 18:02:44,368 - Job - DEBUG - do_job
+2019-05-22 18:02:53,838 - Job - DEBUG - do_job
+2019-05-22 18:02:58,786 - Job - DEBUG - do_job
+2019-05-22 18:03:08,832 - Job - DEBUG - do_job
+2019-05-22 18:03:13,408 - Job - DEBUG - do_job
+2019-05-22 18:03:23,320 - Job - DEBUG - do_job
+2019-05-22 18:03:27,759 - Job - DEBUG - do_job
+2019-05-22 18:03:37,738 - Job - DEBUG - do_job
+2019-05-22 18:03:42,154 - Job - DEBUG - do_job
+2019-05-22 18:03:52,217 - Job - DEBUG - do_job
+2019-05-22 18:03:56,598 - Job - DEBUG - do_job
+2019-05-22 18:04:06,643 - Job - DEBUG - do_job
+2019-05-22 18:04:12,534 - Job - DEBUG - do_job
+2019-05-22 18:04:21,515 - Job - DEBUG - do_job
+2019-05-22 18:04:28,979 - Job - DEBUG - do_job
+2019-05-22 18:04:36,088 - Job - DEBUG - do_job
+2019-05-22 18:04:45,430 - Job - DEBUG - do_job
+2019-05-22 18:04:51,755 - Job - DEBUG - do_job
+2019-05-22 18:05:01,113 - Job - DEBUG - do_job
+2019-05-22 18:05:06,348 - Job - DEBUG - do_job
+2019-05-22 18:05:16,687 - Job - DEBUG - do_job
+2019-05-22 18:05:23,578 - Job - DEBUG - do_job
+2019-05-22 18:05:31,082 - Job - DEBUG - do_job
+2019-05-22 18:05:37,954 - Job - DEBUG - do_job
+2019-05-22 18:05:50,539 - Job - DEBUG - do_job
+2019-05-22 18:06:03,865 - Job - DEBUG - do_job
+2019-05-22 18:06:05,096 - Job - DEBUG - do_job
+2019-05-22 18:06:18,817 - Job - DEBUG - do_job
+2019-05-22 18:06:19,437 - Job - DEBUG - do_job
+2019-05-22 18:06:33,575 - Job - DEBUG - do_job
+2019-05-22 18:06:33,962 - Job - DEBUG - do_job
+2019-05-22 18:06:48,514 - Job - DEBUG - do_job
+2019-05-22 18:06:48,906 - Job - DEBUG - do_job
+2019-05-22 18:07:02,915 - Job - DEBUG - do_job
+2019-05-22 18:07:03,416 - Job - DEBUG - do_job
+2019-05-22 18:07:18,165 - Job - DEBUG - do_job
+2019-05-22 18:07:19,664 - Job - DEBUG - do_job
+2019-05-22 18:07:33,556 - Job - DEBUG - do_job
+2019-05-22 18:07:35,612 - Job - DEBUG - do_job
+2019-05-22 18:07:47,902 - Job - DEBUG - do_job
+2019-05-22 18:07:52,078 - Job - DEBUG - do_job
+2019-05-22 18:08:02,368 - Job - DEBUG - do_job
+2019-05-22 18:08:07,748 - Job - DEBUG - do_job
+2019-05-22 18:08:17,167 - Job - DEBUG - do_job
+2019-05-22 18:08:22,446 - Job - DEBUG - do_job
+2019-05-22 18:08:31,975 - Job - DEBUG - do_job
+2019-05-22 18:08:38,467 - Job - DEBUG - do_job
+2019-05-22 18:08:46,906 - Job - DEBUG - do_job
+2019-05-22 18:08:55,244 - Job - DEBUG - do_job
+2019-05-22 18:09:04,900 - Job - DEBUG - do_job
+2019-05-22 18:09:09,689 - Job - DEBUG - do_job
+2019-05-22 18:09:19,901 - Job - DEBUG - do_job
+2019-05-22 18:09:24,253 - Job - DEBUG - do_job
+2019-05-22 18:09:34,652 - Job - DEBUG - do_job
+2019-05-22 18:09:38,604 - Job - DEBUG - do_job
+2019-05-22 18:09:49,191 - Job - DEBUG - do_job
+2019-05-22 18:09:52,959 - Job - DEBUG - do_job
+2019-05-22 18:10:17,581 - Job - DEBUG - do_job
+2019-05-22 18:10:27,908 - Job - DEBUG - do_job
+2019-05-22 18:10:31,951 - Job - DEBUG - do_job
+2019-05-22 18:10:46,167 - Job - DEBUG - do_job
+2019-05-22 18:10:46,852 - Job - DEBUG - do_job
+2019-05-22 18:11:00,515 - Job - DEBUG - do_job
+2019-05-22 18:11:01,176 - Job - DEBUG - do_job
+2019-05-22 18:11:16,055 - Job - DEBUG - do_job
+2019-05-22 18:11:16,488 - Job - DEBUG - do_job
+2019-05-22 18:11:18,391 - Job - DEBUG - getting all active positions
+2019-05-22 18:11:19,193 - Job - DEBUG - getting all active positions
+2019-05-22 18:11:20,700 - Job - DEBUG - getting all active student profiles
+2019-05-22 18:11:21,553 - Job - DEBUG - getting all active student profiles
+2019-05-22 18:11:24,147 - Job - DEBUG - getting all students skills
+2019-05-22 18:11:25,067 - Job - DEBUG - getting all students skills
+2019-05-22 18:11:26,590 - Job - DEBUG - getting all positions_skills
+2019-05-22 18:11:27,325 - Job - DEBUG - getting all positions_skills
+2019-05-22 18:11:29,639 - Job - DEBUG - job working on:5ce5668df4578f930470f886
+2019-05-22 18:11:29,642 - Job - DEBUG - start sentiment analysis job for object_id:5ce5668cf4578f930470f885
+2019-05-22 18:11:30,073 - Job - DEBUG - job working on:5ce5668df4578f930470f886
+2019-05-22 18:11:30,073 - Job - DEBUG - start sentiment analysis job for object_id:5ce5668cf4578f930470f885
+2019-05-22 18:11:37,238 - Job - DEBUG - update_company_score: 0
+2019-05-22 18:11:37,239 - Job - DEBUG - finished working on job_id: 5ce5668df4578f930470f886
+2019-05-22 18:11:37,846 - Job - DEBUG - update_company_score: 0
+2019-05-22 18:11:37,846 - Job - DEBUG - finished working on job_id: 5ce5668df4578f930470f886
+2019-05-22 18:11:51,961 - Job - DEBUG - do_job
+2019-05-22 18:11:53,320 - Job - DEBUG - do_job
+2019-05-22 18:11:54,363 - Job - DEBUG - getting all active positions
+2019-05-22 18:11:55,991 - Job - DEBUG - getting all active positions
+2019-05-22 18:11:56,632 - Job - DEBUG - getting all active student profiles
+2019-05-22 18:11:58,375 - Job - DEBUG - getting all active student profiles
+2019-05-22 18:11:58,944 - Job - DEBUG - getting all students skills
+2019-05-22 18:12:00,700 - Job - DEBUG - getting all students skills
+2019-05-22 18:12:01,282 - Job - DEBUG - getting all positions_skills
+2019-05-22 18:12:03,169 - Job - DEBUG - getting all positions_skills
+2019-05-22 18:12:04,278 - Job - DEBUG - job working on:5ce566a3f4578f930470f891
+2019-05-22 18:12:04,279 - Job - DEBUG - start sentiment analysis job for object_id:5ce566a2f4578f930470f88f
+2019-05-22 18:12:06,473 - Job - DEBUG - job working on:5ce566a3f4578f930470f891
+2019-05-22 18:12:06,474 - Job - DEBUG - start sentiment analysis job for object_id:5ce566a2f4578f930470f88f
+2019-05-22 18:12:13,065 - Job - DEBUG - update_company_score: 0
+2019-05-22 18:12:13,066 - Job - DEBUG - finished working on job_id: 5ce566a3f4578f930470f891
+2019-05-22 18:12:14,384 - Job - DEBUG - update_company_score: 0
+2019-05-22 18:12:14,385 - Job - DEBUG - finished working on job_id: 5ce566a3f4578f930470f891
+2019-05-22 18:12:27,398 - Job - DEBUG - do_job
+2019-05-22 18:12:29,016 - Job - DEBUG - do_job
+2019-05-22 18:12:41,912 - Job - DEBUG - do_job
+2019-05-22 18:12:43,530 - Job - DEBUG - do_job
+2019-05-22 18:12:56,954 - Job - DEBUG - do_job
+2019-05-22 18:13:01,584 - Job - DEBUG - do_job
+2019-05-22 18:13:11,609 - Job - DEBUG - do_job
+2019-05-22 18:13:15,962 - Job - DEBUG - do_job
+2019-05-22 18:13:26,205 - Job - DEBUG - do_job
+2019-05-22 18:13:36,128 - Job - DEBUG - do_job
+2019-05-22 18:13:45,949 - Job - DEBUG - do_job
+2019-05-22 18:14:34,873 - Job - DEBUG - do_job
+2019-05-22 18:14:50,374 - Job - DEBUG - do_job
+2019-05-22 18:15:22,625 - Job - DEBUG - do_job
+2019-05-22 18:15:38,932 - Job - DEBUG - do_job
+2019-05-22 18:15:55,423 - Job - DEBUG - do_job
+2019-05-22 18:16:10,949 - Job - DEBUG - do_job
+2019-05-22 18:16:27,279 - Job - DEBUG - do_job
+2019-05-22 18:16:42,012 - Job - DEBUG - do_job
+2019-05-22 18:16:56,368 - Job - DEBUG - do_job
+2019-05-22 18:17:10,798 - Job - DEBUG - do_job
+2019-05-22 18:17:47,968 - Job - DEBUG - do_job
+2019-05-22 18:18:08,150 - Job - DEBUG - do_job
+2019-05-22 18:18:10,839 - Job - DEBUG - getting all active positions
+2019-05-22 18:18:13,697 - Job - DEBUG - getting all active student profiles
+2019-05-22 18:18:17,388 - Job - DEBUG - getting all students skills
+2019-05-22 18:18:19,753 - Job - DEBUG - getting all positions_skills
+2019-05-22 18:18:22,400 - Job - DEBUG - job working on:5ce5682ff4578f930470f8b6
+2019-05-22 18:18:22,401 - Job - DEBUG - start sentiment analysis job for object_id:5ce5682ef4578f930470f8b5
+2019-05-22 18:18:31,382 - Job - DEBUG - update_company_score: 0
+2019-05-22 18:18:31,382 - Job - DEBUG - finished working on job_id: 5ce5682ff4578f930470f8b6
+2019-05-22 18:18:45,983 - Job - DEBUG - do_job
+2019-05-22 18:19:00,366 - Job - DEBUG - do_job
+2019-05-22 18:19:35,964 - Job - DEBUG - do_job
+2019-05-22 18:19:51,932 - Job - DEBUG - do_job
+2019-05-22 18:20:06,989 - Job - DEBUG - do_job
+2019-05-22 18:20:22,497 - Job - DEBUG - do_job
+2019-05-22 18:20:36,851 - Job - DEBUG - do_job
+2019-05-22 18:20:52,958 - Job - DEBUG - do_job
+2019-05-22 18:21:10,030 - Job - DEBUG - do_job
+2019-05-22 18:21:24,395 - Job - DEBUG - do_job
+2019-05-22 18:21:39,023 - Job - DEBUG - do_job
+2019-05-22 18:21:53,493 - Job - DEBUG - do_job
+2019-05-22 18:22:09,021 - Job - DEBUG - do_job
+2019-05-22 18:22:26,114 - Job - DEBUG - do_job
+2019-05-22 18:22:40,483 - Job - DEBUG - do_job
+2019-05-22 18:22:55,102 - Job - DEBUG - do_job
+2019-05-22 18:23:09,531 - Job - DEBUG - do_job
+2019-05-22 18:23:25,416 - Job - DEBUG - do_job
+2019-05-22 18:23:49,499 - Job - DEBUG - do_job
+2019-05-22 18:24:03,753 - Job - DEBUG - do_job
+2019-05-22 18:24:18,060 - Job - DEBUG - do_job
+2019-05-22 18:24:32,424 - Job - DEBUG - do_job
+2019-05-22 18:24:46,724 - Job - DEBUG - do_job
+2019-05-22 18:25:01,249 - Job - DEBUG - do_job
+2019-05-22 18:25:15,815 - Job - DEBUG - do_job
+2019-05-22 18:25:30,136 - Job - DEBUG - do_job
+2019-05-22 18:25:45,189 - Job - DEBUG - do_job
+2019-05-22 18:25:59,620 - Job - DEBUG - do_job
+2019-05-22 18:26:14,086 - Job - DEBUG - do_job
+2019-05-22 18:26:28,506 - Job - DEBUG - do_job
+2019-05-22 18:26:42,948 - Job - DEBUG - do_job
+2019-05-22 18:26:57,217 - Job - DEBUG - do_job
+2019-05-22 18:27:11,582 - Job - DEBUG - do_job
+2019-05-22 18:27:26,067 - Job - DEBUG - do_job
+2019-05-22 18:27:40,713 - Job - DEBUG - do_job
+2019-05-22 18:27:55,306 - Job - DEBUG - do_job
+2019-05-22 18:28:09,727 - Job - DEBUG - do_job
+2019-05-22 18:28:24,155 - Job - DEBUG - do_job
+2019-05-22 18:28:38,601 - Job - DEBUG - do_job
+2019-05-22 18:28:54,091 - Job - DEBUG - do_job
+2019-05-22 18:29:09,117 - Job - DEBUG - do_job
+2019-05-22 18:29:23,750 - Job - DEBUG - do_job
+2019-05-22 18:29:38,099 - Job - DEBUG - do_job
+2019-05-22 18:29:40,370 - Job - DEBUG - getting all active positions
+2019-05-22 18:29:42,913 - Job - DEBUG - getting all active student profiles
+2019-05-22 18:29:45,422 - Job - DEBUG - getting all students skills
+2019-05-22 18:29:47,750 - Job - DEBUG - getting all positions_skills
+2019-05-22 18:29:50,663 - Job - DEBUG - job working on:5ce56ae1f4578f930470f8c6
+2019-05-22 18:29:50,666 - Job - DEBUG - start sentiment analysis job for object_id:5ce56ae0f4578f930470f8c5
+2019-05-22 18:29:58,063 - Job - DEBUG - update_company_score: 0
+2019-05-22 18:29:58,065 - Job - DEBUG - finished working on job_id: 5ce56ae1f4578f930470f8c6
+2019-05-22 18:30:12,880 - Job - DEBUG - do_job
+2019-05-22 18:30:27,477 - Job - DEBUG - do_job
+2019-05-22 18:30:42,127 - Job - DEBUG - do_job
+2019-05-22 18:30:59,661 - Job - DEBUG - do_job
+2019-05-22 18:31:16,715 - Job - DEBUG - do_job
+2019-05-22 18:31:42,567 - Job - DEBUG - do_job
+2019-05-22 18:32:04,802 - Job - DEBUG - do_job
+2019-05-22 18:32:19,197 - Job - DEBUG - do_job
+2019-05-22 18:32:21,584 - Job - DEBUG - getting all active positions
+2019-05-22 18:32:23,882 - Job - DEBUG - getting all active student profiles
+2019-05-22 18:32:26,240 - Job - DEBUG - getting all students skills
+2019-05-22 18:32:28,601 - Job - DEBUG - getting all positions_skills
+2019-05-22 18:32:31,003 - Job - DEBUG - job working on:5ce56b7ff4578f930470f8d6
+2019-05-22 18:32:31,003 - Job - DEBUG - start sentiment analysis job for object_id:5ce56b7ef4578f930470f8d5
+2019-05-22 18:32:38,855 - Job - DEBUG - update_company_score: 0
+2019-05-22 18:32:38,856 - Job - DEBUG - finished working on job_id: 5ce56b7ff4578f930470f8d6
+2019-05-22 18:32:53,198 - Job - DEBUG - do_job
+2019-05-22 18:33:07,646 - Job - DEBUG - do_job
+2019-05-22 18:33:22,032 - Job - DEBUG - do_job
+2019-05-22 18:33:36,506 - Job - DEBUG - do_job
+2019-05-22 18:33:50,912 - Job - DEBUG - do_job
+2019-05-22 18:34:05,433 - Job - DEBUG - do_job
+2019-05-22 18:34:19,782 - Job - DEBUG - do_job
+2019-05-22 18:34:34,229 - Job - DEBUG - do_job
+2019-05-22 18:34:48,585 - Job - DEBUG - do_job
+2019-05-22 18:35:06,194 - Job - DEBUG - do_job
+2019-05-22 18:35:20,809 - Job - DEBUG - do_job
+2019-05-22 18:35:35,188 - Job - DEBUG - do_job
+2019-05-22 18:35:49,610 - Job - DEBUG - do_job
+2019-05-22 18:36:04,186 - Job - DEBUG - do_job
+2019-05-22 18:36:18,821 - Job - DEBUG - do_job
+2019-05-22 18:36:34,005 - Job - DEBUG - do_job
+2019-05-22 18:36:48,346 - Job - DEBUG - do_job
+2019-05-22 18:37:03,239 - Job - DEBUG - do_job
+2019-05-22 18:37:17,744 - Job - DEBUG - do_job
+2019-05-22 18:37:34,963 - Job - DEBUG - do_job
+2019-05-22 18:37:50,401 - Job - DEBUG - do_job
+2019-05-22 18:38:04,925 - Job - DEBUG - do_job
+2019-05-22 18:38:19,600 - Job - DEBUG - do_job
+2019-05-22 18:38:34,212 - Job - DEBUG - do_job
+2019-05-22 18:38:48,547 - Job - DEBUG - do_job
+2019-05-22 18:39:04,400 - Job - DEBUG - do_job
+2019-05-22 18:39:21,531 - Job - DEBUG - do_job
+2019-05-22 18:39:35,902 - Job - DEBUG - do_job
+2019-05-22 18:39:51,846 - Job - DEBUG - do_job
+2019-05-22 18:40:06,113 - Job - DEBUG - do_job
+2019-05-22 18:40:20,523 - Job - DEBUG - do_job
+2019-05-22 18:40:38,420 - Job - DEBUG - do_job
+2019-05-22 18:40:53,674 - Job - DEBUG - do_job
+2019-05-22 18:41:08,333 - Job - DEBUG - do_job
+2019-05-22 18:41:23,828 - Job - DEBUG - do_job
+2019-05-22 18:41:38,536 - Job - DEBUG - do_job
+2019-05-22 18:41:54,916 - Job - DEBUG - do_job
+2019-05-22 18:42:09,188 - Job - DEBUG - do_job
+2019-05-22 18:42:23,600 - Job - DEBUG - do_job
+2019-05-22 18:43:18,573 - Job - DEBUG - do_job
+2019-05-22 18:43:33,882 - Job - DEBUG - do_job
+2019-05-22 18:43:48,957 - Job - DEBUG - do_job
+2019-05-22 18:44:04,000 - Job - DEBUG - do_job
+2019-05-22 18:44:18,822 - Job - DEBUG - do_job
+2019-05-22 18:44:33,870 - Job - DEBUG - do_job
+2019-05-22 18:44:48,817 - Job - DEBUG - do_job
+2019-05-22 18:45:03,833 - Job - DEBUG - do_job
+2019-05-22 18:45:19,066 - Job - DEBUG - do_job
+2019-05-22 18:45:34,070 - Job - DEBUG - do_job
+2019-05-22 18:45:48,982 - Job - DEBUG - do_job
+2019-05-22 18:46:03,909 - Job - DEBUG - do_job
+2019-05-22 18:46:18,824 - Job - DEBUG - do_job
+2019-05-22 18:46:33,912 - Job - DEBUG - do_job
+2019-05-22 18:46:48,904 - Job - DEBUG - do_job
+2019-05-22 18:47:03,788 - Job - DEBUG - do_job
+2019-05-22 18:47:18,745 - Job - DEBUG - do_job
+2019-05-22 18:47:33,715 - Job - DEBUG - do_job
+2019-05-22 18:47:48,712 - Job - DEBUG - do_job
+2019-05-22 18:48:03,659 - Job - DEBUG - do_job
+2019-05-22 18:48:18,535 - Job - DEBUG - do_job
+2019-05-22 18:48:33,662 - Job - DEBUG - do_job
+2019-05-22 18:48:48,626 - Job - DEBUG - do_job
+2019-05-22 18:49:03,790 - Job - DEBUG - do_job
+2019-05-22 18:49:18,584 - Job - DEBUG - do_job
+2019-05-22 18:49:33,460 - Job - DEBUG - do_job
+2019-05-22 18:49:48,421 - Job - DEBUG - do_job
+2019-05-22 18:50:04,182 - Job - DEBUG - do_job
+2019-05-22 18:50:19,020 - Job - DEBUG - do_job
+2019-05-22 18:50:34,145 - Job - DEBUG - do_job
+2019-05-22 18:51:01,188 - Job - DEBUG - do_job
+2019-05-22 18:51:24,819 - Job - DEBUG - do_job
+2019-05-22 19:01:21,904 - Job - DEBUG - do_job
+2019-05-22 19:01:35,490 - Job - DEBUG - do_job
+2019-05-22 19:01:36,739 - Job - DEBUG - do_job
+2019-05-22 19:01:50,490 - Job - DEBUG - do_job
+2019-05-22 19:01:51,544 - Job - DEBUG - do_job
+2019-05-22 19:02:05,273 - Job - DEBUG - do_job
+2019-05-22 19:02:06,309 - Job - DEBUG - do_job
+2019-05-22 19:02:19,999 - Job - DEBUG - do_job
+2019-05-22 19:02:21,085 - Job - DEBUG - do_job
+2019-05-22 19:02:34,794 - Job - DEBUG - do_job
+2019-05-22 19:02:35,869 - Job - DEBUG - do_job
+2019-05-22 19:02:49,560 - Job - DEBUG - do_job
+2019-05-22 19:02:50,777 - Job - DEBUG - do_job
+2019-05-22 19:03:04,254 - Job - DEBUG - do_job
+2019-05-22 19:03:08,623 - Job - DEBUG - do_job
+2019-05-22 19:03:19,019 - Job - DEBUG - do_job
+2019-05-22 19:03:23,481 - Job - DEBUG - do_job
+2019-05-22 19:03:33,801 - Job - DEBUG - do_job
+2019-05-22 19:03:38,240 - Job - DEBUG - do_job
+2019-05-22 19:03:48,506 - Job - DEBUG - do_job
+2019-05-22 19:03:53,001 - Job - DEBUG - do_job
+2019-05-22 19:04:03,320 - Job - DEBUG - do_job
+2019-05-22 19:04:07,879 - Job - DEBUG - do_job
+2019-05-22 19:04:18,041 - Job - DEBUG - do_job
+2019-05-22 19:04:22,646 - Job - DEBUG - do_job
+2019-05-22 19:04:32,753 - Job - DEBUG - do_job
+2019-05-22 19:04:37,437 - Job - DEBUG - do_job
+2019-05-22 19:04:47,527 - Job - DEBUG - do_job
+2019-05-22 19:04:52,130 - Job - DEBUG - do_job
+2019-05-22 19:05:02,360 - Job - DEBUG - do_job
+2019-05-22 19:05:06,919 - Job - DEBUG - do_job
+2019-05-22 19:05:17,245 - Job - DEBUG - do_job
+2019-05-22 19:05:21,799 - Job - DEBUG - do_job
+2019-05-22 19:05:32,119 - Job - DEBUG - do_job
+2019-05-22 19:05:36,569 - Job - DEBUG - do_job
+2019-05-22 19:05:46,873 - Job - DEBUG - do_job
+2019-05-22 19:05:51,360 - Job - DEBUG - do_job
+2019-05-22 19:06:01,623 - Job - DEBUG - do_job
+2019-05-22 19:06:06,236 - Job - DEBUG - do_job
+2019-05-22 19:06:16,433 - Job - DEBUG - do_job
+2019-05-22 19:06:20,980 - Job - DEBUG - do_job
+2019-05-22 19:06:31,278 - Job - DEBUG - do_job
+2019-05-22 19:06:38,879 - Job - DEBUG - do_job
+2019-05-22 19:06:49,131 - Job - DEBUG - do_job
+2019-05-22 19:06:56,696 - Job - DEBUG - do_job
+2019-05-22 19:07:03,847 - Job - DEBUG - do_job
+2019-05-22 19:07:14,469 - Job - DEBUG - do_job
+2019-05-22 19:07:21,619 - Job - DEBUG - do_job
+2019-05-22 19:07:32,281 - Job - DEBUG - do_job
+2019-05-22 19:07:39,457 - Job - DEBUG - do_job
+2019-05-22 19:07:50,079 - Job - DEBUG - do_job
+2019-05-22 19:07:57,159 - Job - DEBUG - do_job
+2019-05-22 19:08:07,881 - Job - DEBUG - do_job
+2019-05-22 19:08:15,047 - Job - DEBUG - do_job
+2019-05-22 19:08:25,649 - Job - DEBUG - do_job
+2019-05-22 19:08:32,865 - Job - DEBUG - do_job
+2019-05-22 19:08:43,517 - Job - DEBUG - do_job
+2019-05-22 19:08:47,564 - Job - DEBUG - do_job
+2019-05-22 19:09:01,330 - Job - DEBUG - do_job
+2019-05-22 19:09:05,290 - Job - DEBUG - do_job
+2019-05-22 19:09:19,212 - Job - DEBUG - do_job
+2019-05-22 19:09:20,113 - Job - DEBUG - do_job
+2019-05-22 19:09:34,054 - Job - DEBUG - do_job
+2019-05-22 19:09:37,885 - Job - DEBUG - do_job
+2019-05-22 19:09:48,939 - Job - DEBUG - do_job
+2019-05-22 19:09:52,700 - Job - DEBUG - do_job
+2019-05-22 19:10:06,684 - Job - DEBUG - do_job
+2019-05-22 19:10:07,502 - Job - DEBUG - do_job
+2019-05-22 19:10:24,908 - Job - DEBUG - do_job
+2019-05-22 19:10:25,641 - Job - DEBUG - do_job
+2019-05-22 19:11:52,621 - Job - DEBUG - do_job
+2019-05-22 19:12:03,322 - Job - DEBUG - do_job
+2019-05-22 19:12:07,490 - Job - DEBUG - do_job
+2019-05-22 19:12:18,119 - Job - DEBUG - do_job
+2019-05-22 19:12:22,280 - Job - DEBUG - do_job
+2019-05-22 19:12:45,965 - Job - DEBUG - do_job
+2019-05-22 19:12:56,753 - Job - DEBUG - do_job
+2019-05-22 19:13:00,772 - Job - DEBUG - do_job
+2019-05-22 19:13:11,557 - Job - DEBUG - do_job
+2019-05-22 19:13:15,734 - Job - DEBUG - do_job
+2019-05-22 19:13:26,263 - Job - DEBUG - do_job
+2019-05-22 19:13:30,457 - Job - DEBUG - do_job
+2019-05-22 19:13:41,032 - Job - DEBUG - do_job
+2019-05-22 19:13:45,277 - Job - DEBUG - do_job
+2019-05-22 19:13:55,837 - Job - DEBUG - do_job
+2019-05-22 19:14:00,034 - Job - DEBUG - do_job
+2019-05-22 19:14:13,814 - Job - DEBUG - do_job
+2019-05-22 19:14:14,803 - Job - DEBUG - do_job
+2019-05-22 19:14:28,656 - Job - DEBUG - do_job
+2019-05-22 19:14:29,621 - Job - DEBUG - do_job
+2019-05-22 19:14:43,383 - Job - DEBUG - do_job
+2019-05-22 19:14:45,132 - Job - DEBUG - do_job
+2019-05-22 19:14:58,216 - Job - DEBUG - do_job
+2019-05-22 19:14:59,975 - Job - DEBUG - do_job
+2019-05-22 19:15:13,179 - Job - DEBUG - do_job
+2019-05-22 19:15:14,972 - Job - DEBUG - do_job
+2019-05-22 19:15:28,290 - Job - DEBUG - do_job
+2019-05-22 19:15:29,970 - Job - DEBUG - do_job
+2019-05-22 19:15:43,255 - Job - DEBUG - do_job
+2019-05-22 19:15:44,827 - Job - DEBUG - do_job
+2019-05-22 19:15:58,143 - Job - DEBUG - do_job
+2019-05-22 19:15:59,733 - Job - DEBUG - do_job
+2019-05-22 19:16:13,015 - Job - DEBUG - do_job
+2019-05-22 19:16:14,540 - Job - DEBUG - do_job
+2019-05-22 19:16:28,097 - Job - DEBUG - do_job
+2019-05-22 19:16:29,574 - Job - DEBUG - do_job
+2019-05-22 19:16:43,110 - Job - DEBUG - do_job
+2019-05-22 19:16:44,498 - Job - DEBUG - do_job
+2019-05-22 19:16:58,052 - Job - DEBUG - do_job
+2019-05-22 19:16:59,374 - Job - DEBUG - do_job
+2019-05-22 19:17:13,051 - Job - DEBUG - do_job
+2019-05-22 19:17:14,374 - Job - DEBUG - do_job
+2019-05-22 19:17:28,103 - Job - DEBUG - do_job
+2019-05-22 19:17:29,257 - Job - DEBUG - do_job
+2019-05-22 19:17:43,074 - Job - DEBUG - do_job
+2019-05-22 19:17:44,252 - Job - DEBUG - do_job
+2019-05-22 19:17:58,011 - Job - DEBUG - do_job
+2019-05-22 19:17:59,191 - Job - DEBUG - do_job
+2019-05-22 19:18:13,180 - Job - DEBUG - do_job
+2019-05-22 19:18:14,089 - Job - DEBUG - do_job
+2019-05-22 19:18:28,135 - Job - DEBUG - do_job
+2019-05-22 19:18:29,054 - Job - DEBUG - do_job
+2019-05-22 19:18:43,133 - Job - DEBUG - do_job
+2019-05-22 19:18:44,573 - Job - DEBUG - do_job
+2019-05-22 19:18:58,133 - Job - DEBUG - do_job
+2019-05-22 19:18:59,535 - Job - DEBUG - do_job
+2019-05-22 19:19:14,660 - Job - DEBUG - do_job
+2019-05-22 19:19:16,332 - Job - DEBUG - do_job
+2019-05-22 19:19:29,622 - Job - DEBUG - do_job
+2019-05-22 19:19:31,674 - Job - DEBUG - do_job
+2019-05-22 19:19:44,678 - Job - DEBUG - do_job
+2019-05-22 19:19:46,697 - Job - DEBUG - do_job
+2019-05-22 19:19:59,781 - Job - DEBUG - do_job
+2019-05-22 19:20:01,621 - Job - DEBUG - do_job
+2019-05-22 19:20:15,285 - Job - DEBUG - do_job
+2019-05-22 19:20:16,704 - Job - DEBUG - do_job
+2019-05-22 19:20:30,340 - Job - DEBUG - do_job
+2019-05-22 19:20:32,270 - Job - DEBUG - do_job
+2019-05-22 19:20:46,668 - Job - DEBUG - do_job
+2019-05-22 19:20:48,567 - Job - DEBUG - do_job
+2019-05-22 19:21:02,223 - Job - DEBUG - do_job
+2019-05-22 19:21:03,933 - Job - DEBUG - do_job
+2019-05-22 19:21:18,446 - Job - DEBUG - do_job
+2019-05-22 19:21:20,018 - Job - DEBUG - do_job
+2019-05-22 19:21:34,539 - Job - DEBUG - do_job
+2019-05-22 19:21:36,274 - Job - DEBUG - do_job
+2019-05-22 19:21:51,092 - Job - DEBUG - do_job
+2019-05-22 19:21:52,574 - Job - DEBUG - do_job
+2019-05-22 19:22:07,212 - Job - DEBUG - do_job
+2019-05-22 19:22:08,315 - Job - DEBUG - do_job
+2019-05-22 19:22:24,298 - Job - DEBUG - do_job
+2019-05-22 19:22:27,401 - Job - DEBUG - do_job
+2019-05-22 19:22:41,056 - Job - DEBUG - do_job
+2019-05-22 19:22:44,253 - Job - DEBUG - do_job
+2019-05-22 19:22:57,679 - Job - DEBUG - do_job
+2019-05-22 19:23:00,952 - Job - DEBUG - do_job
+2019-05-22 19:23:14,835 - Job - DEBUG - do_job
+2019-05-22 19:23:18,043 - Job - DEBUG - do_job
+2019-05-22 19:23:32,141 - Job - DEBUG - do_job
+2019-05-22 19:23:35,122 - Job - DEBUG - do_job
+2019-05-22 19:23:49,466 - Job - DEBUG - do_job
+2019-05-22 19:23:53,149 - Job - DEBUG - do_job
+2019-05-22 19:24:06,943 - Job - DEBUG - do_job
+2019-05-22 19:24:10,088 - Job - DEBUG - do_job
+2019-05-22 19:24:24,249 - Job - DEBUG - do_job
+2019-05-22 19:24:28,259 - Job - DEBUG - do_job
+2019-05-22 19:24:42,333 - Job - DEBUG - do_job
+2019-05-22 19:24:46,295 - Job - DEBUG - do_job
+2019-05-22 19:25:01,298 - Job - DEBUG - do_job
+2019-05-22 19:25:04,959 - Job - DEBUG - do_job
+2019-05-22 19:25:18,666 - Job - DEBUG - do_job
+2019-05-22 19:25:22,772 - Job - DEBUG - do_job
+2019-05-22 19:25:36,118 - Job - DEBUG - do_job
+2019-05-22 19:25:39,992 - Job - DEBUG - do_job
+2019-05-22 19:25:53,524 - Job - DEBUG - do_job
+2019-05-22 19:25:57,791 - Job - DEBUG - do_job
+2019-05-22 19:26:11,051 - Job - DEBUG - do_job
+2019-05-22 19:26:16,086 - Job - DEBUG - do_job
+2019-05-22 19:26:30,059 - Job - DEBUG - do_job
+2019-05-22 19:26:34,463 - Job - DEBUG - do_job
+2019-05-22 19:26:49,335 - Job - DEBUG - do_job
+2019-05-22 19:26:53,883 - Job - DEBUG - do_job
+2019-05-22 19:27:13,134 - Job - DEBUG - do_job
+2019-05-22 19:27:16,079 - Job - DEBUG - do_job
+2019-05-22 19:27:34,989 - Job - DEBUG - do_job
+2019-05-22 19:27:37,507 - Job - DEBUG - do_job
+2019-05-22 19:27:58,447 - Job - DEBUG - do_job
+2019-05-22 19:28:01,697 - Job - DEBUG - do_job
+2019-05-22 19:32:15,221 - Job - DEBUG - do_job
+2019-05-22 19:32:32,344 - Job - DEBUG - do_job
+2019-05-22 19:32:33,201 - Job - DEBUG - do_job
+2019-05-22 19:32:50,208 - Job - DEBUG - do_job
+2019-05-22 19:32:51,158 - Job - DEBUG - do_job
+2019-05-22 19:33:08,162 - Job - DEBUG - do_job
+2019-05-22 19:33:09,167 - Job - DEBUG - do_job
+2019-05-22 19:33:26,486 - Job - DEBUG - do_job
+2019-05-22 19:33:27,166 - Job - DEBUG - do_job
+2019-05-22 19:33:44,492 - Job - DEBUG - do_job
+2019-05-22 19:33:45,204 - Job - DEBUG - do_job
+2019-05-22 19:34:02,567 - Job - DEBUG - do_job
+2019-05-22 19:34:03,514 - Job - DEBUG - do_job
+2019-05-22 19:34:21,022 - Job - DEBUG - do_job
+2019-05-22 19:34:22,045 - Job - DEBUG - do_job
+2019-05-22 19:34:39,127 - Job - DEBUG - do_job
+2019-05-22 19:34:40,089 - Job - DEBUG - do_job
+2019-05-22 19:34:57,086 - Job - DEBUG - do_job
+2019-05-22 19:34:58,060 - Job - DEBUG - do_job
+2019-05-22 19:35:15,736 - Job - DEBUG - do_job
+2019-05-22 19:35:17,519 - Job - DEBUG - do_job
+2019-05-22 19:35:35,358 - Job - DEBUG - do_job
+2019-05-22 19:35:37,306 - Job - DEBUG - do_job
+2019-05-22 19:35:54,336 - Job - DEBUG - do_job
+2019-05-22 19:35:56,526 - Job - DEBUG - do_job
+2019-05-22 19:36:13,217 - Job - DEBUG - do_job
+2019-05-22 19:36:15,402 - Job - DEBUG - do_job
+2019-05-22 19:36:32,030 - Job - DEBUG - do_job
+2019-05-22 19:36:34,037 - Job - DEBUG - do_job
+2019-05-22 19:36:51,657 - Job - DEBUG - do_job
+2019-05-22 19:36:53,897 - Job - DEBUG - do_job
+2019-05-22 19:37:11,895 - Job - DEBUG - do_job
+2019-05-22 19:37:21,015 - Job - DEBUG - do_job
+2019-05-22 19:37:32,544 - Job - DEBUG - do_job
+2019-05-22 19:37:41,814 - Job - DEBUG - do_job
+2019-05-22 19:38:11,991 - Job - DEBUG - do_job
+2019-05-22 19:38:26,561 - Job - DEBUG - do_job
+2019-05-22 19:38:30,093 - Job - DEBUG - do_job
+2019-05-22 19:38:41,661 - Job - DEBUG - do_job
+2019-05-22 19:38:45,090 - Job - DEBUG - do_job
+2019-05-22 19:38:56,974 - Job - DEBUG - do_job
+2019-05-22 19:39:00,557 - Job - DEBUG - do_job
+2019-05-22 19:39:12,224 - Job - DEBUG - do_job
+2019-05-22 19:39:15,665 - Job - DEBUG - do_job
+2019-05-22 19:39:27,344 - Job - DEBUG - do_job
+2019-05-22 19:39:31,047 - Job - DEBUG - do_job
+2019-05-22 19:39:42,689 - Job - DEBUG - do_job
+2019-05-22 19:39:49,345 - Job - DEBUG - do_job
+2019-05-22 19:39:58,414 - Job - DEBUG - do_job
+2019-05-22 19:40:08,379 - Job - DEBUG - do_job
+2019-05-22 19:40:15,589 - Job - DEBUG - do_job
+2019-05-22 19:40:24,413 - Job - DEBUG - do_job
+2019-05-22 19:40:31,999 - Job - DEBUG - do_job
+2019-05-22 19:40:41,441 - Job - DEBUG - do_job
+2019-05-22 19:40:51,281 - Job - DEBUG - do_job
+2019-05-22 19:40:57,302 - Job - DEBUG - do_job
+2019-05-22 19:41:10,292 - Job - DEBUG - do_job
+2019-05-22 19:41:14,531 - Job - DEBUG - do_job
+2019-05-22 19:41:27,266 - Job - DEBUG - do_job
+2019-05-22 19:41:34,829 - Job - DEBUG - do_job
+2019-05-22 19:41:47,035 - Job - DEBUG - do_job
+2019-05-22 19:41:51,870 - Job - DEBUG - do_job
+2019-05-22 19:42:04,901 - Job - DEBUG - do_job
+2019-05-22 19:42:08,775 - Job - DEBUG - do_job
+2019-05-22 19:42:26,055 - Job - DEBUG - do_job
+2019-05-22 19:42:26,666 - Job - DEBUG - do_job
+2019-05-22 19:42:45,358 - Job - DEBUG - do_job
+2019-05-22 19:42:45,775 - Job - DEBUG - do_job
+2019-05-22 19:43:05,477 - Job - DEBUG - do_job
+2019-05-22 19:43:07,750 - Job - DEBUG - do_job
+2019-05-22 19:43:26,695 - Job - DEBUG - do_job
+2019-05-22 19:43:28,348 - Job - DEBUG - do_job
+2019-05-22 19:43:48,326 - Job - DEBUG - do_job
+2019-05-22 19:43:49,903 - Job - DEBUG - do_job
+2019-05-22 19:44:12,792 - Job - DEBUG - do_job
+2019-05-22 19:44:14,948 - Job - DEBUG - do_job
+2019-05-22 19:44:34,689 - Job - DEBUG - do_job
+2019-05-22 19:44:39,601 - Job - DEBUG - do_job
+2019-05-22 19:44:59,645 - Job - DEBUG - do_job
+2019-05-22 19:45:07,291 - Job - DEBUG - do_job
+2019-05-22 19:45:31,441 - Job - DEBUG - do_job
+2019-05-22 19:45:34,235 - Job - DEBUG - do_job
+2019-05-22 19:45:57,535 - Job - DEBUG - do_job
+2019-05-22 19:46:00,911 - Job - DEBUG - do_job
+2019-05-22 19:46:21,318 - Job - DEBUG - do_job
+2019-05-22 19:46:28,119 - Job - DEBUG - do_job
+2019-05-22 19:46:45,462 - Job - DEBUG - do_job
+2019-05-22 19:46:52,931 - Job - DEBUG - do_job
+2019-05-22 19:47:13,768 - Job - DEBUG - do_job
+2019-05-22 19:47:20,962 - Job - DEBUG - do_job
+2019-05-22 19:47:42,758 - Job - DEBUG - do_job
+2019-05-22 19:47:49,394 - Job - DEBUG - do_job
+2019-05-22 19:47:58,315 - Job - DEBUG - getting all active positions
+2019-05-22 19:48:16,297 - Job - DEBUG - getting all active student profiles
+2019-05-22 19:48:19,400 - Job - DEBUG - do_job
+2019-05-22 19:48:31,213 - Job - DEBUG - getting all students skills
+2019-05-22 19:48:48,247 - Job - DEBUG - getting all positions_skills
+2019-05-22 19:48:49,704 - Job - DEBUG - do_job
+2019-05-22 19:49:06,720 - Job - DEBUG - job working on:5ce57d2fbe16794eac87c619
+2019-05-22 19:49:06,721 - Job - DEBUG - rematch by position :5ce57d2ebe16794eac87c617
+2019-05-22 19:49:06,722 - Job - DEBUG - finished working on job_id: 5ce57d2fbe16794eac87c619
+2019-05-22 19:49:20,217 - Job - DEBUG - do_job
+2019-05-22 19:49:21,272 - Job - DEBUG - student:5cbdbe62f4578f2eb8853f44 psition: 5ce57d2ebe16794eac87c617 match_level0.41250000000000003
+2019-05-22 19:49:40,325 - Job - DEBUG - save_match: 1
+2019-05-22 19:49:51,217 - Job - DEBUG - do_job
+2019-05-22 19:49:52,949 - Job - DEBUG - do_job
+2019-05-22 19:50:20,568 - Job - DEBUG - do_job
+2019-05-22 19:50:25,299 - Job - DEBUG - do_job
+2019-05-22 19:50:48,271 - Job - DEBUG - do_job
+2019-05-22 19:51:09,176 - Job - DEBUG - do_job
+2019-05-22 19:51:30,314 - Job - DEBUG - do_job
+2019-05-22 19:51:53,737 - Job - DEBUG - do_job
+2019-05-22 19:52:24,962 - Job - DEBUG - do_job
+2019-05-22 19:52:35,707 - Job - DEBUG - do_job
+2019-05-22 19:52:39,522 - Job - DEBUG - do_job
+2019-05-22 19:52:50,550 - Job - DEBUG - do_job
+2019-05-22 19:52:54,545 - Job - DEBUG - do_job
+2019-05-22 19:53:05,851 - Job - DEBUG - do_job
+2019-05-22 19:53:10,134 - Job - DEBUG - do_job
+2019-05-22 19:53:20,622 - Job - DEBUG - do_job
+2019-05-22 19:53:25,285 - Job - DEBUG - do_job
+2019-05-22 19:53:35,689 - Job - DEBUG - do_job
+2019-05-22 19:53:40,171 - Job - DEBUG - do_job
+2019-05-22 19:53:50,646 - Job - DEBUG - do_job
+2019-05-22 19:53:55,762 - Job - DEBUG - do_job
+2019-05-22 19:54:06,350 - Job - DEBUG - do_job
+2019-05-22 19:54:12,189 - Job - DEBUG - do_job
+2019-05-22 19:54:22,870 - Job - DEBUG - do_job
+2019-05-22 19:54:28,275 - Job - DEBUG - do_job
+2019-05-22 19:54:40,902 - Job - DEBUG - do_job
+2019-05-22 19:54:45,879 - Job - DEBUG - do_job
+2019-05-22 19:54:58,325 - Job - DEBUG - do_job
+2019-05-22 19:55:04,396 - Job - DEBUG - do_job
+2019-05-22 19:55:17,137 - Job - DEBUG - do_job
+2019-05-22 19:55:23,196 - Job - DEBUG - do_job
+2019-05-22 19:55:36,436 - Job - DEBUG - do_job
+2019-05-22 19:55:41,796 - Job - DEBUG - do_job
+2019-05-22 19:55:43,027 - Job - DEBUG - getting all active positions
+2019-05-22 19:55:48,330 - Job - DEBUG - getting all active positions
+2019-05-22 19:55:49,221 - Job - DEBUG - getting all active student profiles
+2019-05-22 19:55:54,472 - Job - DEBUG - getting all active student profiles
+2019-05-22 19:55:55,007 - Job - DEBUG - getting all students skills
+2019-05-22 19:55:59,753 - Job - DEBUG - getting all students skills
+2019-05-22 19:56:00,728 - Job - DEBUG - getting all positions_skills
+2019-05-22 19:56:07,342 - Job - DEBUG - getting all positions_skills
+2019-05-22 19:56:08,392 - Job - DEBUG - job working on:5ce57f0bf4578f54e835ca37
+2019-05-22 19:56:08,392 - Job - DEBUG - start sentiment analysis job for object_id:5ce57f08f4578f54e835ca35
+2019-05-22 19:56:15,694 - Job - DEBUG - job working on:5ce57f0bf4578f54e835ca37
+2019-05-22 19:56:15,694 - Job - DEBUG - start sentiment analysis job for object_id:5ce57f08f4578f54e835ca35
+2019-05-22 19:56:36,586 - Job - DEBUG - update_company_score: 0
+2019-05-22 19:56:37,023 - Job - DEBUG - finished working on job_id: 5ce57f0bf4578f54e835ca37
+2019-05-22 19:56:44,581 - Job - DEBUG - update_company_score: 0
+2019-05-22 19:56:45,052 - Job - DEBUG - finished working on job_id: 5ce57f0bf4578f54e835ca37
+2019-05-22 19:56:47,117 - Job - DEBUG - job working on:5ce57f0ebe16794eac87c649
+2019-05-22 19:56:47,118 - Job - DEBUG - rematch by position :5ce57f0dbe16794eac87c647
+2019-05-22 19:56:47,120 - Job - DEBUG - finished working on job_id: 5ce57f0ebe16794eac87c649
+2019-05-22 19:56:54,026 - Job - DEBUG - job working on:5ce57f0ebe16794eac87c649
+2019-05-22 19:56:54,026 - Job - DEBUG - rematch by position :5ce57f0dbe16794eac87c647
+2019-05-22 19:56:54,042 - Job - DEBUG - finished working on job_id: 5ce57f0ebe16794eac87c649
+2019-05-22 19:56:55,013 - Job - DEBUG - student:5cbdbe62f4578f2eb8853f44 psition: 5ce57f0dbe16794eac87c647 match_level0.47500000000000003
+2019-05-22 19:57:05,584 - Job - DEBUG - student:5cbdbe62f4578f2eb8853f44 psition: 5ce57f0dbe16794eac87c647 match_level0.47500000000000003
+2019-05-22 19:57:06,388 - Job - DEBUG - save_match: 1
+2019-05-22 19:57:15,459 - Job - DEBUG - save_match: 1
+2019-05-22 19:57:18,789 - Job - DEBUG - do_job
+2019-05-22 19:57:28,036 - Job - DEBUG - do_job
+2019-05-22 19:57:29,090 - Job - DEBUG - getting all active positions
+2019-05-22 19:57:39,613 - Job - DEBUG - getting all active positions
+2019-05-22 19:57:40,559 - Job - DEBUG - getting all active student profiles
+2019-05-22 19:57:49,130 - Job - DEBUG - getting all active student profiles
+2019-05-22 19:57:49,705 - Job - DEBUG - getting all students skills
+2019-05-22 19:58:00,251 - Job - DEBUG - getting all students skills
+2019-05-22 19:58:01,826 - Job - DEBUG - getting all positions_skills
+2019-05-22 19:58:11,911 - Job - DEBUG - getting all positions_skills
+2019-05-22 19:58:14,565 - Job - DEBUG - job working on:5ce57f65f4578f54e835ca44
+2019-05-22 19:58:14,565 - Job - DEBUG - start sentiment analysis job for object_id:5ce57f5ef4578f54e835ca43
+2019-05-22 19:58:22,614 - Job - DEBUG - job working on:5ce57f65f4578f54e835ca44
+2019-05-22 19:58:22,614 - Job - DEBUG - start sentiment analysis job for object_id:5ce57f5ef4578f54e835ca43
+2019-05-22 19:58:41,990 - Job - DEBUG - update_company_score: 0
+2019-05-22 19:58:42,328 - Job - DEBUG - finished working on job_id: 5ce57f65f4578f54e835ca44
+2019-05-22 19:58:49,520 - Job - DEBUG - update_company_score: 0
+2019-05-22 19:58:49,812 - Job - DEBUG - finished working on job_id: 5ce57f65f4578f54e835ca44
+2019-05-22 19:59:03,675 - Job - DEBUG - do_job
+2019-05-22 19:59:11,932 - Job - DEBUG - do_job
+2019-05-22 19:59:26,285 - Job - DEBUG - do_job
+2019-05-22 19:59:34,115 - Job - DEBUG - do_job
+2019-05-22 20:02:46,840 - Job - DEBUG - do_job
+2019-05-22 20:03:04,348 - Job - DEBUG - do_job
+2019-05-22 20:03:04,894 - Job - DEBUG - do_job
+2019-05-22 20:03:23,158 - Job - DEBUG - do_job
+2019-05-22 20:03:23,728 - Job - DEBUG - do_job
+2019-05-22 20:03:41,609 - Job - DEBUG - do_job
+2019-05-22 20:03:42,047 - Job - DEBUG - do_job
+2019-05-22 20:03:57,918 - Job - DEBUG - do_job
+2019-05-22 20:04:00,615 - Job - DEBUG - do_job
+2019-05-22 20:04:05,337 - Job - DEBUG - getting all active positions
+2019-05-22 20:04:07,889 - Job - DEBUG - getting all active positions
+2019-05-22 20:04:13,081 - Job - DEBUG - getting all active student profiles
+2019-05-22 20:04:15,910 - Job - DEBUG - getting all active student profiles
+2019-05-22 20:04:21,742 - Job - DEBUG - getting all students skills
+2019-05-22 20:04:24,702 - Job - DEBUG - getting all students skills
+2019-05-22 20:04:31,656 - Job - DEBUG - getting all positions_skills
+2019-05-22 20:04:33,045 - Job - DEBUG - getting all positions_skills
+2019-05-22 20:04:40,671 - Job - DEBUG - job working on:5ce58103f4578f187c069fef
+2019-05-22 20:04:40,672 - Job - DEBUG - start sentiment analysis job for object_id:5ce58101f4578f187c069fee
+2019-05-22 20:04:41,663 - Job - DEBUG - job working on:5ce58103f4578f187c069fef
+2019-05-22 20:04:41,663 - Job - DEBUG - start sentiment analysis job for object_id:5ce58101f4578f187c069fee
+2019-05-22 20:05:06,533 - Job - DEBUG - update_company_score: 0
+2019-05-22 20:05:06,825 - Job - DEBUG - finished working on job_id: 5ce58103f4578f187c069fef
+2019-05-22 20:05:07,530 - Job - DEBUG - update_company_score: 0
+2019-05-22 20:05:07,774 - Job - DEBUG - finished working on job_id: 5ce58103f4578f187c069fef
+2019-05-22 20:05:28,547 - Job - DEBUG - do_job
+2019-05-22 20:05:29,530 - Job - DEBUG - do_job
+2019-05-22 20:05:50,435 - Job - DEBUG - do_job
+2019-05-22 20:05:51,960 - Job - DEBUG - do_job
+2019-05-22 20:06:11,517 - Job - DEBUG - do_job
+2019-05-22 20:06:13,407 - Job - DEBUG - do_job
+2019-05-22 20:06:35,494 - Job - DEBUG - do_job
+2019-05-22 20:06:37,458 - Job - DEBUG - do_job
+2019-05-22 20:06:55,029 - Job - DEBUG - do_job
+2019-05-22 20:06:59,192 - Job - DEBUG - do_job
+2019-05-22 20:07:19,145 - Job - DEBUG - do_job
+2019-05-22 20:19:30,241 - Job - DEBUG - do_job
+2019-05-22 20:19:42,422 - Job - DEBUG - do_job
+2019-05-22 20:19:45,586 - Job - DEBUG - do_job
+2019-05-22 20:19:57,919 - Job - DEBUG - do_job
+2019-05-22 20:20:01,124 - Job - DEBUG - do_job
+2019-05-22 20:20:13,856 - Job - DEBUG - do_job
+2019-05-22 20:20:17,177 - Job - DEBUG - do_job
+2019-05-22 20:20:30,683 - Job - DEBUG - do_job
+2019-05-22 20:20:34,043 - Job - DEBUG - do_job
+2019-05-22 20:20:48,691 - Job - DEBUG - do_job
+2019-05-22 20:20:55,614 - Job - DEBUG - do_job
+2019-05-22 20:21:07,702 - Job - DEBUG - do_job
+2019-05-22 20:21:12,051 - Job - DEBUG - do_job
+2019-05-22 20:21:23,686 - Job - DEBUG - do_job
+2019-05-22 20:21:29,495 - Job - DEBUG - do_job
+2019-05-22 20:21:39,791 - Job - DEBUG - do_job
+2019-05-22 20:21:46,507 - Job - DEBUG - do_job
+2019-05-22 20:21:56,179 - Job - DEBUG - do_job
+2019-05-22 20:22:03,916 - Job - DEBUG - do_job
+2019-05-22 20:22:14,063 - Job - DEBUG - do_job
+2019-05-22 20:22:21,265 - Job - DEBUG - do_job
+2019-05-22 20:22:31,225 - Job - DEBUG - do_job
+2019-05-22 20:22:38,698 - Job - DEBUG - do_job
+2019-05-22 20:22:48,511 - Job - DEBUG - do_job
+2019-05-22 20:22:56,770 - Job - DEBUG - do_job
+2019-05-22 20:23:06,578 - Job - DEBUG - do_job
+2019-05-22 20:23:17,585 - Job - DEBUG - do_job
+2019-05-22 20:23:24,381 - Job - DEBUG - do_job
+2019-05-22 20:23:35,718 - Job - DEBUG - do_job
+2019-05-22 20:23:42,634 - Job - DEBUG - do_job
+2019-05-22 20:23:57,189 - Job - DEBUG - do_job
+2019-05-22 20:24:01,233 - Job - DEBUG - do_job
+2019-05-22 20:24:15,568 - Job - DEBUG - do_job
+2019-05-22 20:24:25,683 - Job - DEBUG - do_job
+2019-05-22 20:24:41,664 - Job - DEBUG - do_job
+2019-05-22 20:24:51,278 - Job - DEBUG - do_job
+2019-05-22 20:25:08,161 - Job - DEBUG - do_job
+2019-05-22 20:25:13,933 - Job - DEBUG - do_job
+2019-05-22 20:25:29,203 - Job - DEBUG - do_job
+2019-05-22 20:25:37,196 - Job - DEBUG - do_job
+2019-05-22 20:25:52,685 - Job - DEBUG - do_job
+2019-05-22 20:25:57,591 - Job - DEBUG - do_job
+2019-05-22 20:26:13,345 - Job - DEBUG - do_job
+2019-05-22 20:26:22,653 - Job - DEBUG - do_job
+2019-05-22 20:26:40,283 - Job - DEBUG - do_job
+2019-05-22 20:26:46,521 - Job - DEBUG - do_job
+2019-05-22 20:27:01,745 - Job - DEBUG - do_job
+2019-05-22 20:27:09,354 - Job - DEBUG - do_job
+2019-05-22 20:27:23,344 - Job - DEBUG - do_job
+2019-05-22 20:27:35,971 - Job - DEBUG - do_job
+2019-05-22 20:27:49,560 - Job - DEBUG - do_job
+2019-05-22 20:28:01,775 - Job - DEBUG - do_job
+2019-05-22 20:28:13,259 - Job - DEBUG - do_job
+2019-05-22 20:28:23,688 - Job - DEBUG - do_job
+2019-05-22 20:28:34,579 - Job - DEBUG - do_job
+2019-05-22 20:28:45,765 - Job - DEBUG - do_job
+2019-05-22 20:28:57,374 - Job - DEBUG - do_job
+2019-05-22 20:29:08,010 - Job - DEBUG - do_job
+2019-05-22 20:29:20,207 - Job - DEBUG - do_job
+2019-05-22 20:29:32,603 - Job - DEBUG - do_job
+2019-05-22 20:29:46,069 - Job - DEBUG - do_job
+2019-05-22 20:29:56,657 - Job - DEBUG - do_job
+2019-05-22 20:30:10,325 - Job - DEBUG - do_job
+2019-05-22 20:30:19,388 - Job - DEBUG - do_job
+2019-05-22 20:30:36,401 - Job - DEBUG - do_job
+2019-05-22 20:30:46,678 - Job - DEBUG - do_job
+2019-05-22 20:31:04,362 - Job - DEBUG - do_job
+2019-05-22 20:31:16,899 - Job - DEBUG - do_job
+2019-05-22 20:31:29,431 - Job - DEBUG - do_job
+2019-05-22 20:31:40,638 - Job - DEBUG - do_job
+2019-05-22 20:31:58,347 - Job - DEBUG - do_job
+2019-05-22 20:32:22,627 - Job - DEBUG - do_job
+2019-05-22 20:32:35,352 - Job - DEBUG - do_job
+2019-05-22 20:32:38,119 - Job - DEBUG - do_job
+2019-05-22 20:32:50,952 - Job - DEBUG - do_job
+2019-05-22 20:32:54,315 - Job - DEBUG - do_job
+2019-05-22 20:33:07,313 - Job - DEBUG - do_job
+2019-05-22 20:33:10,544 - Job - DEBUG - do_job
+2019-05-22 20:33:23,002 - Job - DEBUG - do_job
+2019-05-22 20:33:26,301 - Job - DEBUG - do_job
+2019-05-22 20:33:39,649 - Job - DEBUG - do_job
+2019-05-22 20:33:42,925 - Job - DEBUG - do_job
+2019-05-22 20:33:56,367 - Job - DEBUG - do_job
+2019-05-22 20:33:59,792 - Job - DEBUG - do_job
+2019-05-22 20:34:12,775 - Job - DEBUG - do_job
+2019-05-22 20:34:16,822 - Job - DEBUG - do_job
+2019-05-22 20:34:30,108 - Job - DEBUG - do_job
+2019-05-22 20:34:34,426 - Job - DEBUG - do_job
+2019-05-22 20:34:49,897 - Job - DEBUG - do_job
+2019-05-22 20:34:54,071 - Job - DEBUG - do_job
+2019-05-22 20:35:10,296 - Job - DEBUG - do_job
+2019-05-22 20:35:15,145 - Job - DEBUG - do_job
+2019-05-22 20:35:31,962 - Job - DEBUG - do_job
+2019-05-22 20:35:36,266 - Job - DEBUG - do_job
+2019-05-22 20:35:54,634 - Job - DEBUG - do_job
+2019-05-22 20:35:59,526 - Job - DEBUG - do_job
+2019-05-22 20:36:13,677 - Job - DEBUG - do_job
+2019-05-22 20:36:20,155 - Job - DEBUG - do_job
+2019-05-22 20:36:33,178 - Job - DEBUG - do_job
+2019-05-22 20:36:40,551 - Job - DEBUG - do_job
+2019-05-22 20:36:43,058 - Job - DEBUG - getting all active positions
+2019-05-22 20:36:53,050 - Job - DEBUG - getting all active positions
+2019-05-22 20:36:55,778 - Job - DEBUG - getting all active student profiles
+2019-05-22 20:37:05,274 - Job - DEBUG - getting all active student profiles
+2019-05-22 20:37:06,826 - Job - DEBUG - getting all students skills
+2019-05-22 20:37:15,073 - Job - DEBUG - getting all students skills
+2019-05-22 20:37:16,421 - Job - DEBUG - getting all positions_skills
+2019-05-22 20:37:25,629 - Job - DEBUG - getting all positions_skills
+2019-05-22 20:37:27,304 - Job - DEBUG - job working on:5ce588a6f4578f81808cca6a
+2019-05-22 20:37:27,305 - Job - DEBUG - start sentiment analysis job for object_id:5ce588a1f4578f81808cca68
+2019-05-22 20:37:36,710 - Job - DEBUG - job working on:5ce588a6f4578f81808cca6a
+2019-05-22 20:37:36,711 - Job - DEBUG - start sentiment analysis job for object_id:5ce588a1f4578f81808cca68
+2019-05-22 20:38:00,621 - Job - DEBUG - update_company_score: 1
+2019-05-22 20:38:01,033 - Job - DEBUG - finished working on job_id: 5ce588a6f4578f81808cca6a
+2019-05-22 20:38:09,911 - Job - DEBUG - update_company_score: 0
+2019-05-22 20:38:10,395 - Job - DEBUG - finished working on job_id: 5ce588a6f4578f81808cca6a
+2019-05-22 20:38:24,814 - Job - DEBUG - do_job
+2019-05-22 20:38:34,147 - Job - DEBUG - do_job
+2019-05-22 20:38:49,004 - Job - DEBUG - do_job
+2019-05-22 20:38:58,256 - Job - DEBUG - do_job
+2019-05-22 20:39:13,400 - Job - DEBUG - do_job
+2019-05-22 20:39:23,532 - Job - DEBUG - do_job
+2019-05-22 20:39:38,579 - Job - DEBUG - do_job
+2019-05-22 20:39:48,494 - Job - DEBUG - do_job
+2019-05-22 20:40:03,530 - Job - DEBUG - do_job
+2019-05-22 20:40:14,177 - Job - DEBUG - do_job
+2019-05-22 20:40:29,276 - Job - DEBUG - do_job
+2019-05-22 20:40:41,495 - Job - DEBUG - do_job
+2019-05-22 20:40:55,414 - Job - DEBUG - do_job
+2019-05-22 20:41:08,646 - Job - DEBUG - do_job
+2019-05-22 20:41:23,976 - Job - DEBUG - do_job
+2019-05-22 20:41:39,994 - Job - DEBUG - do_job
+2019-05-22 20:41:56,083 - Job - DEBUG - do_job
+2019-05-22 20:42:08,239 - Job - DEBUG - do_job
+2019-05-22 20:42:24,408 - Job - DEBUG - do_job
+2019-05-22 20:42:35,775 - Job - DEBUG - do_job
+2019-05-22 20:42:52,089 - Job - DEBUG - do_job
+2019-05-22 20:43:03,515 - Job - DEBUG - do_job
+2019-05-22 20:43:21,414 - Job - DEBUG - do_job
+2019-05-22 20:43:33,595 - Job - DEBUG - do_job
+2019-05-22 20:43:52,306 - Job - DEBUG - do_job
+2019-05-22 20:44:06,742 - Job - DEBUG - do_job
+2019-05-22 20:44:24,302 - Job - DEBUG - do_job
+2019-05-22 20:44:37,301 - Job - DEBUG - do_job
+2019-05-22 20:44:53,710 - Job - DEBUG - do_job
+2019-05-22 20:45:06,107 - Job - DEBUG - do_job
+2019-05-22 20:45:20,462 - Job - DEBUG - do_job
+2019-05-22 20:45:32,760 - Job - DEBUG - do_job
+2019-05-22 20:45:51,185 - Job - DEBUG - do_job
+2019-05-22 20:46:16,000 - Job - DEBUG - do_job
+2019-05-22 20:46:30,385 - Job - DEBUG - do_job
+2019-05-22 20:46:49,292 - Job - DEBUG - do_job
+2019-05-22 20:47:02,565 - Job - DEBUG - do_job
+2019-05-22 20:47:20,588 - Job - DEBUG - do_job
+2019-05-22 20:47:32,788 - Job - DEBUG - do_job
+2019-05-22 20:47:49,039 - Job - DEBUG - do_job
+2019-05-22 20:48:02,347 - Job - DEBUG - do_job
+2019-05-22 20:48:20,959 - Job - DEBUG - do_job
+2019-05-22 20:48:34,840 - Job - DEBUG - do_job
+2019-05-22 20:48:53,383 - Job - DEBUG - do_job
+2019-05-22 20:49:07,276 - Job - DEBUG - do_job
+2019-05-22 20:49:25,496 - Job - DEBUG - do_job
+2019-05-22 20:49:40,102 - Job - DEBUG - do_job
+2019-05-22 20:49:59,177 - Job - DEBUG - do_job
+2019-05-22 20:50:13,735 - Job - DEBUG - do_job
+2019-05-22 20:50:32,513 - Job - DEBUG - do_job
+2019-05-22 20:50:47,292 - Job - DEBUG - do_job
+2019-05-22 20:51:07,305 - Job - DEBUG - do_job
+2019-05-22 20:51:22,273 - Job - DEBUG - do_job
+2019-05-22 20:51:41,921 - Job - DEBUG - do_job
+2019-05-22 20:51:56,707 - Job - DEBUG - do_job
+2019-05-22 20:52:16,906 - Job - DEBUG - do_job
+2019-05-22 20:52:33,219 - Job - DEBUG - do_job
+2019-05-22 20:52:51,234 - Job - DEBUG - do_job
+2019-05-22 20:53:08,292 - Job - DEBUG - do_job
+2019-05-22 20:53:29,678 - Job - DEBUG - do_job
+2019-05-22 20:53:46,719 - Job - DEBUG - do_job
+2019-05-22 20:54:07,693 - Job - DEBUG - do_job
+2019-05-22 20:54:19,092 - Job - DEBUG - do_job
+2019-05-22 20:54:42,793 - Job - DEBUG - do_job
+2019-05-22 20:54:53,193 - Job - DEBUG - do_job
+2019-05-22 20:55:19,475 - Job - DEBUG - do_job
+2019-05-22 20:55:31,918 - Job - DEBUG - do_job
+2019-05-22 20:55:57,871 - Job - DEBUG - do_job
+2019-05-22 20:56:08,907 - Job - DEBUG - do_job
+2019-05-22 20:56:35,192 - Job - DEBUG - do_job
+2019-05-22 20:56:46,977 - Job - DEBUG - do_job
+2019-05-22 20:57:07,430 - Job - DEBUG - do_job
+2019-05-22 20:57:25,458 - Job - DEBUG - do_job
+2019-05-22 20:57:46,064 - Job - DEBUG - do_job
+2019-05-22 20:58:03,155 - Job - DEBUG - do_job
+2019-05-22 20:58:24,122 - Job - DEBUG - do_job
+2019-05-22 20:58:40,987 - Job - DEBUG - do_job
+2019-05-22 20:58:58,094 - Job - DEBUG - do_job
+2019-05-22 20:59:20,145 - Job - DEBUG - do_job
+2019-05-22 20:59:31,484 - Job - DEBUG - do_job
+2019-05-22 20:59:55,180 - Job - DEBUG - do_job
+2019-05-22 21:00:06,239 - Job - DEBUG - do_job
+2019-05-22 21:00:39,174 - Job - DEBUG - do_job
+2019-05-22 21:00:53,934 - Job - DEBUG - do_job
+2019-05-22 21:01:23,242 - Job - DEBUG - do_job
+2019-05-22 21:01:34,416 - Job - DEBUG - do_job
+2019-05-22 21:02:00,929 - Job - DEBUG - do_job
+2019-05-22 21:02:14,797 - Job - DEBUG - do_job
+2019-05-22 21:02:38,960 - Job - DEBUG - do_job
+2019-05-22 21:02:56,204 - Job - DEBUG - do_job
+2019-05-22 21:03:22,580 - Job - DEBUG - do_job
+2019-05-22 21:03:34,719 - Job - DEBUG - do_job
+2019-05-22 21:04:07,546 - Job - DEBUG - do_job
+2019-05-22 21:04:11,130 - Job - DEBUG - do_job
+2019-05-22 21:04:50,455 - Job - DEBUG - do_job
+2019-05-22 21:04:56,848 - Job - DEBUG - do_job
+2019-05-22 21:05:35,758 - Job - DEBUG - do_job
+2019-05-22 21:05:42,217 - Job - DEBUG - do_job
+2019-05-22 21:06:18,500 - Job - DEBUG - do_job
+2019-05-22 21:06:21,786 - Job - DEBUG - do_job
+2019-05-22 21:07:07,591 - Job - DEBUG - do_job
+2019-05-22 21:07:16,323 - Job - DEBUG - do_job
+2019-05-22 21:07:47,946 - Job - DEBUG - do_job
+2019-05-22 21:08:07,180 - Job - DEBUG - do_job
+2019-05-22 21:08:46,429 - Job - DEBUG - do_job
+2019-05-22 21:09:14,177 - Job - DEBUG - do_job
+2019-05-22 21:09:23,652 - Job - DEBUG - do_job
+2019-05-22 21:09:28,707 - Job - DEBUG - do_job
+2019-05-22 21:09:38,041 - Job - DEBUG - do_job
+2019-05-22 21:09:46,687 - Job - DEBUG - do_job
+2019-05-22 21:09:56,292 - Job - DEBUG - do_job
+2019-05-22 21:10:01,084 - Job - DEBUG - do_job
+2019-05-22 21:10:10,971 - Job - DEBUG - do_job
+2019-05-22 21:10:15,970 - Job - DEBUG - do_job
+2019-05-22 21:10:26,508 - Job - DEBUG - do_job
+2019-05-22 21:10:30,990 - Job - DEBUG - do_job
+2019-05-22 21:10:41,514 - Job - DEBUG - do_job
+2019-05-22 21:10:45,834 - Job - DEBUG - do_job
+2019-05-22 21:10:56,021 - Job - DEBUG - do_job
+2019-05-22 21:11:01,001 - Job - DEBUG - do_job
+2019-05-22 21:11:10,737 - Job - DEBUG - do_job
+2019-05-22 21:11:15,779 - Job - DEBUG - do_job
+2019-05-22 21:11:26,196 - Job - DEBUG - do_job
+2019-05-22 21:11:31,589 - Job - DEBUG - do_job

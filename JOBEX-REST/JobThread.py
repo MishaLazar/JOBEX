@@ -342,7 +342,8 @@ class JobThread(object):
                 "position_id": match.position_id,
                 "match_level_id": match.match_level_id,
                 "match_update_date": match.match_update_date,
-                "is_deleted": match.is_deleted
+                "is_deleted": match.is_deleted,
+                "is_engaged": match.is_engaged
             }
         }
         result = db_client.update_single_doc_in_collection(DbCollections.get_matches_collection(),

@@ -20,12 +20,14 @@ class Match:
                  regard_object_skills=None,
                  regard_object_location=None,
                  source_location=None,
-                 is_deleted=False):
+                 is_deleted=False,
+                 is_engaged=False):
         self.match_level_id = match_level_id
         self.position_id = position_id
         self.student_id = student_id
         self.match_update_date = datetime.now()
         self.is_deleted = is_deleted
+        self.is_engaged = is_engaged
         self.source_skills = source_skills
         self.regard_object_skills = regard_object_skills
         self.source_location = source_location,

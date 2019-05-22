@@ -85,4 +85,26 @@ export class SharedDataService {
      let skill_result = this.skills.find(skill => skill.SkillId == skill_id )
      return skill_result.TextValue;
    }
+
+   getAllSkill(){
+    
+     if(this.skills){
+        this.skillsLoadedSubject.next('loaded');        
+     }else {
+        
+        this.http.get('resources/skills').subscribe(
+          (data:Skill[]) => {
+            
+            this.skills = data;
+            this.skillsLoadedSubject.next('loaded');
+            console.log('loaded :' + data.length + ' skills');
+          },
+          error =>{
+            console.log(error);
+          }
+  
+        );
+       
+     }
+   }
 }
