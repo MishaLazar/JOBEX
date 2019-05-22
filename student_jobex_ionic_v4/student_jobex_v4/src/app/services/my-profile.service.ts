@@ -27,8 +27,7 @@ export class MyProfileService {
     myStudentSkills:SkillList[] = [];
     myProfileSkills:Skill[]=[];
     wish_list:PositionData[] = [];
-    isActiveProfile: boolean;
-    isStudentSkillsLoaded: boolean = false;
+    isActiveProfile: boolean;    
     profileLoadedSubject:Subject<string> = new Subject();
     WL_SuggestedSubject:Subject<string> = new Subject();
     wl_suggested:any;
@@ -75,7 +74,7 @@ export class MyProfileService {
     }
 
     loadStudentSkills(){   
-            this.isStudentSkillsLoaded = true;                
+            
             this.processLoadedStudentSkill(this.myStudentSkills);
                
     }
@@ -130,10 +129,8 @@ export class MyProfileService {
     
     onProfileSkillsUpdate(){           
         return this.http.submitForm(this.myStudentSkills.slice(),'student/update_skills/'+this.user_id).subscribe(
-            (response) => {
-                debugger;
-                this.isStudentSkillsLoaded = false;
-                console.log(response);
+            (response) => {                                
+                //console.log(response);
             },
             (error:any) => {
             console.log(error);
@@ -152,8 +149,8 @@ export class MyProfileService {
         }
         this.http.submitForm(data,'activate_student_profile').subscribe(
             (response:any) =>{
-                debugger;
-                console.log(response);
+                
+                //console.log(response);
             },
             error => {
                 console.log(error);

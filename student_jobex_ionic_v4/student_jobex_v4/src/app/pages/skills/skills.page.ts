@@ -3,6 +3,7 @@ import { Skill } from 'src/app/models/skill.model';
 import { ModalController, LoadingController, ToastController } from '@ionic/angular';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 import { MyProfileService } from 'src/app/services/my-profile.service';
+import { HttpHelpService } from 'src/app/services/http-help.service';
 
 @Component({
   selector: 'app-skills',
@@ -12,13 +13,17 @@ import { MyProfileService } from 'src/app/services/my-profile.service';
 export class SkillsPage implements OnInit {
 
   skills:Skill[];
+  profileSkills:Skill[];
   SkillSearchTerm:any;
+  inSaveProcess:boolean =  false;
   constructor(
     public modalController: ModalController,
     private sharedData:SharedDataService,
-    public myProfileService:MyProfileService, 
+    public profile:MyProfileService, 
     public loadingController: LoadingController,
-    public toastController: ToastController) {
+    public toastController: ToastController,
+    private http:HttpHelpService
+    ) {
     
     
   }
@@ -27,8 +32,19 @@ export class SkillsPage implements OnInit {
     this.loadSkills();
   }
 
-  onSaveSkillsClick(){    
-    this.myProfileService.onProfileSkillsUpdate();    
+  onSaveSkillsClick(){  
+    this.inSaveProcess = true;
+    return this.http.submitForm(this.profile.myStudentSkills.slice(),'student/update_skills/'+this.profile.user_id).subscribe(
+      (response) => {
+        this.inSaveProcess = false;        
+      },
+      (error:any) => {
+        console.log(error);
+      }
+  
+  )
+   
+    
   }
 
   termChange(term:any){
@@ -36,31 +52,63 @@ export class SkillsPage implements OnInit {
     this.SkillSearchTerm = term.srcElement.value;
   }
 
-  skillTuched(tuchedSkill:Skill){
+  // skillTuched(tuchedSkill:Skill){
 
-    if(!tuchedSkill.IsChecked){
-      this.myProfileService.removeSkillFromProfile(tuchedSkill);
-    }
-    else {
-      this.myProfileService.addSkillToProfile(tuchedSkill);
-    }
+  //   if(!tuchedSkill.IsChecked){
+  //     this.profile.removeSkillFromProfile(tuchedSkill);
+  //   }
+  //   else {
+  //     this.profile.addSkillToProfile(tuchedSkill);
+  //   }
 
+  // }
+
+
+  skillTuched(skill:Skill) {
+    if (skill.IsChecked) {
+      this.profileSkills.push(skill);
+      let indexToRmove = this.skills.indexOf(skill);
+      if (indexToRmove >= 0) {
+        this.skills.splice(indexToRmove, 1)
+        this.profile.addSkillToProfile(skill);
+      }
+    }
+    else{
+      this.skills.push(skill);
+      let indexToRmove = this.profileSkills.indexOf(skill);
+      if (indexToRmove >= 0) {
+        this.profileSkills.splice(indexToRmove, 1)
+        this.profile.removeSkillFromProfile(skill);
+      }
+    }
+  }
+
+  removeProfileSkills(skill:Skill) {
+    skill.IsChecked = false;
+    this.skills.push(skill);
+    let indexToRmove = this.profileSkills.indexOf(skill);
+    if (indexToRmove >= 0) {
+      this.profileSkills.splice(indexToRmove, 1)
+      this.profile.removeSkillFromProfile(skill);
+    }
   }
 
   onLoadProfileSkills(){
     
-    let profileSkills = this.myProfileService.getMyProfileSkills();
+    this.profileSkills = this.profile.getMyProfileSkills();    
     let indexArray:number[] = [];
-    profileSkills.forEach(profileSkill => {
+    this.profileSkills.forEach(profileSkill => {
       let index = this.skills.findIndex(el=> el.SkillId === profileSkill.SkillId);
       if(index >= 0){
         indexArray.push(index);
+        profileSkill.TextValue = this.skills[index].TextValue;
       }
     });
 
     if(indexArray.length > 0){
       indexArray.forEach(element => {
-        this.skills[element].IsChecked = true;
+        //this.skills[element].IsChecked = true;
+        this.skills.splice(element, 1)
       });
     }
   }
@@ -77,8 +125,7 @@ export class SkillsPage implements OnInit {
           
           if(value == 'loaded'){
             
-            this.finallizeLoading();
-            console.log(this.skills);
+            this.finallizeLoading();            
           }else {
             const toast = this.toastController.create({
               message: "Oops try again please",

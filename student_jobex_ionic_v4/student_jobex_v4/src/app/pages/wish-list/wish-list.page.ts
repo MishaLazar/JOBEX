@@ -124,7 +124,7 @@ export class WishListPage implements OnInit {
     }
     this.http.submitForm(data, 'student/wish_list_save').subscribe(
       (Response) => {
-        console.log(Response);
+        //console.log(Response);
         this.inSaveProcess = false;
       },
       (error) => {

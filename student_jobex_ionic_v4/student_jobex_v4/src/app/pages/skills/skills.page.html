@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
     <ion-toolbar color="primary">
         <ion-title>Skills</ion-title>
         <ion-searchbar showCancelButton cancelButtonText="Custom Cancel" [(ngModel)]="SkillSearchTerm"></ion-searchbar>
@@ -6,9 +6,25 @@
             <ion-back-button></ion-back-button>
         </ion-buttons>
     </ion-toolbar>
-  </ion-header>
-  
-  <ion-content padding>
+  </ion-header> -->
+
+  <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Skills</ion-title>
+        <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="onSaveSkillsClick()" *ngIf="!inSaveProcess">
+              <ion-icon slot="icon-only" name="checkmark"></ion-icon>
+            </ion-button>
+            <ion-spinner name="crescent" *ngIf="inSaveProcess"></ion-spinner>
+          </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+
+  <!-- <ion-content padding>
   <ion-spinner name="crescent" *ngIf="!skills"></ion-spinner>
   <ion-list style="background-color: blueviolet"*ngIf="skills" >
     <ion-item *ngFor="let skill of skills | SkillFilter:SkillSearchTerm,TextValue" (click)="skillTuched(skill)">
@@ -20,4 +36,49 @@
   </ion-content>
   <ion-footer>  
         <ion-button expand="full" (click)="onSaveSkillsClick()">Save Skills</ion-button> 
-  </ion-footer>
+  </ion-footer> -->
+
+
+    
+    <ion-content padding>  
+      <ion-grid fixed style="height: 100%;"
+        *ngIf="skills">
+        <ion-row style="height: 10%">
+          <ion-col size="12">
+              <ion-searchbar showCancelButton cancelButtonText="Custom Cancel" [(ngModel)]="SkillSearchTerm"></ion-searchbar>
+          </ion-col>
+        </ion-row>
+        <ion-row style="height: 60%">
+          <ion-col>
+            <ion-list>
+                <ion-item *ngFor="let skill of skills | SkillFilter:SkillSearchTerm,TextValue" (click)="skillTuched(skill)">
+                    <ion-label>{{ skill.TextValue }}</ion-label>        
+                    <ion-checkbox color="primary" [(ngModel)]="skill.IsChecked"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-row style="height: 30%">
+          <ion-col size="12">
+            <ion-list>
+              <ion-header>
+                <ion-toolbar>
+                  <ion-title>Selected:</ion-title>
+                </ion-toolbar>
+              </ion-header>
+              <ion-item>        
+                  <div *ngIf="profileSkills">
+                      <span class="selected-skills" *ngFor="let ps of profileSkills">{{ps.TextValue}}
+                          <ion-icon name="close" (click)="removeProfileSkills(ps)"></ion-icon>
+                      </span>                      
+                    </div>    
+              </ion-item>
+            </ion-list>
+            
+          </ion-col>
+    
+    
+        </ion-row>
+      </ion-grid>
+    
+    </ion-content>
