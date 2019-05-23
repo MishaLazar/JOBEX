@@ -6,22 +6,22 @@
   </ion-item>
 
   <form [formGroup]="personalData">
-    <ion-list >      
+    <ion-list>      
       <ion-item>
-        <ion-label floating>First Name</ion-label>
+        <ion-label position="floating">First Name</ion-label>
         <ion-input                
                 formControlName="firsName"                             
                 type="text"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label floating>Last Name</ion-label>
+        <ion-label position="floating">Last Name</ion-label>
         <ion-input
                 formControlName="lastName"
                 type="text"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label floating>
-          <ion-icon name="call"></ion-icon>
+        <ion-label position="floating">
+          
           Phone Number
         </ion-label>
         <ion-input
@@ -29,8 +29,8 @@
                 type="text"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label floating>
-          <ion-icon name="mail"></ion-icon>
+        <ion-label position="floating">
+          
           Mail
         </ion-label>
         <ion-input
@@ -38,8 +38,8 @@
                 type="mail"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label floating>
-          <ion-icon name="map"></ion-icon>
+        <ion-label position="floating">
+       
           Address
         </ion-label>
         <ion-input
@@ -48,8 +48,8 @@
                 type="text"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label floating>
-          <ion-icon name="calendar"></ion-icon>
+        <ion-label position="floating">
+         
           Birthday
         </ion-label>
         <ion-datetime 
@@ -59,7 +59,7 @@
         ></ion-datetime>
       </ion-item>
     </ion-list>
-    <ion-button expand="full" (click)="onProfileSave()">
+    <ion-button expand="full" size="large" (click)="onProfileSave()">
         Save
       </ion-button>    
   </form>

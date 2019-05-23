@@ -4,58 +4,60 @@ import { MyProfileService } from 'src/app/services/my-profile.service';
 import { ModalController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-personal-data',
-  templateUrl: './personal-data.page.html',
-  styleUrls: ['./personal-data.page.scss'],
+    selector: 'app-personal-data',
+    templateUrl: './personal-data.page.html',
+    styleUrls: ['./personal-data.page.scss'],
 })
 export class PersonalDataPage implements OnInit {
 
-  personalData: FormGroup;
-  profileImg: string = "assets/img/default_profile.png";
-  text: string;
-  
-  constructor(
-      private myProfile:MyProfileService, 
-      private modalCtrl:ModalController,
-      public formBuilder: FormBuilder
-      ) {
-     
-      this.formBuild();
-  }
+    personalData: FormGroup;
+    profileImg: string = "assets/img/default_profile.png";
+    text: string;
 
-  ngOnInit(): void {
-      
-          this.profileImg = this.myProfile.getMyProfileImgPath() == undefined ? this.profileImg: this.myProfile.getMyProfileImgPath();
-      
-  }
+    constructor(
+        private profile: MyProfileService,
+        private modalCtrl: ModalController,
+        public formBuilder: FormBuilder
+    ) {
 
+        this.formBuild();
+    }
 
-  private formBuild(){
-      this.personalData = this.formBuilder.group({
-          firsName:['',Validators.required],
-          lastName:['',Validators.required],
-          mail:['',Validators.compose([Validators.required,Validators.email])],
-          phone:[''],
-          birthday:[''],
-          address:['']
-          
-      })
-  }
+    ngOnInit(): void {
 
-  onProfileSave(){
-      if(!this.personalData.valid){
+        this.profileImg = this.profile.getMyProfileImgPath() == undefined ? this.profileImg : this.profile.getMyProfileImgPath();
 
-      }else{
-          for (const control in this.personalData.controls) {
-              if (this.personalData.controls.hasOwnProperty(control)) {
-                  const element = this.personalData.controls[control];
-                  this.myProfile.getMyProfile()[control] = element.value;
-              }
-          }            
-          this.myProfile.editProfileSave();
-          this.modalCtrl.dismiss();
-      }
-      
-  }
+    }
+
+    loadPersonalData() {
+        let studentData = this.profile.myProfile
+    }
+    formBuild() {
+        this.personalData = this.formBuilder.group({
+            firsName: [this.profile.myProfile.firstName, Validators.required],
+            lastName: [this.profile.myProfile.lastName, Validators.required],
+            mail: [this.profile.myProfile.email, Validators.compose([Validators.required, Validators.email])],
+            phone: [this.profile.myProfile.phone],
+            birthday: [this.profile.myProfile.birthday],
+            address: [this.profile.myProfile.address]
+
+        })
+    }
+
+    onProfileSave() {
+        if (!this.personalData.valid) {
+
+        } else {
+            for (const control in this.personalData.controls) {
+                if (this.personalData.controls.hasOwnProperty(control)) {
+                    const element = this.personalData.controls[control];
+                    this.profile.getMyProfile()[control] = element.value;
+                }
+            }
+            this.profile.editProfileSave();
+            this.modalCtrl.dismiss();
+        }
+
+    }
 
 }

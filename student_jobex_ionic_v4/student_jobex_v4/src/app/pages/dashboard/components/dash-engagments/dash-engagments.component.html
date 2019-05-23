@@ -1,44 +1,47 @@
 <div *ngIf="engagements">
-<ion-list>
-    <ion-item *ngFor="let engagement of engagements" button no-padding lines="none" (click)="onEngagmentClick(engagement.match_id)">
-        <ion-grid>
-                <ion-row>
-                    <ion-col size="6" class="col-title">
-                        {{engagement.position_title}}
-                    </ion-col>
-                    <ion-col class="col-subTitle" >
-                        {{engagement.company_name}}
-                    </ion-col>                
-                </ion-row>
-                <ion-row style="font-size:12px; line-height:1.2;">
-                    <ion-col size="8" class="ellipsis">
-                        {{engagement.position_description}}
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-            <ion-icon *ngIf="engagement.is_new" name="mail-unread"></ion-icon>
-            <ion-icon *ngIf="!engagement.is_new" name="mail-open"></ion-icon>
-    </ion-item>   
-    
-</ion-list>
+  <ion-list>
+    <ion-item style="--ion-background-color: #e3e4ea;padding: 2px;--box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;" *ngFor="let engagement of engagements" button no-padding lines="none"
+      (click)="onEngagmentClick(engagement.match_id)">
+      
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6" class="col-title">
+                Position:<span style="color:slategrey;">{{engagement.position_title}}</span>
+              </ion-col>
+              <ion-col class="col-subTitle">
+                Company:
+                <span style="color:slategrey;">{{engagement.company_name}}</span>
+              </ion-col>
+            </ion-row>
+            <ion-row style="font-size:12px; line-height:1.2;">
+              <ion-col size="8" class="ellipsis">
+                Description:{{engagement.position_description}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-icon *ngIf="engagement.is_new" name="mail-unread"></ion-icon>
+          <ion-icon *ngIf="!engagement.is_new" name="mail-open"></ion-icon>
+      
+    </ion-item>
+  </ion-list>
 </div>
 <div *ngIf="!engagements">
-        <ion-list *ngFor="let item of [1,2]">
-                <ion-list-header>
-                  <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
-                </ion-list-header>
-                <ion-item>
-                  <ion-avatar slot="start">
-                    <ion-skeleton-text animated></ion-skeleton-text>
-                  </ion-avatar>
-                  <ion-label>
-                    <h3>
-                      <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
-                    </h3>
-                    <p>
-                      <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
-                    </p>                  
-                  </ion-label>
-                </ion-item>               
-              </ion-list>
+  <ion-list *ngFor="let item of [1,2]">
+    <ion-list-header>
+      <ion-skeleton-text animated style="width: 20%"></ion-skeleton-text>
+    </ion-list-header>
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </div>

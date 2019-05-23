@@ -11,7 +11,7 @@
     <form  [formGroup]="registerForm">
         <ion-list>
           <ion-item>
-            <ion-label floating>First Name</ion-label>
+            <ion-label position="floating">First Name</ion-label>
             <ion-input
               type="text"
               formControlName="firstName"
@@ -22,27 +22,27 @@
           </ion-item>
           
           <ion-item>
-            <ion-label floating>Last Name</ion-label>
+            <ion-label position="floating">Last Name</ion-label>
             <ion-input
               formControlName="lastName"
               type="text">
             </ion-input>
-            <div style="color:red;" *ngIf="!registerForm.controls.firstName.valid && registerForm.controls.firstName.touched">
+            <div style="color:red;" *ngIf="!registerForm.controls.lastName.valid && registerForm.controls.lastName.touched">
                 Please enter a last name.
               </div>
           </ion-item>
           <ion-item>
-            <ion-label floating>Cell Phone</ion-label>
+            <ion-label position="floating">Cell Phone</ion-label>
             <ion-input
               formControlName="cellPhone"
               type="tel"
               ></ion-input>
-              <div style="color:red;" *ngIf="!registerForm.controls.firstName.valid && registerForm.controls.firstName.touched">
+              <div style="color:red;" *ngIf="!registerForm.controls.cellPhone.valid && registerForm.controls.cellPhone.touched">
                   Please enter a cellPhone.
                 </div>
           </ion-item>
           <ion-item>
-              <ion-label floating>Email</ion-label>
+              <ion-label position="floating">Email</ion-label>
               <ion-input
                 formControlName="email"
                 type="email"
@@ -52,7 +52,7 @@
                   </div>
             </ion-item>
             <ion-item>
-              <ion-label floating>Password</ion-label>
+              <ion-label position="floating">Password</ion-label>
               <ion-input 
               type="password"
               formControlName="password"
@@ -62,7 +62,7 @@
                 </div>
             </ion-item>
         </ion-list>
-        <ion-button expand="full" (click)="onRegister()">
+        <ion-button expand="block" size="large" (click)="onRegister()">
           Register
         </ion-button>
       </form>
