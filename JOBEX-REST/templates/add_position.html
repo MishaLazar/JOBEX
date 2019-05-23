@@ -175,8 +175,7 @@
             contentType: 'application/json',
             data: JSON.stringify(body),
             success: function (data) {
-                window.location.href = "http://127.0.0.1:5050/dashboard";
-                return false;
+
             },
             error: function () {
                 $("#loader").hide();
@@ -184,7 +183,8 @@
 
             }
         })
-
+        window.location.href = "http://127.0.0.1:5050/dashboard";
+        return false;
 
     }
 

@@ -37,7 +37,7 @@
 
                 // show the response
 
-                if (data.status != "initiated" || data.status != "declined") {
+                if (data.status == "approved" || data.status == "rejected" || data.status == "advanced") {
 
                     $.ajax({
                         type: 'GET',
