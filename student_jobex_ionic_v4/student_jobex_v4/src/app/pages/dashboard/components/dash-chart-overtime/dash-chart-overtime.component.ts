@@ -35,13 +35,13 @@ export class DashChartOvertimeComponent implements OnInit {
           datasets: [{ 
               label:"AVG.Week",             
               data: AvgDataSet,
-              backgroundColor: "#caf270",
+              backgroundColor: "#004D7F",
               borderWidth: 1
           },
           { 
-            label:"Week4",             
+            label:"Current Week",             
             data: CurrentDataSet,
-            backgroundColor: "#45c490",
+            backgroundColor: "#0095DA",
             borderWidth: 1
         }
         ]

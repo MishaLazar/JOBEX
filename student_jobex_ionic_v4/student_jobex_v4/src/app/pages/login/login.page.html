@@ -25,7 +25,7 @@
           <form [formGroup]="loginForm" >
               <ion-list>
                 <ion-item>
-                  <ion-label floating>User Name</ion-label>
+                  <ion-label position="floating">User Name</ion-label>
                   <ion-input
                   type="email"
                   formControlName="mail"
@@ -36,7 +36,7 @@
                   </div>
                 <!-- <span class="validator-error"  *ngIf="loginForm.controls.mail.valid">ERROr</span> -->
                 <ion-item>
-                  <ion-label floating>Password</ion-label>
+                  <ion-label position="floating">Password</ion-label>
                   <ion-input
                   type="password"
                   formControlName="password"
@@ -46,8 +46,8 @@
                     Please enter a valid password, With min lenght of 4 characters.
                   </div>
               </ion-list>
-              <ion-button  expand="full" (click)="onLogin()" [disabled]="!loginForm.valid">Sign in</ion-button>
-              <ion-button  expand="full" (click)="onRegister()" >Register</ion-button>
+              <ion-button color="secondary" expand="full" size="large" (click)="onLogin()" [disabled]="!loginForm.valid">Sign in</ion-button>
+              <ion-button color="secondary" expand="full" size="large" (click)="onRegister()" >Register</ion-button>
             </form>
       </ion-col>
     </ion-row>
