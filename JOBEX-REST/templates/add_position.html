@@ -1,84 +1,91 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class="content-section">
-        <form method="POST" action="">
-            {{ form.hidden_tag() }}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Let's add a position</legend>
-                <div class="form-group">
-                    {{ form.position_name.label(class="form-control-label") }}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Let's add a position</legend>
+            <div class="form-group">
+                {{ form.position_name.label(class="form-control-label") }}
 
-                    {% if form.position_name.errors %}
-                        {{ form.position_name(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.position_name.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.position_name(class="form-control form-control-lg", id="position_name") }}
-                    {% endif %}
+                {% if form.position_name.errors %}
+                {{ form.position_name(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.position_name.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
                 </div>
-                <div class="form-group">
-                    {{ form.position_department.label(class="form-control-label") }}
-                    {% if form.position_department.errors %}
-                        {{ form.position_department(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.position_department.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.position_department(class="form-control form-control-lg", id="position_department") }}
-                    {% endif %}
+                {% else %}
+                {{ form.position_name(class="form-control form-control-lg", id="position_name") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.position_department.label(class="form-control-label") }}
+                {% if form.position_department.errors %}
+                {{ form.position_department(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.position_department.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
                 </div>
+                {% else %}
+                {{ form.position_department(class="form-control form-control-lg", id="position_department") }}
+                {% endif %}
+            </div>
 
-                <div class="form-group">
-                        {{ form.position_skills.label }}
-                        <small class="text-muted">{{ form.position_skills.description }}</small>
-                        {{ form.position_skills(class_="form-control") }}
+            <div class="form-group">
+                {{ form.position_skills.label }}
+                <small class="text-muted">{{ form.position_skills.description }}</small>
+                {{ form.position_skills(class_="form-control") }}
 
-                        {% for error in form.position_skills.errors %}
-                        <span class="label label-danger">{{ error }}</span>
-                        {% endfor %}
-                </div>
-                <div class="form-group">
-                    {{ form.position_location.label(class="form-control-label") }}
-                    <small class="text-muted">{{ form.position_location.description }}</small>
-                    {{ form.position_location(class="form-control form-control-lg", id="position_location") }}
-                </div>
-                <br>
-                <div class="form-group">
-                    {{ form.comment.label(class="form-control-label") }}
-                    <small class="text-muted">{{ form.comment.description }}</small>
-                    {{ form.comment(class="form-control form-control-lg") }}
-                </div>
-                <div class="form-check">
-                    {{ form.position_active(class="form-check-input") }}
-                    {{ form.position_active.label(class="form-check-label", id="position_active") }}
-                </div>
-            </fieldset>
-            <button class="btn btn-outline-info" onclick="return add_position()">
-                Add Position
-            </button>
-            <button class="btn btn-outline-info" onclick="goBack()">Go Back</button>
-        </form>
-    </div>
+                {% for error in form.position_skills.errors %}
+                <span class="label label-danger">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.position_location.label(class="form-control-label") }}
+                <small class="text-muted">{{ form.position_location.description }}</small>
+                {{ form.position_location(class="form-control form-control-lg", id="position_location") }}
+            </div>
+            <br>
+            <div class="form-group">
+                {{ form.comment.label(class="form-control-label") }}
+                <small class="text-muted">{{ form.comment.description }}</small>
+                {{ form.comment(class="form-control form-control-lg") }}
+            </div>
+            <div class="form-check">
+                {{ form.position_active(class="form-check-input") }}
+                {{ form.position_active.label(class="form-check-label", id="position_active") }}
+            </div>
+        </fieldset>
+        <button class="btn btn-outline-info" onclick="return add_position()">
+            Add Position
+        </button>
+        <button class="btn btn-outline-info" onclick="goBack()">Go Back</button>
+    </form>
+</div>
 
 <script>
     $(document).ready(function () {
-                let access_token = window.localStorage.accessToken;
-                let req = new XMLHttpRequest();
-                let url = "http://127.0.0.1:5050/resources/skills";
-                req.open("GET", url, false);
-                req.setRequestHeader('Content-Type', 'application/json');
-                req.setRequestHeader('Access-Control-Allow-Origin', '*');
-                req.setRequestHeader("Authorization", "Bearer " + access_token);
-                req.send();
-                let results_arr = JSON.parse(req.response);
+        $("#loader").show();
+
+        $.ajax({
+            type: 'GET',
+            url: "http://127.0.0.1:5050/resources/skills",
+            dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader('Authorization', "Bearer " + window.localStorage.accessToken);
+            },
+            contentType: 'application/json',
+            data: "",
+            success: function (data) {
+
+                let results_arr = data;
                 let position_skills_select = document.getElementById("position_skills");
-                for (let lst_idx = 0; lst_idx < results_arr.length; lst_idx++)
-                {
+                for (let lst_idx = 0; lst_idx < results_arr.length; lst_idx++) {
                     let json = results_arr[lst_idx];
                     let skill_name = json['TextValue'];
                     let skill_id = json['SkillId'];
@@ -87,58 +94,102 @@
                     let skill_metadata = skill_id + "," + skill_sub_cat + "," + skill_cat;
                     position_skills_select.options[position_skills_select.options.length] = new Option(skill_name, skill_metadata);
                 }
-                url = "http://127.0.0.1:5050/resources/cities";
-                req.open("GET", url, false);
-                req.setRequestHeader('Content-Type', 'application/json');
-                req.setRequestHeader('Access-Control-Allow-Origin', '*');
-                req.setRequestHeader("Authorization", "Bearer " + access_token);
-                req.send();
-                results_arr = JSON.parse(req.response);
+
+            },
+            error: function () {
+                $("#loader").hide();
+
+                //     // just in case posting your form failed
+                console.error("Posting failed.");
+            }
+        })
+
+        $.ajax({
+            type: 'GET',
+            url: "http://127.0.0.1:5050/resources/cities",
+            dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader('Authorization', "Bearer " + window.localStorage.accessToken);
+            },
+            contentType: 'application/json',
+            data: "",
+            success: function (data) {
+
+                let results_arr = data;
                 let cities_select = document.getElementById("position_location");
-                for (let lst_idx = 0; lst_idx < results_arr.length; lst_idx++)
-                {
+                for (let lst_idx = 0; lst_idx < results_arr.length; lst_idx++) {
                     let json = results_arr[lst_idx];
                     let city_name = json['city_desc'];
                     cities_select.options[cities_select.options.length] = new Option(city_name, city_name);
                 }
+                $("#loader").hide();
+                $(".placeholders").show();
+
+            },
+            error: function () {
+                $("#loader").hide();
+                console.error("GET failed.");
+            }
+        })
+
+
     });
+
     function add_position() {
-                let access_token = window.localStorage.accessToken;
-                let req = new XMLHttpRequest();
-                let url = "http://127.0.0.1:5050/positions";
-                let company_id = window.localStorage.company_id;
-                let position_name = document.getElementById("position_name").value;
-                let position_department = document.getElementById("position_department").value;
-                let position_location = document.getElementById("position_location").value;
-                let position_active = document.getElementById("position_active").checked;
-                let position_skills = document.getElementById("position_skills");
-                let selected_skills = [];
-                for (let i = 0; i < position_skills.length; i++)
-                    if (position_skills.options[i].selected)
-                        selected_skills.push(position_skills.options[i].value);
-                selected_skills = selected_skills;
-                let comment = document.getElementById("comment").value;
-                let body = JSON.stringify({
-                    position_name: position_name,
-                    position_department: position_department,
-                    position_location: position_location,
-                    comment: comment,
-                    skills: selected_skills,
-                    position_active: position_active,
-                    company_id: company_id
-                });
-                req.open("POST", url, false);
-                req.setRequestHeader('Content-Type', 'application/json');
-                req.setRequestHeader('Access-Control-Allow-Origin', '*');
-                req.setRequestHeader("Authorization", "Bearer " + access_token);
-                req.send(body);
+        let company_id = window.localStorage.company_id;
+        let position_name = document.getElementById("position_name").value;
+        let position_department = document.getElementById("position_department").value;
+        let position_location = document.getElementById("position_location").value;
+        let position_active = document.getElementById("position_active").checked;
+        let position_skills = document.getElementById("position_skills");
+        let selected_skills = [];
+        for (let i = 0; i < position_skills.length; i++)
+            if (position_skills.options[i].selected)
+                selected_skills.push(position_skills.options[i].value);
+        // selected_skills = selected_skills;
+        let comment = document.getElementById("comment").value;
+        let body = {
+            position_name: position_name,
+            position_department: position_department,
+            position_location: position_location,
+            comment: comment,
+            skills: selected_skills,
+            position_active: position_active,
+            company_id: company_id
+        };
+        $.ajax({
+
+            type: 'POST',
+            url: "http://127.0.0.1:5050/positions",
+            dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader('Authorization', "Bearer " + window.localStorage.accessToken);
+                $("#loader").show();
+            },
+            contentType: 'application/json',
+            data: JSON.stringify(body),
+            success: function (data) {
                 window.location.href = "http://127.0.0.1:5050/dashboard";
                 return false;
+            },
+            error: function () {
+                $("#loader").hide();
+                console.error("Posting failed.");
+
+            }
+        })
+
+
     }
-    </script>
-<script>
-function goBack() {
-  window.history.back();
-}
+
+    function goBack() {
+        window.history.back();
+    }
 </script>
 {% endblock content %}

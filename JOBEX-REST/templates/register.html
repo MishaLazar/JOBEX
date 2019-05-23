@@ -96,37 +96,46 @@
         </small>
     </div>
 <script>
+    $(document).ready(function () {
+    $(".placeholders").show();
+    });
     function register() {
-        let req = new XMLHttpRequest();
-        let url = "http://127.0.0.1:5050/register";
+
         let company_name = document.getElementById("company_name").value;
         let company_description = document.getElementById("company_description").value;
         let username = document.getElementById("username").value;
         let email = document.getElementById("email").value;
         let password = document.getElementById("password").value;
-        let body = JSON.stringify({
+        let body = {
             username:username,
             password: password,
             email:email,
             company_name: company_name,
             company_description: company_description
-        });
-        req.open("POST", url, false);
-        req.setRequestHeader('Content-Type', 'application/json');
-        req.setRequestHeader('Access-Control-Allow-Origin', '*');
-        req.send(body);
-        if (req.status==200){
-            let req = new XMLHttpRequest();
-            let url = "http://127.0.0.1:5050/get_login";
-            req.open("POST", url, false);
-            req.setRequestHeader('Content-Type', 'application/json');
-            req.setRequestHeader('Access-Control-Allow-Origin', '*');
-            let body = JSON.stringify(
+        };
+        $.ajax({
+
+            type: 'POST',
+            url: "http://127.0.0.1:5050/register",
+            dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader('Authorization', "Bearer " + window.localStorage.accessToken);
+            },
+            contentType: 'application/json',
+            data: JSON.stringify(body),
+            success: function (data) {
+            let body = (
                 {
                     username: username,
                     password: password
-                });
-            req.send(body);
+                };
+                $.ajax({
+
+            type: 'POST',
+            url: "http://127.0.0.1:5050/get_login";
             let tokens = $.parseJSON(req.response);
             if (req.status == 200){
                 let access_token = tokens['access_token'];
@@ -136,7 +145,20 @@
             }
             window.location.href =  "http://127.0.0.1:5050/dashboard?username=" + username;
             return false;
-        }
+            },
+            error:
+            function () {
+                $("#loader").hide();
+
+                //     // just in case posting your form failed
+                console.error("Posting failed.");
+
+            }
+        })
+
+
+
+
     }
     </script>
 {% endblock content %}
