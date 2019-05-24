@@ -6,7 +6,6 @@ import { StorageService } from 'src/app/services/storage.service';
 import { Token } from 'src/app/models/token.model';
 import { Registration } from 'src/app/models/registration';
 import { Router } from '@angular/router';
-import { error } from 'util';
 
 @Component({
   selector: 'app-register',

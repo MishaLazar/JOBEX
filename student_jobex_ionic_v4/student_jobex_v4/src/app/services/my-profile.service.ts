@@ -51,7 +51,7 @@ export class MyProfileService {
         }
         if(!this.myProfile){
             this.http.submitForm(data,'get_student_profile').subscribe(
-                (data:MyProfile) =>{                                
+                (data:MyProfile) =>{                                                    
                     this.myProfile = data;
                     this.myStudentSkills = this.myProfile.student_skill_list;
                     this.wish_list = this.myProfile.wish_list;
@@ -123,9 +123,15 @@ export class MyProfileService {
     
     onRegistration(basicProfile:Registration){
 
-       return this.http.submitForm(basicProfile,'register_student');
+       return this.http.submitForm(basicProfile,'student/register');
 
     }
+
+    onProfileDataUpdate(updatedProfile:any){
+
+        return this.http.submitForm(updatedProfile,'student/update_profile');
+ 
+     }
     
     onProfileSkillsUpdate(){           
         return this.http.submitForm(this.myStudentSkills.slice(),'student/update_skills/'+this.user_id).subscribe(

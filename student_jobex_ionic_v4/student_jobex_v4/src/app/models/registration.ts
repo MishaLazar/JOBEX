@@ -11,7 +11,9 @@ export class Registration{
                 public active:boolean,
                 public address:string,
                 public profileImg:string,
-                public student_skill_list:SkillList[]
+                public student_skill_list:SkillList[],
+                public phone:string = "",
+                public birthday:Date = null
                 ){}
   
   }

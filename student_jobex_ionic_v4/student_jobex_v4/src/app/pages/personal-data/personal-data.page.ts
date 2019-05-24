@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MyProfileService } from 'src/app/services/my-profile.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController } from '@ionic/angular';
+import { Registration } from 'src/app/models/registration';
 
 @Component({
     selector: 'app-personal-data',
@@ -17,7 +18,8 @@ export class PersonalDataPage implements OnInit {
     constructor(
         private profile: MyProfileService,
         private modalCtrl: ModalController,
-        public formBuilder: FormBuilder
+        public formBuilder: FormBuilder,
+        public loadingController:LoadingController
     ) {
 
         this.formBuild();
@@ -34,30 +36,47 @@ export class PersonalDataPage implements OnInit {
     }
     formBuild() {
         this.personalData = this.formBuilder.group({
-            firsName: [this.profile.myProfile.firstName, Validators.required],
-            lastName: [this.profile.myProfile.lastName, Validators.required],
-            mail: [this.profile.myProfile.email, Validators.compose([Validators.required, Validators.email])],
-            phone: [this.profile.myProfile.phone],
-            birthday: [this.profile.myProfile.birthday],
-            address: [this.profile.myProfile.address]
+            firstName: [this.profile.myProfile.firstName ? this.profile.myProfile.firstName: '' , Validators.required],
+            lastName: [this.profile.myProfile.lastName ? this.profile.myProfile.lastName: '', Validators.required],
+            mail: [this.profile.myProfile.email ? this.profile.myProfile.email: '', Validators.compose([Validators.required, Validators.email])],
+            phone: [this.profile.myProfile.phone ? this.profile.myProfile.phone: '', Validators.required],
+            birthday: [this.profile.myProfile.birthday ? this.profile.myProfile.birthday: ''],
+            address: [this.profile.myProfile.address ? this.profile.myProfile.address: '']
 
         })
     }
 
-    onProfileSave() {
-        if (!this.personalData.valid) {
-
-        } else {
-            for (const control in this.personalData.controls) {
-                if (this.personalData.controls.hasOwnProperty(control)) {
-                    const element = this.personalData.controls[control];
-                    this.profile.getMyProfile()[control] = element.value;
-                }
-            }
-            this.profile.editProfileSave();
-            this.modalCtrl.dismiss();
+    async onPersonalDataUpdate(){
+        if(!this.personalData.valid){
+            console.log('registration form not valid');
+        }    
+        let basicProfile = new Registration(
+          this.personalData.get('firstName').value,
+          this.personalData.get('lastName').value,
+          this.personalData.get('mail').value,
+          null,
+          null,null,false,this.personalData.get('address').value,null,null,this.personalData.get('phone').value,this.personalData.get('birthday').value);
+    
+        //this.myProfile.setMyProfileRegistration(basicProfile);
+    
+        let data = {
+            student_id:this.profile.user_id,
+            Profile:basicProfile
         }
 
-    }
-
+        const loading = await this.loadingController.create({
+          message:'login in ...'
+        });
+        loading.present();
+        this.profile.onProfileDataUpdate(data).subscribe(
+          (response:any) => {
+                      
+              loading.dismiss();
+          },
+          error => {
+            console.log(error);
+            loading.dismiss();
+          }
+        );
+      }
 }

@@ -173,41 +173,47 @@ class JobThread(object):
                 if int(_job.job_type_id) == 1:  # rematch by student
                     working = Match(student_id=_job.source_objectid)
                     working_student = self.student_by_id(student_id=_job.source_objectid, students=all_active_students)
-                    log.debug('rematch by student_id :' + _job.source_objectid)
-                    student_skills = self.on_get_student_skills(_job.source_objectid, all_students_skills)
-                    if student_skills is not None:
-                        working.source_skills = student_skills
-                        for position in all_active_positions:
-                            position_skills = self.get_positions_skill_list_by_position_id(str(position['_id']),
-                                                                                           all_positions_skills)
-                            working.position_id = str(position['_id'])
-                            working.regard_object_skills = position_skills
-                            working.source_location = working_student['location']
-                            working.regard_object_location = position['position_location']
-                            working.calculate_match(self.cities)
+                    if working_student:
+                        log.debug('rematch by student_id :' + _job.source_objectid)
+                        student_skills = self.on_get_student_skills(_job.source_objectid, all_students_skills)
+                        if student_skills is not None:
+                            working.source_skills = student_skills
+                            for position in all_active_positions:
+                                position_skills = self.get_positions_skill_list_by_position_id(str(position['_id']),
+                                                                                               all_positions_skills)
+                                working.position_id = str(position['_id'])
+                                working.regard_object_skills = position_skills
+                                working.source_location = working_student['location']
+                                working.regard_object_location = position['position_location']
+                                working.calculate_match(self.cities)
 
-                            if working.match_level_id > float(ConfigHelper.read_app_settings('MinMatchLevel')):
-                                matches.append(working)
+                                if working.match_level_id > float(ConfigHelper.read_app_settings('MinMatchLevel')):
+                                    matches.append(working)
+                    else:
+                        log.debug('rematch by student_id :' + _job.source_objectid + ', student not found')
                 elif int(_job.job_type_id) == 2:  # rematch by position
                     working = Match(position_id=_job.source_objectid)
                     working_position = self.position_by_id(position_id=_job.source_objectid,
                                                            positions=all_active_positions)
-                    log.debug('rematch by position :' + _job.source_objectid)
-                    position_skills = self.get_positions_skill_list_by_position_id(_job.source_objectid,
-                                                                                   all_positions_skills)
-                    if position_skills is not None:
-                        working.source_skills = position_skills
-                        for student in all_active_students:
-                            student_skills = self.on_get_student_skills(str(student['_id']), all_students_skills)
+                    if working_position:
+                        log.debug('rematch by position :' + _job.source_objectid)
+                        position_skills = self.get_positions_skill_list_by_position_id(_job.source_objectid,
+                                                                                       all_positions_skills)
+                        if position_skills is not None:
+                            working.source_skills = position_skills
+                            for student in all_active_students:
+                                student_skills = self.on_get_student_skills(str(student['_id']), all_students_skills)
 
-                            working.student_id = str(student['_id'])
-                            working.regard_object_skills = student_skills
-                            working.source_location = working_position['position_location']
-                            working.regard_object_location = student['location']
-                            working.calculate_match(self.cities)
+                                working.student_id = str(student['_id'])
+                                working.regard_object_skills = student_skills
+                                working.source_location = working_position['position_location']
+                                working.regard_object_location = student['location']
+                                working.calculate_match(self.cities)
 
-                            if working.match_level_id > float(ConfigHelper.read_app_settings('MinMatchLevel')):
-                                matches.append(working)
+                                if working.match_level_id > float(ConfigHelper.read_app_settings('MinMatchLevel')):
+                                    matches.append(working)
+                    else:
+                        log.debug('rematch by position : ' + _job.source_objectid + ", position not found'")
                 elif int(_job.job_type_id) == 3:  # Sentiment analysis
                     log.debug('start sentiment analysis job for object_id:' + _job.source_objectid)
                     feedback = self.get_text_to_analise(_job.source_objectid)

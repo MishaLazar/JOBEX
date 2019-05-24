@@ -182,6 +182,9 @@ def get_student_profile():
             "active": data["active"],
             "activation_data": data["activation_data"],
             "creation_data": data["creation_data"],
+            "location":data["location"],
+            "phone":data["phone"],
+            "birthday":data["birthday"],
             "student_skill_list": data["student_skill_list"],
             "wish_list":data["wish_list"]
         }
@@ -200,7 +203,25 @@ def get_student_fullname(student_id):
         return jsonify({"message": "no such user"}), 403
 
 
-@app.route('/register_student', methods=['POST'])
+@app.route('/student/update_profile', methods=['POST'])
+def update_student_profile():
+    if request.method == 'POST':
+        student_data = request.get_json()
+        mob_ctrl = MobileController()
+        count = mob_ctrl.update_student_profile(student_data=student_data)
+        if count > 0:
+            return jsonify({
+                "modified": count
+            }), 200
+        else:
+            return jsonify({
+                "modified": count
+            }), 500
+    else:
+        return jsonify({'message': 'Something went wrong'}), 500
+
+
+@app.route('/student/register', methods=['POST'])
 def register_student():
     if request.method == 'POST':
         user = request.get_json()

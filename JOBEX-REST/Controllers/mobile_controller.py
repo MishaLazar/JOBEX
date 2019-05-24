@@ -39,6 +39,26 @@ class MobileController:
     #     return result
 
     @staticmethod
+    def update_student_profile(student_data):
+        db_client = Client()
+
+        query = {
+            "_id": ObjectId(student_data['student_id'])
+        }
+        doc = {
+            "$set": {
+                "firstName": student_data['Profile']["firstName"],
+                "lastName": student_data['Profile']["lastName"],
+                "email": student_data['Profile']["email"],
+                "address": student_data['Profile']["address"],
+                "phone":student_data['Profile']["phone"],
+                "birthday":student_data['Profile']["birthday"]
+            }
+        }
+        return db_client.update_single_doc_in_collection(DbCollections.get_student_collection(), query, doc,
+                                                         True)
+
+    @staticmethod
     def get_student_skills(student_id):
         db_client = Client()
         query = {
@@ -167,6 +187,9 @@ class MobileController:
                     "active": 1,
                     "activation_data": 1,
                     "creation_data": 1,
+                    "birthday":1,
+                    "phone":1,
+                    "location":1,
                     "student_skill_list": "$student_skills.student_skill_list",
                     "wish_list":"$wish_list.wish_list"
                 }
@@ -213,7 +236,7 @@ class MobileController:
                     "position_id": 1,
                     "student_id": 1,
                     "match_id": 1,
-                    "position_description": "$positions.position_description",
+                    "position_description": "$positions.comment",
                     "position_title": "$positions.position_name",
                     "position_location": "$positions.position_location",
                     "is_new": 1,

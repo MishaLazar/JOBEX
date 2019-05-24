@@ -11,7 +11,7 @@ class Logger:
 
         self.logger = logging.getLogger(name)
 
-        fh = logging.FileHandler(config.read_logger('LOG_PATH'), mode='a', encoding=None, delay=False)
+        fh = logging.FileHandler(config.read_logger('LOG_PATH'), mode='w', encoding=None, delay=False)
         if logging_level == 'ERROR':
             self.logger.setLevel(logging.ERROR)
             fh.setLevel(logging.ERROR)
