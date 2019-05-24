@@ -11,20 +11,9 @@
 
 <script>
     $(document).ready(function () {
+        $(".placeholders").show();
         document.getElementById("username").innerHTML = window.localStorage.username;
         document.getElementById("company_id").innerHTML = window.localStorage.company_id;
-        // let access_token = window.localStorage.accessToken;
-        // let req = new XMLHttpRequest();
-        // let API_url = "http://127.0.0.1:5050/users?username=" + window.localStorage.username;
-        // req.open("GET", API_url, false);
-        // req.setRequestHeader('Content-Type', 'application/json');
-        // req.setRequestHeader('Access-Control-Allow-Origin', '*');
-        // req.setRequestHeader("Authorization", "Bearer " + access_token);
-        // req.send();
-        // let results = JSON.parse(req.response);
-        // document.getElementById("student_id").innerHTML = results.student_id;
-        // document.getElementById("match_id").innerHTML = results.match_id;
-        // document.getElementById("status").innerHTML = results.status;
     });
 </script>
 {% endblock content %}

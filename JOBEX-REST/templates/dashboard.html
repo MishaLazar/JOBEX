@@ -1,51 +1,68 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Welcome to JobEx :)</h1>
-    <h1>---------------------------------------------</h1>
-    <table id="positions" style="width:100%">
-        <thead>
-        <tr>
-            <th>Position</th>
-            <th>Department</th>
-            <th>Location</th>
-            <th>Active</th>
-            <th>Comment</th>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <h1>---------------------------------------------</h1>
-    <button class="btn btn-outline-info" onclick="window.location = 'http://127.0.0.1:5050/add_position'">Add New Position</button>
-    <script>
-            $(document).ready(function () {
-                let access_token = window.localStorage.accessToken;
-                let company_id = window.localStorage.company_id;
-                let req = new XMLHttpRequest();
-                let url = "http://127.0.0.1:5050/positions?company_id=" + company_id;
-                req.open("GET", url, false);
-                req.setRequestHeader('Content-Type', 'application/json');
-                req.setRequestHeader('Access-Control-Allow-Origin', '*');
-                req.setRequestHeader("Authorization", "Bearer " + access_token);
-                req.send();
-                let results = req.response;
+<h1>Welcome to JobEx :)</h1>
+<h1>---------------------------------------------</h1>
+<table id="positions" style="width:100%">
+    <thead>
+    <tr>
+        <th>Position</th>
+        <th>Department</th>
+        <th>Location</th>
+        <th>Active</th>
+        <th>Comment</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<h1>---------------------------------------------</h1>
+<button class="btn btn-outline-info" onclick="window.location = 'http://127.0.0.1:5050/add_position'">Add New Position
+</button>
 
-                let results_arr = JSON.parse(results);
-                for (let lst_idx = 0; lst_idx < results_arr.length; lst_idx++)
-                {
-                    let json = results_arr[lst_idx];
+<script>
+    // $(document).ready(function () {$('#positions').DataTable();});
+    $(document).ready(function () {
+        $("#loader").show();
+
+        $.ajax({
+            type: 'GET',
+            url: "http://127.0.0.1:5050/positions?company_id=" + window.localStorage.company_id,
+            dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader('Authorization', "Bearer " + window.localStorage.accessToken);
+            },
+            contentType: 'application/json',
+            positions: JSON.stringify(""),
+            success: function (positions_arr) {
+                for (let lst_idx = 0; lst_idx < positions_arr.length; lst_idx++) {
+                    let json = positions_arr[lst_idx];
                     let tr = $('<tr/>');
                     let link = "<a href=\"http://127.0.0.1:5050/position_view?position_id=" + json._id + "\">" + json.position_name + "</a>";
-                    tr.append("<td>" +link + "</td>");
+                    tr.append("<td>" + link + "</td>");
                     tr.append("<td>" + json.position_department + "</td>");
                     tr.append("<td>" + json.position_location + "</td>");
                     tr.append("<td>" + json.position_active + "</td>");
                     tr.append("<td>" + json.comment + "</td>");
                     $('#positions').append(tr);
                 }
+                $("#loader").hide();
+                $(".placeholders").show();
+                $('#positions').DataTable();
+            },
+            error: function () {
+                $("#loader").hide();
+
+                //     // just in case posting your form failed
+                console.error("Posting failed.");
+
+            }
+
+        })
+
     });
-    </script>
-        <script>
-        $(document).ready(function () {$('#positions').DataTable();});
-    </script>
+
+</script>
 {% endblock content %}

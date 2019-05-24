@@ -2,6 +2,8 @@
 {% block content %}
 <h1>Student ID:</h1>
 <h2 id="student_id"></h2>
+<h1>Student Full Name:</h1>
+<h2 id="student_fullname">Analyzing...</h2>
 <h1>Engagement Activated:</h1>
 <h2 id="match_id"></h2>
 <h1>Engagement Status:</h1>
@@ -19,70 +21,107 @@
 
         $("#loader").show();
 
-         $.ajax({
+        $.ajax({
             type: 'GET',
-            url:"http://127.0.0.1:5050/engagements?engagement_id=" + engagement_id,
+            url: "http://127.0.0.1:5050/engagements?engagement_id=" + engagement_id,
             dataType: 'json',
-              headers: {
-            'Access-Control-Allow-Origin': '*'
+            headers: {
+                'Access-Control-Allow-Origin': '*'
             },
-            beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', "Bearer " + window.localStorage.accessToken); },
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader('Authorization', "Bearer " + window.localStorage.accessToken);
+            },
             contentType: 'application/json',
-            data: JSON.stringify("")
+            data: JSON.stringify(""),
+            success: function (data) {
+
+                // show the response
+
+                if (data.status == "approved" || data.status == "rejected" || data.status == "advanced") {
+
+                    $.ajax({
+                        type: 'GET',
+                        url: "http://127.0.0.1:5050/get_student_fullname/" + data.student_id,
+                        dataType: 'json',
+                        headers: {
+                            'Access-Control-Allow-Origin': '*'
+                        },
+                        beforeSend: function (xhr, settings) {
+                            xhr.setRequestHeader('Authorization', "Bearer " + window.localStorage.accessToken);
+                        },
+                        contentType: 'application/json',
+                        fullname: JSON.stringify(""),
+                        success: function (fullname) {
+                            document.getElementById("student_fullname").innerHTML = fullname.fullname;
+                        },
+                        error: function () {
+
+                            console.error("Get failed.");
+
+                        }
+                    })
+                } else {
+                    document.getElementById("student_fullname").innerHTML = "Hidden (Status " + data.status + ")";
+                }
+                document.getElementById("student_id").innerHTML = data.student_id;
+                document.getElementById("match_id").innerHTML = data.match_id;
+                document.getElementById("status").innerHTML = data.status;
+                document.getElementById("creation_date").innerHTML = data.creation_date;
+                if (data.status != "approved") {
+                    document.getElementById("advanced_btn").hidden = true;
+                    document.getElementById("rejected_btn").hidden = true;
+                }
+                $(".placeholders").show();
+                $("#loader").hide();
+            }
+            ,
+            error: function () {
+                $("#loader").hide();
+
+                // just in case posting your form failed
+                console.error("Posting failed.");
+
+            }
         })
-        .done(function(data){
-
-            // show the response
-
-             let results = data;
-            document.getElementById("student_id").innerHTML = results.student_id;
-            document.getElementById("match_id").innerHTML = results.match_id;
-            document.getElementById("status").innerHTML = results.status;
-            document.getElementById("creation_date").innerHTML = results.creation_date;
-            if (results.status != "approved"){
-                document.getElementById("advanced_btn").hidden = true;
-                document.getElementById("rejected_btn").hidden = true;
-        }
-            $(".placeholders").show();
-            $("#loader").hide();
-        })
-        .fail(function() {
-            $("#loader").hide();
-
-            // just in case posting your form failed
-            console.error( "Posting failed." );
-
-        });
-
-
-
-
 
     });
-</script>
-<script>
+
     function update_engagement_status(status) {
-        let access_token = window.localStorage.accessToken;
-        let req = new XMLHttpRequest();
+        $(".placeholders").hide();
         let url_string = window.location.href;
         let url = new URL(url_string);
         let engagement_id = url.searchParams.get("engagement_id");
-        let body = JSON.stringify({
+        let body = {
             status: status,
-            _id:engagement_id
-        });
-        let API_url = "http://127.0.0.1:5050/engagements?engagement_id=" + engagement_id;
-        req.open("PUT", API_url, false);
-        req.setRequestHeader('Content-Type', 'application/json');
-        req.setRequestHeader('Access-Control-Allow-Origin', '*');
-        req.setRequestHeader("Authorization", "Bearer " + access_token);
-        req.send(body);
-        location.reload();
+            _id: engagement_id
+        };
+        $.ajax({
+
+            type: 'PUT',
+            url: "http://127.0.0.1:5050/engagements?engagement_id=" + engagement_id,
+            dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader('Authorization', "Bearer " + window.localStorage.accessToken);
+                $("#loader").show();
+            },
+            contentType: 'application/json',
+            data: JSON.stringify(body),
+            success: function (data) {
+                location.reload();
+            },
+            error: function () {
+                $("#loader").hide();
+                console.error("PUT failed.");
+            }
+        })
+
     }
-</script>
-<script>
-function goBack() {
-  window.history.back();
-}
+
+    function goBack() {
+        window.history.back();
+    }
 </script>
 {% endblock content %}

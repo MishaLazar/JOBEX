@@ -48,7 +48,12 @@
         </small>
     </div>
 <script>
+    $(document).ready(function () {
+    $(".placeholders").show();
+    });
     function login() {
+        $(".placeholders").hide();
+        $("#loader").show();
         let req = new XMLHttpRequest();
         let url = "http://127.0.0.1:5050/get_login";
         req.open("POST", url, false);
