@@ -52,7 +52,8 @@ class MobileController:
                 "email": student_data['Profile']["email"],
                 "address": student_data['Profile']["address"],
                 "phone":student_data['Profile']["phone"],
-                "birthday":student_data['Profile']["birthday"]
+                "birthday":student_data['Profile']["birthday"],
+                "location":student_data['Profile']["location"]
             }
         }
         return db_client.update_single_doc_in_collection(DbCollections.get_student_collection(), query, doc,

@@ -17,6 +17,7 @@ from Utils.similarity import Similarity
 from Utils.Logger import Logger
 
 config = ConfigHelper.get_instance()
+
 log = Logger(name='Job').logger
 
 CONST_USE_SAVED_PICKLE = config.read_sentiment(Key='CONST_USE_SAVED_PICKLE')

@@ -8,6 +8,7 @@ export class MyProfile{
               public email:string,              
               public userId:string,
               public address:string,
+              public location:number,
               public active:boolean,
               public profileImg:string,
               public creation_data:Date,

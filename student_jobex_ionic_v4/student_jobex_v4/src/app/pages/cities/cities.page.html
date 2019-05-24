@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>CitySelect</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>      
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content padding>  
+      <ion-grid fixed style="height: 100%;"
+        *ngIf="Cities">
+        <ion-row style="height: 10%">
+          <ion-col size="12">
+              <ion-searchbar showCancelButton cancelButtonText="Custom Cancel" [(ngModel)]="CitySearchTerm"></ion-searchbar>
+          </ion-col>
+        </ion-row>
+        <ion-row style="height: 60%">
+          <ion-col>
+            <ion-list>
+                <ion-item *ngFor="let city of Cities | CitiesFilter:CitySearchTerm" (click)="CityTuched(city)">
+                    <ion-label>{{ city.city_desc }}</ion-label>        
+                    <ion-checkbox color="primary"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <!-- <ion-row style="height: 30%">
+          <ion-col size="12">
+            <ion-list>
+              <ion-header>
+                <ion-toolbar>
+                  <ion-title>Selected:</ion-title>
+                </ion-toolbar>
+              </ion-header>
+              <ion-item>        
+                  <div *ngIf="profileSkills">
+                      <span class="selected-skills" *ngFor="let ps of profileSkills">{{ps.TextValue}}
+                          <ion-icon name="close" (click)="removeProfileSkills(ps)"></ion-icon>
+                      </span>                      
+                    </div>    
+              </ion-item>
+            </ion-list>
+            
+          </ion-col>
+    
+    
+        </ion-row> -->
+      </ion-grid>
+    
+    </ion-content>

@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
-import skillsJson from '../testDataFiles/skills.json';
+import { Subject } from 'rxjs';
 import { Engagement } from '../models/engagement.js';
 import { HttpHelpService } from './http-help.service.js';
 import { Skill } from '../models/skill.model.js';
 import { PositionData } from '../models/position-data.js';
+import { City } from '../models/City.js';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +16,9 @@ export class SharedDataService {
   activeEngagements:Engagement[] = [];
   positionsDataset:PositionData[];
   skillsLoadedSubject:Subject<string> = new Subject();
+  citiesLoadedSubject:Subject<string> = new Subject();
   positionDataSetLoadedSubject:Subject<string> = new Subject();
+  cities: City[];
 
   constructor(private http: HttpHelpService) { 
   
@@ -58,7 +59,24 @@ export class SharedDataService {
         this.skillsLoadedSubject.next('loaded');
       }
   }
+  
+  loadAllCities(){
+    if(!this.cities){
+      this.http.get('resources/cities').subscribe(
+        (data:City[]) => {
+          this.cities = data;
+          this.citiesLoadedSubject.next('loaded');
+          console.log('loaded :' + data.length + ' cities');
+        },
+        error =>{
+          console.log(error);
+        }
 
+      );
+    }else{
+      this.citiesLoadedSubject.next('loaded');
+    }
+}
   loadPositionDataset(){
       if(!this.positionsDataset){
         this.http.get('resources/getPositionDataSet').subscribe(

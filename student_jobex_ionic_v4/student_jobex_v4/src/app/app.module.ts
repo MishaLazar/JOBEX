@@ -18,8 +18,6 @@ import { SharedDataService } from './services/shared-data.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RefreshTokenInterceptor } from './Utils/RefreshTokenInterceptor';
 
-
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -27,7 +25,8 @@ import { RefreshTokenInterceptor } from './Utils/RefreshTokenInterceptor';
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
-    HttpClientModule,
+    
+    HttpClientModule,    
     ReactiveFormsModule,
     ProfileComponentsModule
   ],
@@ -47,7 +46,7 @@ import { RefreshTokenInterceptor } from './Utils/RefreshTokenInterceptor';
     }
   ],
   exports:[
-    ReactiveFormsModule,FormsModule
+    ReactiveFormsModule,FormsModule,
   ],
   bootstrap: [AppComponent]
 })

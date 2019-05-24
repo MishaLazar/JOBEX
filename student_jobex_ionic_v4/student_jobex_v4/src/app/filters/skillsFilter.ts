@@ -1,6 +1,6 @@
 import { PipeTransform, Pipe, OnInit } from '@angular/core';
 import { Skill } from '../models/skill.model';
-import { MyProfileService } from '../services/my-profile.service';
+
 
 @Pipe({
     name: 'SkillFilter'

@@ -26,6 +26,7 @@ export class DashboardPage implements OnInit {
     this.loadDashCharts();
     this.studentLastEgagements = this.sharedDataSvc.getStudentLatestEngagments();
     this.sharedDataSvc.loadAllSkills();
+    this.sharedDataSvc.loadAllCities();
   }
 
   loadDashCharts() {
