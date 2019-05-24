@@ -3,7 +3,7 @@ from flask_jwt_extended import JWTManager
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required,
                                 get_jwt_identity, get_raw_jwt)
 from flask_cors import CORS
-
+from werkzeug.contrib.cache import SimpleCache
 from Classes.match import Match
 from JobThread import JobThread
 from Utils.config_helper import ConfigHelper
@@ -12,13 +12,12 @@ from Controllers.web_controller import WebController
 from Controllers.resources_controller import ResourcesController
 from Controllers.auth_controller import AuthController
 from Utils.json_encoder import JSONEncoder
-# from jobs_service import JobThread
 from Utils.util import Utils
 from forms import RegistrationForm, LoginForm, AddPositionForm
 from werkzeug import exceptions
-# import json
 
 app = Flask(__name__)
+cache = SimpleCache()
 
 config = ConfigHelper.get_instance()
 app.config['SECRET_KEY'] = config.read_auth('SECRET_KEY')  # 'I8Is25DFOzLUKSx06WCyesvHJgmZJblt'
@@ -138,9 +137,9 @@ def get_login():
             if "company_id" in result:
                 company_id = str(result["company_id"])
             data = {
-                "user_id":str(result['_id']),
+                "user_id": str(result['_id']),
                 "username": result["username"],
-                "company_id":company_id,
+                "company_id": company_id,
                 "access_token": access_token,
                 "refresh_token": refresh_token
             }
@@ -182,11 +181,11 @@ def get_student_profile():
             "active": data["active"],
             "activation_data": data["activation_data"],
             "creation_data": data["creation_data"],
-            "location":data["location"],
-            "phone":data["phone"],
-            "birthday":data["birthday"],
+            "location": data["location"],
+            "phone": data["phone"],
+            "birthday": data["birthday"],
             "student_skill_list": data["student_skill_list"],
-            "wish_list":data["wish_list"]
+            "wish_list": data["wish_list"]
         }
         return jsonify(result), 200
     else:
@@ -384,11 +383,11 @@ def feedback():
 def engagement_feedback():
     try:
         r = request.get_json()
-        engagement_id =r['engagement_id']
+        engagement_id = r['engagement_id']
         if request.method == 'POST':
             feedback_text = r['feedback_text']
             company_id = r['company_id']
-            result = {"feedback_id": str(MobileController.post_feedback(feedback_text, engagement_id,company_id))}
+            result = {"feedback_id": str(MobileController.post_feedback(feedback_text, engagement_id, company_id))}
             return jsonify(result)
         elif request.method == 'GET':
             web_ctrl = WebController.getInstance()
@@ -410,7 +409,13 @@ def skills(skill_to_find=None):
         if skill_to_find:
             result = res_control.search_skills(skill_to_find)
         else:
-            result = res_control.get_all_skills()
+            m_skills = cache.get('m_skills')
+
+            if not m_skills:
+                result = res_control.get_all_skills()
+                cache.set('m_skills', m_skills)
+            else:
+                result = m_skills
 
     return JSONEncoder().encode(result)
 
@@ -419,8 +424,13 @@ def skills(skill_to_find=None):
 def cities():
     res_control = ResourcesController.get_instance()
     if request.method == 'GET':
-        result = res_control.get_all_cities()
+        m_cities = cache.get('m_cities')
 
+        if not m_cities:
+            result = res_control.get_all_cities()
+            cache.set('m_cities', result)
+        else:
+            result = m_cities
     return JSONEncoder().encode(result)
 
 
@@ -579,6 +589,24 @@ def get_companies_list():
     return web_ctrl.get_companies_list()
 
 
+def get_skills_list():
+    res_control = ResourcesController.get_instance()
+    return res_control.get_all_skills()
+
+
+def get_cites_list():
+    res_control = ResourcesController.get_instance()
+    return res_control.get_all_cities()
+
+
+def load_data_to_memory():
+    m_cities = get_cites_list()
+    m_skills = get_skills_list()
+
+    cache.set('m_cities', m_cities)
+    cache.set('m_skills', m_skills)
+
+
 if __name__ == '__main__':
     if config.read_app_settings(Key='ServerDebug') == '1':
         app.debug = True
@@ -586,7 +614,8 @@ if __name__ == '__main__':
         example = JobThread(interval=Utils.int_try_parse(config.read_job(Key='DELAY_INTERVAL'), 20))
 
     companies = get_companies_list()
+    load_data_to_memory()
     if config.read_app_settings(Key='MachineIp') == '1':
-        app.run(host= '0.0.0.0',port=5050, threaded=True)
+        app.run(host='0.0.0.0', port=5050, threaded=True)
     else:
         app.run(port=5050, threaded=True)

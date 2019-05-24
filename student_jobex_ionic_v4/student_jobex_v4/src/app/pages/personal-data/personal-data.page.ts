@@ -14,6 +14,7 @@ export class PersonalDataPage implements OnInit {
     personalData: FormGroup;
     profileImg: string = "assets/img/default_profile.png";
     text: string;
+    tempProfile: Registration;
 
     constructor(
         private profile: MyProfileService,
@@ -57,8 +58,9 @@ export class PersonalDataPage implements OnInit {
           null,
           null,null,false,this.personalData.get('address').value,null,null,this.personalData.get('phone').value,this.personalData.get('birthday').value);
     
+        this.tempProfile = basicProfile;
         //this.myProfile.setMyProfileRegistration(basicProfile);
-    
+        
         let data = {
             student_id:this.profile.user_id,
             Profile:basicProfile
@@ -70,7 +72,7 @@ export class PersonalDataPage implements OnInit {
         loading.present();
         this.profile.onProfileDataUpdate(data).subscribe(
           (response:any) => {
-                      
+              this.updateLocalProfileData();        
               loading.dismiss();
           },
           error => {
@@ -79,4 +81,13 @@ export class PersonalDataPage implements OnInit {
           }
         );
       }
+    updateLocalProfileData() {
+        this.profile.myProfile.firstName = this.tempProfile.firstName;
+        this.profile.myProfile.lastName = this.tempProfile.lastName;
+        this.profile.myProfile.email = this.tempProfile.email;
+        this.profile.myProfile.address = this.tempProfile.address;
+        this.profile.myProfile.phone = this.tempProfile.phone;
+        this.profile.myProfile.birthday = this.tempProfile.birthday;
+
+    }
 }
