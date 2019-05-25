@@ -14,7 +14,8 @@ export class Registration{
                 public student_skill_list:SkillList[],
                 public phone:string = "",
                 public birthday:Date = null,
-                public location:number = -1
+                public location:number = -1,
+                public user_type:string = "student"
                 ){}
   
   }

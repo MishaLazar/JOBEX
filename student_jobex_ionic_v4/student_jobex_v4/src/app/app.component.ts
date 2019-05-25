@@ -28,7 +28,8 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router:Router,
-    private auth:AuthenticationService
+    private auth:AuthenticationService,
+    private storage:StorageService
   ) {
     this.initializeApp();
     this.isAuthenticated = this.auth.isAuthenticated();
@@ -53,7 +54,7 @@ export class AppComponent {
   }
   onLogout(){
     
-    //this.storage.logout();
+    this.storage.logout();
     this.auth.onLogout();
     this.router.navigateByUrl('/login');
   }

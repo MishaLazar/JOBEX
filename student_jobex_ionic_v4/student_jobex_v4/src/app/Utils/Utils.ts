@@ -7,22 +7,23 @@ export class Utils {
 
   static calculateAvgDataSet(DataSetToFill: number[], weeks: number, MatchesCounts: number[],EngagmentsCounts: number[]): any {
     let sum = 0;
+    
     if(MatchesCounts.length == weeks){
-        for (let index = 0; index < weeks-1; index++) {
+        for (let index = 0; index < weeks; index++) {
             sum += MatchesCounts[index];        
         }
         DataSetToFill[0] = sum;
-        DataSetToFill[0] = DataSetToFill[0] / (weeks-1)
+        DataSetToFill[0] = DataSetToFill[0] / (weeks)
         
     }
 
     sum = 0;
     if(EngagmentsCounts.length == weeks){
-        for (let index = 0; index < weeks-1; index++) {
+        for (let index = 0; index < weeks; index++) {
             sum += EngagmentsCounts[index];        
         }
         DataSetToFill[1] = sum;
-        DataSetToFill[1] = DataSetToFill[1] / (weeks-1)
+        DataSetToFill[1] = DataSetToFill[1] / (weeks)
         
     }
     return DataSetToFill;
@@ -54,7 +55,7 @@ export class Utils {
         if(!up_to_date){
             up_to_date = Date.now();
         }
-
-        return Math.round((up_to_date - Date.parse(activation_date)) / (7 * 24 * 60 * 60 * 1000));
+        
+        return Math.round((up_to_date - Date.parse(activation_date)) / (7 * 24 * 60 * 60 * 1000)) + 1;
     }
 }

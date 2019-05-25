@@ -113,7 +113,7 @@ class Match:
     @staticmethod
     def wl_calculate_simple_match(student_id, student_skills, wl_positions):
         matches = []
-        if student_skills is not None:
+        if student_skills and wl_positions :
             s_categories = []
             s_sub_categories = []
             s_skills = []
@@ -158,7 +158,10 @@ class Match:
         matches = Match.wl_calculate_simple_match(student_id, student_skills, wl_positions)
 
         if not matches.__len__() > 0:
-            return Match.wl_suggestion_skill_id(wl_positions=wl_positions)
+            if wl_positions:
+                return Match.wl_suggestion_skill_id(wl_positions=wl_positions)
+            else:
+                return -1
         if matches[0].match_level_id == 0:
             return Match.wl_suggestion_skill_id(wl_positions=wl_positions)
 

@@ -15,7 +15,7 @@ export class DashChartBest4youComponent implements OnInit {
   
   skill_id:number;
   skill_text_value:string;
-  skill_diff:number = 18;
+  skill_diff:any;
 
   constructor(private profile:MyProfileService,private loadingController:LoadingController, private sharedData:SharedDataService) { 
     
@@ -34,12 +34,14 @@ export class DashChartBest4youComponent implements OnInit {
           if(status === 'success'){         
             this.skill_id = this.profile.wl_suggested.new_skill_skill_id;
             this.skill_text_value = this.sharedData.getSkillTextValueById(this.skill_id);
+            this.skill_diff = (this.profile.wl_suggested.diff * 100).toFixed(2);
             console.log(this.skill_text_value);
           }else{
             console.log("error loading studend skills");
           }        
         }
       );
+      this.profile.calculateWishlistSggestedSkill();
     }else {
       this.skill_id = this.profile.wl_suggested.new_skill_skill_id;
       this.skill_text_value = this.sharedData.getSkillTextValueById(this.skill_id);

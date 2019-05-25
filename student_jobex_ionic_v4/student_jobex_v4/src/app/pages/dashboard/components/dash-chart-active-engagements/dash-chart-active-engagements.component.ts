@@ -13,12 +13,13 @@ export class DashChartActiveEngagementsComponent implements OnInit {
   constructor(private profile:MyProfileService) { }
 
   ngOnInit() {
-    let weeks:number = Utils.weekesFromActivation(this.profile.myProfile.activation_data);
+    let weeks:number = Utils.weekesFromActivation(this.profile.myProfile.activation_date);
     let MatchesDataSet = new Array(weeks).fill(0);
     let ActiveEngagementsDataSet = new Array(weeks).fill(0);
-    ActiveEngagementsDataSet = Utils.fillDataSetCounters(ActiveEngagementsDataSet,this.profile.myProfile.activation_data,this.profile.engagemtnsCounts);
+    ActiveEngagementsDataSet = Utils.fillDataSetCounters(ActiveEngagementsDataSet,this.profile.myProfile.activation_date,this.profile.engagemtnsCounts);
     
-    MatchesDataSet = Utils.fillDataSetCounters(MatchesDataSet,this.profile.myProfile.activation_data,this.profile.matchesCounts);
+    MatchesDataSet = Utils.fillDataSetCounters(MatchesDataSet,this.profile.myProfile.activation_date,this.profile.matchesCounts);
+    
     
     this.initActiveEngagementsDonat(weeks,MatchesDataSet,ActiveEngagementsDataSet);
   }

@@ -40,6 +40,7 @@ export class DashboardPage implements OnInit {
             }
             this.http.submitForm(data, 'get_dashboard_main_chart_data').subscribe(
               (data: any) => {
+                
                 this.mayChartDisplay = true;
                 this.profile.engagemtnsCounts = data["engagements_counts"];
                 this.profile.matchesCounts =  data["matches_couts"];

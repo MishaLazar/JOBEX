@@ -12,17 +12,16 @@ export class DashChartOvertimeComponent implements OnInit {
   constructor(public profile:MyProfileService) { }
 
   ngOnInit() { 
-    let weeks:number = Utils.weekesFromActivation(this.profile.myProfile.activation_data);
+    let weeks:number = Utils.weekesFromActivation(this.profile.myProfile.activation_date);
     let MatchesDataSet = new Array(weeks).fill(0);
     let ActiveEngagementsDataSet = new Array(weeks).fill(0);
     let AvgMatchesDataSet = new Array(2).fill(0);
     let CurrentWeekDataSet = new Array(2).fill(0);
-    ActiveEngagementsDataSet = Utils.fillDataSetCounters(ActiveEngagementsDataSet,this.profile.myProfile.activation_data,this.profile.engagemtnsCounts);    
-    MatchesDataSet = Utils.fillDataSetCounters(MatchesDataSet,this.profile.myProfile.activation_data,this.profile.matchesCounts);
+    ActiveEngagementsDataSet = Utils.fillDataSetCounters(ActiveEngagementsDataSet,this.profile.myProfile.activation_date,this.profile.engagemtnsCounts);    
+    MatchesDataSet = Utils.fillDataSetCounters(MatchesDataSet,this.profile.myProfile.activation_date,this.profile.matchesCounts);
     AvgMatchesDataSet = Utils.calculateAvgDataSet(AvgMatchesDataSet,weeks,MatchesDataSet,ActiveEngagementsDataSet);
     CurrentWeekDataSet[0] = MatchesDataSet[weeks-1];
-    CurrentWeekDataSet[1] = ActiveEngagementsDataSet[weeks-1];
-    
+    CurrentWeekDataSet[1] = ActiveEngagementsDataSet[weeks-1];    
     this.initOverTimeChart(['Matches', 'Engaged'],AvgMatchesDataSet,CurrentWeekDataSet);
   }
   initOverTimeChart(chartLabels:string[],AvgDataSet:number[],CurrentDataSet:number[]): any {
