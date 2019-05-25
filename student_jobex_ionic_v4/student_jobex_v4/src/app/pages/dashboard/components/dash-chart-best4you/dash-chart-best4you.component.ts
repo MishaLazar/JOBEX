@@ -22,12 +22,28 @@ export class DashChartBest4youComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-    this.loadWishListSuggestedSkill();
+    if(!this.sharedData.skills){
+      this.sharedData.skillsLoadedSubject.subscribe(
+        (value) => {
+          if(value =='loaded'){
+            this.loadWishListSuggestedSkill();
+            this.sharedData.skillsLoadedSubject.unsubscribe();
+          }
+        }
+      );
+      this.sharedData.loadAllSkills();
+    }
+    else{
+
+      this.loadWishListSuggestedSkill();
+    }
     
   }
 
-  async loadWishListSuggestedSkill() {
+  ionViewWillEnter(){
+    this.loadWishListSuggestedSkill();
+  }
+  loadWishListSuggestedSkill() {
     if(!this.profile.wl_suggested){
       this.profile.WL_SuggestedSubject.subscribe(
         (status:string) =>{
@@ -35,10 +51,11 @@ export class DashChartBest4youComponent implements OnInit {
             this.skill_id = this.profile.wl_suggested.new_skill_skill_id;
             this.skill_text_value = this.sharedData.getSkillTextValueById(this.skill_id);
             this.skill_diff = (this.profile.wl_suggested.diff * 100).toFixed(2);
-            console.log(this.skill_text_value);
+            
           }else{
             console.log("error loading studend skills");
-          }        
+          }    
+          this.profile.WL_SuggestedSubject.unsubscribe();    
         }
       );
       this.profile.calculateWishlistSggestedSkill();

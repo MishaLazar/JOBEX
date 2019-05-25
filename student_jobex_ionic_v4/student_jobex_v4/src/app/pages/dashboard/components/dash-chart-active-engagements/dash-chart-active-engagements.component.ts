@@ -10,26 +10,64 @@ import { Utils } from 'src/app/Utils/Utils';
 })
 export class DashChartActiveEngagementsComponent implements OnInit {
 
+  activeChartReady:boolean = false;
   constructor(private profile:MyProfileService) { }
 
   ngOnInit() {
+    
+    if(!this.profile.myProfile){
+      this.profile.profileLoadedSubject.subscribe(
+        (value) =>{
+          if(value == 'loaded'){
+            this.loadActiveEngagmentChart();
+            this.profile.profileLoadedSubject.unsubscribe();
+          }
+        }
+      );
+      this.profile.loadProfile();  
+    }else{
+      this.loadActiveEngagmentChart();
+    }
+    
+  }
+
+  loadActiveEngagmentChart(){
+    
+    if(!this.profile.engagemtnsCounts || !this.profile.matchesCounts){
+      this.profile.chartCounterSubject.subscribe(
+        (value) => {
+          if(value =='loaded'){
+            this.populateData();
+          }
+      });
+      this.profile.loadChartCounters();
+    }
+    else{
+      this.populateData();
+    }
+
+  }
+
+  populateData(){
     let weeks:number = Utils.weekesFromActivation(this.profile.myProfile.activation_date);
     let MatchesDataSet = new Array(weeks).fill(0);
     let ActiveEngagementsDataSet = new Array(weeks).fill(0);
     ActiveEngagementsDataSet = Utils.fillDataSetCounters(ActiveEngagementsDataSet,this.profile.myProfile.activation_date,this.profile.engagemtnsCounts);
-    
     MatchesDataSet = Utils.fillDataSetCounters(MatchesDataSet,this.profile.myProfile.activation_date,this.profile.matchesCounts);
+    this.activeChartReady = true;
+    this.initActiveEngagements(weeks,MatchesDataSet,ActiveEngagementsDataSet);
     
     
-    this.initActiveEngagementsDonat(weeks,MatchesDataSet,ActiveEngagementsDataSet);
   }
 
-  initActiveEngagementsDonat(weeks:number,MatchesDataSet:number[],ActiveEngagementsDataSet:number[]): any {
+  initActiveEngagements(weeks:number,MatchesDataSet:number[],ActiveEngagementsDataSet:number[]): any {
     let chartLabels:string[] = [];
     for (let index = 0; index < weeks; index++) {
       const label = 'week' + (index+1);
       chartLabels.push(label);   
     }
+    let activeEngagementsPlaceholder =(<any>document.getElementById('activeEngagementsPlaceHolder'));
+    activeEngagementsPlaceholder.setAttribute("class","background");
     var ctx = (<any>document.getElementById('activeEngagementsChart')).getContext('2d');
     var myChart = new Chart(ctx, {
       type: 'line',

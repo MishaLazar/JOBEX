@@ -14,6 +14,8 @@ export class DashboardPage implements OnInit {
 
 
   studentLastEgagements: Engagement[];
+  overTimeChartReady:boolean = false;
+  
   mayChartDisplay: boolean = false;
   constructor(
     private sharedDataSvc: SharedDataService,
@@ -22,16 +24,41 @@ export class DashboardPage implements OnInit {
     private profile: MyProfileService) { }
 
   ngOnInit() {    
-    this.profile.loadProfile();
-    this.loadDashCharts();
-    this.studentLastEgagements = this.sharedDataSvc.getStudentLatestEngagments();
-    this.sharedDataSvc.loadAllSkills();
-    this.sharedDataSvc.loadAllCities();
+    // this.profile.loadProfile();
+    // this.studentLastEgagements = this.sharedDataSvc.getStudentLatestEngagments();
+    // this.loadDashCharts();
+    // this.sharedDataSvc.loadAllSkills();
+    // this.sharedDataSvc.loadAllCities();
   }
 
+  ionViewWillEnter(){
+  
+
+    if(!this.profile.myProfile){
+      this.profile.profileLoadedSubject.subscribe((value) =>{
+        if (value == 'loaded'){
+          this.studentLastEgagements = this.sharedDataSvc.getStudentLatestEngagments();
+          this.loadDashCharts();
+          this.sharedDataSvc.loadAllSkills();
+          this.sharedDataSvc.loadAllCities();
+        }else{
+          console.log('Dashboard, Oops cant load profile');
+        }
+      });
+      this.profile.loadProfile();
+    }
+    else {
+      this.studentLastEgagements = this.sharedDataSvc.getStudentLatestEngagments();
+      this.loadDashCharts();
+      this.sharedDataSvc.loadAllSkills();
+      this.sharedDataSvc.loadAllCities();
+    }
+    
+  }
   loadDashCharts() {
     
-    if(!this.profile.engagemtnsCounts|| !this.profile.matchesCounts){
+    if(!this.profile.engagemtnsCounts || !this.profile.matchesCounts){
+      
       this.profile.profileLoadedSubject.subscribe(
         (value) => {
           if (value == 'loaded') {
@@ -57,11 +84,5 @@ export class DashboardPage implements OnInit {
         this.mayChartDisplay = true;
       }
   }
-
-  // onClickTest(mid:string){
-  //   this.navCtrl.navigateForward('dashboard/engagement/'+mid);
-  // }
-  onClick() {
-    this.profile.loadStudentSkills();
-  }
+  
 }

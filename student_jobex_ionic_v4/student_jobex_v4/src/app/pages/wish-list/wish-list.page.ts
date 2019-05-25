@@ -28,10 +28,13 @@ export class WishListPage implements OnInit {
 
   ngOnInit() {
     this.positionSelected = this.profile.wish_list.slice();        
-    this.loadPositionDataSet();
+    //this.loadPositionDataSet();
 
   }
 
+  ionViewWillEnter(){
+    this.loadPositionDataSet();
+  }
   // async loadWishList() {
     
   //   const loading = await this.loadingController.create({
@@ -57,14 +60,18 @@ export class WishListPage implements OnInit {
   // }
 
 
-  loadPositionDataSet(){
+  async loadPositionDataSet(){
+    const loading = await this.loadingController.create({
+          message: "loading.."
+        });
+    loading.present();
     if (!this.sharedData.positionsDataset) {
       
       this.sharedData.positionDataSetLoadedSubject.subscribe(
         (value) => {
-
+          
           if (value == 'loaded') {
-
+            this.positionDataset = this.sharedData.positionsDataset.slice();
             this.finallizeLoading();
             
           } else {
@@ -74,22 +81,24 @@ export class WishListPage implements OnInit {
             });
 
           }
-          
+          loading.dismiss();
         }
       );
       this.sharedData.loadPositionDataset();
     }
     else {
+      
       this.positionDataset = this.sharedData.positionsDataset.slice();
       this.finallizeLoading();
+      loading.dismiss();
     }
   }
 
   finallizeLoading() {
     
-    this.positionSelected.forEach(positionData => {
+    this.positionSelected.forEach(ps => {
       let index = this.positionDataset.findIndex(
-        el => el.position_name === positionData.position_name && positionData.position_department === el.position_department);
+        el => el.position_name === ps.position_name && ps.position_department === el.position_department);
       if(index >= 0){
         console.log(index);
         this.positionDataset.splice(index,1);

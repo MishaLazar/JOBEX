@@ -48,7 +48,7 @@ export class SharedDataService {
           (data:Skill[]) => {
             this.skills = data;
             this.skillsLoadedSubject.next('loaded');
-            console.log('loaded :' + data.length + ' skills');
+            
           },
           error =>{
             console.log(error);
