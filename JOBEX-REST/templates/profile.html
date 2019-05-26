@@ -1,13 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>Username</h1>
-<h2 id="username"></h2>
-<h1>Company ID:</h1>
-<h2 id="company_id"></h2>
-<!--<h1>Engagement Status:</h1>-->
-<!--<h2 id="status"></h2>-->
-<!--<h1>Creation Date:</h1>-->
-<!--<h2 id="creation_date"></h2>-->
+
+<div class="content-section">
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">About us:</legend>
+        <b>Username</b>
+        <p id="username"></p>
+        <b>Company ID:</b>
+        <p id="company_id"></p>
+        <legend class="border-bottom mb-4"></legend>
+    </fieldset>
+</div>
+
 
 <script>
     $(document).ready(function () {

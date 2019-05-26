@@ -1,41 +1,47 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>Position Name:</h1>
-<h2 id="position_name"></h2>
-<h1>Position Activated:</h1>
-<h2 id="active"></h2>
-<h1>Position Department:</h1>
-<h2 id="department"></h2>
-<h1>Position Skills:</h1>
-<h3 id="skills"></h3>
-<h1>Position matches:</h1>
-<h1>---------------------------------------------</h1>
-<table id="matches" style="width:100%">
-    <thead>
-    <tr>
-        <th>Match Level</th>
-        <th>Match Update Date</th>
-        <th>Engage!</th>
-    </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
-<h1>---------------------------------------------</h1>
-<h1>Active Engagements:</h1>
-<h1>---------------------------------------------</h1>
-<table id="engagements" style="width:100%">
-    <thead>
-    <tr>
-        <th>Student</th>
-        <th>Status</th>
-    </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
-<h1>---------------------------------------------</h1>
-<button class="btn btn-outline-info" onclick="goBack()">Go Back</button>
+<div class="content-section">
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Position Details:</legend>
+
+        <b>Position Name:</b><p id="position_name"></p>
+        <b>Position Activated:</b><p id="active"></p>
+        <b>Position Department:</b><p id="department"></p>
+        <b>Position Skills:</b><p id="skills"></p>
+        <legend class="border-bottom mb-4">Position Matches:</legend>
+        <table id="matches" style="width:100%">
+            <thead>
+            <tr>
+                <th>Match Level</th>
+                <th>Match Update Date</th>
+                <th>Engage!</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <legend class="border-bottom mb-4"></legend>
+        <legend class="border-bottom mb-4">Position Engagements:</legend>
+        <table id="engagements" style="width:100%">
+            <thead>
+            <tr>
+                <th>Student</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <legend class="border-bottom mb-4"></legend>
+        <button class="btn btn-outline-info" onclick="goBack()">Go Back</button>
+    </fieldset>
+</div>
+
+<div class="border-top pt-3">
+    <small class="text-muted">
+        Need another company Account? <a class="ml-2" href="{{ url_for('register_view') }}">Sign Up Now</a>
+    </small>
+</div>
 <script>
     $(document).ready(function () {
         $("#loader").show();
@@ -84,7 +90,7 @@
                     let json = matches_arr[lst_idx];
                     if (json.is_engaged == false) {
                         tr = $('<tr/>');
-                        tr.append("<td>" + parseFloat(json.match_level_id * 100) + '%' + "</td>");
+                        tr.append("<td>" + parseInt(json.match_level_id * 100) + '%' + "</td>");
                         tr.append("<td>" + json.match_update_date + "</td>");
                         let student_id_str = "'" + json.student_id + "'";
                         let match_id_str = "'" + json._id + "'";
@@ -104,7 +110,6 @@
                 console.error("Posting failed.");
             }
         })
-
 
 
         $.ajax({
@@ -188,13 +193,13 @@
                 update_match(match_id, true)
             },
             error:
-            function () {
-                $("#loader").hide();
+                function () {
+                    $("#loader").hide();
 
-                //     // just in case posting your form failed
-                console.error("Posting failed.");
+                    //     // just in case posting your form failed
+                    console.error("Posting failed.");
 
-            }
+                }
         })
     }
 

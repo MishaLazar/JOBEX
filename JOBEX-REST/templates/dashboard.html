@@ -1,26 +1,28 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>Welcome to JobEx :)</h1>
-<h1>---------------------------------------------</h1>
-<table id="positions" style="width:100%">
-    <thead>
-    <tr>
-        <th>Position</th>
-        <th>Department</th>
-        <th>Location</th>
-        <th>Active</th>
-        <th>Comment</th>
-    </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
-<h1>---------------------------------------------</h1>
+<div class="content-section">
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Welcome to JobEx :)</legend>
+        <legend class="border-bottom mb-4">Positions:</legend>
+        <table id="positions" style="width:100%">
+            <thead>
+            <tr>
+                <th>Position</th>
+                <th>Department</th>
+                <th>Location</th>
+                <th>Active</th>
+                <th>Comment</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <legend class="border-bottom mb-4"></legend>
 <button class="btn btn-outline-info" onclick="window.location = 'http://127.0.0.1:5050/add_position'">Add New Position
 </button>
-
+    </fieldset>
+</div>
 <script>
-    // $(document).ready(function () {$('#positions').DataTable();});
     $(document).ready(function () {
         $("#loader").show();
 

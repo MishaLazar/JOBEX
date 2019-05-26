@@ -1,18 +1,29 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>Student ID:</h1>
-<h2 id="student_id"></h2>
-<h1>Student Full Name:</h1>
-<h2 id="student_fullname">Analyzing...</h2>
-<h1>Engagement Activated:</h1>
-<h2 id="match_id"></h2>
-<h1>Engagement Status:</h1>
-<h2 id="status"></h2>
-<h1>Creation Date:</h1>
-<h2 id="creation_date"></h2>
-<button class="btn btn-outline-info" id="advanced_btn" onclick="update_engagement_status('advanced')">Advanced</button>
-<button class="btn btn-outline-info" id="rejected_btn" onclick="update_engagement_status('rejected')">Rejected</button>
-<button class="btn btn-outline-info" onclick="goBack()">Go Back</button>
+
+<div class="content-section">
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Engagement Details:</legend>
+        <b>Student ID:</b>
+        <p id="student_id"></p>
+        <b>Student Full Name:</b>
+        <p id="student_fullname">Analyzing...</p>
+        <b>Engagement Activated:</b>
+        <p id="match_id"></p>
+        <b>Engagement Status:</b>
+        <p id="status"></p>
+        <b>Creation Date:</b>
+        <p id="creation_date"></p>
+        <button class="btn btn-outline-info" id="advanced_btn" onclick="update_engagement_status('advanced')">Advanced
+        </button>
+        <button class="btn btn-outline-info" id="rejected_btn" onclick="update_engagement_status('rejected')">Rejected
+        </button>
+        <legend class="border-bottom mb-4"></legend>
+        <button class="btn btn-outline-info" onclick="goBack()">Go Back</button>
+    </fieldset>
+</div>
+
+
 <script>
     $(document).ready(function () {
         let url_string = window.location.href;
