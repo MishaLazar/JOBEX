@@ -14,6 +14,7 @@ import { WishListComponent } from './components/wish-list/wish-list.component';
 import { SkillsComponent } from './components/skills/skills.component';
 
 
+
 const routes: Routes = [
     {
         path: '',
@@ -25,7 +26,7 @@ const routes: Routes = [
     imports: [
         CommonModule,
         FormsModule,
-        IonicModule,
+        IonicModule,        
         ProfileComponentsModule,
         RouterModule.forChild(routes)
     ],

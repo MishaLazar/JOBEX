@@ -58,7 +58,7 @@ export class LoginPage implements OnInit {
         this.storageSVC.setStorageValueByKey('refresh_token',refresh_token);
         loading.dismiss();        
         this.auth.stateSubject.next('login');
-        this.router.navigateByUrl('/dashboard')
+        this.router.navigateByUrl('/')
     },
     error => {
       loading.dismiss();

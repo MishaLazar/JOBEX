@@ -51,8 +51,9 @@ class MobileController:
                 "lastName": student_data['Profile']["lastName"],
                 "email": student_data['Profile']["email"],
                 "address": student_data['Profile']["address"],
-                "phone":student_data['Profile']["phone"],
-                "birthday":student_data['Profile']["birthday"]
+                "phone": student_data['Profile']["phone"],
+                "birthday": student_data['Profile']["birthday"],
+                "location": student_data['Profile']["location"]
             }
         }
         return db_client.update_single_doc_in_collection(DbCollections.get_student_collection(), query, doc,
@@ -79,10 +80,12 @@ class MobileController:
         doc = {
             "$set": {"student_skill_list": skills}
         }
-        return db_client.update_single_doc_in_collection(DbCollections.get_student_skills_collection(), query, doc,
-                                                         True)
+        result = db_client.update_single_doc_in_collection(DbCollections.get_student_skills_collection(), query, doc,True)
 
+        if result > 0:
+            MobileController.set_student_for_rematch(student_id)
 
+        return result
 
     @staticmethod
     def set_active_status_on_profile(student_id, active_status):
@@ -156,13 +159,13 @@ class MobileController:
                 }
 
             },
-            {"$unwind": "$student_skills"},
+            {'$unwind': {'path': '$student_skills', 'preserveNullAndEmptyArrays': True}},
             {
                 "$match": {
                     "$and": [{"s_id": student_id}]
                 }
             }
-        ,
+            ,
             {
                 "$lookup": {
                     "from": "wish_list",
@@ -172,7 +175,7 @@ class MobileController:
                 }
 
             },
-            {"$unwind": "$wish_list"},
+            {'$unwind': {'path': '$wish_list', 'preserveNullAndEmptyArrays': True}},
             {
                 "$project": {
                     "_id": 1,
@@ -185,13 +188,13 @@ class MobileController:
                     "address": 1,
                     "profileImg": 1,
                     "active": 1,
-                    "activation_data": 1,
-                    "creation_data": 1,
-                    "birthday":1,
-                    "phone":1,
-                    "location":1,
-                    "student_skill_list": "$student_skills.student_skill_list",
-                    "wish_list":"$wish_list.wish_list"
+                    "activation_date": 1,
+                    "creation_date": 1,
+                    "birthday": 1,
+                    "phone": 1,
+                    "location": 1,
+                    'student_skill_list': { '$ifNull' : [ '$student_skills.student_skill_list', [ ] ] },
+                    'wish_list': { '$ifNull' : [ '$wish_list.wish_list', [ ] ] }
                 }
             }
         ]
@@ -324,7 +327,7 @@ class MobileController:
                         "$toString": "$company._id"
 
                     },
-                    "company_description":"$company.description",
+                    "company_description": "$company.description",
                     "position_skill_list": "$position_skills.position_skill_list"
                 }
 
@@ -442,7 +445,7 @@ class MobileController:
                 "wish_list": wish_list}
         }
         return db_client.update_single_doc_in_collection(DbCollections.get_wish_list_collection(), query, doc,
-                                                         False)
+                                                         True)
 
     @staticmethod
     def get_wish_list(student_id):

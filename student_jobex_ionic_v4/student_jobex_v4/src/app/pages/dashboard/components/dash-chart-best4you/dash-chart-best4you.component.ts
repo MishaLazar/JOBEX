@@ -15,31 +15,50 @@ export class DashChartBest4youComponent implements OnInit {
   
   skill_id:number;
   skill_text_value:string;
-  skill_diff:number = 18;
+  skill_diff:any;
 
   constructor(private profile:MyProfileService,private loadingController:LoadingController, private sharedData:SharedDataService) { 
     
   }
 
   ngOnInit() {
-    
-    this.loadWishListSuggestedSkill();
+    if(!this.sharedData.skills){
+      this.sharedData.skillsLoadedSubject.subscribe(
+        (value) => {
+          if(value =='loaded'){
+            this.loadWishListSuggestedSkill();
+            this.sharedData.skillsLoadedSubject.unsubscribe();
+          }
+        }
+      );
+      this.sharedData.loadAllSkills();
+    }
+    else{
+
+      this.loadWishListSuggestedSkill();
+    }
     
   }
 
-  async loadWishListSuggestedSkill() {
+  ionViewWillEnter(){
+    this.loadWishListSuggestedSkill();
+  }
+  loadWishListSuggestedSkill() {
     if(!this.profile.wl_suggested){
       this.profile.WL_SuggestedSubject.subscribe(
         (status:string) =>{
           if(status === 'success'){         
             this.skill_id = this.profile.wl_suggested.new_skill_skill_id;
             this.skill_text_value = this.sharedData.getSkillTextValueById(this.skill_id);
-            console.log(this.skill_text_value);
+            this.skill_diff = (this.profile.wl_suggested.diff * 100).toFixed(2);
+            
           }else{
             console.log("error loading studend skills");
-          }        
+          }    
+          this.profile.WL_SuggestedSubject.unsubscribe();    
         }
       );
+      this.profile.calculateWishlistSggestedSkill();
     }else {
       this.skill_id = this.profile.wl_suggested.new_skill_skill_id;
       this.skill_text_value = this.sharedData.getSkillTextValueById(this.skill_id);

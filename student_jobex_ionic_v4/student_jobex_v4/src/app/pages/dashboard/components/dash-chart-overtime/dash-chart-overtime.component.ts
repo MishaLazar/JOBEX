@@ -9,23 +9,65 @@ import { MyProfileService } from 'src/app/services/my-profile.service';
 })
 export class DashChartOvertimeComponent implements OnInit {
 
+  overTimeChartReady:boolean = false;
   constructor(public profile:MyProfileService) { }
 
   ngOnInit() { 
-    let weeks:number = Utils.weekesFromActivation(this.profile.myProfile.activation_data);
+
+    if(!this.profile.myProfile){
+      this.profile.profileLoadedSubject.subscribe(
+        (value) =>{
+          if(value == 'loaded'){
+            this.loadOverTimeChart();
+            this.profile.profileLoadedSubject.unsubscribe();
+          }
+        }
+      );
+      this.profile.loadProfile();  
+    }else{
+      this.loadOverTimeChart();
+    }
+  }
+
+
+
+
+
+  loadOverTimeChart(){
+    
+    if(!this.profile.engagemtnsCounts || !this.profile.matchesCounts){
+      this.profile.chartCounterSubject.subscribe(
+        (value) => {
+          if(value =='loaded'){
+            this.populateData();
+          }
+      });
+      this.profile.loadChartCounters();
+    }
+    else{
+      this.populateData();
+    }
+    
+  }
+
+  populateData(){
+    let weeks:number = Utils.weekesFromActivation(this.profile.myProfile.activation_date);
     let MatchesDataSet = new Array(weeks).fill(0);
     let ActiveEngagementsDataSet = new Array(weeks).fill(0);
     let AvgMatchesDataSet = new Array(2).fill(0);
     let CurrentWeekDataSet = new Array(2).fill(0);
-    ActiveEngagementsDataSet = Utils.fillDataSetCounters(ActiveEngagementsDataSet,this.profile.myProfile.activation_data,this.profile.engagemtnsCounts);    
-    MatchesDataSet = Utils.fillDataSetCounters(MatchesDataSet,this.profile.myProfile.activation_data,this.profile.matchesCounts);
+    ActiveEngagementsDataSet = Utils.fillDataSetCounters(ActiveEngagementsDataSet,this.profile.myProfile.activation_date,this.profile.engagemtnsCounts);    
+    MatchesDataSet = Utils.fillDataSetCounters(MatchesDataSet,this.profile.myProfile.activation_date,this.profile.matchesCounts);
     AvgMatchesDataSet = Utils.calculateAvgDataSet(AvgMatchesDataSet,weeks,MatchesDataSet,ActiveEngagementsDataSet);
     CurrentWeekDataSet[0] = MatchesDataSet[weeks-1];
-    CurrentWeekDataSet[1] = ActiveEngagementsDataSet[weeks-1];
-    
+    CurrentWeekDataSet[1] = ActiveEngagementsDataSet[weeks-1];   
+    this.overTimeChartReady = true; 
     this.initOverTimeChart(['Matches', 'Engaged'],AvgMatchesDataSet,CurrentWeekDataSet);
   }
-  initOverTimeChart(chartLabels:string[],AvgDataSet:number[],CurrentDataSet:number[]): any {
+
+  initOverTimeChart(chartLabels:string[],AvgDataSet:number[],CurrentDataSet:number[]): any {    
+    let overTimePlaceholder = (<any>document.getElementById('overTimeChartPlaceHolder'));
+    overTimePlaceholder.setAttribute("class","background");
     var ctx = (<any>document.getElementById('overTimeChart')).getContext('2d');
     var myChart = new Chart(ctx, {
       type: 'bar',

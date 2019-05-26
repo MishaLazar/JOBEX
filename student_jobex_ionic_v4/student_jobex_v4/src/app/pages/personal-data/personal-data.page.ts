@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MyProfileService } from 'src/app/services/my-profile.service';
-import { ModalController, LoadingController } from '@ionic/angular';
+import { ModalController, LoadingController, NavController } from '@ionic/angular';
 import { Registration } from 'src/app/models/registration';
+import { SharedDataService } from 'src/app/services/shared-data.service';
+
 
 @Component({
     selector: 'app-personal-data',
@@ -11,25 +13,31 @@ import { Registration } from 'src/app/models/registration';
 })
 export class PersonalDataPage implements OnInit {
 
+    
     personalData: FormGroup;
     profileImg: string = "assets/img/default_profile.png";
     text: string;
     tempProfile: Registration;
-
+    
     constructor(
         private profile: MyProfileService,
+        private sharedData:SharedDataService,
         private modalCtrl: ModalController,
         public formBuilder: FormBuilder,
-        public loadingController:LoadingController
+        public loadingController:LoadingController,
+        public navCtrl:NavController
     ) {
-
+      
         this.formBuild();
     }
-
+    ionViewWillEnter(){
+        this.personalData.get('address').setValue(this.profile.myProfile.address);
+    }
     ngOnInit(): void {
 
         this.profileImg = this.profile.getMyProfileImgPath() == undefined ? this.profileImg : this.profile.getMyProfileImgPath();
-
+        
+        
     }
 
     loadPersonalData() {
@@ -56,7 +64,7 @@ export class PersonalDataPage implements OnInit {
           this.personalData.get('lastName').value,
           this.personalData.get('mail').value,
           null,
-          null,null,false,this.personalData.get('address').value,null,null,this.personalData.get('phone').value,this.personalData.get('birthday').value);
+          null,null,false,this.personalData.get('address').value,null,null,this.personalData.get('phone').value,this.personalData.get('birthday').value,this.profile.myProfile.location);
     
         this.tempProfile = basicProfile;
         //this.myProfile.setMyProfileRegistration(basicProfile);
@@ -90,4 +98,8 @@ export class PersonalDataPage implements OnInit {
         this.profile.myProfile.birthday = this.tempProfile.birthday;
 
     }
+  
+    openCitySelect(){
+      this.navCtrl.navigateForward('my-profile/cities');
+  }
 }

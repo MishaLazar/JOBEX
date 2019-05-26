@@ -46,16 +46,50 @@
                   formControlName="mail"
                   type="mail"></ion-input>
         </ion-item>
-        <ion-item>
+        <!-- <ion-item>
           <ion-label position="floating">
             <ion-icon name="map"></ion-icon>
             Address
           </ion-label>
           <ion-input
-                  
                   formControlName="address"
                   type="text"></ion-input>
-        </ion-item>
+        </ion-item> -->
+        <ion-item button (click)="openCitySelect()">    
+            <ion-label position="floating">
+                <ion-icon name="map"></ion-icon>
+                City
+              </ion-label>
+              <ion-input
+                  formControlName="address"
+                  type="text"></ion-input>                     
+            <ion-icon name="arrow-dropdown" slot="end"></ion-icon>     
+         </ion-item>
+        <!-- <ion-item>
+            <ion-label>City</ion-label>
+            <ion-input type="text" placeholder="Enter City name" (onChange)></ion-input>
+        </ion-item> -->
+            <!-- <ion-item>
+                <ion-label>City</ion-label>
+                <ionic-selectable
+                  [items]="Cities"
+                  itemValueField="city_id"
+                  itemTextField="city_desc"
+                  [canSearch]="true"
+                  (onChange)="cityChange($event)">
+                </ionic-selectable>
+              </ion-item> -->
+        
+        <!-- <ion-item>
+            <ion-label>Port</ion-label>
+            <ionic-selectable                            
+              [items]="ports"
+              itemValueField="id"
+              itemTextField="name"
+              [canSearch]="true"
+              (onChange)="portChange($event)">
+            </ionic-selectable>
+          </ion-item> -->
         <ion-item>
           <ion-label position="floating">
             <ion-icon name="calendar"></ion-icon>

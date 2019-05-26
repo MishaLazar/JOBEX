@@ -20,7 +20,7 @@ export class MyProfilePage implements OnInit {
         private navCtrl:NavController,private auth:AuthenticationService) {
             
     }
-
+  
     ngOnInit() {
         
         if(this.auth.isAuthenticated){
@@ -36,7 +36,7 @@ export class MyProfilePage implements OnInit {
                 this.profile.loadProfile();
             }else{
                 this.loadProfileLayout();
-            }            
+            }             
         }
         
         

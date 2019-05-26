@@ -1,54 +1,31 @@
 <ion-header>
-    <ion-toolbar color="primary">
-        <ion-title>Dashboard</ion-title>
-        <ion-buttons slot="start">
-            <ion-menu-button autoHide="false"></ion-menu-button>
-        </ion-buttons>
-    </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-title>Dashboard</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 <ion-content padding>
-<ion-grid display="flex">
-    <!-- <ion-row *ngFor="let engagement of studentLastEgagements">
-    <ion-col size="12">
-      <ion-grid fixed>
-        <ion-row >
-          <ion-col size="12">
-              <dash-engagments 
-              jobTitle="{{engagement.jobTitle}}" 
-              jobShortDescription="{{engagement.jobShortDescription}}" 
-              companyRating="{{engagement.companyRating}}" 
-              companyName="{{engagement.companyName}}"></dash-engagments>
-          </ion-col>          
-        </ion-row>
-      </ion-grid>      
-    </ion-col>    
-  </ion-row> -->
-  <ion-row>
-    <ion-col size="6">
-        <!-- <ion-spinner *ngIf="!mayChartDisplay"></ion-spinner> -->
-        
-        <ion-skeleton-text  *ngIf="!mayChartDisplay" animated style="height:90%"></ion-skeleton-text>
-          
-       <dash-chart-overtime *ngIf="mayChartDisplay"></dash-chart-overtime>
-    </ion-col>
-    <ion-col size="6">      
-      <dash-chart-best4you></dash-chart-best4you>
-    </ion-col>
-  </ion-row>
-  <ion-row >
-      <ion-col size="12">
-          <!-- <ion-spinner *ngIf="!mayChartDisplay"></ion-spinner> -->
-          <ion-skeleton-text *ngIf="!mayChartDisplay" animated style="height:90%"></ion-skeleton-text>
-          <dash-chart-active-engagements *ngIf="mayChartDisplay" ></dash-chart-active-engagements>
-      </ion-col>
-    </ion-row>    
+  <ion-grid display="flex">
     <ion-row>
-        <ion-col size="12">
-          
-            <!-- <ion-item button no-padding lines="none" routerLink="engagement/{{engagement.matchId}}" routerDirection="forward" (click)="onClickTest(engagement.matchId)"> -->              
-                <dash-engagments></dash-engagments>           
-          
-        </ion-col>
-      </ion-row>
-</ion-grid>
+      <ion-col size="6">
+       
+        <dash-chart-overtime></dash-chart-overtime>
+      </ion-col>
+      <ion-col size="6">
+        <dash-chart-best4you></dash-chart-best4you>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <dash-chart-active-engagements></dash-chart-active-engagements>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <dash-engagments></dash-engagments>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

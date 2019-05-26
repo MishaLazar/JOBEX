@@ -94,7 +94,7 @@ export class SkillsPage implements OnInit {
   }
 
   onLoadProfileSkills(){
-    
+   
     this.profileSkills = this.profile.getMyProfileSkills();    
     let indexArray:number[] = [];
     this.profileSkills.forEach(profileSkill => {
@@ -133,6 +133,7 @@ export class SkillsPage implements OnInit {
             });
             
           }
+          this.sharedData.skillsLoadedSubject.unsubscribe();
           loading.dismiss()
         }        
       );

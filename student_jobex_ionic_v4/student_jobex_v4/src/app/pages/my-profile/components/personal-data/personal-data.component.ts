@@ -43,16 +43,13 @@ export class PersonalDataComponent implements OnInit {
     }
 
     onProfileSave(){
-        if(!this.personalData.valid){
-
-        }else{
+        if(this.personalData.valid){
             for (const control in this.personalData.controls) {
                 if (this.personalData.controls.hasOwnProperty(control)) {
                     const element = this.personalData.controls[control];
                     this.myProfile.getMyProfile()[control]= element.value;
                 }
-            }            
-            this.myProfile.editProfileSave();
+            }                        
             this.modalCtrl.dismiss();
         }
         

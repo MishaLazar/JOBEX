@@ -179,14 +179,22 @@ def get_student_profile():
             "address": data["address"],
             "profileImg": data["profileImg"],
             "active": data["active"],
-            "activation_data": data["activation_data"],
-            "creation_data": data["creation_data"],
             "location": data["location"],
             "phone": data["phone"],
             "birthday": data["birthday"],
             "student_skill_list": data["student_skill_list"],
             "wish_list": data["wish_list"]
         }
+        if 'activation_date' in data:
+            result['activation_date'] = data["activation_date"]
+        else:
+            result['activation_date'] = 'null'
+        if 'creation_date' in data:
+            result['creation_date'] = data["creation_date"]
+        else:
+            result['creation_date'] = 'null'
+
+
         return jsonify(result), 200
     else:
         return jsonify({"message": "Wrong user_id"}), 403
@@ -209,6 +217,7 @@ def update_student_profile():
         mob_ctrl = MobileController()
         count = mob_ctrl.update_student_profile(student_data=student_data)
         if count > 0:
+            mob_ctrl.set_student_for_rematch(student_data["student_id"])
             return jsonify({
                 "modified": count
             }), 200
