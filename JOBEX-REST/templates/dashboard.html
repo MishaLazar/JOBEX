@@ -4,7 +4,7 @@
     <fieldset class="form-group">
         <legend class="border-bottom mb-4">Welcome to JobEx :)</legend>
         <legend class="border-bottom mb-4">Positions:</legend>
-        <table id="positions" style="width:100%">
+        <table id="positions" style="width:100%" class="hover stripe cell-border">
             <thead>
             <tr>
                 <th>Position</th>
@@ -52,7 +52,9 @@
                 }
                 $("#loader").hide();
                 $(".placeholders").show();
-                $('#positions').DataTable();
+                $('#positions').DataTable({
+        "order": [[ 0, "desc" ]]
+    } );
             },
             error: function () {
                 $("#loader").hide();

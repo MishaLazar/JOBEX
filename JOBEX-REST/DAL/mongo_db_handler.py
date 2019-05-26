@@ -43,6 +43,7 @@ class Client:
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:
+            self.client.close()
             return result
 
     def insert_doc_to_collection(self, collection_name, doc):
@@ -63,6 +64,7 @@ class Client:
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:
+            self.client.close()
             return result
 
     def get_single_doc_from_collection(self, collection_name, json_query=None, object_id=None):
@@ -93,6 +95,7 @@ class Client:
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:
+            self.client.close()
             return result
 
     def insert_many_docs_to_collection(self, collection_name, docs_list):
@@ -112,6 +115,7 @@ class Client:
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:
+            self.client.close()
             return result
 
     def get_many_docs_from_collection(self, collection_name,
@@ -157,6 +161,7 @@ class Client:
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:
+            self.client.close()
             return result
 
     def count_docs_in_collection(self, collection_name, json_query=None):
@@ -179,6 +184,7 @@ class Client:
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:
+            self.client.close()
             return result
 
     def update_single_doc_in_collection(self, collection_name, filter_json, doc_update_json, update_if_exists=False):
@@ -204,6 +210,7 @@ class Client:
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:
+            self.client.close()
             return result
 
     def get_aggregate_document(self, collection_name, pipeline):
@@ -227,4 +234,5 @@ class Client:
         except errors.ServerSelectionTimeoutError as err:
             return 'DB timeout error: {}'.format(err)
         finally:
+            self.client.close()
             return result

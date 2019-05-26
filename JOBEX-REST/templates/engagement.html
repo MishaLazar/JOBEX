@@ -14,10 +14,14 @@
         <p id="status"></p>
         <b>Creation Date:</b>
         <p id="creation_date"></p>
-        <button class="btn btn-outline-info" id="advanced_btn" onclick="update_engagement_status('advanced')">Advanced
-        </button>
-        <button class="btn btn-outline-info" id="rejected_btn" onclick="update_engagement_status('rejected')">Rejected
-        </button>
+        <div style="padding-bottom: 15px;">
+            <button class="btn btn-success" id="advanced_btn" onclick="update_engagement_status('advanced')">
+                Advanced
+            </button>
+            <button class="btn btn-danger" id="rejected_btn" onclick="update_engagement_status('rejected')">
+                Rejected
+            </button>
+        </div>
         <legend class="border-bottom mb-4"></legend>
         <button class="btn btn-outline-info" onclick="goBack()">Go Back</button>
     </fieldset>

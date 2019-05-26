@@ -9,7 +9,7 @@
         <b>Position Department:</b><p id="department"></p>
         <b>Position Skills:</b><p id="skills"></p>
         <legend class="border-bottom mb-4">Position Matches:</legend>
-        <table id="matches" style="width:100%">
+        <table id="matches" style="width:100%" class="hover stripe cell-border">
             <thead>
             <tr>
                 <th>Match Level</th>
@@ -22,7 +22,7 @@
         </table>
         <legend class="border-bottom mb-4"></legend>
         <legend class="border-bottom mb-4">Position Engagements:</legend>
-        <table id="engagements" style="width:100%">
+        <table id="engagements" style="width:100%" class="hover stripe cell-border">
             <thead>
             <tr>
                 <th>Student</th>
@@ -91,7 +91,8 @@
                     if (json.is_engaged == false) {
                         tr = $('<tr/>');
                         tr.append("<td>" + parseInt(json.match_level_id * 100) + '%' + "</td>");
-                        tr.append("<td>" + json.match_update_date + "</td>");
+                        let match_update_date = new Date(json.match_update_date).toDateString();
+                        tr.append("<td>" + match_update_date + "</td>");
                         let student_id_str = "'" + json.student_id + "'";
                         let match_id_str = "'" + json._id + "'";
                         let go_btn = "<button class=\"btn btn-outline-info\" onclick=\"post_engagement(" + student_id_str + ', ' + match_id_str + ")\">Go</button>";
