@@ -60,7 +60,7 @@ export class RegisterPage implements OnInit {
     loading.present();
     this.myProfile.onRegistration(basicProfile).subscribe(
       (response:Token) => {
-        debugger;
+        
           this.myProfile.setUserIdOnLogin(response.user_id);
           this.storageSVC.setStorageValueByKey('access_token',response.access_token);
           this.storageSVC.setStorageValueByKey('refresh_token',response.refresh_token);

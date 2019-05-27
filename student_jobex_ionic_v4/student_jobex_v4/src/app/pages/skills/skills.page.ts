@@ -31,6 +31,7 @@ export class SkillsPage implements OnInit {
   }
 
   ngOnInit() {
+    
     this.loadSkills();
   }
 
@@ -96,7 +97,7 @@ export class SkillsPage implements OnInit {
   }
 
   onLoadProfileSkills(){
-   
+  
     this.profileSkills = this.profile.getMyProfileSkills();    
     let indexArray:number[] = [];
     this.profileSkills.forEach(profileSkill => {
@@ -142,6 +143,7 @@ export class SkillsPage implements OnInit {
       this.sharedData.loadAllSkills();
     }
     else{
+     
       this.finallizeLoading();
     }
   }

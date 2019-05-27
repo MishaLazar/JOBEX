@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs';
 })
 export class MyProfilePage implements OnInit {
 
+    
     pLoadedSubject:Subscription;
     profileImg: string = "assets/img/default_profile.png";
     profileListItems: ListCardItem [] = [];
@@ -23,7 +24,7 @@ export class MyProfilePage implements OnInit {
     constructor(
         private profile: MyProfileService, 
         public modalCtrl: ModalController,
-        private router:Router,
+       
         private navCtrl:NavController,
         public loadingController: LoadingController,
         private auth:AuthenticationService) {
@@ -40,6 +41,11 @@ export class MyProfilePage implements OnInit {
         });
         loading.present();
         if(this.auth.isAuthenticated){
+            // if(this.profile.isFirstLogin){
+               
+            //     this.profile.isFirstLogin = false;
+            //     this.profile.myProfile = undefined;
+            // }
             if(!this.profile.myProfile){
                 this.pLoadedSubject = this.profile.profileLoadedSubject.subscribe(
                     (value) => {

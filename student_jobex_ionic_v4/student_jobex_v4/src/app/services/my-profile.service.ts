@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { MyProfile } from "../models/my-profile.model";
 import { Skill } from '../models/skill.model';
 import { HttpHelpService } from './http-help.service';
@@ -16,8 +16,16 @@ import { Engagement } from '../models/engagement';
 @Injectable({
     providedIn: 'root'
 })
-export class MyProfileService {
+export class MyProfileService  {
+    
+    
+    // ngOnDestroy(): void {
+    //     this.isFirstLogin = true;
+    //     console.log("MyProfileService destroy");
 
+    // }
+
+    isFirstLogin:boolean = true;
     myProfile: MyProfile;
     user_id: string;
     isProfileLoaded: boolean = false;
@@ -44,13 +52,13 @@ export class MyProfileService {
     }    
     clearProfileData(){
         this.myProfile = undefined;
-        this.myProfileSkills = [];
-        this.myStudentSkills = [];
-        this.engagemtnsCounts = undefined;
-        this.matchesCounts = undefined;
-        this.wish_list = [];
-        this.wl_suggested = undefined;
-        this.latestEngagemants = undefined;
+        // this.myProfileSkills = [];
+        // this.myStudentSkills = [];
+        // this.engagemtnsCounts = undefined;
+        // this.matchesCounts = undefined;
+        // this.wish_list = [];
+        // this.wl_suggested = undefined;
+        // this.latestEngagemants = undefined;
 
     }
     loadProfile() {
@@ -60,6 +68,7 @@ export class MyProfileService {
             }
             this.http.submitForm(data, 'get_student_profile').subscribe(
                 (data: MyProfile) => {
+                    
                     this.myProfile = data;
                     this.myStudentSkills = this.myProfile.student_skill_list;
                     this.wish_list = this.myProfile.wish_list;
@@ -82,9 +91,14 @@ export class MyProfileService {
     }
 
     processLoadedStudentSkill() {
+        
         this.myStudentSkills.forEach(sSkill => {
             sSkill.skills.forEach(skill => {
-                this.myProfileSkills.push(new Skill(skill.skill_Id, null, sSkill.sub_category_id, sSkill.category_id, true))
+                let s = new Skill(skill.skill_Id, null, sSkill.sub_category_id, sSkill.category_id, true);
+                if(this.myProfileSkills.findIndex(mskill => mskill.SkillId === s.SkillId) < 0){
+                    this.myProfileSkills.push(s)
+                }
+                
             });
         });
     }
@@ -95,6 +109,7 @@ export class MyProfileService {
     }
 
     addSkillToProfile(skillToAdd: Skill) {
+        
         let foundStudentSkill = this.myStudentSkills.findIndex(skill => skill.category_id === skillToAdd.SkillCategoryId && skill.sub_category_id === skillToAdd.SkillSubCategoryId)
         if (foundStudentSkill >= 0) {
             this.myStudentSkills[foundStudentSkill].skills.push(new LiteSkill(skillToAdd.SkillId));
@@ -148,7 +163,7 @@ export class MyProfileService {
         )
     }
     setUserIdOnLogin(user_id: string) {
-        this.clearProfileData();
+        //this.clearProfileData();
         this.user_id = user_id;
     }
 
@@ -277,4 +292,6 @@ export class MyProfileService {
     setLatestEngagemants(engagements: Engagement[]) {
         this.latestEngagemants = engagements;
     }
+
+
 }

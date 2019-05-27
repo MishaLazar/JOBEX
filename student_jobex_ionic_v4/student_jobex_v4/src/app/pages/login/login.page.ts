@@ -21,7 +21,7 @@ export class LoginPage implements OnInit {
     private storageSVC:StorageService,
     private auth:AuthenticationService,
     public loadingController: LoadingController,
-    private myProfile:MyProfileService, private router:Router,public toastController: ToastController) {
+    private profile:MyProfileService, private router:Router,public toastController: ToastController) {
    
    }
 
@@ -38,6 +38,7 @@ export class LoginPage implements OnInit {
     if (!this.loginForm.valid) {
       return;
     }
+    
     const userName = this.loginForm.get('mail').value;
     const userPassword = this.loginForm.get('password').value;
     
@@ -52,7 +53,7 @@ export class LoginPage implements OnInit {
         let access_token = response['access_token'];
         let refresh_token = response['refresh_token'];
         
-        this.myProfile.setUserIdOnLogin(user_id); 
+        this.profile.setUserIdOnLogin(user_id); 
         this.storageSVC.setStorageValueByKey('user_id',user_id);
         this.storageSVC.setStorageValueByKey('access_token',access_token);
         this.storageSVC.setStorageValueByKey('refresh_token',refresh_token);

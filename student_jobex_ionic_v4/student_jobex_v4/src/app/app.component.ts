@@ -29,7 +29,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     private router:Router,
     private auth:AuthenticationService,
-    private storage:StorageService
+    private storage:StorageService,
+    private profile:MyProfileService
   ) {
     this.initializeApp();
     this.isAuthenticated = this.auth.isAuthenticated();
@@ -43,7 +44,7 @@ export class AppComponent {
         if(value='login'){
           this.isAuthenticated = true;
         }else{
-          //debugger;
+          
           this.isAuthenticated = false;
           this.router.navigateByUrl('/login');
         }

@@ -23,7 +23,7 @@ export class SkillsComponent implements OnInit {
   }
 
   onSaveSkillsClick(){
-    debugger;
+   
     this.myProfileService.onProfileSkillsUpdate();
     this.modalController.dismiss();
   }

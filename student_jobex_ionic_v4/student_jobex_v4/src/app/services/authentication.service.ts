@@ -28,6 +28,7 @@ export class AuthenticationService {
   }
 
   onLogout(){
+    
     this.storage.logout();
     this.stateSubject.next('logout');
   }
