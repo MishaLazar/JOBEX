@@ -8,7 +8,7 @@
         <p id="student_id"></p>
         <b>Student Full Name:</b>
         <p id="student_fullname">Analyzing...</p>
-        <b>Engagement Activated:</b>
+        <b>Engagement ID:</b>
         <p id="match_id"></p>
         <b>Engagement Status:</b>
         <p id="status"></p>
@@ -81,7 +81,7 @@
                 document.getElementById("student_id").innerHTML = data.student_id;
                 document.getElementById("match_id").innerHTML = data.match_id;
                 document.getElementById("status").innerHTML = data.status;
-                document.getElementById("creation_date").innerHTML = data.creation_date;
+                document.getElementById("creation_date").innerHTML = new Date(data.creation_date).toDateString();
                 if (data.status != "approved") {
                     document.getElementById("advanced_btn").hidden = true;
                     document.getElementById("rejected_btn").hidden = true;
