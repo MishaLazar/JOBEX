@@ -12,6 +12,7 @@ import { Registration } from '../models/registration';
 import { Count } from '../models/charts_models/counts.model';
 import { PositionData } from '../models/position-data';
 import { Engagement } from '../models/engagement';
+import { NavController } from '@ionic/angular';
 
 @Injectable({
     providedIn: 'root'
@@ -47,7 +48,7 @@ export class MyProfileService  {
     matchesCounts: Count[];
     engagemtnsCounts: Count[];
 
-    constructor(private http: HttpHelpService, private config: ConfigService) {
+    constructor(private http: HttpHelpService, private config: ConfigService,public navCtrl:NavController) {
 
     }    
     clearProfileData(){
@@ -77,7 +78,7 @@ export class MyProfileService  {
                     this.profileLoadedSubject.next('loaded');
                 },
                 (error: any) => {
-                    console.log(error);
+                    this.navCtrl.navigateRoot('/login')
                 }
             );
         }

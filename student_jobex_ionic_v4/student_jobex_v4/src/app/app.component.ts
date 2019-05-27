@@ -32,8 +32,15 @@ export class AppComponent {
     private storage:StorageService,
     private profile:MyProfileService
   ) {
-    this.initializeApp();
+    
     this.isAuthenticated = this.auth.isAuthenticated();
+    this.initializeApp();
+    if(!this.isAuthenticated){
+      this.router.navigateByUrl('/login');
+    }
+      
+    
+    
   }
 
   initializeApp() {

@@ -188,11 +188,11 @@ def get_student_profile():
         if 'activation_date' in data:
             result['activation_date'] = data["activation_date"]
         else:
-            result['activation_date'] = 'null'
+            result['activation_date'] = None
         if 'creation_date' in data:
             result['creation_date'] = data["creation_date"]
         else:
-            result['creation_date'] = 'null'
+            result['creation_date'] = None
 
 
         return jsonify(result), 200

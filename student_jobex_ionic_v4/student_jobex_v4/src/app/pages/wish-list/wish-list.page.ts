@@ -4,6 +4,7 @@ import { PositionData } from 'src/app/models/position-data';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { HttpHelpService } from 'src/app/services/http-help.service';
 import { MyProfileService } from 'src/app/services/my-profile.service';
+import { load } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-wish-list',
@@ -125,7 +126,11 @@ export class WishListPage implements OnInit {
     }
   }
 
-  onWishListSaveClick() {
+  async onWishListSaveClick() {
+    const loading = await this.loadingController.create({
+      message:"Saving..."
+    });
+    loading.present();
     this.inSaveProcess = true;
     let data = {
       student_id: this.profile.user_id,
@@ -133,10 +138,12 @@ export class WishListPage implements OnInit {
     }
     this.http.submitForm(data, 'student/wish_list_save').subscribe(
       (Response) => {
+        loading.dismiss();
         //console.log(Response);
         this.inSaveProcess = false;
       },
       (error) => {
+        loading.dismiss();
         console.log(error);
         this.inSaveProcess = false;
       }

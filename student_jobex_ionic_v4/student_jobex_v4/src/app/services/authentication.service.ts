@@ -28,12 +28,15 @@ export class AuthenticationService {
   }
 
   onLogout(){
-    
+    this.isAuthenticatedStudent = false;
     this.storage.logout();
     this.stateSubject.next('logout');
   }
 
   isAuthenticated() {
+    // if(this.storage.getValueByKey('access_token') !== null && this.storage.getValueByKey('user_id') !==null){
+    //   return true;
+    // }
     
     return this.storage.getValueByKey('access_token') !== null;
 

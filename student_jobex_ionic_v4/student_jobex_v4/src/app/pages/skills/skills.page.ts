@@ -35,13 +35,19 @@ export class SkillsPage implements OnInit {
     this.loadSkills();
   }
 
-  onSaveSkillsClick(){  
+  async onSaveSkillsClick(){  
+    const loading = await this.loadingController.create({
+      message:"Saving.."
+    });
+    loading.present();
     this.inSaveProcess = true;
     return this.http.submitForm(this.profile.myStudentSkills.slice(),'student/update_skills/'+this.profile.user_id).subscribe(
       (response) => {
+        loading.dismiss();
         this.inSaveProcess = false;        
       },
       (error:any) => {
+        loading.dismiss();
         console.log(error);
       }
   
