@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class ConfigService {
   
 
-  private api_url = 'http://127.0.0.1:5050/';
+  private api_url = 'http://10.100.102.6:5050/';
   constructor() { }  
 
 
