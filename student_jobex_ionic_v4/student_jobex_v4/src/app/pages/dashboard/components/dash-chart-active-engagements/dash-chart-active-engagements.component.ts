@@ -3,6 +3,8 @@ import Chart from 'chart.js';
 import { matches } from '@ionic/core/dist/types/components/nav/view-controller';
 import { MyProfileService } from 'src/app/services/my-profile.service';
 import { Utils } from 'src/app/Utils/Utils';
+import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'dash-chart-active-engagements',
   templateUrl: './dash-chart-active-engagements.component.html',
@@ -10,17 +12,18 @@ import { Utils } from 'src/app/Utils/Utils';
 })
 export class DashChartActiveEngagementsComponent implements OnInit {
 
+  pLoadedSubject:Subscription;
   activeChartReady:boolean = false;
   constructor(private profile:MyProfileService) { }
 
   ngOnInit() {
     
     if(!this.profile.myProfile){
-      this.profile.profileLoadedSubject.subscribe(
+      this.pLoadedSubject = this.profile.profileLoadedSubject.subscribe(
         (value) =>{
           if(value == 'loaded'){
             this.loadActiveEngagmentChart();
-            this.profile.profileLoadedSubject.unsubscribe();
+            this.pLoadedSubject.unsubscribe();
           }
         }
       );
@@ -30,7 +33,11 @@ export class DashChartActiveEngagementsComponent implements OnInit {
     }
     
   }
-
+  onViewWillUnload(){
+    if(this.pLoadedSubject){
+      this.pLoadedSubject.unsubscribe();
+    }
+  }
   loadActiveEngagmentChart(){
     
     if(!this.profile.engagemtnsCounts || !this.profile.matchesCounts){
@@ -78,20 +85,13 @@ export class DashChartActiveEngagementsComponent implements OnInit {
               label:"Chart Overtime",             
               data: MatchesDataSet,
               fill: false,
-              backgroundColor: [
-                  'rgba(0,255,0,0.3)'
-                  
-              ],
+              backgroundColor: "#004D7F",
               borderWidth: 1
           },
           { 
             label:"Chart Overtime",             
             data: ActiveEngagementsDataSet,
-            backgroundColor: [
-                
-                'rgba(255, 99, 132, 0.2)'
-                
-            ],
+            backgroundColor: "#0095DA",
             borderWidth: 1
         }]
       },
@@ -159,12 +159,12 @@ export class DashChartActiveEngagementsComponent implements OnInit {
         	duration: 1,
 						onComplete: function () {
 							var chartInstance = this.chart,
-								ctx = chartInstance.ctx;
+              ctx = chartInstance.ctx;
 							
 							ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
 							ctx.textAlign = 'center';
 							ctx.textBaseline = 'bottom';
-
+              
 							this.data.datasets.forEach(function (dataset, i) {
 								var meta = chartInstance.controller.getDatasetMeta(i);
 								meta.data.forEach(function (bar, index) {

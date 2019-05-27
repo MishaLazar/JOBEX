@@ -18,8 +18,6 @@ import { Engagement } from '../models/engagement';
 })
 export class MyProfileService {
 
-
-
     myProfile: MyProfile;
     user_id: string;
     isProfileLoaded: boolean = false;
@@ -44,7 +42,17 @@ export class MyProfileService {
     constructor(private http: HttpHelpService, private config: ConfigService) {
 
     }    
+    clearProfileData(){
+        this.myProfile = undefined;
+        this.myProfileSkills = [];
+        this.myStudentSkills = [];
+        this.engagemtnsCounts = undefined;
+        this.matchesCounts = undefined;
+        this.wish_list = [];
+        this.wl_suggested = undefined;
+        this.latestEngagemants = undefined;
 
+    }
     loadProfile() {
         if (!this.myProfile) {
             const data = {
@@ -56,7 +64,7 @@ export class MyProfileService {
                     this.myStudentSkills = this.myProfile.student_skill_list;
                     this.wish_list = this.myProfile.wish_list;
                     this.processLoadedStudentSkill();
-                    this.calculateWishlistSggestedSkill();
+                    //this.calculateWishlistSggestedSkill();
                     this.profileLoadedSubject.next('loaded');
                 },
                 (error: any) => {
@@ -140,6 +148,7 @@ export class MyProfileService {
         )
     }
     setUserIdOnLogin(user_id: string) {
+        this.clearProfileData();
         this.user_id = user_id;
     }
 
@@ -185,7 +194,8 @@ export class MyProfileService {
             wl_positions: this.wish_list
         }
         this.http.submitForm(data, 'student/wish_list/calculate_suggested_skill').subscribe(
-            (data: any) => {                
+            (data: any) => {   
+                          
                 const wl_suggested_result = {
                     diff: data['diff'],
                     new_match_level_id: data['new_match_level_id'],

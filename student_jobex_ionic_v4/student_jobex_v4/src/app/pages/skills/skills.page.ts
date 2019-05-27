@@ -4,6 +4,7 @@ import { ModalController, LoadingController, ToastController } from '@ionic/angu
 import { SharedDataService } from 'src/app/services/shared-data.service';
 import { MyProfileService } from 'src/app/services/my-profile.service';
 import { HttpHelpService } from 'src/app/services/http-help.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-skills',
@@ -12,6 +13,7 @@ import { HttpHelpService } from 'src/app/services/http-help.service';
 })
 export class SkillsPage implements OnInit {
 
+  sLoadedSubject:Subscription;
   skills:Skill[];
   profileSkills:Skill[];
   SkillSearchTerm:any;
@@ -120,7 +122,7 @@ export class SkillsPage implements OnInit {
           message:"loading.."
       });
       loading.present();
-      this.sharedData.skillsLoadedSubject.subscribe(
+      this.sLoadedSubject = this.sharedData.skillsLoadedSubject.subscribe(
         (value) =>{
           
           if(value == 'loaded'){
@@ -133,7 +135,7 @@ export class SkillsPage implements OnInit {
             });
             
           }
-          this.sharedData.skillsLoadedSubject.unsubscribe();
+          this.sLoadedSubject.unsubscribe();
           loading.dismiss()
         }        
       );
@@ -147,5 +149,11 @@ export class SkillsPage implements OnInit {
   finallizeLoading(){
     this.skills = this.sharedData.skills.slice();   
     this.onLoadProfileSkills();
+  }
+
+  onViewWillUnload(){
+    if(this.sLoadedSubject){
+      this.sLoadedSubject.unsubscribe();
+    }
   }
 }

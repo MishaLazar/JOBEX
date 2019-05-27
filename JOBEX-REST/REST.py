@@ -309,10 +309,12 @@ def register():
         user = request.get_json()
         company_name = user['company_name']
         company_description = user['company_description']
-        if company_name not in companies:
+        if company_name not in cache.get("m_companies"):
             company_id = web_ctrl.add_company(company_name, company_description)
             user["company_id"] = company_id
+            companies = cache.get("m_companies")
             companies.append(company_name)
+            cache.set("m_companies", companies)
         new_user = web_ctrl.add_user(user)
         if new_user:
             return jsonify({'result': 'success'}), 200
@@ -611,9 +613,10 @@ def get_cites_list():
 def load_data_to_memory():
     m_cities = get_cites_list()
     m_skills = get_skills_list()
-
+    m_companies = get_companies_list()
     cache.set('m_cities', m_cities)
     cache.set('m_skills', m_skills)
+    cache.set('m_companies', m_companies)
 
 
 if __name__ == '__main__':
@@ -622,7 +625,7 @@ if __name__ == '__main__':
     if config.read_app_settings(Key='RunMatchEngine') == '1':
         example = JobThread(interval=Utils.int_try_parse(config.read_job(Key='DELAY_INTERVAL'), 20))
 
-    companies = get_companies_list()
+
     load_data_to_memory()
     if config.read_app_settings(Key='MachineIp') == '1':
         app.run(host='0.0.0.0', port=5050, threaded=True)

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>engagement</ion-title>
+    <ion-title>Engagement</ion-title>
     <ion-buttons slot="start">
         <ion-back-button></ion-back-button>
      </ion-buttons>
@@ -10,7 +10,10 @@
 <ion-content *ngIf="engagement">
 <ion-list>
     <ion-list-header>
-            <ion-label color="primary">{{engagement.position_title}}</ion-label>
+                <ion-text color="primary">
+                                <h1>{{engagement.position_title}}</h1>
+                        </ion-text>
+            <!-- <ion-label color="primary">{{engagement.position_title}}</ion-label> -->
     </ion-list-header>
     <ion-item button (click)="toggleSection('position_description')">
             
@@ -70,7 +73,7 @@
                         </ion-row>
                         <ion-row>
                                 <ion-col size="12">
-                                        <ion-button  size="large" expand="block" color="success" (click)="postFeedback()">
+                                        <ion-button  size="large" expand="block" color="success" (click)="postFeedback()" [disabled]="savingFeedback">
                                                         Submit feedback
                                         </ion-button>
                                 </ion-col>

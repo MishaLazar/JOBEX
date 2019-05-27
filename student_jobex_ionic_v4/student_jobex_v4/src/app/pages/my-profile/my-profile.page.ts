@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {ListCardItem} from "../../models/list-card-item";
 import {MyProfileService} from "../../services/my-profile.service";
-import {ModalController, NavController} from "@ionic/angular";  
+import {ModalController, NavController, LoadingController} from "@ionic/angular";  
 import { WishListComponent } from './components/wish-list/wish-list.component';
 import { Router } from '@angular/router';
 import { MyProfile } from 'src/app/models/my-profile.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { load } from '@angular/core/src/render3';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-my-profile',
@@ -13,38 +15,54 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
     styleUrls: ['./my-profile.page.scss'],
 })
 export class MyProfilePage implements OnInit {
+
+    pLoadedSubject:Subscription;
     profileImg: string = "assets/img/default_profile.png";
     profileListItems: ListCardItem [] = [];
     myProfile:MyProfile;
-    constructor(private profile: MyProfileService, public modalCtrl: ModalController,private router:Router,
-        private navCtrl:NavController,private auth:AuthenticationService) {
+    constructor(
+        private profile: MyProfileService, 
+        public modalCtrl: ModalController,
+        private router:Router,
+        private navCtrl:NavController,
+        public loadingController: LoadingController,
+        private auth:AuthenticationService) {
             
     }
   
     ngOnInit() {
-        
+        this.loadProfile();
+    }
+
+    async loadProfile(){
+        const loading = await this.loadingController.create({
+            message:"Setting Your profile"
+        });
+        loading.present();
         if(this.auth.isAuthenticated){
             if(!this.profile.myProfile){
-                
-                this.profile.profileLoadedSubject.subscribe(
+                this.pLoadedSubject = this.profile.profileLoadedSubject.subscribe(
                     (value) => {
                         if(value == 'loaded'){
                             this.loadProfileLayout();
+                            this.pLoadedSubject.unsubscribe();
+                            loading.dismiss();
                         }
                     }
                 );
                 this.profile.loadProfile();
             }else{
+                
                 this.loadProfileLayout();
+                loading.dismiss();
             }             
         }
-        
-        
-        
-        //this.profile.loadStudentSkills();
-       
-        //console.table(this.profileListItems.slice())
     }
+    onViewWillUnload(){
+        if(this.pLoadedSubject){
+          this.pLoadedSubject.unsubscribe();
+        }
+      }
 
     onItemClick(cardId: string) {
         switch (cardId) {

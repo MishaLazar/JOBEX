@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
 import { Utils } from 'src/app/Utils/Utils';
 import { MyProfileService } from 'src/app/services/my-profile.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'dash-chart-overtime',
   templateUrl: './dash-chart-overtime.component.html',
@@ -9,17 +10,19 @@ import { MyProfileService } from 'src/app/services/my-profile.service';
 })
 export class DashChartOvertimeComponent implements OnInit {
 
+
   overTimeChartReady:boolean = false;
+  pLoadedSubject: Subscription;
   constructor(public profile:MyProfileService) { }
 
   ngOnInit() { 
 
     if(!this.profile.myProfile){
-      this.profile.profileLoadedSubject.subscribe(
+      this.pLoadedSubject = this.profile.profileLoadedSubject.subscribe(
         (value) =>{
           if(value == 'loaded'){
             this.loadOverTimeChart();
-            this.profile.profileLoadedSubject.unsubscribe();
+            this.pLoadedSubject.unsubscribe();
           }
         }
       );
@@ -29,7 +32,11 @@ export class DashChartOvertimeComponent implements OnInit {
     }
   }
 
-
+  onViewWillUnload(){
+    if(this.pLoadedSubject){
+      this.pLoadedSubject.unsubscribe();
+    }
+  }
 
 
 

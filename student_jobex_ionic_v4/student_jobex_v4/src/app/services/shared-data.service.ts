@@ -42,24 +42,7 @@ export class SharedDataService {
   getStudentLatestEngagmentByMatchId(match_Id:string){
     return this.latestEngagements.find(value => value.match_id == match_Id);
   }
-  loadAllSkills(){
-      if(!this.skills){
-        this.http.get('resources/skills').subscribe(
-          (data:Skill[]) => {
-            this.skills = data;
-            this.skillsLoadedSubject.next('loaded');
-            
-          },
-          error =>{
-            console.log(error);
-          }
-  
-        );
-      }else{
-        this.skillsLoadedSubject.next('loaded');
-      }
-  }
-  
+ 
   loadAllCities(){
     if(!this.cities){
       this.http.get('resources/cities').subscribe(
@@ -104,25 +87,21 @@ export class SharedDataService {
      return skill_result.TextValue;
    }
 
-   getAllSkill(){
-    
-     if(this.skills){
-        this.skillsLoadedSubject.next('loaded');        
-     }else {
-        
-        this.http.get('resources/skills').subscribe(
-          (data:Skill[]) => {
-            
-            this.skills = data;
-            this.skillsLoadedSubject.next('loaded');
-            console.log('loaded :' + data.length + ' skills');
-          },
-          error =>{
-            console.log(error);
-          }
-  
-        );
-       
-     }
-   }
+   loadAllSkills(){
+    if(!this.skills){
+      this.http.get('resources/skills').subscribe(
+        (data:Skill[]) => {
+          this.skills = data;
+          this.skillsLoadedSubject.next('loaded');
+          
+        },
+        error =>{
+          console.log(error);
+        }
+
+      );
+    }else{
+      this.skillsLoadedSubject.next('loaded');
+    }
+}
 }

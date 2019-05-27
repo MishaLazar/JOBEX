@@ -3,6 +3,7 @@ import { MyProfileService } from 'src/app/services/my-profile.service';
 import { PositionData } from 'src/app/models/position-data';
 import { LoadingController } from '@ionic/angular';
 import { SharedDataService } from 'src/app/services/shared-data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'dash-chart-best4you',
@@ -11,59 +12,86 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
 })
 export class DashChartBest4youComponent implements OnInit {
 
-  
-  
-  skill_id:number;
-  skill_text_value:string;
-  skill_diff:any;
+  wLSubject: Subscription;
+  sLoadedSubject: Subscription;
+  skill_id: number;
+  skill_text_value: string;
+  skill_diff: any;
+  pLoadedSubject: Subscription;
 
-  constructor(private profile:MyProfileService,private loadingController:LoadingController, private sharedData:SharedDataService) { 
-    
+  constructor(private profile: MyProfileService, private loadingController: LoadingController, private sharedData: SharedDataService) {
+
   }
 
   ngOnInit() {
-    if(!this.sharedData.skills){
-      this.sharedData.skillsLoadedSubject.subscribe(
+    if (!this.sharedData.skills) {
+      this.sLoadedSubject = this.sharedData.skillsLoadedSubject.subscribe(
         (value) => {
-          if(value =='loaded'){
+          if (value == 'loaded') {
             this.loadWishListSuggestedSkill();
-            this.sharedData.skillsLoadedSubject.unsubscribe();
+            this.sLoadedSubject.unsubscribe();
           }
         }
       );
       this.sharedData.loadAllSkills();
     }
-    else{
+    else {
 
       this.loadWishListSuggestedSkill();
     }
-    
+
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.loadWishListSuggestedSkill();
+
   }
   loadWishListSuggestedSkill() {
-    if(!this.profile.wl_suggested){
-      this.profile.WL_SuggestedSubject.subscribe(
-        (status:string) =>{
-          if(status === 'success'){         
-            this.skill_id = this.profile.wl_suggested.new_skill_skill_id;
-            this.skill_text_value = this.sharedData.getSkillTextValueById(this.skill_id);
-            this.skill_diff = (this.profile.wl_suggested.diff * 100).toFixed(2);
-            
-          }else{
-            console.log("error loading studend skills");
-          }    
-          this.profile.WL_SuggestedSubject.unsubscribe();    
+    if (!this.profile.myProfile) {
+      this.pLoadedSubject = this.profile.profileLoadedSubject.subscribe((value) => {
+        if (value == 'loaded') {
+          this.pLoadedSubject.unsubscribe();
+          this.doLoadSuggestedSkill();
         }
-      );
-      this.profile.calculateWishlistSggestedSkill();
-    }else {
-      this.skill_id = this.profile.wl_suggested.new_skill_skill_id;
-      this.skill_text_value = this.sharedData.getSkillTextValueById(this.skill_id);
+      });
+    } else {
+      this.doLoadSuggestedSkill();
     }
 
   }
+  onViewWillUnload() {
+    if (this.pLoadedSubject) {
+      this.pLoadedSubject.unsubscribe();
+    }
 
+    if (this.sLoadedSubject) {
+      this.sLoadedSubject.unsubscribe();
+    }
+
+    if(this.wLSubject){
+      this.wLSubject.unsubscribe();
+    }
+  }
+
+  doLoadSuggestedSkill() {
+    if (!this.profile.wl_suggested) {
+      this.wLSubject = this.profile.WL_SuggestedSubject.subscribe(
+        (status: string) => {
+          if (status === 'success') {
+            this.skill_id = this.profile.wl_suggested.new_skill_skill_id;
+            this.skill_text_value = this.sharedData.getSkillTextValueById(this.skill_id);
+            this.skill_diff = (this.profile.wl_suggested.diff * 100).toFixed(2);
+            this.wLSubject.unsubscribe();
+          } else {
+            console.log("error loading studend skills");
+          }
+
+        }
+      );
+      this.profile.calculateWishlistSggestedSkill();
+    } else {
+      this.skill_id = this.profile.wl_suggested.new_skill_skill_id;
+      this.skill_text_value = this.sharedData.getSkillTextValueById(this.skill_id);
+    }
+  }
 }
