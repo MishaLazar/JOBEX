@@ -327,6 +327,8 @@ class MobileController:
                         "$toString": "$company._id"
 
                     },
+                    "company_rate":{ '$ifNull' : [ '$company.score', 5 ] }
+                    ,
                     "company_description": "$company.description",
                     "position_skill_list": "$position_skills.position_skill_list"
                 }

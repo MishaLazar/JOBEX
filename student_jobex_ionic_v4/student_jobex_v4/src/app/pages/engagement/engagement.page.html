@@ -53,6 +53,13 @@
                 <ion-item>
                   <ion-icon name="ribbon" slot="start"></ion-icon>
                   <ion-label>{{engagement.company_name}}</ion-label>
+                  <ion-item lines="none">
+                          <ion-icon color="success" *ngIf="engagement.company_rate == 5" name="star" slot="end"></ion-icon>
+                          <ion-icon color="primary" *ngIf="engagement.company_rate < 5 && engagement.company_rate > 2" name="star-half" slot="end" ></ion-icon>
+                          <ion-icon color="danger" *ngIf="engagement.company_rate <= 2" name="star-outline" slot="end" ></ion-icon>
+                          <ion-label>{{engagement.company_rate}}</ion-label>
+                  </ion-item>
+                 
                 </ion-item>
                 <ion-card-content>{{engagement.company_description}}
                 </ion-card-content>
