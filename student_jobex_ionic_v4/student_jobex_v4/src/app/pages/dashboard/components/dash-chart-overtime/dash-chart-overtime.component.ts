@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import Chart from 'chart.js';
 import { Utils } from 'src/app/Utils/Utils';
 import { MyProfileService } from 'src/app/services/my-profile.service';
@@ -8,11 +8,13 @@ import { Subscription } from 'rxjs';
   templateUrl: './dash-chart-overtime.component.html',
   styleUrls: ['./dash-chart-overtime.component.scss'],
 })
-export class DashChartOvertimeComponent implements OnInit {
+export class DashChartOvertimeComponent implements OnInit,OnDestroy {
 
 
   overTimeChartReady:boolean = false;
   pLoadedSubject: Subscription;
+  cCounterSubject:Subscription;
+  refreshSubsciprtion: Subscription;
   constructor(public profile:MyProfileService) { }
 
   ngOnInit() { 
@@ -30,8 +32,21 @@ export class DashChartOvertimeComponent implements OnInit {
     }else{
       this.loadOverTimeChart();
     }
-  }
+    
+    this.refreshSubsciprtion = this.profile.refresherSubject.subscribe((value) =>{
+      let overTimePlaceholder = (<any>document.getElementById('overTimeChartPlaceHolder'));
+      overTimePlaceholder.setAttribute("class","move-to-background");
+      this.profile.engagemtnsCounts = undefined;
+      this.profile.matchesCounts = undefined;
+      this.overTimeChartReady = false;
+      this.profile.loadChartCounters();
+    })
 
+  }
+  ngOnDestroy(): void {
+    this.refreshSubsciprtion.unsubscribe();
+    //this.cCounterSubject.unsubscribe();
+  }
   onViewWillUnload(){
     if(this.pLoadedSubject){
       this.pLoadedSubject.unsubscribe();
@@ -43,9 +58,11 @@ export class DashChartOvertimeComponent implements OnInit {
   loadOverTimeChart(){
     
     if(!this.profile.engagemtnsCounts || !this.profile.matchesCounts){
-      this.profile.chartCounterSubject.subscribe(
+      this.cCounterSubject = this.profile.chartCounterSubject.subscribe(
         (value) => {
           if(value =='loaded'){
+            
+            
             this.populateData();
           }
       });

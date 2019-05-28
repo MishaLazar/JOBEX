@@ -4,6 +4,7 @@ import { Engagement } from 'src/app/models/engagement';
 import { NavController } from '@ionic/angular';
 import { MyProfileService } from 'src/app/services/my-profile.service';
 import { HttpHelpService } from 'src/app/services/http-help.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,8 +16,10 @@ export class DashboardPage implements OnInit {
 
   studentLastEgagements: Engagement[];
   overTimeChartReady:boolean = false;
-  
+  loadingCounter:number = 4;
   mayChartDisplay: boolean = false;
+  DisplayComponents: boolean = true;
+  dashSubject:Subscription;
   constructor(
     private sharedDataSvc: SharedDataService,
     private http: HttpHelpService,
@@ -29,6 +32,17 @@ export class DashboardPage implements OnInit {
     // this.loadDashCharts();
     // this.sharedDataSvc.loadAllSkills();
     // this.sharedDataSvc.loadAllCities();
+    
+  }
+
+  doRefresh(event) {
+    
+    console.log('Begin async operation');
+    this.profile.refresherSubject.next('refresh-dash');
+    // setTimeout(() => {
+    //   console.log('Async operation has ended');
+      event.target.complete();
+    // }, 2000);
   }
 
   ionViewWillEnter(){

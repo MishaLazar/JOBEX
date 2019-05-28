@@ -12,7 +12,7 @@ export class ListCardItemComponent implements OnInit {
     @Input() CardContentText: any;
 
     constructor() {
-        console.log('Hello ListItemCardComponent Component is generated with params' + this.leftIconName + ',' + this.rightIconName + ',' + this.CardContentText);
+       
 
     }
 

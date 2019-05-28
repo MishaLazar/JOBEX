@@ -25,7 +25,8 @@ export class MyProfileService  {
     //     console.log("MyProfileService destroy");
 
     // }
-
+    dashboardSubject:Subject<number> = new Subject();
+    refresherSubject:Subject<string> = new Subject();
     isFirstLogin:boolean = true;
     myProfile: MyProfile;
     user_id: string;
@@ -221,7 +222,7 @@ export class MyProfileService  {
                     new_skill_skill_id: data['new_skill'][2]
                 }
                 this.wl_suggested = wl_suggested_result;
-                console.log(this.wl_suggested);
+                
                 this.WL_SuggestedSubject.next('success');
 
             },

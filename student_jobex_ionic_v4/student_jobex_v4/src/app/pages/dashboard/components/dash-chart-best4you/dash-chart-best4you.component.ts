@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MyProfileService } from 'src/app/services/my-profile.service';
 import { PositionData } from 'src/app/models/position-data';
 import { LoadingController } from '@ionic/angular';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './dash-chart-best4you.component.html',
   styleUrls: ['./dash-chart-best4you.component.scss'],
 })
-export class DashChartBest4youComponent implements OnInit {
+export class DashChartBest4youComponent implements OnInit,OnDestroy {
 
   wLSubject: Subscription;
   sLoadedSubject: Subscription;
@@ -18,6 +18,7 @@ export class DashChartBest4youComponent implements OnInit {
   skill_text_value: string;
   skill_diff: any;
   pLoadedSubject: Subscription;
+  refreshSubsciprtion: Subscription;
 
   constructor(private profile: MyProfileService, private loadingController: LoadingController, private sharedData: SharedDataService) {
 
@@ -40,8 +41,17 @@ export class DashChartBest4youComponent implements OnInit {
       this.loadWishListSuggestedSkill();
     }
 
-  }
+    this.refreshSubsciprtion = this.profile.refresherSubject.subscribe((value) =>{
+      this.skill_id = undefined;
+      this.profile.wl_suggested = undefined;
+      this.doLoadSuggestedSkill()
+      
+    })
 
+  }
+  ngOnDestroy(): void {
+    this.refreshSubsciprtion.unsubscribe();
+  }
   ionViewWillEnter() {
     this.loadWishListSuggestedSkill();
 

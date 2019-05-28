@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import Chart from 'chart.js';
 import { matches } from '@ionic/core/dist/types/components/nav/view-controller';
 import { MyProfileService } from 'src/app/services/my-profile.service';
@@ -10,8 +10,9 @@ import { Subscription } from 'rxjs';
   templateUrl: './dash-chart-active-engagements.component.html',
   styleUrls: ['./dash-chart-active-engagements.component.scss'],
 })
-export class DashChartActiveEngagementsComponent implements OnInit {
-
+export class DashChartActiveEngagementsComponent implements OnInit , OnDestroy{
+  
+  refreshSubsciprtion:Subscription;
   pLoadedSubject:Subscription;
   activeChartReady:boolean = false;
   constructor(private profile:MyProfileService) { }
@@ -32,6 +33,20 @@ export class DashChartActiveEngagementsComponent implements OnInit {
       this.loadActiveEngagmentChart();
     }
     
+
+    this.refreshSubsciprtion = this.profile.refresherSubject.subscribe((value) =>{
+      this.profile.engagemtnsCounts = undefined;
+      this.profile.matchesCounts = undefined;
+      this.activeChartReady = false;
+      let activeEngagementsPlaceholder =(<any>document.getElementById('activeEngagementsPlaceHolder'));
+      activeEngagementsPlaceholder.setAttribute("class","move-to-background");
+      this.loadActiveEngagmentChart();
+      
+    })
+
+  }
+  ngOnDestroy(): void {
+    this.refreshSubsciprtion.unsubscribe();
   }
   onViewWillUnload(){
     if(this.pLoadedSubject){

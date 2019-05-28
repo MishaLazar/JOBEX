@@ -49,7 +49,7 @@ export class SharedDataService {
         (data:City[]) => {
           this.cities = data;
           this.citiesLoadedSubject.next('loaded');
-          console.log('loaded :' + data.length + ' cities');
+          
         },
         error =>{
           console.log(error);
@@ -66,7 +66,7 @@ export class SharedDataService {
           (data:PositionData[]) => {          
             this.positionsDataset = data;          
             this.positionDataSetLoadedSubject.next('loaded');
-            console.log('loaded :' + data.length + ' positionsDataset');
+            
           },
           error =>{
             console.log(error);

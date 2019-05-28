@@ -7,17 +7,19 @@
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
-  <ion-grid display="flex">
-    <ion-row>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+  <ion-grid display="flex" fixed style="height: 100%;">
+    <ion-row style="height: 33.33%;">
       <ion-col size="6">
-       
         <dash-chart-overtime></dash-chart-overtime>
       </ion-col>
       <ion-col size="6">
         <dash-chart-best4you></dash-chart-best4you>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row style="height: 33.33;" >
       <ion-col size="12">
         <dash-chart-active-engagements></dash-chart-active-engagements>
       </ion-col>
