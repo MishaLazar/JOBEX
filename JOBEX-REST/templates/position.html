@@ -4,10 +4,14 @@
     <fieldset class="form-group">
         <legend class="border-bottom mb-4">Position Details:</legend>
 
-        <b>Position Name:</b><p id="position_name"></p>
-        <b>Position Activated:</b><p id="active"></p>
-        <b>Position Department:</b><p id="department"></p>
-        <b>Position Skills:</b><p id="skills"></p>
+        <b>Position Name:</b>
+        <p id="position_name"></p>
+        <b>Position Activated:</b>
+        <p id="active"></p>
+        <b>Position Department:</b>
+        <p id="department"></p>
+        <b>Position Skills:</b>
+        <p id="skills"></p>
         <legend class="border-bottom mb-4">Position Matches:</legend>
         <table id="matches" style="width:100%" class="hover stripe cell-border">
             <thead>
@@ -100,7 +104,9 @@
                         $('#matches').append(tr);
                     }
                 }
-                $('#matches').DataTable();
+                $('#matches').DataTable({
+                    "order": [[0, "desc"]]
+                });
 
             },
 
