@@ -35,13 +35,13 @@ export class DashboardPage implements OnInit {
     
   }
 
-  doRefresh(event) {
+  doRefresh() {
     
     console.log('Begin async operation');
     this.profile.refresherSubject.next('refresh-dash');
     // setTimeout(() => {
     //   console.log('Async operation has ended');
-      event.target.complete();
+      // event.target.complete();
     // }, 2000);
   }
 

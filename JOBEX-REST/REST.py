@@ -309,10 +309,11 @@ def register():
         user = request.get_json()
         company_name = user['company_name']
         company_description = user['company_description']
-        if company_name not in cache.get("m_companies"):
+        companies = cache.get("m_companies")
+        if company_name not in companies:
             company_id = web_ctrl.add_company(company_name, company_description)
             user["company_id"] = company_id
-            companies = cache.get("m_companies")
+            #companies = cache.get("m_companies")
             companies.append(company_name)
             cache.set("m_companies", companies)
         new_user = web_ctrl.add_user(user)
